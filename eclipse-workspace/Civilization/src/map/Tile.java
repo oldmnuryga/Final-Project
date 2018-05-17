@@ -1,4 +1,4 @@
-package terrain;
+package map;
 
 public abstract class Tile {
 
