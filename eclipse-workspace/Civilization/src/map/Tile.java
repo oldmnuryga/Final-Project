@@ -3,6 +3,7 @@ package map;
 import leaders.Leader;
 
 public abstract class Tile {
+	
 	protected int terrainID;
 	protected int movesRequired;
 	protected double productionBase;
