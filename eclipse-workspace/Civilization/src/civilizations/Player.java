@@ -13,7 +13,7 @@ public class Player {
 	protected double happiness;
 	protected Color color;
 	protected ArrayList <Unit> $units;
-	protected ArrayList <City> $cities;
+	protected ArrayList <City> $cities; 
 	protected ArrayList <Technology> $technologies;
 	protected ArrayList <Wonder> $wonders;
 	protected ArrayList <Structure> $structures;
