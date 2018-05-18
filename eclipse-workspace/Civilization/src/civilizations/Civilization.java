@@ -1,5 +1,6 @@
 package civilizations;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import civilizations.City;
@@ -11,6 +12,7 @@ public class Civilization {
 	protected ArrayList <City> $cities;
 	protected ArrayList <Technology> $technologies;
 	protected int happiness;
+	protected Color color;
 	
 	
 }

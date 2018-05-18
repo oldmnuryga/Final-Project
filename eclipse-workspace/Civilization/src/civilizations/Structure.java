@@ -1,6 +1,8 @@
 package civilizations;
 
 public abstract class Structure {
-  protected double productionRequirement;
+	protected String name;
+	protected String description;
+	protected double productionRequirement;
   
 }
