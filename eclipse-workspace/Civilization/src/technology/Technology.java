@@ -1,9 +1,46 @@
 package technology;
 
+import units.Unit;
+import map.Tile;
+
 public abstract class Technology {
 	protected String name;
-	public Technology() {
-		// TODO Auto-generated constructor stub
+	protected Unit unit;
+	protected Tile improvement;
+	protected boolean isAchievable;
+	protected double rate;
+	// gives you the alphabet at the beginning
+	
+	public String getName() {
+		return name;
 	}
+	public Unit getTechUnit() {
+		return unit;
+	}
+	public Tile getTechImprovement() {
+		return improvement;
+	}
+	public void setName(String str) {
+		this.name = str;
+	}
+	public void setTechUnit(Unit un) {
+		this.unit = un;
+	}
+	public void setTechImprovement(Tile imp) {
+		this.improvement = imp;
+	}
+	public boolean canAchieve() {
+		return isAchievable;
+	}
+	public void setAchievable(boolean a) {
+		this.isAchievable = a;
+	}
+	public double getRate() {
+		return rate;
+	}
+	public void setRate(double r) {
+		this.rate = r;
+	}
+	
 
 }
