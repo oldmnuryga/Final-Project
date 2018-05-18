@@ -47,7 +47,7 @@ public abstract class Unit {
 	}
 	public boolean isAlive() {
 		return alive;
-	}
+	} 
 	public void setAlive(boolean a) {
 		this.alive = a;
 	}
