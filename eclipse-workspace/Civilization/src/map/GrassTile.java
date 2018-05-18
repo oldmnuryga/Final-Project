@@ -1,5 +1,5 @@
 package map;
-
+//
 public class GrassTile extends Tile{	
 	public GrassTile() {
 		super.terrainID = 1;
