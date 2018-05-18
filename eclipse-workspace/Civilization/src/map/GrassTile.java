@@ -14,6 +14,7 @@ public class GrassTile extends Tile{
 		super.goldPotential = 2.0;
 		super.crossable = true;
 		super.occupied = false;
+		super.improved = false;
 		super.owner = null;
 	}
 }

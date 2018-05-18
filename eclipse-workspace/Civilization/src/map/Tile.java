@@ -13,6 +13,7 @@ public abstract class Tile {
 	protected double goldPotential;
 	protected boolean crossable;
 	protected boolean occupied;
+	protected boolean improved;
 	protected Leader owner;
 	
 	//GETTERS AND SETTERS
@@ -97,6 +98,14 @@ public abstract class Tile {
 		this.occupied = occupied;
 	}
 	
+	public boolean isImproved() {
+		return improved;
+	}
+
+	public void setImproved(boolean improved) {
+		this.improved = improved;
+	}
+
 	public Leader getOwner() {
 		return owner;
 	}
