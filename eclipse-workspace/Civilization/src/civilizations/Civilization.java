@@ -2,6 +2,7 @@ package civilizations;
 
 import java.util.ArrayList;
 
+import City.City;
 import technology.Technology;
 
 public abstract class Civilization {
