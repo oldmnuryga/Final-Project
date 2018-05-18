@@ -12,6 +12,7 @@ public class Player {
 	protected double goldPerTurn;
 	protected double happiness;
 	protected Color color;
+	protected double scienceExcess;
 	protected ArrayList <Unit> $units;
 	protected ArrayList <City> $cities; 
 	protected ArrayList <Technology> $technologies;
