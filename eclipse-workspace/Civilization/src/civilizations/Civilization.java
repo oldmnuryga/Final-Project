@@ -1,5 +1,5 @@
 package civilizations;
 
-public abstract class civilization {
+public abstract class Civilization {
 	protected double gold;
 }
