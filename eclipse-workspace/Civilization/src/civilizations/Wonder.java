@@ -1,6 +1,6 @@
 package civilizations;
 
-public class Wonder extends Structure {
+public class Wonder extends Structure { 
 	protected Player owner;
   
 }

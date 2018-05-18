@@ -9,7 +9,7 @@ public class City {
 	protected double foodBox;
 	protected double foodLimit;
 	protected int citizens;
-	protected City() {
+	protected City() { 
 		
 	}
 }
