@@ -10,17 +10,17 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 class sounds {
 	private File musicfile = new File("");
 	private File clickfile = new File("");
-	
-public void clickPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
+
+	public void clickPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
 		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(clickfile);
 		Clip clip = AudioSystem.getClip();
 		clip.open(audioInputStream);
 		clip.start();
 	}
-public void musicPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
-	AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(clickfile);
-	Clip clip = AudioSystem.getClip();
-	clip.open(audioInputStream);
-	clip.start();
-}
+	public void musicPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
+		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(musicfile);
+		Clip clip = AudioSystem.getClip();
+		clip.open(audioInputStream);
+		clip.start();
+	}
 }
