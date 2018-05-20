@@ -1,4 +1,4 @@
-package sound;
+ package sound;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 class sounds {
 	protected File musicfile = new File("");
-	protected File clickfile = new File("");
+	protected File clickfile = new File("src/click.wav");
 
 	public void clickPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
 		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(clickfile);
