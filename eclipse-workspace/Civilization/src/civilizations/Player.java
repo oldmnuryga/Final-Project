@@ -17,5 +17,4 @@ public class Player {
 	protected ArrayList <City> $cities; 
 	protected ArrayList <Technology> $technologies;
 	protected ArrayList <Wonder> $wonders;
-	protected ArrayList <Structure> $structures;   
 }

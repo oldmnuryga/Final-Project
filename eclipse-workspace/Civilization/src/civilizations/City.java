@@ -20,6 +20,7 @@ public class City {
 	protected double scienceRate;
 	protected int citizens;
 	protected ArrayList <Tile> $cityTiles;
+	protected ArrayList <Structure> $structures;
 	  
 	protected City() { 
 		
