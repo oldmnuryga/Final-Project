@@ -1,14 +1,11 @@
 package technology;
 
-import units.Unit;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import map.Tile;
+import civilizations.City;
 
 public class Technology {
 	private final int NUMBER_OF_TECHNOLOGIES = 67;
@@ -20,7 +17,9 @@ public class Technology {
 	private ArrayList<Integer> $leadsTo;
 	private ArrayList<Integer> $comesFrom;
 	private ArrayList<Technology> $technologies = new ArrayList<Technology>();
-
+	private int turnsUntilTech;
+	
+	
 	public Technology(int ttechnologyID, String tname, int tscienceCost, ArrayList<Integer> $tleadsTo, ArrayList<Integer> $tcomesFrom) {
 		technologyID = ttechnologyID;
 		name = tname; 
@@ -35,6 +34,15 @@ public class Technology {
 		// Empty constructor for access to methods
 	}
 
+	public int getTurnsUntilTech() {
+		
+		
+		// science cost / get city science per turn
+		// quotient +1 = turns until tech
+		
+		return turnsUntilTech;
+	}
+	
 	public String toString() {
 		return "ID: " + technologyID + "\nName: " + name + "\nAchievable: " + achievable + "\nResearched: "
 				+ "\nScience Cost: " + scienceCost + "\nComes From: " + $comesFrom + "\nLeads To: " + $leadsTo;
