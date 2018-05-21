@@ -1,21 +1,33 @@
 package technology;
 
 import units.Unit;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import map.Tile;
 
-public abstract class Technology {
-	protected String name;
-	protected Unit unit;
-	protected Tile improvement;
-	protected boolean isAchievable;
-	protected double rate;
-	// gives you the alphabet at the beginning
+public class Technology {
+	private String name;
+	private Unit unit;
+	private Tile improvement;
+	private boolean isAchievable;
+	private int sciCost;
+	private ArrayList<Integer> comesFrom;
+	private ArrayList<Integer> leadsTo;
+	private ArrayList<Technology> tree;
 	
+	public Technology(String n, int scienceCost, ArrayList<Integer> leads, ArrayList<Integer> comes) {
+		name = n;
+		sciCost = scienceCost;
+		leadsTo = leads;
+		comesFrom = comes;
+	}
 	public String getName() {
 		return name;
-	}
-	public Technology() {
-		//y = 30*log(12x)
 	}
 	public Unit getTechUnit() {
 		return unit;
@@ -38,12 +50,33 @@ public abstract class Technology {
 	public void setAchievable(boolean a) {
 		this.isAchievable = a;
 	}
-	public double getRate() {
-		return rate;
+	public void readTxt(){
+		try {
+			String path = "src/technology/tree.txt";
+			FileReader f = new FileReader(path);
+			BufferedReader br = new BufferedReader(f);
+			String temp = br.readLine();
+			Scanner s = new Scanner(temp).useDelimiter(",");
+			int index = s.nextInt();
+			String tech = s.next();
+			int precursor = s.nextInt();
+			if(precursor != 0) 
+				for(int i = 0;i < precursor;i++) {
+					int preIndex = s.nextInt();
+					comesFrom.add(preIndex);
+				}
+			int product = s.nextInt();
+			if(product != 0) 
+				for(int j = 0;j < product;j++) {
+					int leadsToIndex = s.nextInt();
+					leadsTo.add(leadsToIndex);
+				}
+			Technology egg = new Technology(temp,tech,leadsTo,comesFrom,);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
-	public void setRate(double r) {
-		this.rate = r;
-	}
-	
 
 }
