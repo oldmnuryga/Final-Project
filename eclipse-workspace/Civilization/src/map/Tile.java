@@ -15,6 +15,8 @@ public abstract class Tile {
 	protected boolean occupied;
 	protected boolean improved;
 	protected Leader owner;
+	protected int[] $location = new int[2];
+	protected Tile[][] $map = new Tile[50][50];
 	
 	//GETTERS AND SETTERS
 	
@@ -112,5 +114,21 @@ public abstract class Tile {
 	
 	public void setOwner(Leader owner) {
 		this.owner = owner;
+	}
+
+	public int[] get$location() {
+		return $location;
+	}
+
+	public void set$location(int[] $location) {
+		this.$location = $location;
+	}
+
+	public Tile[][] get$map() {
+		return $map;
+	}
+
+	public void set$map(Tile[][] $map) {
+		this.$map = $map;
 	}
 }
