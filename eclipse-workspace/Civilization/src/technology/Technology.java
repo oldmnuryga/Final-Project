@@ -20,7 +20,7 @@ public class Technology {
 	private int scienceCost;
 	private ArrayList<Integer> $leadsTo;
 	private ArrayList<Integer> $comesFrom;
-	private ArrayList<Technology> tree = new ArrayList<Technology>();
+	private ArrayList<Technology> $technologies = new ArrayList<Technology>();
 
 	public Technology(int ttechnologyID, String tname, int tscienceCost, ArrayList<Integer> $tleadsTo,
 			ArrayList<Integer> $tcomesFrom) {
@@ -88,7 +88,7 @@ public class Technology {
 				for (int j = 0; j < comes; j++) {
 					$tcomesFrom.add(s.nextInt());
 				}
-				tree.add(new Technology(tempID, tempName, tscienceCost, $tleadsTo, $tcomesFrom));
+				$technologies.add(new Technology(tempID, tempName, tscienceCost, $tleadsTo, $tcomesFrom));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
