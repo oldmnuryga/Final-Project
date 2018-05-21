@@ -1,0 +1,38 @@
+public class TempCell {
+	private boolean state;
+	private boolean infected;
+	private int neighborSum;
+	
+	public TempCell(boolean tstate) {
+		state = tstate;
+		infected = false;
+	}
+	
+	public String toString() {
+		return state ? "@" : " ";
+	}
+
+	public boolean getState() {
+		return state;
+	}
+
+	public void setState(boolean state) {
+		this.state = state;
+	}
+	
+	public boolean getInfected() {
+		return infected;
+	}
+	
+	public void setInfected(boolean infected) {
+		this.infected = infected;
+	}
+
+	public int getNeighborSum() {
+		return neighborSum;
+	}
+
+	public void setNeighborSum(int neighborSum) {
+		this.neighborSum = neighborSum;
+	}
+}

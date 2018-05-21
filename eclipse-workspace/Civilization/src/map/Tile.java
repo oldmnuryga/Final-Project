@@ -1,9 +1,12 @@
 package map;
 
+import java.util.Random;
+
 import leaders.Leader;
 
 public abstract class Tile {
-	protected int terrainID; //0 - water, 1- grassTile, 2
+	protected final int MAP_SIZE = 50;
+	protected int terrainID; //0 - water, 1 - grassTile, 2 - sandTile, 3 - MountainTile
 	protected int movesRequired;
 	protected double productionBase;
 	protected double productionPotential;
@@ -16,7 +19,23 @@ public abstract class Tile {
 	protected boolean improved;
 	protected Leader owner;
 	protected int[] $location = new int[2];
-	protected Tile[][] $map = new Tile[50][50];
+	protected Tile[][] $map = new Tile[MAP_SIZE][MAP_SIZE];
+	
+	public void generateMap() {
+		Random rand = new Random();
+		for (int i = 0; i < $map.length; i++) {
+			for (int j = 0; j < $map[i].length; j++) {
+				$map[i][j] = new WaterTile();
+				int[] $tempLocation = {i, j};
+				$map[i][j].set$location($tempLocation);
+			}
+		}
+		
+		$map[1][1] = new GrassTile();
+		$map[1][2] = new GrassTile();
+		$map[2][1] = new GrassTile();
+		$map[2][2] = new GrassTile();
+	}
 	
 	//GETTERS AND SETTERS
 	
@@ -24,6 +43,10 @@ public abstract class Tile {
 		return terrainID;
 	}
 	
+	public int getMAP_SIZE() {
+		return MAP_SIZE;
+	}
+
 	public void setTerrainID(int terrainID) {
 		this.terrainID = terrainID;
 	}
