@@ -6,7 +6,6 @@ import map.Tile;
 
 public class City {
 	protected String name;
-	
 	protected int size;
 	protected Player owner;
 	protected boolean capital;
@@ -19,10 +18,15 @@ public class City {
 	protected double foodCap;
 	protected double scienceRate;
 	protected int citizens;
+	protected int citizenCap;
 	protected ArrayList <Tile> $cityTiles;
 	protected ArrayList <Structure> $structures;
 	  
 	protected City() { 
 		
 	}
+	public void setCitizenCap(int num) {
+		this.citizenCap = num;
+	}
+	
 }
