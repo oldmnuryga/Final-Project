@@ -6,8 +6,8 @@ import map.Tile;
 
 public class City {
 	protected String name;
-	protected int size;
 	protected Player owner;
+	protected Tile location;
 	protected boolean capital;
 	protected boolean coastal;
 	protected double goldRate;
@@ -21,7 +21,23 @@ public class City {
 	protected int citizenCap;
 	protected ArrayList <Tile> $cityTiles;
 	protected ArrayList <Structure> $structures;
-	protected City() { 
+	protected City(Player player) { 
+		name = player.getLeader().getCityNames().get(player.getNumCities());
+		owner = player;
+		capital = isCapital();
+		coastal = isCoastal();
+		//location =
+		goldRate = 0;
+		productionRate = 0;
+		productionExcess = 0;
+		foodRate = 0;
+		foodBox = 0;
+		foodCap = 0;
+		scienceRate = 0;
+		citizens = 1;
+		citizenCap = 10;
+		$cityTiles = new ArrayList<Tile>();
+		$structures = new ArrayList<Structure>();
 		
 	}
 	public String getName() {
@@ -30,25 +46,20 @@ public class City {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getSize() {
-		return size;
-	}
-	public void setSize(int size) {
-		this.size = size;
-	}
+	
 	public Player getOwner() {
 		return owner;
 	}
 	public void setOwner(Player owner) {
 		this.owner = owner;
 	}
-	public boolean isCapital() {
+	public boolean getCapital() {
 		return capital;
 	}
 	public void setCapital(boolean capital) {
 		this.capital = capital;
 	}
-	public boolean isCoastal() {
+	public boolean getCoastal() {
 		return coastal;
 	}
 	public void setCoastal(boolean coastal) {
@@ -119,6 +130,15 @@ public class City {
 	}
 	public void setCitizenCap(int num) {
 		this.citizenCap = num;
+	}
+	public boolean isCapital() {
+		if(owner.getNumCities() == 0)
+			return true;
+		return false;
+	}
+	public boolean isCoastal() {
+		
+		return false;
 	}
 	
 }
