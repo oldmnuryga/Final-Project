@@ -1,8 +1,9 @@
 package leaders;
 
+import java.util.ArrayList;
+
 public abstract class Leader {
 	protected String leaderName;
 	protected String abbrevLeaderName;
-	protected String[] cityNames;
-	protected int test;
+	protected ArrayList <String> cityNames;
 }

@@ -14,6 +14,9 @@ public abstract class Technology {
 	public String getName() {
 		return name;
 	}
+	public Technology() {
+		//y = 30*log(12x)
+	}
 	public Unit getTechUnit() {
 		return unit;
 	}
