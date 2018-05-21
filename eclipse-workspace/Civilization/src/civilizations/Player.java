@@ -20,6 +20,9 @@ public class Player {
 	protected ArrayList <City> $cities;
 	protected ArrayList <Technology> $technologies;
 	protected ArrayList <Wonder> $wonders;
+	public Player() {
+		
+	}
 	public String getName() {
 		return name;
 	}
