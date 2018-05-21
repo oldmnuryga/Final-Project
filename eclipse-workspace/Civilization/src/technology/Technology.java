@@ -21,8 +21,7 @@ public class Technology {
 	private ArrayList<Integer> $comesFrom;
 	private ArrayList<Technology> $technologies = new ArrayList<Technology>();
 
-	public Technology(int ttechnologyID, String tname, int tscienceCost, ArrayList<Integer> $tleadsTo,
-			ArrayList<Integer> $tcomesFrom) {
+	public Technology(int ttechnologyID, String tname, int tscienceCost, ArrayList<Integer> $tleadsTo, ArrayList<Integer> $tcomesFrom) {
 		technologyID = ttechnologyID;
 		name = tname;
 		achievable = false;
