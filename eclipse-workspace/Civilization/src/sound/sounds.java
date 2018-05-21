@@ -11,7 +11,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 class sounds {
 	protected File musicfile = new File("");
-	protected File clickfile = new File("src/sound/resources/click.wav");
+	protected File clickfile = new File("src/sound.resources/click.wav");
 
 	public void clickPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
 		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(clickfile);
