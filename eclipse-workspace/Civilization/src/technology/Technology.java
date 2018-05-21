@@ -14,9 +14,8 @@ public class Technology {
 	private final int NUMBER_OF_TECHNOLOGIES = 67;
 	private int technologyID;
 	private String name;
-	private Unit unit;
-	private Tile improvement;
-	private boolean isAchievable;
+	private boolean achievable;
+	private boolean researched;
 	private int scienceCost;
 	private ArrayList<Integer> $leadsTo;
 	private ArrayList<Integer> $comesFrom;
@@ -26,15 +25,32 @@ public class Technology {
 			ArrayList<Integer> $tcomesFrom) {
 		technologyID = ttechnologyID;
 		name = tname;
+		achievable = false;
+		researched = false;
 		scienceCost = tscienceCost;
 		$leadsTo = $tleadsTo;
 		$comesFrom = $tcomesFrom;
 	}
 
 	public Technology() {
-		
+		// Empty constructor for access to methods
 	}
-	
+
+	public String toString() {
+		return "ID: " + technologyID + "\nName: " + name + "\nAchievable: " + achievable + "\nResearched: "
+				+ "\nScience Cost: " + scienceCost + "\nComes From: " + $comesFrom + "\nLeads To: " + $leadsTo;
+	}
+
+	/*
+	 * public String leadsToNames() { String out = ""; if ($leadsTo.size() > 0) for
+	 * (int i : $leadsTo) { out += $technologies.get(i).getName() + ", "; } return
+	 * out; }
+	 * 
+	 * public String comesFromNames() { String out = ""; if ($comesFrom.size() > 0)
+	 * for (int i : $comesFrom) { out += $technologies.get(i).getName() + ", "; }
+	 * return out; }
+	 */
+
 	public int getTechnologyID() {
 		return technologyID;
 	}
@@ -51,28 +67,20 @@ public class Technology {
 		this.name = name;
 	}
 
-	public Unit getUnit() {
-		return unit;
-	}
-
-	public void setUnit(Unit unit) {
-		this.unit = unit;
-	}
-
-	public Tile getImprovement() {
-		return improvement;
-	}
-
-	public void setImprovement(Tile improvement) {
-		this.improvement = improvement;
-	}
-
 	public boolean isAchievable() {
-		return isAchievable;
+		return achievable;
 	}
 
-	public void setAchievable(boolean isAchievable) {
-		this.isAchievable = isAchievable;
+	public void setAchievable(boolean achievable) {
+		this.achievable = achievable;
+	}
+
+	public boolean isResearched() {
+		return researched;
+	}
+
+	public void setResearched(boolean researched) {
+		this.researched = researched;
 	}
 
 	public int getScienceCost() {
@@ -124,13 +132,13 @@ public class Technology {
 				int tempID = s.nextInt();
 				String tempName = s.next();
 				int tscienceCost = s.nextInt();
-				int leads = s.nextInt();
-				for (int j = 0; j < leads; j++) {
-					$tleadsTo.add(s.nextInt());
-				}
 				int comes = s.nextInt();
 				for (int j = 0; j < comes; j++) {
 					$tcomesFrom.add(s.nextInt());
+				}
+				int leads = s.nextInt();
+				for (int j = 0; j < leads; j++) {
+					$tleadsTo.add(s.nextInt());
 				}
 				$technologies.add(new Technology(tempID, tempName, tscienceCost, $tleadsTo, $tcomesFrom));
 			}

@@ -8,5 +8,9 @@ public class civilizationMain {
 		c.display();*/
 		Technology t = new Technology();
 		t.importTechnologies();
+		for(Technology i : t.get$technologies()) {
+			System.out.println(i);
+			System.out.println();
+		}
 	}
 }
