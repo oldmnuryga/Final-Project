@@ -23,7 +23,7 @@ public class Technology {
 
 	public Technology(int ttechnologyID, String tname, int tscienceCost, ArrayList<Integer> $tleadsTo, ArrayList<Integer> $tcomesFrom) {
 		technologyID = ttechnologyID;
-		name = tname;
+		name = tname; 
 		achievable = false;
 		researched = false;
 		scienceCost = tscienceCost;
