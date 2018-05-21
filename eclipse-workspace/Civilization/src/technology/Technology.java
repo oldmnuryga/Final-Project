@@ -35,36 +35,80 @@ public class Technology {
 		
 	}
 	
+	public int getTechnologyID() {
+		return technologyID;
+	}
+
+	public void setTechnologyID(int technologyID) {
+		this.technologyID = technologyID;
+	}
+
 	public String getName() {
 		return name;
 	}
 
-	public Unit getTechUnit() {
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Unit getUnit() {
 		return unit;
 	}
 
-	public Tile getTechImprovement() {
+	public void setUnit(Unit unit) {
+		this.unit = unit;
+	}
+
+	public Tile getImprovement() {
 		return improvement;
 	}
 
-	public void setName(String str) {
-		this.name = str;
+	public void setImprovement(Tile improvement) {
+		this.improvement = improvement;
 	}
 
-	public void setTechUnit(Unit un) {
-		this.unit = un;
-	}
-
-	public void setTechImprovement(Tile imp) {
-		this.improvement = imp;
-	}
-
-	public boolean canAchieve() {
+	public boolean isAchievable() {
 		return isAchievable;
 	}
 
-	public void setAchievable(boolean a) {
-		this.isAchievable = a;
+	public void setAchievable(boolean isAchievable) {
+		this.isAchievable = isAchievable;
+	}
+
+	public int getScienceCost() {
+		return scienceCost;
+	}
+
+	public void setScienceCost(int scienceCost) {
+		this.scienceCost = scienceCost;
+	}
+
+	public ArrayList<Integer> get$leadsTo() {
+		return $leadsTo;
+	}
+
+	public void set$leadsTo(ArrayList<Integer> $leadsTo) {
+		this.$leadsTo = $leadsTo;
+	}
+
+	public ArrayList<Integer> get$comesFrom() {
+		return $comesFrom;
+	}
+
+	public void set$comesFrom(ArrayList<Integer> $comesFrom) {
+		this.$comesFrom = $comesFrom;
+	}
+
+	public ArrayList<Technology> get$technologies() {
+		return $technologies;
+	}
+
+	public void set$technologies(ArrayList<Technology> $technologies) {
+		this.$technologies = $technologies;
+	}
+
+	public int getNUMBER_OF_TECHNOLOGIES() {
+		return NUMBER_OF_TECHNOLOGIES;
 	}
 
 	public void importTechnologies() {
