@@ -11,72 +11,89 @@ import java.util.Scanner;
 import map.Tile;
 
 public class Technology {
+	private final int NUMBER_OF_TECHNOLOGIES = 67;
+	private int technologyID;
 	private String name;
 	private Unit unit;
 	private Tile improvement;
 	private boolean isAchievable;
-	private int sciCost;
-	private ArrayList<Integer> comesFrom;
-	private ArrayList<Integer> leadsTo;
-	private ArrayList<Technology> tree;
-	
-	public Technology(String n, int scienceCost, ArrayList<Integer> leads, ArrayList<Integer> comes) {
-		name = n;
-		sciCost = scienceCost;
-		leadsTo = leads;
-		comesFrom = comes;
+	private int scienceCost;
+	private ArrayList<Integer> $leadsTo;
+	private ArrayList<Integer> $comesFrom;
+	private ArrayList<Technology> tree = new ArrayList<Technology>();
+
+	public Technology(int ttechnologyID, String tname, int tscienceCost, ArrayList<Integer> $tleadsTo,
+			ArrayList<Integer> $tcomesFrom) {
+		technologyID = ttechnologyID;
+		name = tname;
+		scienceCost = tscienceCost;
+		$leadsTo = $tleadsTo;
+		$comesFrom = $tcomesFrom;
 	}
+
+	public Technology() {
+		
+	}
+	
 	public String getName() {
 		return name;
 	}
+
 	public Unit getTechUnit() {
 		return unit;
 	}
+
 	public Tile getTechImprovement() {
 		return improvement;
 	}
+
 	public void setName(String str) {
 		this.name = str;
 	}
+
 	public void setTechUnit(Unit un) {
 		this.unit = un;
 	}
+
 	public void setTechImprovement(Tile imp) {
 		this.improvement = imp;
 	}
+
 	public boolean canAchieve() {
 		return isAchievable;
 	}
+
 	public void setAchievable(boolean a) {
 		this.isAchievable = a;
 	}
-	public void readTxt(){
+
+	public void importTechnologies() {
 		try {
-			String path = "src/technology/tree.txt";
-			FileReader f = new FileReader(path);
+			FileReader f = new FileReader("src/technology/tree.txt");
 			BufferedReader br = new BufferedReader(f);
-			String temp = br.readLine();
-			Scanner s = new Scanner(temp).useDelimiter(",");
-			int index = s.nextInt();
-			String tech = s.next();
-			int precursor = s.nextInt();
-			if(precursor != 0) 
-				for(int i = 0;i < precursor;i++) {
-					int preIndex = s.nextInt();
-					comesFrom.add(preIndex);
+			for (int i = 0; i < NUMBER_OF_TECHNOLOGIES; i++) {
+				String temp = br.readLine();
+				System.out.println(temp);
+				Scanner s = new Scanner(temp).useDelimiter(",");
+				ArrayList<Integer> $tleadsTo = new ArrayList<Integer>();
+				ArrayList<Integer> $tcomesFrom = new ArrayList<Integer>();
+				int tempID = s.nextInt();
+				String tempName = s.next();
+				int tscienceCost = s.nextInt();
+				int leads = s.nextInt();
+				for (int j = 0; j < leads; j++) {
+					$tleadsTo.add(s.nextInt());
 				}
-			int product = s.nextInt();
-			if(product != 0) 
-				for(int j = 0;j < product;j++) {
-					int leadsToIndex = s.nextInt();
-					leadsTo.add(leadsToIndex);
+				int comes = s.nextInt();
+				for (int j = 0; j < comes; j++) {
+					$tcomesFrom.add(s.nextInt());
 				}
-			Technology egg = new Technology(temp,tech,leadsTo,comesFrom,);
-			
+				tree.add(new Technology(tempID, tempName, tscienceCost, $tleadsTo, $tcomesFrom));
+			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }
