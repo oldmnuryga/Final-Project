@@ -7,9 +7,9 @@ public class Artillery extends Unit {
 		super.defenseRating = 1;
 		super.effectiveHitpoints = 100;
 		super.attackRating = 7;
-		super.productionCost = 0;
+		super.productionCost = 375;
 		super.location  = null;
-		super.ranged = false;
+		super.ranged = true;
 		super.alive = true;
 		super.fortified = false;
 		super.maxMovement = 2;
