@@ -22,8 +22,8 @@ public class City {
 	protected ArrayList <Tile> $cityTiles;
 	protected ArrayList <Structure> $structures;
 	protected City(Player player) { 
-		name = player.getLeader().getCityNames().get(player.getNumCities());
 		owner = player;
+		name = owner.getLeader().getCityNames().get(owner.getNumCities());
 		capital = isCapital();
 		coastal = isCoastal();
 		//location =
