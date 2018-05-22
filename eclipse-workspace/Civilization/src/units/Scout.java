@@ -2,7 +2,7 @@ package units;
 
 public class Scout extends Unit {
 
-	public Warrior() {
+	public Scout() {
 		super.hitpoints = 100;
 		super.defenseRating = 1;
 		super.effectiveHitpoints = 100;

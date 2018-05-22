@@ -2,7 +2,7 @@ package units;
 
 public class Archer extends Unit {
 
-	public Warrior() {
+	public Archer() {
 		super.hitpoints = 100;
 		super.defenseRating = 1;
 		super.effectiveHitpoints = 100;
