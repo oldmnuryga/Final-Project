@@ -11,10 +11,17 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 
 class sounds {
 	protected File musicfile = new File("");
+	protected File unitdeathfile = new File("src/sound.resources/unitDeath.mp3");
 	protected File clickfile = new File("src/sound.resources/click.wav");
 
 	public void clickPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
 		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(clickfile);
+		Clip clip = AudioSystem.getClip();
+		clip.open(audioInputStream);
+		clip.start();
+	}
+	public void unitDeathPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
+		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(unitdeathfile);
 		Clip clip = AudioSystem.getClip();
 		clip.open(audioInputStream);
 		clip.start();
