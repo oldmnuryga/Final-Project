@@ -3,7 +3,7 @@ package units;
 public class Musketman extends Unit {
 
 	public Musketman() {
-		super.hitpoints = 100;
+		super.hitpoints = 110;
 		super.attackRating = 7;
 		super.productionCost = 0;
 		super.location  = null;

@@ -3,7 +3,7 @@ package units;
 public class Rifleman extends Unit {
 
 	public Rifleman() {
-		super.hitpoints = 100;
+		super.hitpoints = 90;
 		super.attackRating = 7;
 		super.productionCost = 0;
 		super.location  = null;

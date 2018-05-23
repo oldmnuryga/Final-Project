@@ -3,7 +3,7 @@ package units;
 public class Marine extends Unit {
 
 	public Marine() {
-		super.hitpoints = 100;
+		super.hitpoints = 150;
 		super.attackRating = 7;
 		super.productionCost = 0;
 		super.location  = null;

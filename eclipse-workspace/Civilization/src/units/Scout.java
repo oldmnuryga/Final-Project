@@ -3,7 +3,7 @@ package units;
 public class Scout extends Unit {
 
 	public Scout() {
-		super.hitpoints = 100;
+		super.hitpoints = 20;
 		super.attackRating = 7;
 		super.productionCost = 0;
 		super.location  = null;
