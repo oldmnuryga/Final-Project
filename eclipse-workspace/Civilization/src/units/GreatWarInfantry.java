@@ -5,7 +5,7 @@ public class GreatWarInfantry extends Unit {
 	public GreatWarInfantry() {
 		super.hitpoints = 125;
 		super.attackRating = 35;
-		super.productionCost = 0;
+		super.productionCost = 320;
 		super.location  = null;
 		super.ranged = false;
 		super.alive = true;
