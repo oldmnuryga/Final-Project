@@ -2,10 +2,12 @@ package map;
 
 import java.util.Random;
 
+import javax.swing.JLabel;
+
 import leaders.Leader;
 
 public abstract class Tile {
-	protected final int MAP_SIZE = 50;
+	protected final static int MAP_SIZE = 50;
 	protected int terrainID; //0 - water, 1 - grassTile, 2 - sandTile, 3 - MountainTile
 	protected int movesRequired;
 	protected double productionBase;
@@ -19,6 +21,7 @@ public abstract class Tile {
 	protected boolean improved;
 	protected Leader owner;
 	protected int[] $location = new int[2];
+	protected JLabel tileLabel;
 	protected Tile[][] $map = new Tile[MAP_SIZE][MAP_SIZE];
 	
 	public void generateMap() {
@@ -43,7 +46,7 @@ public abstract class Tile {
 		return terrainID;
 	}
 	
-	public int getMAP_SIZE() {
+	public static int getMAP_SIZE() {
 		return MAP_SIZE;
 	}
 
@@ -141,6 +144,14 @@ public abstract class Tile {
 
 	public int[] get$location() {
 		return $location;
+	}
+	
+	public JLabel getTileLabel() {
+		return tileLabel;
+	}
+
+	public void setTileLabel(JLabel tileLabel) {
+		this.tileLabel = tileLabel;
 	}
 
 	public void set$location(int[] $location) {
