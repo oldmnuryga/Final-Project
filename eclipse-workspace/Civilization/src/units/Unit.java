@@ -42,7 +42,6 @@ public abstract class Unit {
 	public void setProdCost(int prod) {
 		this.productionCost = prod;
 	}
-	
 	public int getHitpoints() {
 		return hitpoints;
 	}
