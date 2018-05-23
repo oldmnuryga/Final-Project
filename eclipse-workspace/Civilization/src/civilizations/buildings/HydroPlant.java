@@ -17,7 +17,7 @@ public class HydroPlant extends Building{
 		productionRequirement = 60;
 		goldMaintenance = 1;
 		techRequired = 3;
-		city.setFoodCap(city.getFoodCap()/2);
+		city.setProductionRate(city.getProductionRate()*1.5);
 	}
 	public String getName() {
 		return name;

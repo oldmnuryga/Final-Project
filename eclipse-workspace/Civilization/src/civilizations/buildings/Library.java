@@ -4,12 +4,6 @@ import civilizations.Building;
 import civilizations.City;
 
 public class Library extends Building{
-	protected String name; 
-	protected String description;
-	protected double productionRequirement;
-	protected int goldMaintenance;
-	protected int techRequired;
-	protected City location;
 	public Library (City city) {
 		location = city;
 		name = "Library";
