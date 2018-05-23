@@ -3,11 +3,9 @@ package units;
 public class Legion extends Unit {
 
 	public Legion() {
-		super.hitpoints = 100;
-		super.defenseRating = 1;
-		super.effectiveHitpoints = 100;
-		super.attackRating = 7;
-		super.productionCost = 0;
+		super.hitpoints = 40;
+		super.attackRating = 17;
+		super.productionCost = 75;
 		super.location  = null;
 		super.ranged = false;
 		super.alive = true;

@@ -3,11 +3,9 @@ package units;
 public class Spearman extends Unit {
 
 	public Spearman() {
-		super.hitpoints = 100;
-		super.defenseRating = 1;
-		super.effectiveHitpoints = 100;
-		super.attackRating = 7;
-		super.productionCost = 0;
+		super.hitpoints = 45;
+		super.attackRating = 16;
+		super.productionCost = 56;
 		super.location  = null;
 		super.ranged = false;
 		super.alive = true;
