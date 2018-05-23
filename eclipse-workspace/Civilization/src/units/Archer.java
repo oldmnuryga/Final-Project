@@ -4,7 +4,7 @@ public class Archer extends Unit {
 
 	public Archer() {
 		super.hitpoints = 30;
-		super.attackRating = 7;
+		super.attackRating = 11;
 		super.productionCost = 40;
 		super.location  = null;
 		super.ranged = true;

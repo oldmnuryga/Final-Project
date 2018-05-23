@@ -4,8 +4,8 @@ public class Scout extends Unit {
 
 	public Scout() {
 		super.hitpoints = 20;
-		super.attackRating = 7;
-		super.productionCost = 0;
+		super.attackRating = 5;
+		super.productionCost = 25;
 		super.location  = null;
 		super.ranged = false;
 		super.alive = true;
