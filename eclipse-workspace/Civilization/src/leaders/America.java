@@ -4,11 +4,11 @@ public class America extends Leader {
 	// george washington
 	// all land units have +1 movement
 	// +2 gpt
-	private String name = "George Washington";
 	public America() {
-		
+		super.leaderName = "George Washington";
+		super.abbrevLeaderName = "The Americans";
 	}
 	public String getName() {
-		return name;
+		return leaderName;
 	}
 }
