@@ -3,21 +3,21 @@ package civilizations.buildings;
 import civilizations.Building;
 import civilizations.City;
 
-public class Aqueduct extends Building{
+public class Bank extends Building{
 	protected String name; 
 	protected String description;
 	protected double productionRequirement;
 	protected int goldMaintenance;
 	protected int techRequired;
 	protected City location;
-	public Aqueduct (City city) {
+	public Bank (City city) {
 		location = city;
-		name = "Aqueduct";
-		description = "Allows City to Grow over 10.";
+		name = "Bank";
+		description = "Taxes and Luxuries increase by 50%.";
 		productionRequirement = 120;
-		goldMaintenance = 2;
-		techRequired = 12;
-		city.setCitizenCap(30);
+		goldMaintenance = 3;
+		techRequired = 26;
+		city.setGoldRate(city.getGoldRate()*1.5);
 	}
 	public String getName() {
 		return name;
@@ -56,3 +56,4 @@ public class Aqueduct extends Building{
 		this.location = location;
 	}
 }
+

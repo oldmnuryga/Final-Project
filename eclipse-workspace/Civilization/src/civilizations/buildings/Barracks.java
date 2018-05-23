@@ -3,21 +3,22 @@ package civilizations.buildings;
 import civilizations.Building;
 import civilizations.City;
 
-public class Aqueduct extends Building{
+public class Barracks extends Building{
 	protected String name; 
 	protected String description;
 	protected double productionRequirement;
 	protected int goldMaintenance;
 	protected int techRequired;
 	protected City location;
-	public Aqueduct (City city) {
+	public Barracks (City city) {
 		location = city;
-		name = "Aqueduct";
-		description = "Allows City to Grow over 10.";
-		productionRequirement = 120;
-		goldMaintenance = 2;
-		techRequired = 12;
-		city.setCitizenCap(30);
+		name = "Barracks";
+		description = "All units have 10% more health.";
+		productionRequirement = 40;
+		goldMaintenance = 0;
+		techRequired = -1;
+		for (int j = 0; j < city.getOwner().get$units().size(); j++)
+			city.getOwner().get$units().get(j).setHitPoints((int) (city.getOwner().get$units().get(j).getHitPoints()*1.1));
 	}
 	public String getName() {
 		return name;
@@ -55,4 +56,7 @@ public class Aqueduct extends Building{
 	public void setLocation(City location) {
 		this.location = location;
 	}
+	
 }
+
+
