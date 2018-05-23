@@ -15,6 +15,7 @@ public class Player {
 	protected Color color;
 	protected Leader leader;
 	protected double scienceExcess;
+	protected double sciencePerTurn;
 	protected int numCities;
 	protected ArrayList <Unit> $units;
 	protected ArrayList <City> $cities;
@@ -58,6 +59,12 @@ public class Player {
 	}
 	public void setScienceExcess(double scienceExcess) {
 		this.scienceExcess = scienceExcess;
+	}
+	public double getSciencePerTurn() {
+		return sciencePerTurn;
+	}
+	public void setSciencePerTurn(double sciencePerTurn) {
+		this.sciencePerTurn = sciencePerTurn;
 	}
 	public ArrayList<Unit> get$units() {
 		return $units;
