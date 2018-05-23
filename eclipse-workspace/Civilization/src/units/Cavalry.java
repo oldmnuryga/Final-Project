@@ -3,9 +3,7 @@ package units;
 public class Cavalry extends Unit {
 
 	public Cavalry() {
-		super.hitpoints = 100;
-		super.defenseRating = 1;
-		super.effectiveHitpoints = 100;
+		super.hitpoints = 45;
 		super.attackRating = 7;
 		super.productionCost = 0;
 		super.location  = null;

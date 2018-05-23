@@ -3,10 +3,8 @@ package units;
 public class Catapult extends Unit {
 
 	public Catapult() {
-		super.hitpoints = 100;
-		super.defenseRating = 1;
-		super.effectiveHitpoints = 100;
-		super.attackRating = 7;
+		super.hitpoints = 50;
+		super.attackRating = 24;
 		super.productionCost = 0;
 		super.location  = null;
 		super.ranged = false;

@@ -4,8 +4,6 @@ import map.Tile;
 
 public abstract class Unit {
 	protected int hitpoints;
-	protected int effectiveHitpoints;
-	protected int defenseRating;
 	protected int attackRating;
 	protected int productionCost;
 	protected Tile location;
@@ -14,12 +12,6 @@ public abstract class Unit {
 	protected boolean fortified;
 	protected int maxMovement;
 	
-	public int getEffectiveHitpoints() {
-		return effectiveHitpoints;
-	}
-	public void setEffectiveHitpoints(int effectiveHitpoints) {
-		this.effectiveHitpoints = effectiveHitpoints;
-	}
 	public boolean isRanged() {
 		return ranged;
 	}
@@ -35,9 +27,6 @@ public abstract class Unit {
 	public int getHitPoints() {
 		return hitpoints;
 	}
-	public int getDefenseRating() {
-		return defenseRating;
-	}
 	public int getAttackRating() {
 		return attackRating;
 	}
@@ -46,9 +35,6 @@ public abstract class Unit {
 	}
 	public void setHitPoints(int hit) {
 		this.hitpoints = hit;
-	}
-	public void setDefenseRating(int def) {
-		this.defenseRating = def;
 	}
 	public void setAttackRating(int att) {
 		this.attackRating = att;
