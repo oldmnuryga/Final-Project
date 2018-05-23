@@ -4,7 +4,7 @@ public class Spearman extends Unit {
 
 	public Spearman() {
 		super.hitpoints = 45;
-		super.attackRating = 7;
+		super.attackRating = 16;
 		super.productionCost = 0;
 		super.location  = null;
 		super.ranged = false;

@@ -4,7 +4,7 @@ public class Swordsman extends Unit {
 
 	public Swordsman() {
 		super.hitpoints = 50;
-		super.attackRating = 7;
+		super.attackRating = 19;
 		super.productionCost = 0;
 		super.location  = null;
 		super.ranged = false;

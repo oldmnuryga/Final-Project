@@ -4,7 +4,7 @@ public class Knight extends Unit {
 
 	public Knight() {
 		super.hitpoints = 55;
-		super.attackRating = 7;
+		super.attackRating = 20;
 		super.productionCost = 0;
 		super.location  = null;
 		super.ranged = false;

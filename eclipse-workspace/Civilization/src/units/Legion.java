@@ -4,7 +4,7 @@ public class Legion extends Unit {
 
 	public Legion() {
 		super.hitpoints = 40;
-		super.attackRating = 7;
+		super.attackRating = 17;
 		super.productionCost = 0;
 		super.location  = null;
 		super.ranged = false;

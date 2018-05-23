@@ -4,7 +4,7 @@ public class Artillery extends Unit {
 
 	public Artillery() {
 		super.hitpoints = 95;
-		super.attackRating = 25;
+		super.attackRating = 30;
 		super.productionCost = 375;
 		super.location  = null;
 		super.ranged = true;

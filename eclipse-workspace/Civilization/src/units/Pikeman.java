@@ -4,7 +4,7 @@ public class Pikeman extends Unit {
 
 	public Pikeman() {
 		super.hitpoints = 40;
-		super.attackRating = 7;
+		super.attackRating = 16;
 		super.productionCost = 0;
 		super.location  = null;
 		super.ranged = false;

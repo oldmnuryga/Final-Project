@@ -4,7 +4,7 @@ public class Rifleman extends Unit {
 
 	public Rifleman() {
 		super.hitpoints = 90;
-		super.attackRating = 7;
+		super.attackRating = 30;
 		super.productionCost = 0;
 		super.location  = null;
 		super.ranged = false;
