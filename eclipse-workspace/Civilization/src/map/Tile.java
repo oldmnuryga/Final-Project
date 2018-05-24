@@ -10,6 +10,8 @@ import leaders.Leader;
 public abstract class Tile {
 	protected final static int MAP_SIZE = 100;
 	protected final static int TEXTURE_SIZE = 45;
+	protected final static int GENERATION_ITERATIONS = 10;
+	protected final static int GENERATION_SIZE_MULTIPLIER = 4;
 	protected int terrainID; //0 - water, 1 - grassTile, 2 - sandTile, 3 - MountainTile, 4- Forest
 	protected int movesRequired;
 	protected double productionBase;
@@ -46,6 +48,56 @@ public abstract class Tile {
 				int[] $tempLocation = {i, j};
 				$map[i][j].set$location($tempLocation);
 			} 
+			int[][] $genArray = new int[MAP_SIZE][MAP_SIZE];
+			for(int iterations = 0; iterations < GENERATION_ITERATIONS; iterations++){
+				int tempX = rand.nextInt(95);
+				int tempY = rand.nextInt(95);
+				int genType = rand.NextInt(6);
+				if(genType = 0){
+					$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-1][tempY-1] = GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-2][tempY-2] = GENERATION_SIZE_MULTIPLIER;
+				}
+				if(genType = 1){
+					$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+1][tempY+1] = GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+2][tempY+2] = GENERATION_SIZE_MULTIPLIER;
+				}
+				if(genType = 2){
+					$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-1][tempY-1] = GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+1][tempY+1] = GENERATION_SIZE_MULTIPLIER;
+				}
+				if(genType = 3){
+					$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+1][tempY-1] = GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-1][tempY+1] = GENERATION_SIZE_MULTIPLIER;
+				}
+				if(genType = 4){
+					$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-1][tempY-1] = GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-2][tempY-2] = GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-3][tempY-3] = GENERATION_SIZE_MULTIPLIER;
+				}
+				if(genType = 5){
+					$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+1][tempY+1] = GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+2][tempY+2] = GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+3][tempY+3] = GENERATION_SIZE_MULTIPLIER;
+				}
+			}
+			for(int i = 0; i < $map.length; i++){
+				for(int j = 0; j < $map.length; j++){
+					if($genArray[i][j] == 0)
+						$map[i][j] = new WaterTile();
+					else if($genArray[i][j] == GENERATION_SIZE_MULTIPLIER)
+						$map[i][j] = new MountainTile();
+					else
+						$map[i][j] = new GrassTile();
+					int[] $tempLocation = {i, j};
+					$map[i][j].set$location($tempLocation);
+				}
+			}
 		}
 		
 		$map[1][1] = new GrassTile();
