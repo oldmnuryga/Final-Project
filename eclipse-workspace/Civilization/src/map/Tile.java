@@ -9,7 +9,7 @@ import leaders.Leader;
 
 public abstract class Tile {
 	protected final static int MAP_SIZE = 50;
-	protected int terrainID; //0 - water, 1 - grassTile, 2 - sandTile, 3 - MountainTile
+	protected int terrainID; //0 - water, 1 - grassTile, 2 - sandTile, 3 - MountainTile, 4- Forest
 	protected int movesRequired;
 	protected double productionBase;
 	protected double productionPotential;
