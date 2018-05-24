@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import leaders.Leader;
 
 public abstract class Tile {
-	protected final static int MAP_SIZE = 20;
+	protected final static int MAP_SIZE = 30;
 	protected final static int TEXTURE_SIZE = 45;
 	protected final static int GENERATION_ITERATIONS = 13;
 	protected final static int GENERATION_SIZE_MULTIPLIER = 5;
@@ -168,146 +168,168 @@ public abstract class Tile {
 	}
 
 
-//GETTERS AND SETTERS
+	//GETTERS AND SETTERS
 
-public int getTerrainID() {
-	return terrainID;
-}
+	public int getTerrainID() {
+		return terrainID;
+	}
 
-public static int getTEXTURE_SIZE() {
-	return TEXTURE_SIZE;
-}
+	public static int getTEXTURE_SIZE() {
+		return TEXTURE_SIZE;
+	}
 
-public static int getMAP_SIZE() {
-	return MAP_SIZE;
-}
+	public static int getMAP_SIZE() {
+		return MAP_SIZE;
+	}
 
-public void setTerrainID(int terrainID) {
-	this.terrainID = terrainID;
-}
+	public void setTerrainID(int terrainID) {
+		this.terrainID = terrainID;
+	}
 
-public int getMovesRequired() {
-	return movesRequired;
-}
+	public int getMovesRequired() {
+		return movesRequired;
+	}
 
-public void setMovesRequired(int movesRequired) {
-	this.movesRequired = movesRequired;
-}
+	public void setMovesRequired(int movesRequired) {
+		this.movesRequired = movesRequired;
+	}
 
-public double getProductionBase() {
-	return productionBase;
-}
+	public double getProductionBase() {
+		return productionBase;
+	}
 
-public void setProductionBase(double productionBase) {
-	this.productionBase = productionBase;
-}
+	public void setProductionBase(double productionBase) {
+		this.productionBase = productionBase;
+	}
 
-public double getProductionPotential() {
-	return productionPotential;
-}
+	public double getProductionPotential() {
+		return productionPotential;
+	}
 
-public void setProductionPotential(double productionPotential) {
-	this.productionPotential = productionPotential;
-}
+	public void setProductionPotential(double productionPotential) {
+		this.productionPotential = productionPotential;
+	}
 
-public double getFoodBase() {
-	return foodBase;
-}
+	public double getFoodBase() {
+		return foodBase;
+	}
 
-public void setFoodBase(double foodBase) {
-	this.foodBase = foodBase;
-}
+	public void setFoodBase(double foodBase) {
+		this.foodBase = foodBase;
+	}
 
-public double getFoodPotential() {
-	return foodPotential;
-}
+	public double getFoodPotential() {
+		return foodPotential;
+	}
 
-public void setFoodPotential(double foodPotential) {
-	this.foodPotential = foodPotential;
-}
+	public void setFoodPotential(double foodPotential) {
+		this.foodPotential = foodPotential;
+	}
 
-public double getGoldBase() {
-	return goldBase;
-}
+	public double getGoldBase() {
+		return goldBase;
+	}
 
-public void setGoldBase(double goldBase) {
-	this.goldBase = goldBase;
-}
+	public void setGoldBase(double goldBase) {
+		this.goldBase = goldBase;
+	}
 
-public double getGoldPotential() {
-	return goldPotential;
-}
+	public double getGoldPotential() {
+		return goldPotential;
+	}
 
-public void setGoldPotential(double goldPotential) {
-	this.goldPotential = goldPotential;
-}
+	public void setGoldPotential(double goldPotential) {
+		this.goldPotential = goldPotential;
+	}
 
-public boolean isCrossable() {
-	return crossable;
-}
+	public boolean isCrossable() {
+		return crossable;
+	}
 
-public void setCrossable(boolean crossable) {
-	this.crossable = crossable;
-}
+	public void setCrossable(boolean crossable) {
+		this.crossable = crossable;
+	}
 
-public boolean isOccupied() {
-	return occupied;
-}
+	public boolean isOccupied() {
+		return occupied;
+	}
 
-public void setOccupied(boolean occupied) {
-	this.occupied = occupied;
-}
+	public void setOccupied(boolean occupied) {
+		this.occupied = occupied;
+	}
 
-public boolean isImproved() {
-	return improved;
-}
+	public boolean isImproved() {
+		return improved;
+	}
 
-public void setImproved(boolean improved) {
-	this.improved = improved;
-}
+	public void setImproved(boolean improved) {
+		this.improved = improved;
+	}
 
-public Leader getOwner() {
-	return owner;
-}
+	public Leader getOwner() {
+		return owner;
+	}
 
-public void setOwner(Leader owner) {
-	this.owner = owner;
-}
+	public void setOwner(Leader owner) {
+		this.owner = owner;
+	}
 
-public int[] get$location() {
-	return $location;
-}
+	public int[] get$location() {
+		return $location;
+	}
 
-public JLabel getTileLabel() {
-	return tileLabel;
-}
+	public JLabel getTileLabel() {
+		return tileLabel;
+	}
 
-public ImageIcon getTileImageIcon() {
-	return tileImageIcon;
-}
+	public ImageIcon getTileImageIcon() {
+		return tileImageIcon;
+	}
 
-public void setTileImageIcon(ImageIcon tileImageIcon) {
-	this.tileImageIcon = tileImageIcon;
-}
+	public void setTileImageIcon(ImageIcon tileImageIcon) {
+		this.tileImageIcon = tileImageIcon;
+	}
 
-public void setTileLabel(JLabel tileLabel) {
-	this.tileLabel = tileLabel;
-}
+	public void setTileLabel(JLabel tileLabel) {
+		this.tileLabel = tileLabel;
+	}
 
-public void set$location(int[] $location) {
-	this.$location = $location;
-}
+	public void set$location(int[] $location) {
+		this.$location = $location;
+	}
 
-public static Tile[][] get$map() {
-	return $map;
-}
+	public static Tile[][] get$map() {
+		return $map;
+	}
 
-public void set$map(Tile[][] $map) {
-	Tile.$map = $map;
-}
+	public void set$map(Tile[][] $map) {
+		Tile.$map = $map;
+	}
 
-//public TIle getTileFromID(int ID){
-//	if(ID = 0
-//	   return GrassTile;
-//}
+
+	public static int getMapSize() {
+		return MAP_SIZE;
+	}
+
+
+	public static int getTextureSize() {
+		return TEXTURE_SIZE;
+	}
+
+
+	public static int getGenerationIterations() {
+		return GENERATION_ITERATIONS;
+	}
+
+
+	public static int getGenerationSizeMultiplier() {
+		return GENERATION_SIZE_MULTIPLIER;
+	}
+
+	//public TIle getTileFromID(int ID){
+	//	if(ID = 0
+	//	   return GrassTile;
+	//}
+	
+	
 }
