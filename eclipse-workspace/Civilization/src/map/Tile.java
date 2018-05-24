@@ -52,52 +52,52 @@ public abstract class Tile {
 			for(int iterations = 0; iterations < GENERATION_ITERATIONS; iterations++){
 				int tempX = rand.nextInt(95);
 				int tempY = rand.nextInt(95);
-				int genType = rand.NextInt(6);
-				if(genType = 0){
+				int genType = rand.nextInt(6);
+				if(genType == 0){
 					$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
 					$genArray[tempX-1][tempY-1] = GENERATION_SIZE_MULTIPLIER;
 					$genArray[tempX-2][tempY-2] = GENERATION_SIZE_MULTIPLIER;
 				}
-				if(genType = 1){
+				if(genType == 1){
 					$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
 					$genArray[tempX+1][tempY+1] = GENERATION_SIZE_MULTIPLIER;
 					$genArray[tempX+2][tempY+2] = GENERATION_SIZE_MULTIPLIER;
 				}
-				if(genType = 2){
+				if(genType == 2){
 					$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
 					$genArray[tempX-1][tempY-1] = GENERATION_SIZE_MULTIPLIER;
 					$genArray[tempX+1][tempY+1] = GENERATION_SIZE_MULTIPLIER;
 				}
-				if(genType = 3){
+				if(genType == 3){
 					$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
 					$genArray[tempX+1][tempY-1] = GENERATION_SIZE_MULTIPLIER;
 					$genArray[tempX-1][tempY+1] = GENERATION_SIZE_MULTIPLIER;
 				}
-				if(genType = 4){
+				if(genType == 4){
 					$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
 					$genArray[tempX-1][tempY-1] = GENERATION_SIZE_MULTIPLIER;
 					$genArray[tempX-2][tempY-2] = GENERATION_SIZE_MULTIPLIER;
 					$genArray[tempX-3][tempY-3] = GENERATION_SIZE_MULTIPLIER;
 				}
-				if(genType = 5){
+				if(genType == 5){
 					$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
 					$genArray[tempX+1][tempY+1] = GENERATION_SIZE_MULTIPLIER;
 					$genArray[tempX+2][tempY+2] = GENERATION_SIZE_MULTIPLIER;
 					$genArray[tempX+3][tempY+3] = GENERATION_SIZE_MULTIPLIER;
 				}
 			}
-			for(int i = 0; i < $map.length; i++){
+			for(int h = 0; h < $map.length; h++)
 				for(int j = 0; j < $map.length; j++){
-					if($genArray[i][j] == 0)
-						$map[i][j] = new WaterTile();
-					else if($genArray[i][j] == GENERATION_SIZE_MULTIPLIER)
-						$map[i][j] = new MountainTile();
+					if($genArray[h][j] == 0)
+						$map[h][j] = new WaterTile();
+					else if($genArray[h][j] == GENERATION_SIZE_MULTIPLIER)
+						$map[h][j] = new MountainTile();
 					else
-						$map[i][j] = new GrassTile();
-					int[] $tempLocation = {i, j};
-					$map[i][j].set$location($tempLocation);
+						$map[h][j] = new GrassTile();
+					int[] $tempLocation = {h, j};
+					$map[h][j].set$location($tempLocation);
 				}
-			}
+			
 		}
 		
 		$map[1][1] = new GrassTile();
