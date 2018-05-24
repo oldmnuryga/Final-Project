@@ -11,7 +11,14 @@ public abstract class Unit {
 	protected boolean alive;
 	protected boolean fortified;
 	protected int maxMovement;
+	protected int maintenance;
 	
+	public int getMaintenance() {
+		return maintenance;
+	}
+	public void setMaintenance(int maintenance) {
+		this.maintenance = maintenance;
+	}
 	public boolean isRanged() {
 		return ranged;
 	}

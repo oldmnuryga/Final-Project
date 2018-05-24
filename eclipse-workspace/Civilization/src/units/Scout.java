@@ -12,5 +12,6 @@ public class Scout extends Unit {
 		super.fortified = false;
 		super.maxMovement = 3;
 		//IGNORES TERRAIN IN CIV 5 (SO I MADE IT 3 MOVEMENT INSTEAD)
+		super.maintenance = 1;
 	}
 }

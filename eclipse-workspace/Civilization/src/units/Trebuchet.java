@@ -11,5 +11,6 @@ public class Trebuchet extends Unit {
 		super.alive = true;
 		super.fortified = false;
 		super.maxMovement = 2;
+		super.maintenance = 2;
 	}
 }
