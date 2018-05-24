@@ -17,7 +17,7 @@ public class GrassTile extends Tile{
 		super.occupied = false;
 		super.improved = false;
 		super.owner = null;
-		super.tileImageIcon = new ImageIcon(Tile.class.getResource("src/map/resources/grassTile.png"));
-		super.tileLabel = new JLabel(new ImageIcon(Tile.class.getResource("src/map/resources/grassTile.png")));
+		super.tileImageIcon = new ImageIcon(Tile.class.getClassLoader().getResource("map/resources/grassTile.png"));
+		super.tileLabel = new JLabel(super.tileImageIcon);
 	}
 }

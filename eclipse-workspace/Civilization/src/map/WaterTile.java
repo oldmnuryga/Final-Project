@@ -17,7 +17,7 @@ public class WaterTile extends Tile{
 		super.occupied = false;
 		super.improved = false;
 		super.owner = null;
-		super.tileImageIcon = new ImageIcon(Tile.class.getResource("map.resources/waterTile.png"));
-		super.tileLabel = new JLabel(new ImageIcon(Tile.class.getResource("src/map/resources/waterTile.png")));
+		super.tileImageIcon = new ImageIcon(Tile.class.getClassLoader().getResource("map/resources/waterTile.png"));
+		super.tileLabel = new JLabel(super.tileImageIcon);
 	}
 }

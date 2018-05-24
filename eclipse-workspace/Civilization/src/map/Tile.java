@@ -40,6 +40,8 @@ public abstract class Tile {
 		$map[1][2] = new GrassTile();
 		$map[2][1] = new GrassTile();
 		$map[2][2] = new GrassTile();
+		$map[3][3] = new SandTile();
+		$map[4][4] = new MountainTile();
 	}
 	
 	//GETTERS AND SETTERS
