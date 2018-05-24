@@ -31,7 +31,18 @@ public abstract class Tile {
 		Random rand = new Random();
 		for (int i = 0; i < $map.length; i++) {
 			for (int j = 0; j < $map[i].length; j++) {
-				$map[i][j] = new WaterTile();
+				//$map[i][j] = new WaterTile();
+				int temp = rand.nextInt(5);
+				if(temp == 0)
+					$map[i][j] = new WaterTile();
+				if(temp == 1)
+					$map[i][j] = new GrassTile();
+				if(temp == 2)
+					$map[i][j] = new SandTile();
+				if(temp == 3)
+					$map[i][j] = new MountainTile();
+				if(temp == 4)
+					$map[i][j] = new ForestTile();
 				int[] $tempLocation = {i, j};
 				$map[i][j].set$location($tempLocation);
 			} 
@@ -183,4 +194,9 @@ public abstract class Tile {
 	public void set$map(Tile[][] $map) {
 		Tile.$map = $map;
 	}
+	
+	//public TIle getTileFromID(int ID){
+	//	if(ID = 0
+	//	   return GrassTile;
+	//}
 }
