@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import leaders.Leader;
 
 public abstract class Tile {
-	protected final static int MAP_SIZE = 100;
+	protected final static int MAP_SIZE = 30;
 	protected final static int TEXTURE_SIZE = 45;
 	protected final static int GENERATION_ITERATIONS = 10;
 	protected final static int GENERATION_SIZE_MULTIPLIER = 4;
@@ -51,40 +51,100 @@ public abstract class Tile {
 		}*/
 		int[][] $genArray = new int[MAP_SIZE][MAP_SIZE];
 		for(int iterations = 0; iterations < GENERATION_ITERATIONS; iterations++){
-			int tempX = rand.nextInt(90)+5;
-			int tempY = rand.nextInt(90)+5;
+			int tempX = rand.nextInt(Tile.getMAP_SIZE()-10)+5;
+			int tempY = rand.nextInt(Tile.getMAP_SIZE()-10)+5;
 			int genType = rand.nextInt(6);
 			if(genType == 0){
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - (GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX - 1 - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - 1 -(GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX - 2 - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - 2 - (GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
 				$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
 				$genArray[tempX-1][tempY-1] = GENERATION_SIZE_MULTIPLIER;
 				$genArray[tempX-2][tempY-2] = GENERATION_SIZE_MULTIPLIER;
 			}
 			if(genType == 1){
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - (GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX + 1 - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - 1 -(GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX + 2 - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - 2 - (GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
 				$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
-				$genArray[tempX+1][tempY+1] = GENERATION_SIZE_MULTIPLIER;
-				$genArray[tempX+2][tempY+2] = GENERATION_SIZE_MULTIPLIER;
+				$genArray[tempX+1][tempY-1] = GENERATION_SIZE_MULTIPLIER;
+				$genArray[tempX+2][tempY-2] = GENERATION_SIZE_MULTIPLIER;
 			}
 			if(genType == 2){
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - (GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX - 1 - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - 1 -(GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX + 1 - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY + 1 - (GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
 				$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
 				$genArray[tempX-1][tempY-1] = GENERATION_SIZE_MULTIPLIER;
 				$genArray[tempX+1][tempY+1] = GENERATION_SIZE_MULTIPLIER;
 			}
 			if(genType == 3){
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - (GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX + 1 - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - 1 -(GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX - 1 - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY + 1 - (GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
 				$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
 				$genArray[tempX+1][tempY-1] = GENERATION_SIZE_MULTIPLIER;
 				$genArray[tempX-1][tempY+1] = GENERATION_SIZE_MULTIPLIER;
 			}
 			if(genType == 4){
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - (GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX - 1 - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - 1 -(GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX - 2 - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - 2 - (GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX - 3 - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - 3 - (GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
 				$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
 				$genArray[tempX-1][tempY-1] = GENERATION_SIZE_MULTIPLIER;
 				$genArray[tempX-2][tempY-2] = GENERATION_SIZE_MULTIPLIER;
 				$genArray[tempX-3][tempY-3] = GENERATION_SIZE_MULTIPLIER;
 			}
 			if(genType == 5){
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - (GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX + 1 - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - 1 -(GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX + 2 - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - 2 - (GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
+				for(int i = 0; i <= GENERATION_SIZE_MULTIPLIER; i++)
+					for(int j = 0; j <= GENERATION_SIZE_MULTIPLIER; j++)
+						$genArray[tempX + 3 - (GENERATION_SIZE_MULTIPLIER / 2) + i][tempY - 3 - (GENERATION_SIZE_MULTIPLIER / 2) + j] = 1;
 				$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
-				$genArray[tempX+1][tempY+1] = GENERATION_SIZE_MULTIPLIER;
-				$genArray[tempX+2][tempY+2] = GENERATION_SIZE_MULTIPLIER;
-				$genArray[tempX+3][tempY+3] = GENERATION_SIZE_MULTIPLIER;
+				$genArray[tempX+1][tempY-1] = GENERATION_SIZE_MULTIPLIER;
+				$genArray[tempX+2][tempY-2] = GENERATION_SIZE_MULTIPLIER;
+				$genArray[tempX+3][tempY-3] = GENERATION_SIZE_MULTIPLIER;
 			}
 		}
 		for(int i = 0; i < $map.length; i++)
@@ -98,13 +158,13 @@ public abstract class Tile {
 				int[] $tempLocation = {i, j};
 				$map[i][j].set$location($tempLocation);
 			}
-		$map[1][1] = new GrassTile();
+		/*$map[1][1] = new GrassTile();
 		$map[1][2] = new GrassTile();
 		$map[2][1] = new GrassTile();
 		$map[2][2] = new GrassTile();
 		$map[3][3] = new SandTile();
 		$map[4][4] = new MountainTile();
-		$map[5][5] = new ForestTile();
+		$map[5][5] = new ForestTile();*/
 	}
 
 
