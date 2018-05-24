@@ -4,12 +4,6 @@ import civilizations.Building;
 import civilizations.City;
 
 public class Granary extends Building{
-	protected String name; 
-	protected String description;
-	protected double productionRequirement;
-	protected int goldMaintenance;
-	protected int techRequired;
-	protected City location;
 	public Granary (City city) {
 		location = city;
 		name = "Granary";
@@ -17,6 +11,8 @@ public class Granary extends Building{
 		productionRequirement = 60;
 		goldMaintenance = 1;
 		techRequired = 3;
+		purchaseModifier = 1.25;
+		goldPurchaseCost = (int) (Math.pow((30 * productionRequirement), 0.75) * (1 + purchaseModifier/100));
 		city.setFoodCap(city.getFoodCap()/2);
 	}
 	public String getName() {

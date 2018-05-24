@@ -4,12 +4,6 @@ import civilizations.Building;
 import civilizations.City;
 
 public class Cathedral extends Building{
-	protected String name; 
-	protected String description;
-	protected double productionRequirement;
-	protected int goldMaintenance;
-	protected int techRequired;
-	protected City location;
 	public Cathedral (City city) {
 		location = city;
 		name = "Cathedral";
@@ -17,6 +11,8 @@ public class Cathedral extends Building{
 		productionRequirement = 160;
 		goldMaintenance = 3;
 		techRequired = 34;
+		purchaseModifier = 1.1;
+		goldPurchaseCost = (int) (Math.pow((30 * productionRequirement), 0.75) * (1 + purchaseModifier/100));
 		city.getOwner().setHappiness(city.getOwner().getHappiness()+4);
 	}
 	public String getName() {

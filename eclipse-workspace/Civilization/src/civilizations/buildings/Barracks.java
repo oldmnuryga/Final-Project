@@ -4,12 +4,6 @@ import civilizations.Building;
 import civilizations.City;
 
 public class Barracks extends Building{
-	protected String name; 
-	protected String description;
-	protected double productionRequirement;
-	protected int goldMaintenance;
-	protected int techRequired;
-	protected City location;
 	public Barracks (City city) {
 		location = city;
 		name = "Barracks";
@@ -17,6 +11,8 @@ public class Barracks extends Building{
 		productionRequirement = 40;
 		goldMaintenance = 0;
 		techRequired = -1;
+		purchaseModifier = 1.25;
+		goldPurchaseCost = (int) (Math.pow((30 * productionRequirement), 0.75) * (1 + purchaseModifier/100));
 		for (int j = 0; j < city.getOwner().get$units().size(); j++)
 			city.getOwner().get$units().get(j).setHitPoints((int) (city.getOwner().get$units().get(j).getHitPoints()*1.1));
 	}

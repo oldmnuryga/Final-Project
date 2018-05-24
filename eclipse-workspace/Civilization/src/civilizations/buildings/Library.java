@@ -11,6 +11,8 @@ public class Library extends Building{
 		productionRequirement = 80;
 		goldMaintenance = 1;
 		techRequired = 11;
+		purchaseModifier = 1.25;
+		goldPurchaseCost = (int) (Math.pow((30 * productionRequirement), 0.75) * (1 + purchaseModifier/100));
 		city.setScienceRate(city.getScienceRate()*1.5);
 	}
 	public String getName() {
