@@ -10,8 +10,8 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class sounds {
-	protected static File musicfile = new File("src/sound/resources/gruntShort.wav");
-	protected static File unitdeathfile = new File("src/sound/resources/unitDeath.mp3");
+	protected static File musicfile = new File("src/sound/resources/Nightdreams.wav");
+	protected static File unitdeathfile = new File("src/sound/resources/gruntLongFinal.mp3");
 	protected static File clickfile = new File("src/sound/resources/click.wav");
 
 	public static void clickPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
