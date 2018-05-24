@@ -12,7 +12,14 @@ public abstract class Unit {
 	protected boolean fortified;
 	protected int maxMovement;
 	protected int maintenance;
+	protected int buyCost;
 	
+	public int getBuyCost() {
+		return buyCost;
+	}
+	public void setBuyCost(int buyCost) {
+		this.buyCost = buyCost;
+	}
 	public int getMaintenance() {
 		return maintenance;
 	}
