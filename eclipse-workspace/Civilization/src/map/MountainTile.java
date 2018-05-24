@@ -1,5 +1,8 @@
 package map;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 public class MountainTile extends Tile{	
 	public MountainTile() {
 		super.terrainID = 3;
@@ -14,5 +17,7 @@ public class MountainTile extends Tile{
 		super.occupied = false;
 		super.improved = false;
 		super.owner = null;
+		super.tileImageIcon = new ImageIcon(Tile.class.getClassLoader().getResource("map/resources/mountainTile.png"));
+		super.tileLabel = new JLabel(super.tileImageIcon);
 	}
 }

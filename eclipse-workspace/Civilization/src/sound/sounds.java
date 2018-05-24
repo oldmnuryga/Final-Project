@@ -9,17 +9,24 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-class sounds {
-	protected File musicfile = new File("");
-	protected File clickfile = new File("src/sound.resources/click.wav");
+public class sounds {
+	protected static File musicfile = new File("src/sound/resources/gruntShort.wav");
+	protected static File unitdeathfile = new File("src/sound/resources/unitDeath.mp3");
+	protected static File clickfile = new File("src/sound/resources/click.wav");
 
-	public void clickPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
+	public static void clickPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
 		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(clickfile);
 		Clip clip = AudioSystem.getClip();
 		clip.open(audioInputStream);
 		clip.start();
 	}
-	public void musicPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
+	public void unitDeathPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
+		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(unitdeathfile);
+		Clip clip = AudioSystem.getClip();
+		clip.open(audioInputStream);
+		clip.start();
+	}
+	public static void musicPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
 		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(musicfile);
 		Clip clip = AudioSystem.getClip();
 		clip.open(audioInputStream);
