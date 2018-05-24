@@ -3,15 +3,23 @@ package main;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import map.Tile;
+import sound.sounds;
 
 public class CivilizationGame {
+	//CONSTANTS
+	private final int SCROLL_SPEED = 16;
+	
 	//JGRAPHICS CONSTRUCTORS
 	private JFrame frame = new JFrame("Civilization");
 	private JPanel leftPanel = new JPanel(); //200 from right
@@ -44,13 +52,13 @@ public class CivilizationGame {
 		//frame.setResizable(false);
 		
 		//mapPane
-		mapPanel.setPreferredSize(new Dimension(2500,2500));
+		mapPanel.setPreferredSize(new Dimension(50 * Tile.getMAP_SIZE(),50 * Tile.getMAP_SIZE()));
 		mapPanel.setLayout(null);
 		mapPane = new JScrollPane(mapPanel);
 		mapPane.setBounds(200, 50, 1705, 927);
 		mapPane.setAutoscrolls(true);
-		mapPane.getVerticalScrollBar().setUnitIncrement(16);
-		mapPane.getHorizontalScrollBar().setUnitIncrement(16);
+		mapPane.getVerticalScrollBar().setUnitIncrement(SCROLL_SPEED);
+		mapPane.getHorizontalScrollBar().setUnitIncrement(SCROLL_SPEED);
 		//mapPane.setPreferredSize(new Dimension(2000, 2000));
 		//mapPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
 		//mapPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -61,7 +69,8 @@ public class CivilizationGame {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				$mapButtons[i][j] = new JButton(Tile.get$map()[i][j].getTileImageIcon());
 				$mapButtons[i][j].addActionListener(tileListener);
-				$mapButtons[i][j].setBounds(j*50, i*50, 50, 50);
+				$mapButtons[i][j].setBounds(j*Tile.getTEXTURE_SIZE(), i*Tile.getTEXTURE_SIZE(), Tile.getTEXTURE_SIZE(), Tile.getTEXTURE_SIZE());
+				//$mapButtons[i][j].setBorder(BorderFactory.createEmptyBorder());
 				/*$mapButtons[i][j].setBorder(null);
 				$mapButtons[i][j].setBorderPainted(false);*/
 				mapPanel.add($mapButtons[i][j]);
@@ -74,6 +83,18 @@ public class CivilizationGame {
 	public class TileListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			//if (e.getSource() == ) { 
+			try {
+				sounds.clickPlay();
+			} catch (UnsupportedAudioFileException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (LineUnavailableException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 }
