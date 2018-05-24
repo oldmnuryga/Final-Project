@@ -6,8 +6,8 @@ public class Mongolia extends Leader {
 	// military strength +10%
 	// +20 hit points per unit
 	public Mongolia() {
-		super.leaderName = "Genghis Khan";
-		super.abbrevLeaderName = "The Mongols";
+		leaderName = "Genghis Khan";
+		abbrevLeaderName = "The Mongols";
 	}
 	public String getName() {
 		return leaderName;

@@ -6,8 +6,8 @@ public class Italy extends Leader {
 	// +1 production
 	
 	public Italy() {
-		super.leaderName = "Mussolini";
-		super.abbrevLeaderName = "The Italians";
+		leaderName = "Mussolini";
+		abbrevLeaderName = "The Italians";
 	}
 	public String getName() {
 		return leaderName;
