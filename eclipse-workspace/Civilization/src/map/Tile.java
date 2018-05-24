@@ -2,6 +2,7 @@ package map;
 
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import leaders.Leader;
@@ -21,17 +22,18 @@ public abstract class Tile {
 	protected boolean improved;
 	protected Leader owner;
 	protected int[] $location = new int[2];
+	protected ImageIcon tileImageIcon;
 	protected JLabel tileLabel;
-	protected Tile[][] $map = new Tile[MAP_SIZE][MAP_SIZE];
+	protected static Tile[][] $map = new Tile[MAP_SIZE][MAP_SIZE];
 	
-	public void generateMap() {
+	public static void generateMap() {
 		Random rand = new Random();
 		for (int i = 0; i < $map.length; i++) {
 			for (int j = 0; j < $map[i].length; j++) {
 				$map[i][j] = new WaterTile();
 				int[] $tempLocation = {i, j};
 				$map[i][j].set$location($tempLocation);
-			}
+			} 
 		}
 		
 		$map[1][1] = new GrassTile();
@@ -150,6 +152,14 @@ public abstract class Tile {
 		return tileLabel;
 	}
 
+	public ImageIcon getTileImageIcon() {
+		return tileImageIcon;
+	}
+
+	public void setTileImageIcon(ImageIcon tileImageIcon) {
+		this.tileImageIcon = tileImageIcon;
+	}
+
 	public void setTileLabel(JLabel tileLabel) {
 		this.tileLabel = tileLabel;
 	}
@@ -158,11 +168,11 @@ public abstract class Tile {
 		this.$location = $location;
 	}
 
-	public Tile[][] get$map() {
+	public static Tile[][] get$map() {
 		return $map;
 	}
 
 	public void set$map(Tile[][] $map) {
-		this.$map = $map;
+		Tile.$map = $map;
 	}
 }

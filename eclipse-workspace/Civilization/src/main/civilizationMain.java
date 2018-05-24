@@ -1,9 +1,11 @@
 package main;
 
+import map.Tile;
 import technology.Technology;
 
 public class civilizationMain {
 	public static void main(String[] args) {
+		Tile.generateMap();
 		CivilizationGame c = new CivilizationGame();
 		c.display();
 		Technology t = new Technology();

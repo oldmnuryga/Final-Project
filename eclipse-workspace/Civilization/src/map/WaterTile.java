@@ -1,5 +1,8 @@
 package map;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 public class WaterTile extends Tile{	
 	public WaterTile() {
 		super.terrainID = 0;
@@ -14,5 +17,7 @@ public class WaterTile extends Tile{
 		super.occupied = false;
 		super.improved = false;
 		super.owner = null;
+		super.tileImageIcon = new ImageIcon(Tile.class.getResource("map.resources/waterTile.png"));
+		super.tileLabel = new JLabel(new ImageIcon(Tile.class.getResource("src/map/resources/waterTile.png")));
 	}
 }
