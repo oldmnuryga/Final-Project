@@ -4,12 +4,6 @@ import civilizations.Building;
 import civilizations.City;
 
 public class HydroPlant extends Building{
-	protected String name; 
-	protected String description;
-	protected double productionRequirement;
-	protected int goldMaintenance;
-	protected int techRequired;
-	protected City location;
 	public HydroPlant (City city) {
 		location = city;
 		name = "Hydro Plant";
@@ -17,6 +11,8 @@ public class HydroPlant extends Building{
 		productionRequirement = 60;
 		goldMaintenance = 1;
 		techRequired = 3;
+		purchaseModifier = 1.2;
+		goldPurchaseCost = (int) (Math.pow((30 * productionRequirement), 0.75) * (1 + purchaseModifier/100));
 		city.setProductionRate(city.getProductionRate()*1.5);
 	}
 	public String getName() {

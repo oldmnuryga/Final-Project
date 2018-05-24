@@ -4,12 +4,6 @@ import civilizations.Building;
 import civilizations.City;
 
 public class Aqueduct extends Building{
-	protected String name; 
-	protected String description;
-	protected double productionRequirement;
-	protected int goldMaintenance;
-	protected int techRequired;
-	protected City location;
 	public Aqueduct (City city) {
 		location = city;
 		name = "Aqueduct";
@@ -17,6 +11,8 @@ public class Aqueduct extends Building{
 		productionRequirement = 120;
 		goldMaintenance = 2;
 		techRequired = 12;
+		purchaseModifier = 1.25;
+		goldPurchaseCost = (int) (Math.pow((30 * productionRequirement), 0.75) * (1 + purchaseModifier/100));
 		city.setCitizenCap(30);
 	}
 	public String getName() {

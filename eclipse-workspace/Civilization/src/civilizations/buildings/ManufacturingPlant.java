@@ -11,6 +11,8 @@ public class ManufacturingPlant extends Building{
 		productionRequirement = 320;
 		goldMaintenance = 6;
 		techRequired = 61;
+		purchaseModifier = 1.2;
+		goldPurchaseCost = (int) (Math.pow((30 * productionRequirement), 0.75) * (1 + purchaseModifier/100));
 		city.setProductionRate(city.getProductionRate()*2.0);
 	}
 	public String getName() {
