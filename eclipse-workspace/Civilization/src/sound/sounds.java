@@ -10,22 +10,25 @@ import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
 public class sounds {
-	protected static File musicfile = new File("src/sound/resources/gruntShort.wav");
-	protected static File unitdeathfile = new File("src/sound/resources/unitDeath.mp3");
+	protected static File musicfile = new File("src/sound/resources/Nightdreams.wav");
+	protected static File unitdeathfile = new File("src/sound/resources/gruntLongFinal.mp3");
 	protected static File clickfile = new File("src/sound/resources/click.wav");
 
+	//Plays on click of mouse
 	public static void clickPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
 		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(clickfile);
 		Clip clip = AudioSystem.getClip();
 		clip.open(audioInputStream);
 		clip.start();
 	}
+	//Plays on death of unit
 	public void unitDeathPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
 		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(unitdeathfile);
 		Clip clip = AudioSystem.getClip();
 		clip.open(audioInputStream);
 		clip.start();
 	}
+	//Plays at start and loops for as long as the program runs
 	public static void musicPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
 		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(musicfile);
 		Clip clip = AudioSystem.getClip();
