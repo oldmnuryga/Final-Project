@@ -18,7 +18,7 @@ import sound.sounds;
 
 public class CivilizationGame {
 	//CONSTANTS
-	private final int SCROLL_SPEED = 16;
+	private final int SCROLL_SPEED = 15;
 	
 	//JGRAPHICS CONSTRUCTORS
 	private JFrame frame = new JFrame("Civilization");
