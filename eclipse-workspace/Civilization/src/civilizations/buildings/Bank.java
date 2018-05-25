@@ -11,9 +11,9 @@ public class Bank extends Building{
 		productionRequirement = 120;
 		goldMaintenance = 3;
 		techRequired = 26;
-		purchaseModifier = 1.15;
-		goldPurchaseCost = (int) (Math.pow((30 * productionRequirement), 0.75) * (1 + purchaseModifier/100));
-		city.setGoldRate(city.getGoldRate()*1.5);
+		goldSellPrice = 120;
+		goldPurchaseCost = 480;
+		uniqueAbility();
 	}
 	public String getName() {
 		return name;
@@ -50,6 +50,9 @@ public class Bank extends Building{
 	}
 	public void setLocation(City location) {
 		this.location = location;
+	}
+	public void uniqueAbility() {
+		location.setGoldRate(location.getGoldRate()*1.5);
 	}
 }
 

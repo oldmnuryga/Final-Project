@@ -11,9 +11,9 @@ public class Cathedral extends Building{
 		productionRequirement = 160;
 		goldMaintenance = 3;
 		techRequired = 34;
-		purchaseModifier = 1.1;
-		goldPurchaseCost = (int) (Math.pow((30 * productionRequirement), 0.75) * (1 + purchaseModifier/100));
-		city.getOwner().setHappiness(city.getOwner().getHappiness()+4);
+		goldSellPrice = 160;
+		goldPurchaseCost = 640;
+		uniqueAbility();
 	}
 	public String getName() {
 		return name;
@@ -50,6 +50,9 @@ public class Cathedral extends Building{
 	}
 	public void setLocation(City location) {
 		this.location = location;
+	}
+	public void uniqueAbility() {
+		location.getOwner().setHappiness(location.getOwner().getHappiness()+4);
 	}
 }
 

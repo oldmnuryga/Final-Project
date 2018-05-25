@@ -11,10 +11,9 @@ public class Barracks extends Building{
 		productionRequirement = 40;
 		goldMaintenance = 0;
 		techRequired = -1;
-		purchaseModifier = 1.25;
-		goldPurchaseCost = (int) (Math.pow((30 * productionRequirement), 0.75) * (1 + purchaseModifier/100));
-		for (int j = 0; j < city.getOwner().get$units().size(); j++)
-			city.getOwner().get$units().get(j).setHitPoints((int) (city.getOwner().get$units().get(j).getHitPoints()*1.1));
+		goldSellPrice = 40;
+		goldPurchaseCost = 160;
+		uniqueAbility();
 	}
 	public String getName() {
 		return name;
@@ -51,6 +50,10 @@ public class Barracks extends Building{
 	}
 	public void setLocation(City location) {
 		this.location = location;
+	}
+	public void uniqueAbility() {
+		for (int j = 0; j < location.getOwner().get$units().size(); j++)
+			location.getOwner().get$units().get(j).setHitPoints((int) (location.getOwner().get$units().get(j).getHitPoints()*1.1));
 	}
 	
 }

@@ -11,9 +11,9 @@ public class Aqueduct extends Building{
 		productionRequirement = 120;
 		goldMaintenance = 2;
 		techRequired = 12;
-		purchaseModifier = 1.25;
-		goldPurchaseCost = (int) (Math.pow((30 * productionRequirement), 0.75) * (1 + purchaseModifier/100));
-		city.setCitizenCap(30);
+		goldSellPrice = 120;
+		goldPurchaseCost = 480;
+		uniqueAbility();
 	}
 	public String getName() {
 		return name;
@@ -50,5 +50,8 @@ public class Aqueduct extends Building{
 	}
 	public void setLocation(City location) {
 		this.location = location;
+	}
+	public void uniqueAbility () {
+		location.setCitizenCap(30);
 	}
 }
