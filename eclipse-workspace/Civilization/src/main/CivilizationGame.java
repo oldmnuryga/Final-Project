@@ -22,6 +22,7 @@ public class CivilizationGame {
 	
 	//JGRAPHICS CONSTRUCTORS
 	private JFrame frame = new JFrame("Civilization");
+	private JFrame titleFrame = new JFrame("Civilization");
 	private JPanel leftPanel = new JPanel(); //200 from right
 	private JPanel topPanel = new JPanel(); //50 from top
 	private JPanel mapPanel = new JPanel();
@@ -50,6 +51,12 @@ public class CivilizationGame {
 		frame.setLayout(null);
 		frame.setVisible(true);
 		//frame.setResizable(false);
+		
+		//Title screen
+		titleFrame.setPreferredSize(new Dimension(1920, 1015));
+		titleFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		titleFrame.setLayout(null);
+		//titleFrame.setVisible(true);
 		
 		//mapPane
 		mapPanel.setPreferredSize(new Dimension(50 * Tile.getMAP_SIZE(),50 * Tile.getMAP_SIZE()));
