@@ -4,6 +4,7 @@ import civilizations.Building;
 import civilizations.City;
 
 public class ManufacturingPlant extends Building{
+	private double addedProduction;
 	public ManufacturingPlant (City city) {
 		location = city;
 		name = "Manufacturing Plant";
@@ -11,9 +12,10 @@ public class ManufacturingPlant extends Building{
 		productionRequirement = 320;
 		goldMaintenance = 6;
 		techRequired = 61;
-		purchaseModifier = 1.2;
-		goldPurchaseCost = (int) (Math.pow((30 * productionRequirement), 0.75) * (1 + purchaseModifier/100));
-		city.setProductionRate(city.getProductionRate()*2.0);
+		goldSellPrice = 320;
+		goldPurchaseCost = 1280;
+		addedProduction = location.getProductionRate();
+		uniqueAbility();
 	}
 	public String getName() {
 		return name;
@@ -50,6 +52,17 @@ public class ManufacturingPlant extends Building{
 	}
 	public void setLocation(City location) {
 		this.location = location;
+	}
+	
+	public double getAddedProduction() {
+		return addedProduction;
+	}
+	public void setAddedProduction(double addedProduction) {
+		this.addedProduction = addedProduction;
+	}
+	@Override
+	public void uniqueAbility() {
+		location.setProductionRate(location.getProductionRate() + addedProduction);
 	}
 }
 

@@ -3,19 +3,19 @@ package civilizations.buildings;
 import civilizations.Building;
 import civilizations.City;
 
-public class Library extends Building {
-	private double addedScience;
+public class Factory extends Building {
+	private double addedProduction;
 
-	public Library(City city) {
+	public Factory(City city) {
 		location = city;
-		name = "Library";
-		description = "Science +50%.";
-		productionRequirement = 80;
-		goldMaintenance = 1;
-		techRequired = 11;
-		goldSellPrice = 80;
-		goldPurchaseCost = 320;
-		addedScience = location.getScienceRate() * 0.5;
+		name = "Factory";
+		description = "Production +50%. Becomes obsolete with a Mfg. plant.";
+		productionRequirement = 200;
+		goldMaintenance = 4;
+		techRequired = 42;
+		goldSellPrice = 200;
+		goldPurchaseCost = 800;
+		addedProduction = location.getProductionRate() * 0.5;
 		uniqueAbility();
 	}
 
@@ -67,16 +67,16 @@ public class Library extends Building {
 		this.location = location;
 	}
 
-	public double getAddedScience() {
-		return addedScience;
+	public double getAddedProduction() {
+		return addedProduction;
 	}
 
-	public void setAddedScience(double addedScience) {
-		this.addedScience = addedScience;
+	public void setAddedProduction(double addedProduction) {
+		this.addedProduction = addedProduction;
 	}
 
-	@Override
 	public void uniqueAbility() {
-		location.setScienceRate(location.getScienceRate() + addedScience);
+		location.setProductionRate(location.getProductionRate() + addedProduction);
 	}
+
 }
