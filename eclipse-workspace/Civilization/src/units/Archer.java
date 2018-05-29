@@ -12,5 +12,6 @@ public class Archer extends Unit {
 		super.fortified = false;
 		super.maxMovement = 2;
 		super.maintenance = 1;
+		super.isAir = false;
 	}
 }

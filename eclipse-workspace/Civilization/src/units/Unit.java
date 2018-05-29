@@ -10,10 +10,17 @@ public abstract class Unit {
 	protected boolean ranged;
 	protected boolean alive;
 	protected boolean fortified;
+	protected boolean isAir;
 	protected int maxMovement;
 	protected int maintenance;
 	protected int buyCost;
 	
+	public boolean isAir() {
+		return isAir;
+	}
+	public void setAir(boolean isAir) {
+		this.isAir = isAir;
+	}
 	public int getBuyCost() {
 		return buyCost;
 	}

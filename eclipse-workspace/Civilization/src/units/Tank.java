@@ -12,5 +12,6 @@ public class Tank extends Unit {
 		super.fortified = false;
 		super.maxMovement = 2;
 		super.maintenance = 6;
+		super.isAir = false;
 	}
 }

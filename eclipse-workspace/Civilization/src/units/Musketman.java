@@ -12,5 +12,6 @@ public class Musketman extends Unit {
 		super.fortified = false;
 		super.maxMovement = 2;
 		super.maintenance = 4;
+		super.isAir = false;
 	}
 }

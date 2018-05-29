@@ -12,5 +12,6 @@ public class Knight extends Unit {
 		super.fortified = false;
 		super.maxMovement = 4;
 		super.maintenance = 2;
+		super.isAir = false;
 	}
 }

@@ -11,5 +11,6 @@ public class Cannon extends Unit {
 		super.alive = true;
 		super.fortified = false;
 		super.maxMovement = 2;
+		super.isAir = false;
 	}
 }

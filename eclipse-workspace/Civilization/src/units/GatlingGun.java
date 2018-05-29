@@ -12,5 +12,6 @@ public class GatlingGun extends Unit {
 		super.fortified = false;
 		super.maxMovement = 2;
 		super.maintenance = 2;
+		super.isAir = false;
 	}
 }
