@@ -13,5 +13,7 @@ public class Bomber extends Unit {
 		super.maxMovement = 4;
 		super.maintenance = 4;
 		super.isAir = true;
+		super.isGround = false;
+		super.isNaval = false;
 	}
 }

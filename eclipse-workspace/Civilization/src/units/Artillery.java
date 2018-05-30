@@ -13,5 +13,7 @@ public class Artillery extends Unit {
 		super.maxMovement = 2;
 		super.maintenance = 3;
 		super.isAir = false;
+		super.isGround = true;
+		super.isNaval = false;
 	}
 }

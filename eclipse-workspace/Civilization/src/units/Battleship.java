@@ -13,5 +13,7 @@ public class Battleship extends Unit {
 		super.maxMovement = 3;
 		super.maintenance = 4;
 		super.isAir = false;
+		super.isGround = false;
+		super.isNaval = true;
 	}
 }
