@@ -1,6 +1,9 @@
 package units;
 
+import java.lang.reflect.Method;
+
 import map.Tile;
+import technology.Technology;
 
 public abstract class Unit {
 	protected int hitpoints;
@@ -11,15 +14,36 @@ public abstract class Unit {
 	protected boolean alive;
 	protected boolean fortified;
 	protected boolean isAir;
+	protected boolean isNaval;
+	protected boolean isGround;
 	protected int maxMovement;
 	protected int maintenance;
+	protected Technology requiredTech;
 	protected int buyCost;
 	
+	public Technology getRequiredTech() {
+		return requiredTech;
+	}
+	public void setRequiredTech(Technology requiredTech) {
+		this.requiredTech = requiredTech;
+	}
 	public boolean isAir() {
 		return isAir;
 	}
 	public void setAir(boolean isAir) {
 		this.isAir = isAir;
+	}
+	public boolean isNaval() {
+		return isNaval;
+	}
+	public void setNaval(boolean isNaval) {
+		this.isNaval = isNaval;
+	}
+	public boolean isGround() {
+		return isGround;
+	}
+	public void setGround(boolean isGround) {
+		this.isGround = isGround;
 	}
 	public int getBuyCost() {
 		return buyCost;

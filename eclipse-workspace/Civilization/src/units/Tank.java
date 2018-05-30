@@ -13,5 +13,7 @@ public class Tank extends Unit {
 		super.maxMovement = 2;
 		super.maintenance = 6;
 		super.isAir = false;
+		super.isGround = true;
+		super.isNaval = false;
 	}
 }

@@ -13,5 +13,7 @@ public class AircraftCarrier extends Unit {
 		super.maxMovement = 5;
 		super.maintenance = 4;
 		super.isAir = false;
+		super.isGround = false;
+		super.isNaval = true;
 	}
 }

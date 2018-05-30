@@ -13,5 +13,7 @@ public class Knight extends Unit {
 		super.maxMovement = 4;
 		super.maintenance = 2;
 		super.isAir = false;
+		super.isGround = true;
+		super.isNaval = false;
 	}
 }
