@@ -189,4 +189,10 @@ public class City {
 		return false;
 	}
 
+	protected void buildBuilding(Building e) {
+		$structures.add(e);
+		e.setBuilt(true);
+		e.uniqueAbility();
+	}
+
 }

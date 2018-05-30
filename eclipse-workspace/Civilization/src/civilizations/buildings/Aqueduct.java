@@ -2,11 +2,11 @@ package civilizations.buildings;
 
 import civilizations.Building;
 import civilizations.City;
+import civilizations.Structure;
 
 public class Aqueduct extends Building {
 	private int newCitizenCap;
 	private int oldCitizenCap;
-
 	public Aqueduct(City city) {
 		location = city;
 		name = "Aqueduct";
@@ -18,55 +18,7 @@ public class Aqueduct extends Building {
 		goldPurchaseCost = 480;
 		newCitizenCap = 30;
 		oldCitizenCap = 10;
-		uniqueAbility();
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public double getProductionRequirement() {
-		return productionRequirement;
-	}
-
-	public void setProductionRequirement(double productionRequirement) {
-		this.productionRequirement = productionRequirement;
-	}
-
-	public int getGoldMaintenance() {
-		return goldMaintenance;
-	}
-
-	public void setGoldMaintenance(int goldMaintenance) {
-		this.goldMaintenance = goldMaintenance;
-	}
-
-	public int getTechRequired() {
-		return techRequired;
-	}
-
-	public void setTechRequired(int techRequired) {
-		this.techRequired = techRequired;
-	}
-
-	public City getLocation() {
-		return location;
-	}
-
-	public void setLocation(City location) {
-		this.location = location;
+		isBuilt = false;
 	}
 
 	public int getNewCitizenCap() {

@@ -8,7 +8,7 @@ import java.util.Scanner;
 import civilizations.City;
 
 public class Technology {
-	private final int NUMBER_OF_TECHNOLOGIES = 67;
+	private final static int NUMBER_OF_TECHNOLOGIES = 67;
 	private int technologyID;
 	private String name;
 	private boolean achievable;
@@ -16,7 +16,6 @@ public class Technology {
 	private int scienceCost;
 	private ArrayList<Integer> $leadsTo;
 	private ArrayList<Integer> $comesFrom;
-	private ArrayList<Technology> $technologies = new ArrayList<Technology>();
 	private int turnsUntilTech;
 	
 	
@@ -114,19 +113,12 @@ public class Technology {
 		this.$comesFrom = $comesFrom;
 	}
 
-	public ArrayList<Technology> get$technologies() {
-		return $technologies;
-	}
-
-	public void set$technologies(ArrayList<Technology> $technologies) {
-		this.$technologies = $technologies;
-	}
-
 	public int getNUMBER_OF_TECHNOLOGIES() {
 		return NUMBER_OF_TECHNOLOGIES;
 	}
 
-	public void importTechnologies() {
+	public static ArrayList<Technology> importTechnologies() {
+		ArrayList<Technology> $allTechnologies = new ArrayList<Technology>();
 		try {
 			FileReader f = new FileReader("src/technology/tree.txt");
 			BufferedReader br = new BufferedReader(f);
@@ -140,18 +132,17 @@ public class Technology {
 				String tempName = s.next();
 				int tscienceCost = s.nextInt();
 				int comes = s.nextInt();
-				for (int j = 0; j < comes; j++) {
+				for (int j = 0; j < comes; j++)
 					$tcomesFrom.add(s.nextInt());
-				}
 				int leads = s.nextInt();
-				for (int j = 0; j < leads; j++) {
+				for (int j = 0; j < leads; j++) 
 					$tleadsTo.add(s.nextInt());
-				}
-				$technologies.add(new Technology(tempID, tempName, tscienceCost, $tleadsTo, $tcomesFrom));
+				$allTechnologies.add(new Technology(tempID, tempName, tscienceCost, $tleadsTo, $tcomesFrom));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return $allTechnologies;
 
 	}
 
