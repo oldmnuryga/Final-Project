@@ -8,8 +8,10 @@ import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -22,7 +24,16 @@ public class CivilizationGame {
 	
 	//JGRAPHICS CONSTRUCTORS
 	private JFrame frame = new JFrame("Civilization");
+	
 	private JFrame titleFrame = new JFrame("Civilization");
+	private JLabel title = new JLabel("Pjephphrey B's : Society IV");
+	private JButton btnCasimir = new JButton(iconCasimir);
+	private JButton btnMussolini = new JButton(iconMussolini);
+	private JButton btnGenghis = new JButton(iconGenghis);
+	private JButton btnSejong = new JButton(iconSejong);
+	private JButton btnWashington = new JButton(iconWashington);
+	private JLabel lblGenghis = new JLabel("Genghis Khan"), lblWashington = new JLabel("George Washington"), lblSejong = new JLabel("Sejong"), lblMussolini = new JLabel("Mussolini"), lblCasimir = new JLabel("Casimir III");
+	
 	private JPanel leftPanel = new JPanel(); //200 from right
 	private JPanel topPanel = new JPanel(); //50 from top
 	private JPanel mapPanel = new JPanel();
@@ -38,6 +49,12 @@ public class CivilizationGame {
 	static ImageIcon mountainTileII = new ImageIcon(Tile.class.getResource("src/map/resources/mountainTile.png"));
 	static ImageIcon sandTileII = new ImageIcon(Tile.class.getResource("src/map/resources/sandTile.png"));
 	static ImageIcon waterTileII = new ImageIcon(Tile.class.getResource("src/map/resources/waterTile.png"));*/
+	
+	static ImageIcon iconGenghis = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("main/resources/genghisIcon.jpg"));
+	static ImageIcon iconCasimir = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("main/resources/casimirIcon.jpg"));
+	static ImageIcon iconMussolini = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("main/resources/mussoliniIcon.jpg"));
+	static ImageIcon iconSejong = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("main/resources/sejongIcon.jpg"));
+	static ImageIcon iconWashington = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("main/resources/washingtonIcon.jpg"));
 	
 	public CivilizationGame(){
 		//ADD STUFF
@@ -56,7 +73,30 @@ public class CivilizationGame {
 		titleFrame.setPreferredSize(new Dimension(1920, 1015));
 		titleFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		titleFrame.setLayout(null);
-		//titleFrame.setVisible(true);
+		title.setBounds((1920/2) - 150, 100, 500,150);
+		titleFrame.add(title);
+		lblGenghis.setBounds(250, 590, 165, 15);
+		btnGenghis.setBounds(250, 605, 165, 251);
+		titleFrame.add(btnGenghis);
+		titleFrame.add(lblGenghis);
+		lblWashington.setBounds(504, 590, 165, 15);
+		btnWashington.setBounds(504, 605, 165, 251);
+		titleFrame.add(btnWashington);
+		titleFrame.add(lblWashington);
+		lblSejong.setBounds(758, 590, 165, 15);
+		btnSejong.setBounds(758, 605, 165, 251);
+		titleFrame.add(btnSejong);
+		titleFrame.add(lblSejong);
+		lblMussolini.setBounds(1012, 590, 165, 15);
+		btnMussolini.setBounds(1012, 605, 165, 251);
+		titleFrame.add(btnMussolini);
+		titleFrame.add(lblMussolini);
+		lblCasimir.setBounds(1266, 590, 165, 15);
+		btnCasimir.setBounds(1266, 605, 165, 251);
+		titleFrame.add(btnCasimir);
+		titleFrame.add(lblCasimir);
+		
+		titleFrame.setVisible(true);
 		
 		//mapPane
 		mapPanel.setPreferredSize(new Dimension(50 * Tile.getMAP_SIZE(),50 * Tile.getMAP_SIZE()));
@@ -85,6 +125,7 @@ public class CivilizationGame {
 		}
 		
 		frame.pack();
+		titleFrame.pack();
 	}
 	
 	public class TileListener implements ActionListener {
