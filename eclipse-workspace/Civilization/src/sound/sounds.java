@@ -22,7 +22,7 @@ public class sounds {
 		clip.start();
 	}
 	//Plays on death of unit
-	public void unitDeathPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
+	public static void unitDeathPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {	
 		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(unitdeathfile);
 		Clip clip = AudioSystem.getClip();
 		clip.open(audioInputStream);

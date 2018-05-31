@@ -1,6 +1,12 @@
 package units;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
+
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
+import sound.sounds;
 
 import map.Tile;
 import technology.Technology;
@@ -154,10 +160,14 @@ public abstract class Unit {
 	public void unFortify() {
 		this.setFortified(false);
 	}
-	public void unitDeath() {
-		if(getHitpoints() <= 0) {
-		this.setAlive(false);
-		
+	public void unitDeath() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+		if(this.getHitpoints() <= 0) {
+		this.removeUnit();
+		sounds.unitDeathPlay();
 		}
+	}
+	public void removeUnit() {
+		this.setAlive(false);
+		this.setLocation(null);
 	}
 }
