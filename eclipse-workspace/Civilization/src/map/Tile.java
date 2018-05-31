@@ -12,6 +12,10 @@ public abstract class Tile {
 	protected final static int TEXTURE_SIZE = 50;
 	protected final static int GENERATION_ITERATIONS = 5;
 	protected final static int GENERATION_SIZE_MULTIPLIER = 5;
+	protected final static int SAND_GENERATION_ITERATIONS = 2;
+	protected final static int SAND_GENERATION_SIZE_MULTIPLIER = 2;
+	protected final static int FOREST_GENERATION_ITERATIONS = 2;
+	protected final static int FOREST_GENERATION_SIZE_MULTIPLIER = 2;
 	protected int terrainID; //0 - water, 1 - grassTile, 2 - sandTile, 3 - MountainTile, 4- Forest
 	protected int movesRequired;
 	protected double productionBase;
@@ -118,21 +122,165 @@ public abstract class Tile {
 					$map[i][j] = new WaterTile();
 				else if($genArray[i][j] == GENERATION_SIZE_MULTIPLIER)
 					$map[i][j] = new MountainTile();
-				else if($genArray[i][j] == GENERATION_SIZE_MULTIPLIER - 1)
-					$map[i][j] = new ForestTile();
+/*				else if($genArray[i][j] == GENERATION_SIZE_MULTIPLIER - 1)
+					$map[i][j] = new ForestTile();*/
 				else
 					$map[i][j] = new GrassTile();
 				int[] $tempLocation = {i, j};
 				$map[i][j].set$location($tempLocation);
 			}
-		/*$map[1][1] = new GrassTile();
-		$map[1][2] = new GrassTile();
-		$map[2][1] = new GrassTile();
-		$map[2][2] = new GrassTile();
-		$map[3][3] = new SandTile();
-		$map[4][4] = new MountainTile();
-		$map[5][5] = new ForestTile();*/
-		System.out.println("1");
+
+		if(GENERATION_SIZE_MULTIPLIER - SAND_GENERATION_SIZE_MULTIPLIER > 0) {
+			for(int i = 0; i < $map.length; i++)
+				for(int j = 0; j < $map.length; j++)
+					$genArray[i][j] = 0;
+
+			for(int iterations = 0; iterations < SAND_GENERATION_ITERATIONS; iterations++){
+				int tempX = rand.nextInt(Tile.getMAP_SIZE()-7)+5;
+				int tempY = rand.nextInt(Tile.getMAP_SIZE()-7)+5;
+				int genType = rand.nextInt(6);
+				if(genType == 0){
+					$genArray[tempX][tempY] = SAND_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-1][tempY-1] = SAND_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-2][tempY-2] = SAND_GENERATION_SIZE_MULTIPLIER;
+				}
+				if(genType == 1){
+					$genArray[tempX][tempY] = SAND_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+1][tempY-1] = SAND_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+2][tempY-2] = SAND_GENERATION_SIZE_MULTIPLIER;
+				}
+				if(genType == 2){
+					$genArray[tempX][tempY] = SAND_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-1][tempY-1] = SAND_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-1][tempY+1] = SAND_GENERATION_SIZE_MULTIPLIER;
+				}
+				if(genType == 3){
+					$genArray[tempX][tempY] = SAND_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+1][tempY-1] = SAND_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+1][tempY+1] = SAND_GENERATION_SIZE_MULTIPLIER;
+				}
+				if(genType == 4){
+					$genArray[tempX][tempY] = SAND_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-1][tempY-1] = SAND_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-2][tempY-2] = SAND_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-3][tempY-3] = SAND_GENERATION_SIZE_MULTIPLIER;
+				}
+				if(genType == 5){
+					$genArray[tempX][tempY] = SAND_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+1][tempY-1] = SAND_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+2][tempY-2] = SAND_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+3][tempY-3] = SAND_GENERATION_SIZE_MULTIPLIER;
+				}
+			}
+
+			for(int iterations = SAND_GENERATION_SIZE_MULTIPLIER; iterations > 0; iterations--) {
+				for(int i = 1; i < $map.length - 1; i++)
+					for(int j = 1; j < $map.length - 1; j++){
+						if($genArray[i][j] == iterations) {
+							if($genArray[i-1][j-1] < iterations)
+								$genArray[i-1][j-1] = iterations - 1;
+							if($genArray[i-1][j] < iterations)
+								$genArray[i-1][j] = iterations - 1;
+							if($genArray[i-1][j+1] < iterations)
+								$genArray[i-1][j+1] = iterations - 1;
+							if($genArray[i][j-1] < iterations)
+								$genArray[i][j-1] = iterations - 1;
+							if($genArray[i][j+1] < iterations)
+								$genArray[i][j+1] = iterations - 1;
+							if($genArray[i+1][j-1] < iterations)
+								$genArray[i+1][j-1] = iterations - 1;
+							if($genArray[i+1][j] < iterations)
+								$genArray[i+1][j] = iterations - 1;
+							if($genArray[i+1][j+1] < iterations)
+								$genArray[i+1][j+1] = iterations - 1;
+						}
+					}
+			}
+
+			for(int i = 0; i < $map.length; i++)
+				for(int j = 0; j < $map.length; j++){
+					if($genArray[i][j] > 0 && $map[i][j].getTerrainID() != 0)
+						$map[i][j] = new SandTile();
+					int[] $tempLocation = {i, j};
+					$map[i][j].set$location($tempLocation);
+				}
+		}
+		
+		if(GENERATION_SIZE_MULTIPLIER - FOREST_GENERATION_SIZE_MULTIPLIER > 0) {
+			for(int i = 0; i < $map.length; i++)
+				for(int j = 0; j < $map.length; j++)
+					$genArray[i][j] = 0;
+
+			for(int iterations = 0; iterations < FOREST_GENERATION_ITERATIONS; iterations++){
+				int tempX = rand.nextInt(Tile.getMAP_SIZE()-7)+5;
+				int tempY = rand.nextInt(Tile.getMAP_SIZE()-7)+5;
+				int genType = rand.nextInt(6);
+				if(genType == 0){
+					$genArray[tempX][tempY] = FOREST_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-1][tempY-1] = FOREST_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-2][tempY-2] = FOREST_GENERATION_SIZE_MULTIPLIER;
+				}
+				if(genType == 1){
+					$genArray[tempX][tempY] = FOREST_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+1][tempY-1] = FOREST_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+2][tempY-2] = FOREST_GENERATION_SIZE_MULTIPLIER;
+				}
+				if(genType == 2){
+					$genArray[tempX][tempY] = FOREST_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-1][tempY-1] = FOREST_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-1][tempY+1] = FOREST_GENERATION_SIZE_MULTIPLIER;
+				}
+				if(genType == 3){
+					$genArray[tempX][tempY] = FOREST_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+1][tempY-1] = FOREST_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+1][tempY+1] = FOREST_GENERATION_SIZE_MULTIPLIER;
+				}
+				if(genType == 4){
+					$genArray[tempX][tempY] = FOREST_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-1][tempY-1] = FOREST_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-2][tempY-2] = FOREST_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX-3][tempY-3] = FOREST_GENERATION_SIZE_MULTIPLIER;
+				}
+				if(genType == 5){
+					$genArray[tempX][tempY] = FOREST_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+1][tempY-1] = FOREST_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+2][tempY-2] = FOREST_GENERATION_SIZE_MULTIPLIER;
+					$genArray[tempX+3][tempY-3] = FOREST_GENERATION_SIZE_MULTIPLIER;
+				}
+			}
+
+			for(int iterations = FOREST_GENERATION_SIZE_MULTIPLIER; iterations > 0; iterations--) {
+				for(int i = 1; i < $map.length - 1; i++)
+					for(int j = 1; j < $map.length - 1; j++){
+						if($genArray[i][j] == iterations) {
+							if($genArray[i-1][j-1] < iterations)
+								$genArray[i-1][j-1] = iterations - 1;
+							if($genArray[i-1][j] < iterations)
+								$genArray[i-1][j] = iterations - 1;
+							if($genArray[i-1][j+1] < iterations)
+								$genArray[i-1][j+1] = iterations - 1;
+							if($genArray[i][j-1] < iterations)
+								$genArray[i][j-1] = iterations - 1;
+							if($genArray[i][j+1] < iterations)
+								$genArray[i][j+1] = iterations - 1;
+							if($genArray[i+1][j-1] < iterations)
+								$genArray[i+1][j-1] = iterations - 1;
+							if($genArray[i+1][j] < iterations)
+								$genArray[i+1][j] = iterations - 1;
+							if($genArray[i+1][j+1] < iterations)
+								$genArray[i+1][j+1] = iterations - 1;
+						}
+					}
+			}
+
+			for(int i = 0; i < $map.length; i++)
+				for(int j = 0; j < $map.length; j++){
+					if($genArray[i][j] > 0 && $map[i][j].getTerrainID() != 0)
+						$map[i][j] = new ForestTile();
+					int[] $tempLocation = {i, j};
+					$map[i][j].set$location($tempLocation);
+				}
+		}
 	}
 
 
@@ -294,10 +442,28 @@ public abstract class Tile {
 		return GENERATION_SIZE_MULTIPLIER;
 	}
 
+
+	public static int getSandGenerationIterations() {
+		return SAND_GENERATION_ITERATIONS;
+	}
+
+
+	public static int getSandGenerationSizeMultiplier() {
+		return SAND_GENERATION_SIZE_MULTIPLIER;
+	}
+
+
+	public static int getForestGenerationIterations() {
+		return FOREST_GENERATION_ITERATIONS;
+	}
+
+
+	public static int getForestGenerationSizeMultiplier() {
+		return FOREST_GENERATION_SIZE_MULTIPLIER;
+	}
+
 	//public TIle getTileFromID(int ID){
 	//	if(ID = 0
 	//	   return GrassTile;
 	//}
-
-
 }
