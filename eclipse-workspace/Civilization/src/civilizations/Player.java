@@ -131,7 +131,7 @@ public class Player {
 		this.numCities = numCities;
 	}
 	public void addTechnology(int techID) {
-		$technologies.add(civilizationMain.get$allTechnologies().get(techID));
+		$technologies.add(Technology.get$technologies().get(techID));
 	}
 
 }
