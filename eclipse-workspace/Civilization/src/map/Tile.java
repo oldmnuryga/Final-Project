@@ -8,9 +8,9 @@ import javax.swing.JLabel;
 import leaders.Leader;
 
 public abstract class Tile {
-	protected final static int MAP_SIZE = 30;
+	protected final static int MAP_SIZE = 20;
 	protected final static int TEXTURE_SIZE = 50;
-	protected final static int GENERATION_ITERATIONS = 40;
+	protected final static int GENERATION_ITERATIONS = 5;
 	protected final static int GENERATION_SIZE_MULTIPLIER = 5;
 	protected int terrainID; //0 - water, 1 - grassTile, 2 - sandTile, 3 - MountainTile, 4- Forest
 	protected int movesRequired;
@@ -51,8 +51,8 @@ public abstract class Tile {
 		}*/
 		int[][] $genArray = new int[MAP_SIZE][MAP_SIZE];
 		for(int iterations = 0; iterations < GENERATION_ITERATIONS; iterations++){
-			int tempX = rand.nextInt(Tile.getMAP_SIZE()-11)+5;
-			int tempY = rand.nextInt(Tile.getMAP_SIZE()-11)+5;
+			int tempX = rand.nextInt(Tile.getMAP_SIZE()-9)+5;
+			int tempY = rand.nextInt(Tile.getMAP_SIZE()-9)+5;
 			int genType = rand.nextInt(6);
 			if(genType == 0){
 				$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
@@ -87,7 +87,8 @@ public abstract class Tile {
 				$genArray[tempX+3][tempY-3] = GENERATION_SIZE_MULTIPLIER;
 			}
 		}
-		for(int iterations = GENERATION_SIZE_MULTIPLIER; iterations > 0; iterations ++) {
+
+		for(int iterations = GENERATION_SIZE_MULTIPLIER; iterations > 0; iterations--) {
 			for(int i = 1; i < $map.length - 1; i++)
 				for(int j = 1; j < $map.length - 1; j++){
 					if($genArray[i][j] == iterations) {
@@ -108,7 +109,6 @@ public abstract class Tile {
 						if($genArray[i+1][j+1] < iterations)
 							$genArray[i+1][j+1] = iterations - 1;
 					}
-
 				}
 		}
 
@@ -118,6 +118,8 @@ public abstract class Tile {
 					$map[i][j] = new WaterTile();
 				else if($genArray[i][j] == GENERATION_SIZE_MULTIPLIER)
 					$map[i][j] = new MountainTile();
+				else if($genArray[i][j] == GENERATION_SIZE_MULTIPLIER - 1)
+					$map[i][j] = new ForestTile();
 				else
 					$map[i][j] = new GrassTile();
 				int[] $tempLocation = {i, j};
@@ -130,6 +132,7 @@ public abstract class Tile {
 		$map[3][3] = new SandTile();
 		$map[4][4] = new MountainTile();
 		$map[5][5] = new ForestTile();*/
+		System.out.println("1");
 	}
 
 
