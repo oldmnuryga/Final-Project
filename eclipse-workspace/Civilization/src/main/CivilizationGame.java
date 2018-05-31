@@ -1,6 +1,8 @@
 package main;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -12,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -21,6 +24,10 @@ import sound.sounds;
 public class CivilizationGame {
 	//CONSTANTS
 	private final int SCROLL_SPEED = 5;
+	
+	//PLAYER INFO
+	private String playerName;
+	private int playerLeaderType; // 0 is genghis || 1 is washington || 2 is casimir || 3 is sejong || 4 is mussolini
 	
 	//JGRAPHICS CONSTRUCTORS
 	private JFrame frame = new JFrame("Civilization");
@@ -66,33 +73,83 @@ public class CivilizationGame {
 		frame.setPreferredSize(new Dimension(1920, 1015));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
-		frame.setVisible(true);
+		frame.setVisible(false);
 		//frame.setResizable(false);
 		
 		//Title screen
 		titleFrame.setPreferredSize(new Dimension(1920, 1015));
 		titleFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		titleFrame.setLayout(null);
-		title.setBounds((1920/2) - 150, 100, 500,150);
+		title.setBounds(400, 200, 1200,150);
+		title.setFont(new Font("Monospaced", Font.BOLD, 70));
+		title.setForeground(Color.GREEN);
+		title.setBackground(Color.BLUE);
+		title.setOpaque(true);
+		title.setBorder(null);
 		titleFrame.add(title);
-		lblGenghis.setBounds(250, 590, 165, 15);
+		lblGenghis.setFont(new Font("Monospaced", Font.ITALIC, 20));
+		lblGenghis.setBounds(250, 580, 165, 30);
 		btnGenghis.setBounds(250, 605, 165, 251);
+		btnGenghis.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				playerName = "Genghis Khan";
+				playerLeaderType = 0;
+				titleFrame.setVisible(false);
+				frame.setVisible(true);
+			}
+		});
 		titleFrame.add(btnGenghis);
 		titleFrame.add(lblGenghis);
-		lblWashington.setBounds(504, 590, 165, 15);
+		lblWashington.setFont(new Font("Monospaced", Font.ITALIC, 15));
+		lblWashington.setBounds(504, 580, 200, 30);
 		btnWashington.setBounds(504, 605, 165, 251);
+		btnWashington.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				playerName = "Washington";
+				playerLeaderType = 1;
+				titleFrame.setVisible(false);
+				frame.setVisible(true);
+			}
+		});
 		titleFrame.add(btnWashington);
 		titleFrame.add(lblWashington);
-		lblSejong.setBounds(758, 590, 165, 15);
+		lblSejong.setFont(new Font("Monospaced", Font.ITALIC, 20));
+		lblSejong.setBounds(758, 580, 165, 30);
 		btnSejong.setBounds(758, 605, 165, 251);
+		btnSejong.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				playerName = "Sejong";
+				playerLeaderType = 3;
+				titleFrame.setVisible(false);
+				frame.setVisible(true);
+			}
+		});
 		titleFrame.add(btnSejong);
 		titleFrame.add(lblSejong);
-		lblMussolini.setBounds(1012, 590, 165, 15);
+		lblMussolini.setFont(new Font("Monospaced", Font.ITALIC, 20));
+		lblMussolini.setBounds(1012, 580, 165, 30);
 		btnMussolini.setBounds(1012, 605, 165, 251);
+		btnMussolini.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				playerName = "Mussolini";
+				playerLeaderType = 4;
+				titleFrame.setVisible(false);
+				frame.setVisible(true);
+			}
+		});
 		titleFrame.add(btnMussolini);
 		titleFrame.add(lblMussolini);
-		lblCasimir.setBounds(1266, 590, 165, 15);
+		lblCasimir.setFont(new Font("Monospaced", Font.ITALIC, 20));
+		lblCasimir.setBounds(1266, 580, 165, 30);
 		btnCasimir.setBounds(1266, 605, 165, 251);
+		btnCasimir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				playerName = "Casimir III";
+				playerLeaderType = 2;
+				titleFrame.setVisible(false);
+				frame.setVisible(true);
+			}
+		});
 		titleFrame.add(btnCasimir);
 		titleFrame.add(lblCasimir);
 		
