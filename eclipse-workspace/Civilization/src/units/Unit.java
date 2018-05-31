@@ -16,11 +16,25 @@ public abstract class Unit {
 	protected boolean isAir;
 	protected boolean isNaval;
 	protected boolean isGround;
+	protected boolean isSelected;
 	protected int maxMovement;
 	protected int maintenance;
 	protected Technology requiredTech;
 	protected int buyCost;
+	protected String unitName;
 	
+	public boolean isSelected() {
+		return isSelected;
+	}
+	public void setSelected(boolean isSelected) {
+		this.isSelected = isSelected;
+	}
+	public String getUnitName() {
+		return unitName;
+	}
+	public void setUnitName(String unitName) {
+		this.unitName = unitName;
+	}
 	public Technology getRequiredTech() {
 		return requiredTech;
 	}
@@ -119,5 +133,25 @@ public abstract class Unit {
 	}
 	public int getMovement() {
 		return maxMovement;
+	}
+	//Do Something Methods
+	//Do checks outside of methods
+	public void moveUnitLeft() {
+		this.location = Tile.get$map()[location.get$location()[0]][location.get$location()[1]-1];
+	}
+	public void moveUnitRight() {
+		this.location = Tile.get$map()[location.get$location()[0]][location.get$location()[1]+1];
+	}
+	public void moveUnitUp() {
+		this.location = Tile.get$map()[location.get$location()[0]-1][location.get$location()[1]];
+	}
+	public void moveUnitDown() {
+		this.location = Tile.get$map()[location.get$location()[0]+1][location.get$location()[1]];
+	}
+	public void fortify() {
+		this.setFortified(true);
+	}
+	public void unFortify() {
+		this.setFortified(false);
 	}
 }

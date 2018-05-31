@@ -15,5 +15,7 @@ public class Bomber extends Unit {
 		super.isAir = true;
 		super.isGround = false;
 		super.isNaval = false;
+		super.isSelected = false;
+		super.unitName = "Bomber";
 	}
 }

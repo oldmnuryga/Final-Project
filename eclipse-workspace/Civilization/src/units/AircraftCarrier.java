@@ -15,5 +15,7 @@ public class AircraftCarrier extends Unit {
 		super.isAir = false;
 		super.isGround = false;
 		super.isNaval = true;
+		super.isSelected = false;
+		super.unitName = "Aircraft Carrier";
 	}
 }

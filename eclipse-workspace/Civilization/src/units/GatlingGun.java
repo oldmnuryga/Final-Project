@@ -15,5 +15,7 @@ public class GatlingGun extends Unit {
 		super.isAir = false;
 		super.isGround = true;
 		super.isNaval = false;
+		super.isSelected = false;
+		super.unitName = "Gatling Gun";
 	}
 }
