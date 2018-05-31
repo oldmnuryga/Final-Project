@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import leaders.Leader;
-import main.civilizationMain;
 import technology.Technology;
 import units.Unit;
 
@@ -130,8 +129,16 @@ public class Player {
 	public void setNumCities(int numCities) {
 		this.numCities = numCities;
 	}
+
 	public void addTechnology(int techID) {
 		$technologies.add(Technology.get$technologies().get(techID));
+	}
+
+	public boolean hasTechnology(int techID) {
+		for (int i = 0; i < $technologies.size(); i++)
+			if ($technologies.get(i).getTechnologyID() == techID)
+				return true;
+		return false;
 	}
 
 }

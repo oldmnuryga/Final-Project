@@ -21,7 +21,8 @@ public class City {
 	protected int citizens;
 	protected int citizenCap;
 	protected ArrayList<Tile> $cityTiles;
-	protected ArrayList<Structure> $structures;
+	protected ArrayList<Building> $buildings;
+	protected ArrayList<Wonder> $wonders;
 
 	protected City(Player player) {
 		owner = player;
@@ -39,7 +40,8 @@ public class City {
 		citizens = 1;
 		citizenCap = 10;
 		$cityTiles = new ArrayList<Tile>();
-		$structures = new ArrayList<Structure>();
+		$buildings = new ArrayList<Building>();
+		$wonders = new ArrayList<Wonder>();
 
 	}
 
@@ -147,14 +149,6 @@ public class City {
 		this.$cityTiles = $cityTiles;
 	}
 
-	public ArrayList<Structure> get$structures() {
-		return $structures;
-	}
-
-	public void set$structures(ArrayList<Structure> $structures) {
-		this.$structures = $structures;
-	}
-
 	public int getCitizenCap() {
 		return citizenCap;
 	}
@@ -179,6 +173,22 @@ public class City {
 		this.defenseRating = defenseRating;
 	}
 
+	public ArrayList<Building> get$buildings() {
+		return $buildings;
+	}
+
+	public void set$buildings(ArrayList<Building> $buildings) {
+		this.$buildings = $buildings;
+	}
+
+	public ArrayList<Wonder> get$wonders() {
+		return $wonders;
+	}
+
+	public void set$wonders(ArrayList<Wonder> $wonders) {
+		this.$wonders = $wonders;
+	}
+
 	public boolean isCapital() {
 		if (owner.getNumCities() == 0)
 			return true;
@@ -190,9 +200,16 @@ public class City {
 	}
 
 	protected void buildBuilding(Building e) {
-		$structures.add(e);
+		$buildings.add(e);
 		e.setBuilt(true);
 		e.uniqueAbility();
+	}
+
+	public boolean hasBuilding(int buildingID) {
+		for (int i = 0; i < $buildings.size(); i++)
+			if ($buildings.get(i).getBuildingID() == buildingID)
+				return true;
+		return false;
 	}
 
 }
