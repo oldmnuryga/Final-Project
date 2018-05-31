@@ -18,11 +18,11 @@ public class Technology {
 	private ArrayList<Integer> $comesFrom;
 	private int turnsUntilTech;
 	private static ArrayList<Technology> $technologies = new ArrayList<Technology>();
-	
-	
-	public Technology(int ttechnologyID, String tname, int tscienceCost, ArrayList<Integer> $tleadsTo, ArrayList<Integer> $tcomesFrom) {
+
+	public Technology(int ttechnologyID, String tname, int tscienceCost, ArrayList<Integer> $tleadsTo,
+			ArrayList<Integer> $tcomesFrom) {
 		technologyID = ttechnologyID;
-		name = tname; 
+		name = tname;
 		achievable = false;
 		researched = false;
 		scienceCost = tscienceCost;
@@ -35,14 +35,13 @@ public class Technology {
 	}
 
 	public int getTurnsUntilTech() {
-		
-		
+
 		// science cost / get city science per turn
 		// quotient +1 = turns until tech
-		
+
 		return turnsUntilTech;
 	}
-	
+
 	public String toString() {
 		return "ID: " + technologyID + "\nName: " + name + "\nAchievable: " + achievable + "\nResearched: "
 				+ "\nScience Cost: " + scienceCost + "\nComes From: " + $comesFrom + "\nLeads To: " + $leadsTo;
@@ -152,7 +151,7 @@ public class Technology {
 				for (int j = 0; j < comes; j++)
 					$tcomesFrom.add(s.nextInt());
 				int leads = s.nextInt();
-				for (int j = 0; j < leads; j++) 
+				for (int j = 0; j < leads; j++)
 					$tleadsTo.add(s.nextInt());
 				$technologies.add(new Technology(tempID, tempName, tscienceCost, $tleadsTo, $tcomesFrom));
 			}
