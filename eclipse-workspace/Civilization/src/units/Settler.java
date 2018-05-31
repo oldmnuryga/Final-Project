@@ -18,4 +18,8 @@ public class Settler extends Unit {
 		super.isSelected = false;
 		super.unitName = "Settler";
 	}
+	
+	public void findCity() {
+		
+	}
 }

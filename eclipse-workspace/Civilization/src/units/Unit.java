@@ -154,4 +154,10 @@ public abstract class Unit {
 	public void unFortify() {
 		this.setFortified(false);
 	}
+	public void unitDeath() {
+		if(getHitpoints() <= 0) {
+		this.setAlive(false);
+		
+		}
+	}
 }
