@@ -17,6 +17,7 @@ public class Technology {
 	private ArrayList<Integer> $leadsTo;
 	private ArrayList<Integer> $comesFrom;
 	private int turnsUntilTech;
+	private static ArrayList<Technology> $technologies = new ArrayList<Technology>();
 	
 	
 	public Technology(int ttechnologyID, String tname, int tscienceCost, ArrayList<Integer> $tleadsTo, ArrayList<Integer> $tcomesFrom) {
@@ -117,7 +118,23 @@ public class Technology {
 		return NUMBER_OF_TECHNOLOGIES;
 	}
 
-	public static ArrayList<Technology> importTechnologies() {
+	public static ArrayList<Technology> get$technologies() {
+		return $technologies;
+	}
+
+	public static void set$technologies(ArrayList<Technology> $technologies) {
+		Technology.$technologies = $technologies;
+	}
+
+	public static int getNumberOfTechnologies() {
+		return NUMBER_OF_TECHNOLOGIES;
+	}
+
+	public void setTurnsUntilTech(int turnsUntilTech) {
+		this.turnsUntilTech = turnsUntilTech;
+	}
+
+	public static void importTechnologies() {
 		ArrayList<Technology> $allTechnologies = new ArrayList<Technology>();
 		try {
 			FileReader f = new FileReader("src/technology/tree.txt");
@@ -137,13 +154,11 @@ public class Technology {
 				int leads = s.nextInt();
 				for (int j = 0; j < leads; j++) 
 					$tleadsTo.add(s.nextInt());
-				$allTechnologies.add(new Technology(tempID, tempName, tscienceCost, $tleadsTo, $tcomesFrom));
+				$technologies.add(new Technology(tempID, tempName, tscienceCost, $tleadsTo, $tcomesFrom));
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return $allTechnologies;
-
 	}
 
 }
