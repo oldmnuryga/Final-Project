@@ -205,6 +205,13 @@ public abstract class Tile {
 					$map[i][j].set$location($tempLocation);
 				}
 		}
+		for(int i = 0; i < $map.length; i++) {
+			for(int j = 0; j < $map.length; j++)
+				if($map[i][j].getTerrainID() > 0)
+					if(rand.nextInt(100)+1 > 95)
+						$map[i][j] = new ForestTile();
+		}
+						
 		
 		if(GENERATION_SIZE_MULTIPLIER - FOREST_GENERATION_SIZE_MULTIPLIER > 0) {
 			for(int i = 0; i < $map.length; i++)
@@ -212,8 +219,8 @@ public abstract class Tile {
 					$genArray[i][j] = 0;
 
 			for(int iterations = 0; iterations < FOREST_GENERATION_ITERATIONS; iterations++){
-				int tempX = rand.nextInt(Tile.getMAP_SIZE()-7)+5;
-				int tempY = rand.nextInt(Tile.getMAP_SIZE()-7)+5;
+				int tempX = rand.nextInt(Tile.getMAP_SIZE()-8)+5;
+				int tempY = rand.nextInt(Tile.getMAP_SIZE()-8)+5;
 				int genType = rand.nextInt(6);
 				if(genType == 0){
 					$genArray[tempX][tempY] = FOREST_GENERATION_SIZE_MULTIPLIER;
@@ -275,8 +282,9 @@ public abstract class Tile {
 
 			for(int i = 0; i < $map.length; i++)
 				for(int j = 0; j < $map.length; j++){
-					if($genArray[i][j] > 0 && $map[i][j].getTerrainID() != 0)
-						$map[i][j] = new ForestTile();
+					if($genArray[i][j] > 0 && $map[i][j].getTerrainID() != 0 && $map[i][j].getTerrainID() != 2)
+						if(rand.nextInt(100)+1 > 30)
+							$map[i][j] = new ForestTile();
 					int[] $tempLocation = {i, j};
 					$map[i][j].set$location($tempLocation);
 				}
