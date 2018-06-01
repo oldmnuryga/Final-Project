@@ -208,7 +208,7 @@ public abstract class Tile {
 		for(int i = 0; i < $map.length; i++) {
 			for(int j = 0; j < $map.length; j++)
 				if($map[i][j].getTerrainID() > 0)
-					if(rand.nextInt(100)+1 > 95)
+					if(rand.nextInt(100)+1 > 95 && $map[i][j].getTerrainID() == 1)
 						$map[i][j] = new ForestTile();
 		}
 						
