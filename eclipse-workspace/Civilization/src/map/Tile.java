@@ -10,7 +10,7 @@ import leaders.Leader;
 public abstract class Tile {
 	protected final static int MAP_SIZE = 30;
 	protected final static int TEXTURE_SIZE = 50;
-	protected final static int GENERATION_ITERATIONS = 8;
+	protected final static int GENERATION_ITERATIONS = 10;
 	protected final static int GENERATION_SIZE_MULTIPLIER = 5;
 	protected final static int SAND_GENERATION_ITERATIONS = 3;
 	protected final static int SAND_GENERATION_SIZE_MULTIPLIER = 2;
@@ -289,9 +289,6 @@ public abstract class Tile {
 					$map[i][j].set$location($tempLocation);
 				}
 		}
-		for(int i = 0; i < $map.length; i++)
-			for(int j = 0; j < $map.length; j++)
-				$map[i][j] = new ForestTile();
 	}
 
 

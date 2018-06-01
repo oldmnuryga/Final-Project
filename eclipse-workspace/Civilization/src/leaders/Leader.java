@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public abstract class Leader {
 	protected String leaderName;
+	protected int leaderID;
 	protected String abbrevLeaderName;
 	protected ArrayList <String> cityNames;
 	public String getLeaderName() {
@@ -23,5 +24,11 @@ public abstract class Leader {
 	}
 	public void setCityNames(ArrayList<String> cityNames) {
 		this.cityNames = cityNames;
+	}
+	public int getLeaderID() {
+		return leaderID;
+	}
+	public void setLeaderID(int leaderID) {
+		this.leaderID = leaderID;
 	}
 }
