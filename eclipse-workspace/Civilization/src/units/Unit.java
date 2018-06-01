@@ -1,5 +1,6 @@
 package units;
 
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
@@ -28,6 +29,7 @@ public abstract class Unit {
 	protected Technology requiredTech;
 	protected int buyCost;
 	protected String unitName;
+	protected int movesLeft = new Integer (maxMovement);
 	
 	public boolean isSelected() {
 		return isSelected;
@@ -144,15 +146,19 @@ public abstract class Unit {
 	//Do checks outside of methods
 	public void moveUnitLeft() {
 		this.location = Tile.get$map()[location.get$location()[0]][location.get$location()[1]-1];
+		this.movesLeft--;
 	}
 	public void moveUnitRight() {
 		this.location = Tile.get$map()[location.get$location()[0]][location.get$location()[1]+1];
+		this.movesLeft--;
 	}
 	public void moveUnitUp() {
 		this.location = Tile.get$map()[location.get$location()[0]-1][location.get$location()[1]];
+		this.movesLeft--;
 	}
 	public void moveUnitDown() {
 		this.location = Tile.get$map()[location.get$location()[0]+1][location.get$location()[1]];
+		this.movesLeft--;
 	}
 	public void fortify() {
 		this.setFortified(true);
@@ -169,5 +175,17 @@ public abstract class Unit {
 	public void removeUnit() {
 		this.setAlive(false);
 		this.setLocation(null);
+	}
+	public void keyPressed(KeyEvent e, Tile toLeft, Tile above, Tile toRight, Tile below) {
+		int key = e.getKeyCode();
+		if(key == KeyEvent.VK_LEFT && !(toLeft.getTerrainID() == 0 || toLeft.getTerrainID() == 3))
+			moveUnitLeft();
+		if(key == KeyEvent.VK_RIGHT && !(toRight.getTerrainID() == 0 || toRight.getTerrainID() == 3)) 
+			moveUnitRight();
+		if(key == KeyEvent.VK_UP && !(above.getTerrainID() == 0 || above.getTerrainID() == 3)) 
+			moveUnitUp();
+		if(key == KeyEvent.VK_DOWN && !(below.getTerrainID() == 0 || below.getTerrainID() == 3)) 
+			moveUnitDown();
+		
 	}
 }
