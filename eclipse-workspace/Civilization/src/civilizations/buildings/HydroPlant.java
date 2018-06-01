@@ -15,7 +15,6 @@ public class HydroPlant extends Building {
 		goldMaintenance = 4;
 		techRequired = 45;
 		addedProduction = location.getProductionRate() * 0.5;
-		isBuilt = false;
 	}
 
 	public double getAddedProduction() {
@@ -28,6 +27,11 @@ public class HydroPlant extends Building {
 
 	public void uniqueAbility() {
 		location.setProductionRate(location.getProductionRate() + addedProduction);
+	}
+
+	public void removeAbility() {
+		location.setProductionRate(location.getProductionRate() - addedProduction);
+
 	}
 
 }

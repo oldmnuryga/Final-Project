@@ -12,13 +12,19 @@ public class Barracks extends Building {
 		productionRequirement = 40;
 		goldMaintenance = 0;
 		techRequired = -1;
-		isBuilt = false;
 	}
 
 	public void uniqueAbility() {
 		for (int j = 0; j < location.getOwner().get$units().size(); j++)
 			location.getOwner().get$units().get(j)
 					.setHitPoints((int) (location.getOwner().get$units().get(j).getHitPoints() * 1.1));
+	}
+
+	public void removeAbility() {
+		for (int j = 0; j < location.getOwner().get$units().size(); j++)
+			location.getOwner().get$units().get(j)
+					.setHitPoints((int) (location.getOwner().get$units().get(j).getHitPoints() / 1.1));
+
 	}
 
 }

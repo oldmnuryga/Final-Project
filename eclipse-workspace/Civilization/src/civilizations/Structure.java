@@ -6,7 +6,7 @@ public abstract class Structure {
 	protected int productionRequirement;
 	protected int techRequired;
 	protected City location;
-	protected boolean isBuilt;
+	protected boolean isBuilt = false;
 
 	public String getName() {
 		return name;

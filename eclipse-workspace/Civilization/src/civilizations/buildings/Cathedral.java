@@ -15,7 +15,6 @@ public class Cathedral extends Building {
 		goldMaintenance = 3;
 		techRequired = 34;
 		addedHappiness = 4;
-		isBuilt = false;
 	}
 
 	public int getAddedHappiness() {
@@ -28,5 +27,17 @@ public class Cathedral extends Building {
 
 	public void uniqueAbility() {
 		location.getOwner().setHappiness(location.getOwner().getHappiness() + addedHappiness);
+	}
+
+	public void removeAbility() {
+		location.getOwner().setHappiness(location.getOwner().getHappiness() + addedHappiness);
+
+	}
+
+	public double decideHappiness() {
+		double happiness = 4.0;
+		if (location.getOwner().hasWonder(//TODO -- CHECK FOR WONDER BUILT))
+				happiness = 6.0;
+				return happiness;
 	}
 }

@@ -8,6 +8,8 @@ public abstract class Building extends Structure {
 
 	public abstract void uniqueAbility();
 
+	public abstract void removeAbility();
+
 	public int getGoldMaintenance() {
 		return goldMaintenance;
 	}

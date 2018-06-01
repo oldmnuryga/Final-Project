@@ -15,7 +15,6 @@ public class Colosseum extends Building {
 		goldMaintenance = 4;
 		techRequired = 12;
 		addedHappiness = 3;
-		isBuilt = false;
 	}
 
 	public int getAddedHappiness() {
@@ -28,5 +27,9 @@ public class Colosseum extends Building {
 
 	public void uniqueAbility() {
 		location.getOwner().setHappiness(location.getOwner().getHappiness() + addedHappiness);
+	}
+
+	public void removeAbility() {
+		location.getOwner().setHappiness(location.getOwner().getHappiness() - addedHappiness);
 	}
 }

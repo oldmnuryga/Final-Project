@@ -15,7 +15,6 @@ public class Factory extends Building {
 		goldMaintenance = 4;
 		techRequired = 42;
 		addedProduction = location.getProductionRate() * 0.5;
-		isBuilt = false;
 	}
 
 	public double getAddedProduction() {
@@ -28,6 +27,19 @@ public class Factory extends Building {
 
 	public void uniqueAbility() {
 		location.setProductionRate(location.getProductionRate() + addedProduction);
+	}
+
+	public boolean canBeBuilt() {
+		if (location.getOwner().hasTechnology(techRequired)) {
+			if (location.hasBuilding(9))
+				return false;
+			return true;
+		}
+		return false;
+	}
+
+	public void removeAbility() {
+		location.setProductionRate(location.getProductionRate() - addedProduction);
 	}
 
 }

@@ -17,7 +17,6 @@ public class Aqueduct extends Building {
 		techRequired = 12;
 		newCitizenCap = 30;
 		oldCitizenCap = 10;
-		isBuilt = false;
 	}
 
 	public int getNewCitizenCap() {
@@ -38,5 +37,8 @@ public class Aqueduct extends Building {
 
 	public void uniqueAbility() {
 		location.setCitizenCap(newCitizenCap);
+	}
+	public void removeAbility() {
+		location.setCitizenCap(oldCitizenCap);
 	}
 }

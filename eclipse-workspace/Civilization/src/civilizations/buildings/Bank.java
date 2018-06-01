@@ -14,9 +14,7 @@ public class Bank extends Building {
 		productionRequirement = 120;
 		goldMaintenance = 3;
 		techRequired = 26;
-		addedGold = location.getGoldRate() * 0.5;
-		isBuilt = false;
-		uniqueAbility();
+		addedGold = location.getGoldProduced() * 0.5;
 	}
 
 	public double getAddedGold() {
@@ -28,6 +26,16 @@ public class Bank extends Building {
 	}
 
 	public void uniqueAbility() {
-		location.setGoldRate(location.getGoldRate() + addedGold);
+		location.setGoldProduced(location.getGoldProduced() + addedGold);
+	}
+
+	public boolean canBeBuilt() {
+		if (location.getOwner().hasTechnology(techRequired) && location.hasBuilding(10))
+			return true;
+		return false;
+	}
+
+	public void removeAbility() {
+		location.setGoldProduced(location.getGoldProduced() - addedGold);
 	}
 }

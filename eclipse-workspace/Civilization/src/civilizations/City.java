@@ -10,7 +10,8 @@ public class City {
 	protected Tile location;
 	protected boolean capital;
 	protected boolean coastal;
-	protected double goldRate;
+	protected double goldProduced;
+	protected double goldUsed;
 	protected double productionRate;
 	protected double productionExcess;
 	protected double foodRate;
@@ -30,7 +31,8 @@ public class City {
 		capital = isCapital();
 		coastal = isCoastal();
 		// location =
-		goldRate = 0;
+		goldProduced = 0;
+		goldUsed = 0;
 		productionRate = 0;
 		productionExcess = 0;
 		foodRate = 0;
@@ -77,12 +79,8 @@ public class City {
 		this.coastal = coastal;
 	}
 
-	public double getGoldRate() {
-		return goldRate;
-	}
-
-	public void setGoldRate(double goldRate) {
-		this.goldRate = goldRate;
+	public double getGoldProduced() {
+		return goldProduced;
 	}
 
 	public double getProductionRate() {
@@ -189,6 +187,18 @@ public class City {
 		this.$wonders = $wonders;
 	}
 
+	public double getGoldUsed() {
+		return goldUsed;
+	}
+
+	public void setGoldUsed(double goldUsed) {
+		this.goldUsed = goldUsed;
+	}
+
+	public void setGoldProduced(double goldProduced) {
+		this.goldProduced = goldProduced;
+	}
+
 	public boolean isCapital() {
 		if (owner.getNumCities() == 0)
 			return true;
@@ -203,6 +213,15 @@ public class City {
 		$buildings.add(e);
 		e.setBuilt(true);
 		e.uniqueAbility();
+		setGoldUsed(getGoldUsed() + e.getGoldMaintenance());
+	}
+
+	protected void buyBuilding(Building e) {
+		getOwner().setGoldReserve(getOwner().getGoldReserve() - e.getGoldPurchaseCost());
+		$buildings.add(e);
+		e.setBuilt(true);
+		e.uniqueAbility();
+		setGoldUsed(getGoldUsed() + e.getGoldMaintenance());
 	}
 
 	public boolean hasBuilding(int buildingID) {
@@ -210,6 +229,21 @@ public class City {
 			if ($buildings.get(i).getBuildingID() == buildingID)
 				return true;
 		return false;
+	}
+
+	protected void removeBuilding(Building e) {
+		setGoldUsed(getGoldUsed() - e.getGoldMaintenance());
+		e.removeAbility();
+		e.setBuilt(false);
+		$buildings.remove(e);
+	}
+
+	protected void sellBuilding(Building e) {
+		this.setGoldUsed(this.getGoldUsed() - e.getGoldMaintenance());
+		e.removeAbility();
+		e.setBuilt(false);
+		$buildings.remove(e);
+		getOwner().setGoldReserve(getOwner().getGoldReserve() + e.getGoldSellPrice());
 	}
 
 }
