@@ -25,7 +25,7 @@ public class City {
 	protected ArrayList<Tile> $cityTiles;
 	protected ArrayList<Building> $buildings;
 	protected ArrayList<Wonder> $wonders;
-	protected ImageIcon cityimageIcon;
+	protected ImageIcon cityImageIcon;
 
 	protected City(Player player) {
 		owner = player;
@@ -45,7 +45,16 @@ public class City {
 		$cityTiles = new ArrayList<Tile>();
 		$buildings = new ArrayList<Building>();
 		$wonders = new ArrayList<Wonder>();
-
+		if(owner.getLeader().getLeaderID() == 0)
+			cityImageIcon = new ImageIcon(City.class.getClassLoader().getResource("improvement/resources/americaCity.pdf"));
+		if(owner.getLeader().getLeaderID() == 1)
+			cityImageIcon = new ImageIcon(City.class.getClassLoader().getResource("improvement/resources/italyCity.pdf"));
+		if(owner.getLeader().getLeaderID() == 2)
+			cityImageIcon = new ImageIcon(City.class.getClassLoader().getResource("improvement/resources/koreaCity.pdf"));
+		if(owner.getLeader().getLeaderID() == 3)
+			cityImageIcon = new ImageIcon(City.class.getClassLoader().getResource("improvement/resources/mongoliaCity.pdf"));
+		if(owner.getLeader().getLeaderID() == 4)
+			cityImageIcon = new ImageIcon(City.class.getClassLoader().getResource("improvement/resources/polandCity.pdf"));
 	}
 
 	public String getName() {
@@ -213,6 +222,14 @@ public class City {
 			if ($buildings.get(i).getBuildingID() == buildingID)
 				return true;
 		return false;
+	}
+
+	public ImageIcon getCityImageIcon() {
+		return cityImageIcon;
+	}
+
+	public void setCityImageIcon(ImageIcon cityImageIcon) {
+		this.cityImageIcon = cityImageIcon;
 	}
 
 }
