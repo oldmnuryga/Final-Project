@@ -9,65 +9,69 @@ import java.io.IOException;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import map.ForestTile;
+import map.GrassTile;
+import map.MountainTile;
+import map.SandTile;
 import map.Tile;
+import map.WaterTile;
 import sound.sounds;
 
 public class CivilizationGame {
 	//CONSTANTS
 	private final int SCROLL_SPEED = 5;
-	
+
 	//PLAYER INFO
 	private String playerName;
 	private int playerLeaderType; // 0 is genghis || 1 is washington || 2 is casimir || 3 is sejong || 4 is mussolini
-	
+
 	//JGRAPHICS CONSTRUCTORS
 	private JFrame frame = new JFrame("Civilization");
-	
+
 	private JFrame titleFrame = new JFrame("Civilization");
-	private JLabel title = new JLabel("Pjephphrey B's : Society IV");
+	private JLabel title = new JLabel("P'jephphrey B's : Society Simulator VII");
 	private JButton btnCasimir = new JButton(iconCasimir);
 	private JButton btnMussolini = new JButton(iconMussolini);
 	private JButton btnGenghis = new JButton(iconGenghis);
 	private JButton btnSejong = new JButton(iconSejong);
 	private JButton btnWashington = new JButton(iconWashington);
+	private JButton btnExport = new JButton("Export Map");
 	private JLabel lblGenghis = new JLabel("Genghis Khan"), lblWashington = new JLabel("George Washington"), lblSejong = new JLabel("Sejong"), lblMussolini = new JLabel("Mussolini"), lblCasimir = new JLabel("Casimir III");
-	
+
 	private JPanel leftPanel = new JPanel(); //200 from right
 	private JPanel topPanel = new JPanel(); //50 from top
 	private JPanel mapPanel = new JPanel();
 	private JScrollPane mapPane;
 	private JButton[][] $mapButtons = new JButton[Tile.getMAP_SIZE()][Tile.getMAP_SIZE()];
-	
+
 	//BUTTON LISTENERS
 	private TileListener tileListener = new TileListener();
-	
+
 	//Import tile graphics
 	/*static ImageIcon forestTileII = new ImageIcon(Tile.class.getResource("map/resources/forestTile.png"));	
 	static ImageIcon grassTileII = new ImageIcon(Tile.class.getResource("map/resources/grassTile.png"));
 	static ImageIcon mountainTileII = new ImageIcon(Tile.class.getResource("src/map/resources/mountainTile.png"));
 	static ImageIcon sandTileII = new ImageIcon(Tile.class.getResource("src/map/resources/sandTile.png"));
 	static ImageIcon waterTileII = new ImageIcon(Tile.class.getResource("src/map/resources/waterTile.png"));*/
-	
+
 	static ImageIcon iconGenghis = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("main/resources/genghisIcon.jpg"));
 	static ImageIcon iconCasimir = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("main/resources/casimirIcon.jpg"));
 	static ImageIcon iconMussolini = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("main/resources/mussoliniIcon.jpg"));
 	static ImageIcon iconSejong = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("main/resources/sejongIcon.jpg"));
 	static ImageIcon iconWashington = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("main/resources/washingtonIcon.jpg"));
-	
+
 	public CivilizationGame(){
 		//ADD STUFF
-		
+
 	}
-	
+
 	public void display(){
 		//JFrame
 		frame.setPreferredSize(new Dimension(1920, 1015));
@@ -75,7 +79,7 @@ public class CivilizationGame {
 		frame.setLayout(null);
 		frame.setVisible(false);
 		//frame.setResizable(false);
-		
+
 		//Title screen
 		titleFrame.setPreferredSize(new Dimension(1920, 1015));
 		titleFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -152,9 +156,9 @@ public class CivilizationGame {
 		});
 		titleFrame.add(btnCasimir);
 		titleFrame.add(lblCasimir);
-		
+
 		titleFrame.setVisible(true);
-		
+
 		//mapPane
 		mapPanel.setPreferredSize(new Dimension(50 * Tile.getMAP_SIZE(),50 * Tile.getMAP_SIZE()));
 		mapPanel.setLayout(null);
@@ -180,14 +184,39 @@ public class CivilizationGame {
 				mapPanel.add($mapButtons[i][j]);
 			}
 		}
-		
+
+		btnExport.setBounds(30, 30, 100, 20);
+		btnExport.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int i = 0; i < $mapButtons.length; i++) {
+					for (int j = 0; j < $mapButtons[i].length; j++) {
+						System.out.print(Tile.get$map()[i][j].getTerrainID());
+					}
+					System.out.println();
+				}
+				System.out.println();
+			}
+		});
+		frame.add(btnExport);
+
 		frame.pack();
 		titleFrame.pack();
 	}
-	
+
+	public void repaintTiles() {
+		for (int i = 0; i < $mapButtons.length; i++) {
+			for (int j = 0; j < $mapButtons[i].length; j++) {
+				$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
+			}
+		}
+	}
+
 	public class TileListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			//if (e.getSource() == ) { 
+
+			//Click sound
 			try {
 				sounds.clickPlay();
 			} catch (UnsupportedAudioFileException e1) {
@@ -199,6 +228,24 @@ public class CivilizationGame {
 			} catch (LineUnavailableException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+			}
+
+			for (int i = 0; i < $mapButtons.length; i++) {
+				for (int j = 0; j < $mapButtons[i].length; j++) {
+					if(e.getSource() == $mapButtons[i][j]) {
+						if(Tile.get$map()[i][j].getTerrainID() == 4)
+							Tile.get$map()[i][j] = new WaterTile();
+						else if(Tile.get$map()[i][j].getTerrainID() == 0)
+							Tile.get$map()[i][j] = new GrassTile();
+						else if(Tile.get$map()[i][j].getTerrainID() == 1)
+							Tile.get$map()[i][j] = new SandTile();
+						else if(Tile.get$map()[i][j].getTerrainID() == 2)
+							Tile.get$map()[i][j] = new MountainTile();
+						else if(Tile.get$map()[i][j].getTerrainID() == 3)
+							Tile.get$map()[i][j] = new ForestTile();
+						repaintTiles();
+					}
+				}
 			}
 		}
 	}

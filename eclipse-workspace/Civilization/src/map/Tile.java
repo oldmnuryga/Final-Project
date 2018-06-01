@@ -16,7 +16,7 @@ public abstract class Tile {
 	protected final static int SAND_GENERATION_SIZE_MULTIPLIER = 2;
 	protected final static int FOREST_GENERATION_ITERATIONS = 2;
 	protected final static int FOREST_GENERATION_SIZE_MULTIPLIER = 2;
-	protected int terrainID; //0 - water, 1 - grassTile, 2 - sandTile, 3 - MountainTile, 4- Forest
+	protected int terrainID; //0 - water, 1 - grassTile, 2 - sandTile, 3 - MountainTile, 4 - Forest
 	protected int movesRequired;
 	protected double productionBase;
 	protected double productionPotential;
