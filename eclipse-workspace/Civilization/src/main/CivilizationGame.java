@@ -36,7 +36,7 @@ public class CivilizationGame {
 	private JFrame frame = new JFrame("Civilization");
 
 	private JFrame titleFrame = new JFrame("Civilization");
-	private JLabel title = new JLabel("Pjephphrey B's : Society IV");
+	private JLabel title = new JLabel("P'jephphrey B's : Society Simulator VII");
 	private JButton btnCasimir = new JButton(iconCasimir);
 	private JButton btnMussolini = new JButton(iconMussolini);
 	private JButton btnGenghis = new JButton(iconGenghis);
