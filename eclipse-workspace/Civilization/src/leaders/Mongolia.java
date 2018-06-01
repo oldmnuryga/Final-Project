@@ -8,6 +8,7 @@ public class Mongolia extends Leader {
 	public Mongolia() {
 		leaderName = "Genghis Khan";
 		abbrevLeaderName = "The Mongols";
+		super.leaderID = 3;
 	}
 	public String getName() {
 		return leaderName;

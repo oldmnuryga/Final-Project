@@ -2,6 +2,8 @@ package civilizations;
 
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 import map.Tile;
 
 public class City {
@@ -23,6 +25,7 @@ public class City {
 	protected ArrayList<Tile> $cityTiles;
 	protected ArrayList<Building> $buildings;
 	protected ArrayList<Wonder> $wonders;
+	protected ImageIcon cityimageIcon;
 
 	protected City(Player player) {
 		owner = player;
