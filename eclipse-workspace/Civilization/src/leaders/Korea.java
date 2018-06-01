@@ -9,6 +9,7 @@ public class Korea extends Leader {
 	public Korea() {
 		leaderName = "Sejong";
 		abbrevLeaderName = "The Koreans";
+		super.leaderID = 2;
 	}
 	public String getName() {
 		return leaderName;

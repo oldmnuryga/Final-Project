@@ -19,7 +19,7 @@ public class Settler extends Unit {
 		super.unitName = "Settler";
 	}
 	
-	public void findCity() {
-		
+	public void foundCity() {
+		this.getLocation().setOwner();;
 	}
 }

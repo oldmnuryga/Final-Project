@@ -8,6 +8,7 @@ public class Italy extends Leader {
 	public Italy() {
 		leaderName = "Mussolini";
 		abbrevLeaderName = "The Italians";
+		super.leaderID = 1;
 	}
 	public String getName() {
 		return leaderName;

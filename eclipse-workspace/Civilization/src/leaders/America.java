@@ -7,6 +7,7 @@ public class America extends Leader {
 	public America() {
 		leaderName = "George Washington";
 		abbrevLeaderName = "The Americans";
+		super.leaderID = 0;
 	}
 	public String getName() {
 		return leaderName;

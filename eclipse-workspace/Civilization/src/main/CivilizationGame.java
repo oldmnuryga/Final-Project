@@ -213,6 +213,20 @@ public class CivilizationGame {
 		}
 	}
 
+	public void changeTile(int i, int j) {
+		if(Tile.get$map()[i][j].getTerrainID() == 4)
+			Tile.get$map()[i][j] = new WaterTile();
+		else if(Tile.get$map()[i][j].getTerrainID() == 0)
+			Tile.get$map()[i][j] = new GrassTile();
+		else if(Tile.get$map()[i][j].getTerrainID() == 1)
+			Tile.get$map()[i][j] = new SandTile();
+		else if(Tile.get$map()[i][j].getTerrainID() == 2)
+			Tile.get$map()[i][j] = new MountainTile();
+		else if(Tile.get$map()[i][j].getTerrainID() == 3)
+			Tile.get$map()[i][j] = new ForestTile();
+		repaintTiles();
+	}
+
 	public class TileListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
@@ -233,17 +247,7 @@ public class CivilizationGame {
 			for (int i = 0; i < $mapButtons.length; i++) {
 				for (int j = 0; j < $mapButtons[i].length; j++) {
 					if(e.getSource() == $mapButtons[i][j]) {
-						if(Tile.get$map()[i][j].getTerrainID() == 4)
-							Tile.get$map()[i][j] = new WaterTile();
-						else if(Tile.get$map()[i][j].getTerrainID() == 0)
-							Tile.get$map()[i][j] = new GrassTile();
-						else if(Tile.get$map()[i][j].getTerrainID() == 1)
-							Tile.get$map()[i][j] = new SandTile();
-						else if(Tile.get$map()[i][j].getTerrainID() == 2)
-							Tile.get$map()[i][j] = new MountainTile();
-						else if(Tile.get$map()[i][j].getTerrainID() == 3)
-							Tile.get$map()[i][j] = new ForestTile();
-						repaintTiles();
+						changeTile(i, j);
 					}
 				}
 			}

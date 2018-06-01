@@ -8,14 +8,14 @@ import javax.swing.JLabel;
 import leaders.Leader;
 
 public abstract class Tile {
-	protected final static int MAP_SIZE = 20;
+	protected final static int MAP_SIZE = 30;
 	protected final static int TEXTURE_SIZE = 50;
-	protected final static int GENERATION_ITERATIONS = 5;
+	protected final static int GENERATION_ITERATIONS = 10;
 	protected final static int GENERATION_SIZE_MULTIPLIER = 5;
-	protected final static int SAND_GENERATION_ITERATIONS = 2;
+	protected final static int SAND_GENERATION_ITERATIONS = 3;
 	protected final static int SAND_GENERATION_SIZE_MULTIPLIER = 2;
-	protected final static int FOREST_GENERATION_ITERATIONS = 2;
-	protected final static int FOREST_GENERATION_SIZE_MULTIPLIER = 2;
+	protected final static int FOREST_GENERATION_ITERATIONS = 3;
+	protected final static int FOREST_GENERATION_SIZE_MULTIPLIER = 3;
 	protected int terrainID; //0 - water, 1 - grassTile, 2 - sandTile, 3 - MountainTile, 4 - Forest
 	protected int movesRequired;
 	protected double productionBase;
