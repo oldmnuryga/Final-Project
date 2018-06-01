@@ -13,6 +13,7 @@ import technology.Technology;
 
 public abstract class Unit {
 	protected int hitpoints;
+	protected int currenthitpoints = hitpoints;
 	protected int attackRating;
 	protected int productionCost;
 	protected Tile location;
