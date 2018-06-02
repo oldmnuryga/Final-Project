@@ -1,4 +1,4 @@
-package civilizations.buildings;
+ package civilizations.buildings;
 
 import civilizations.Building;
 import civilizations.City;
