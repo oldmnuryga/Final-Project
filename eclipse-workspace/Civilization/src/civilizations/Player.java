@@ -16,7 +16,7 @@ public class Player {
 	protected static Leader leader;
 	protected double scienceExcess;
 	protected double sciencePerTurn;
-	protected int numCities;
+	protected static int numCities;
 	protected ArrayList<Unit> $units;
 	protected ArrayList<City> $cities;
 	protected ArrayList<Technology> $technologies;
@@ -122,7 +122,7 @@ public class Player {
 		this.leader = leader;
 	}
 
-	public int getNumCities() {
+	public static int getNumCities() {
 		return numCities;
 	}
 

@@ -6,6 +6,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.xml.transform.Templates;
 
+import civilizations.City;
+import civilizations.Player;
 import map.Tile;
 
 public class Settler extends Unit {
@@ -58,6 +60,9 @@ public class Settler extends Unit {
 			//Changes the image to a city
 			temp.setTileImageIcon(new ImageIcon(Tile.class.getClassLoader().getResource("improvements/resources/americaCity.pdf")));
 			temp.setTileLabel(new JLabel(temp.getTileImageIcon()));
+			City tempCity = new City(Player);
+			if(Player.getNumCities() == 0)
+				tempCity.setCapital(true);
 		}	
 	}
 }
