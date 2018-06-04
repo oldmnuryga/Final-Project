@@ -31,6 +31,7 @@ public abstract class Tile {
 	protected int[] $location = new int[2];
 	protected ImageIcon tileImageIcon;
 	protected JLabel tileLabel;
+	protected boolean isCity = false;
 	protected static Tile[][] $map = new Tile[MAP_SIZE][MAP_SIZE];
 
 	public static void generateMap() {
@@ -408,6 +409,14 @@ public abstract class Tile {
 
 	public ImageIcon getTileImageIcon() {
 		return tileImageIcon;
+	}
+
+	public boolean isCity() {
+		return isCity;
+	}
+
+	public void setIsCity(boolean isCity) {
+		this.isCity = isCity;
 	}
 
 	public void setTileImageIcon(ImageIcon tileImageIcon) {
