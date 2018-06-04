@@ -6,6 +6,8 @@ import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import civilizations.Player;
+import leaders.Leader;
 import sound.sounds;
 
 import map.Tile;
@@ -30,7 +32,21 @@ public abstract class Unit {
 	protected int buyCost;
 	protected String unitName;
 	protected int movesLeft = new Integer (maxMovement);
+	protected Leader owner = Player.getLeader();
 	
+	
+	public int getCurrenthitpoints() {
+		return currenthitpoints;
+	}
+	public void setCurrenthitpoints(int currenthitpoints) {
+		this.currenthitpoints = currenthitpoints;
+	}
+	public int getMovesLeft() {
+		return movesLeft;
+	}
+	public void setMovesLeft(int movesLeft) {
+		this.movesLeft = movesLeft;
+	}
 	public boolean isSelected() {
 		return isSelected;
 	}

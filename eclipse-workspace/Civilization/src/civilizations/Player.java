@@ -13,7 +13,7 @@ public class Player {
 	protected double goldPerTurn;
 	protected double happiness;
 	protected Color color;
-	protected Leader leader;
+	protected static Leader leader;
 	protected double scienceExcess;
 	protected double sciencePerTurn;
 	protected int numCities;
@@ -114,7 +114,7 @@ public class Player {
 		this.$wonders = $wonders;
 	}
 
-	public Leader getLeader() {
+	public static Leader getLeader() {
 		return leader;
 	}
 

@@ -20,6 +20,6 @@ public class Settler extends Unit {
 	}
 	
 	public void foundCity() {
-		this.getLocation().setOwner();;
+		this.getLocation().setOwner(owner);
 	}
 }
