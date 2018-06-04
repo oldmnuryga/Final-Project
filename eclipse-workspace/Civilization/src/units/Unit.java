@@ -32,7 +32,7 @@ public abstract class Unit {
 	protected int buyCost;
 	protected String unitName;
 	protected int movesLeft = new Integer (maxMovement);
-	protected Leader owner = Player;
+	protected Player owner = Player;
 	
 	
 	public int getCurrenthitpoints() {
