@@ -15,7 +15,6 @@ public class Walls extends Building {
 		goldMaintenance = 2;
 		techRequired = 5;
 		addedDefense = location.getDefenseRating();
-		isBuilt = false;
 	}
 
 	public double getAddedDefense() {
@@ -28,6 +27,10 @@ public class Walls extends Building {
 
 	public void uniqueAbility() {
 		location.setDefenseRating(location.getDefenseRating() + addedDefense);
+	}
+
+	public void removeAbility() {
+		location.setDefenseRating(location.getDefenseRating() - addedDefense);
 	}
 
 }

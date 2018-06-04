@@ -14,8 +14,7 @@ public class Market extends Building {
 		productionRequirement = 80;
 		goldMaintenance = 1;
 		techRequired = 14;
-		addedGold = location.getGoldRate() * 0.5;
-		isBuilt = false;
+		addedGold = location.getGoldProduced() * 0.5;
 	}
 
 	public double getAddedGold() {
@@ -27,6 +26,11 @@ public class Market extends Building {
 	}
 
 	public void uniqueAbility() {
-		location.setGoldRate(location.getGoldRate() + addedGold);
+		location.setGoldProduced(location.getGoldProduced() + addedGold);
+	}
+
+	public void removeAbility() {
+		location.setGoldProduced(location.getGoldProduced() - addedGold);
+
 	}
 }

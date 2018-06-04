@@ -15,8 +15,8 @@ public class Temple extends Building {
 		goldMaintenance = 2;
 		techRequired = 65;
 		addedHappiness = decideHappiness();
-		isBuilt = false;
 	}
+
 	public double getAddedHappiness() {
 		return addedHappiness;
 	}
@@ -29,10 +29,17 @@ public class Temple extends Building {
 		double happiness = 1.0;
 		if (location.getOwner().hasTechnology(8))
 			happiness = 2.0;
-		//TODO check for if Oracle is built
+		if (location.getOwner().hasWonder(15))
+			happiness *= 2.0;
 		return happiness;
 	}
+
 	public void uniqueAbility() {
 		location.getOwner().setHappiness(location.getOwner().getHappiness() + addedHappiness);
+	}
+
+	public void removeAbility() {
+		location.getOwner().setHappiness(location.getOwner().getHappiness() - addedHappiness);
+
 	}
 }

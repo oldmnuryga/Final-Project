@@ -15,7 +15,6 @@ public class NuclearPlant extends Building {
 		goldMaintenance = 2;
 		techRequired = 65;
 		addedProduction = location.getProductionRate() * 0.5;
-		isBuilt = false;
 	}
 
 	public double getAddedProduction() {
@@ -28,5 +27,9 @@ public class NuclearPlant extends Building {
 
 	public void uniqueAbility() {
 		location.setProductionRate(location.getProductionRate() + addedProduction);
+	}
+
+	public void removeAbility() {
+		location.setProductionRate(location.getProductionRate() - addedProduction);
 	}
 }

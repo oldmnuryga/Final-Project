@@ -1,4 +1,4 @@
- package civilizations.buildings;
+package civilizations.buildings;
 
 import civilizations.Building;
 import civilizations.City;
@@ -14,7 +14,7 @@ public class Cathedral extends Building {
 		productionRequirement = 160;
 		goldMaintenance = 3;
 		techRequired = 34;
-		addedHappiness = 4;
+		addedHappiness = (int) decideHappiness();
 	}
 
 	public int getAddedHappiness() {
@@ -36,8 +36,8 @@ public class Cathedral extends Building {
 
 	public double decideHappiness() {
 		double happiness = 4.0;
-		if (location.getOwner().hasWonder(//TODO -- CHECK FOR WONDER BUILT))
-				happiness = 6.0;
-				return happiness;
+		if (location.getOwner().hasWonder(13))
+			happiness = 6.0;
+		return happiness;
 	}
 }

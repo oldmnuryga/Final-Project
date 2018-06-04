@@ -196,6 +196,14 @@ public class City {
 		this.$buildings = $buildings;
 	}
 
+	public Building getCertainBuilding(int buildingID) {
+		for (int i = 0; i < $buildings.size(); i++) {
+			if ($buildings.get(i).getBuildingID() == buildingID)
+				return $buildings.get(i);
+		}
+		return null;
+	}
+
 	public ArrayList<Wonder> get$wonders() {
 		return $wonders;
 	}
