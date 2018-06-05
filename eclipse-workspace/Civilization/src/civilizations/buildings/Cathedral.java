@@ -30,7 +30,7 @@ public class Cathedral extends Building {
 	}
 
 	public void removeAbility() {
-		location.getOwner().setHappiness(location.getOwner().getHappiness() + addedHappiness);
+		location.getOwner().setHappiness(location.getOwner().getHappiness() - addedHappiness);
 
 	}
 
