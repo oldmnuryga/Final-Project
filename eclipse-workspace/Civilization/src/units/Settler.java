@@ -57,6 +57,7 @@ public class Settler extends Unit {
 			temp.setIsCity(true);
 			this.removeUnit();
 			// Sets surrounding tiles to the owner
+			Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setOwner(owner);
 			Tile.get$map()[location.get$location()[0]][location.get$location()[1] - 1].setOwner(owner);
 			Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1] - 1].setOwner(owner);
 			Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1] + 1].setOwner(owner);

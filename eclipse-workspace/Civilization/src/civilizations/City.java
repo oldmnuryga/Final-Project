@@ -278,5 +278,9 @@ public class City {
 	public void setCityImageIcon(ImageIcon cityImageIcon) {
 		this.cityImageIcon = cityImageIcon;
 	}
+	
+	public void setCityGUI() {
+		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setTileImageIcon(this.cityImageIcon);
+	}
 
 }
