@@ -68,6 +68,7 @@ public class Settler extends Unit {
 			Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1]].setOwner(owner);
 			temp.setTileLabel(new JLabel(temp.getTileImageIcon()));
 			this.getOwner().addCity(new City(this.getOwner(), temp));
+			City.setCityGUI();
 
 		}
 	}
