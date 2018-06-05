@@ -28,12 +28,12 @@ public class City {
 	protected ArrayList<Wonder> $wonders;
 	protected ImageIcon cityImageIcon;
 
-	protected City(Player player) {
+	public City(Player player, Tile cityLocation) {
 		owner = player;
 		name = owner.getLeader().getCityNames().get(owner.getNumCities());
 		capital = isCapital();
 		coastal = isCoastal();
-		// location =
+		location = cityLocation;
 		goldProduced = 0;
 		goldUsed = 0;
 		productionRate = 0;

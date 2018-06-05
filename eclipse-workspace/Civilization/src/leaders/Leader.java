@@ -1,5 +1,6 @@
 package leaders;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 public abstract class Leader {
@@ -7,6 +8,7 @@ public abstract class Leader {
 	protected int leaderID;
 	protected String abbrevLeaderName;
 	protected ArrayList<String> cityNames;
+	protected Color color;
 
 	public String getLeaderName() {
 		return leaderName;

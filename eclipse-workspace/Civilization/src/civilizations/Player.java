@@ -12,7 +12,6 @@ public class Player {
 	protected double goldReserve;
 	protected double goldPerTurn;
 	protected double happiness;
-	protected Color color;
 	protected Leader leader;
 	protected double scienceExcess;
 	protected double sciencePerTurn;
@@ -23,6 +22,18 @@ public class Player {
 	protected ArrayList<Wonder> $wonders;
 
 	public Player() {
+		name = ""; //TODO
+		goldReserve = 0;
+		goldPerTurn = 0;
+		happiness = 1.0;
+		leader = getLeader(); //TODO
+		scienceExcess = 0.0;
+		sciencePerTurn = 10.0;
+		numCities = 0;
+		$units = new ArrayList<Unit>();
+		$cities = new ArrayList<City>();
+		$technologies = new ArrayList<Technology>();
+		$wonders = new ArrayList<Wonder>();
 
 	}
 
@@ -56,14 +67,6 @@ public class Player {
 
 	public void setHappiness(double happiness) {
 		this.happiness = happiness;
-	}
-
-	public Color getColor() {
-		return color;
-	}
-
-	public void setColor(Color color) {
-		this.color = color;
 	}
 
 	public double getScienceExcess() {
@@ -146,6 +149,11 @@ public class Player {
 			if ($wonders.get(i).getWonderID() == wonderID)
 				return true;
 		return false;
+	}
+
+	public void addCity(City tCity) {
+		$cities.add(tCity);
+		this.setNumCities(this.getNumCities() + 1);
 	}
 
 }

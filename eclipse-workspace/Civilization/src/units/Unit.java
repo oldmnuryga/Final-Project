@@ -197,6 +197,14 @@ public abstract class Unit {
 		return maxMovement;
 	}
 
+	public Player getOwner() {
+		return owner;
+	}
+
+	public void setOwner(Player owner) {
+		this.owner = owner;
+	}
+
 	// Do Something Methods
 	// Do checks outside of methods
 	public void moveUnitLeft() {

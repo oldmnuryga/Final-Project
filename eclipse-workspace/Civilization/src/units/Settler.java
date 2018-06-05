@@ -64,13 +64,9 @@ public class Settler extends Unit {
 			Tile.get$map()[location.get$location()[0]][location.get$location()[1] + 1].setOwner(owner);
 			Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1]].setOwner(owner);
 			Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1]].setOwner(owner);
-			// Changes the image to a city
-			temp.setTileImageIcon(
-					new ImageIcon(Tile.class.getClassLoader().getResource("improvements/resources/americaCity.pdf")));
 			temp.setTileLabel(new JLabel(temp.getTileImageIcon()));
-			City tempCity = new City(Player);
-			if (Player.getNumCities() == 0)
-				tempCity.setCapital(true);
+			this.getOwner().addCity(new City(this.getOwner(), temp));
+
 		}
 	}
 }
