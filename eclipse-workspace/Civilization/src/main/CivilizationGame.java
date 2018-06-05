@@ -16,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import civilizations.Player;
+import leaders.*;
 import map.ForestTile;
 import map.GrassTile;
 import map.MountainTile;
@@ -29,9 +31,7 @@ public class CivilizationGame {
 	private final int SCROLL_SPEED = 5;
 
 	// PLAYER INFO
-	private String playerName;
-	private int playerLeaderType; // 0 is genghis || 1 is washington || 2 is casimir || 3 is sejong || 4 is
-	// mussolini
+	private Player player = new Player();
 
 	// JGRAPHICS CONSTRUCTORS
 	private JFrame frame = new JFrame("Civilization");
@@ -110,8 +110,7 @@ public class CivilizationGame {
 		btnGenghis.setBounds(250, 605, 165, 251);
 		btnGenghis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				playerName = "Genghis Khan";
-				playerLeaderType = 0;
+				player.setLeader(new Mongolia());
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 			}
@@ -123,8 +122,7 @@ public class CivilizationGame {
 		btnWashington.setBounds(504, 605, 165, 251);
 		btnWashington.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				playerName = "Washington";
-				playerLeaderType = 1;
+				player.setLeader(new America());
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 			}
@@ -136,8 +134,7 @@ public class CivilizationGame {
 		btnSejong.setBounds(758, 605, 165, 251);
 		btnSejong.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				playerName = "Sejong";
-				playerLeaderType = 3;
+				player.setLeader(new Korea());
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 			}
@@ -149,8 +146,7 @@ public class CivilizationGame {
 		btnMussolini.setBounds(1012, 605, 165, 251);
 		btnMussolini.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				playerName = "Mussolini";
-				playerLeaderType = 4;
+				player.setLeader(new Italy());
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 			}
@@ -162,8 +158,7 @@ public class CivilizationGame {
 		btnCasimir.setBounds(1266, 605, 165, 251);
 		btnCasimir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				playerName = "Casimir III";
-				playerLeaderType = 2;
+				player.setLeader(new Poland());
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 			}
