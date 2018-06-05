@@ -9,6 +9,7 @@ public class America extends Leader {
 		abbrevLeaderName = "The Americans";
 		super.leaderID = 0;
 	}
+
 	public String getName() {
 		return leaderName;
 	}

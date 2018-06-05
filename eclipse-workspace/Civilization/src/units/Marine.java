@@ -6,7 +6,7 @@ public class Marine extends Unit {
 		super.hitpoints = 150;
 		super.attackRating = 43;
 		super.productionCost = 400;
-		super.location  = null;
+		super.location = null;
 		super.ranged = false;
 		super.alive = true;
 		super.fortified = false;

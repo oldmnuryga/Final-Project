@@ -6,7 +6,7 @@ public class Bomber extends Unit {
 		super.hitpoints = 130;
 		super.attackRating = 75;
 		super.productionCost = 375;
-		super.location  = null;
+		super.location = null;
 		super.ranged = true;
 		super.alive = true;
 		super.fortified = false;

@@ -5,7 +5,7 @@ public class Lumbermill {
 	protected int timeToBuild;
 	protected int productionBase;
 	protected int productionPotential;
-	
+
 	public Lumbermill() {
 		goldMaintenance = 2;
 		timeToBuild = 4;

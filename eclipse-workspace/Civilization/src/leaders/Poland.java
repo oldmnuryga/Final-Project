@@ -1,6 +1,6 @@
 package leaders;
 
-public class Poland extends Leader{
+public class Poland extends Leader {
 	// Casimir III
 	// winged hussar (unit) replace lancer
 	// +2 food from cathedral
@@ -9,6 +9,7 @@ public class Poland extends Leader{
 		abbrevLeaderName = "The Polish";
 		super.leaderID = 4;
 	}
+
 	public String getName() {
 		return leaderName;
 	}

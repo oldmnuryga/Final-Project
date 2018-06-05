@@ -3,7 +3,7 @@ package map;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class MountainTile extends Tile{	
+public class MountainTile extends Tile {
 	public MountainTile() {
 		super.terrainID = 3;
 		super.movesRequired = 0;

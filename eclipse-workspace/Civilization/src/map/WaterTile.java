@@ -3,7 +3,7 @@ package map;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class WaterTile extends Tile{	
+public class WaterTile extends Tile {
 	public WaterTile() {
 		super.terrainID = 0;
 		super.movesRequired = 1;

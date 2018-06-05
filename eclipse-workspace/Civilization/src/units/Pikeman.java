@@ -6,7 +6,7 @@ public class Pikeman extends Unit {
 		super.hitpoints = 40;
 		super.attackRating = 16;
 		super.productionCost = 90;
-		super.location  = null;
+		super.location = null;
 		super.ranged = false;
 		super.alive = true;
 		super.fortified = false;

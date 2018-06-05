@@ -1,7 +1,5 @@
 package leaders;
 
-
-
 public class Korea extends Leader {
 	// Sejong
 	// +10% science
@@ -11,6 +9,7 @@ public class Korea extends Leader {
 		abbrevLeaderName = "The Koreans";
 		super.leaderID = 2;
 	}
+
 	public String getName() {
 		return leaderName;
 	}

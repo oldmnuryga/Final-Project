@@ -6,7 +6,7 @@ public class Trebuchet extends Unit {
 		super.hitpoints = 80;
 		super.attackRating = 23;
 		super.productionCost = 120;
-		super.location  = null;
+		super.location = null;
 		super.ranged = false;
 		super.alive = true;
 		super.fortified = false;

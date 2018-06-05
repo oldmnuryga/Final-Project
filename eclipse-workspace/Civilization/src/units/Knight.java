@@ -6,7 +6,7 @@ public class Knight extends Unit {
 		super.hitpoints = 55;
 		super.attackRating = 20;
 		super.productionCost = 120;
-		super.location  = null;
+		super.location = null;
 		super.ranged = false;
 		super.alive = true;
 		super.fortified = false;

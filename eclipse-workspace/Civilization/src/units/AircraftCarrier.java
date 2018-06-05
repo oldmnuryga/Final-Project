@@ -6,7 +6,7 @@ public class AircraftCarrier extends Unit {
 		super.hitpoints = 140;
 		super.attackRating = 60;
 		super.productionCost = 375;
-		super.location  = null;
+		super.location = null;
 		super.ranged = false;
 		super.alive = true;
 		super.fortified = false;

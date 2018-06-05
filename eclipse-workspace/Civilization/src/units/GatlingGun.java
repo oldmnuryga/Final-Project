@@ -6,7 +6,7 @@ public class GatlingGun extends Unit {
 		super.hitpoints = 60;
 		super.attackRating = 34;
 		super.productionCost = 225;
-		super.location  = null;
+		super.location = null;
 		super.ranged = false;
 		super.alive = true;
 		super.fortified = false;

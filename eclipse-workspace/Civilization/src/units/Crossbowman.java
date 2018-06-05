@@ -6,7 +6,7 @@ public class Crossbowman extends Unit {
 		super.hitpoints = 40;
 		super.attackRating = 15;
 		super.productionCost = 120;
-		super.location  = null;
+		super.location = null;
 		super.ranged = false;
 		super.alive = true;
 		super.fortified = false;

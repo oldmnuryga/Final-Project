@@ -7,7 +7,7 @@ public class TradingPost {
 	protected int goldPotential;
 	protected int scienceBase;
 	protected int sciencePotential;
-	
+
 	public TradingPost() {
 		goldMaintenance = 1;
 		timeToBuild = 4;

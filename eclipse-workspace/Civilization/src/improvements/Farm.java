@@ -8,10 +8,10 @@ public class Farm {
 	protected int foodBase;
 	protected int foodPotential;
 	protected Tile location;
-	
+
 	public Farm() {
 		goldMaintenance = 1;
 		timeToBuild = 2;
-		
+
 	}
 }

@@ -13,10 +13,10 @@ public class Player {
 	protected double goldPerTurn;
 	protected double happiness;
 	protected Color color;
-	protected static Leader leader;
+	protected Leader leader;
 	protected double scienceExcess;
 	protected double sciencePerTurn;
-	protected static int numCities;
+	protected int numCities;
 	protected ArrayList<Unit> $units;
 	protected ArrayList<City> $cities;
 	protected ArrayList<Technology> $technologies;
@@ -114,7 +114,7 @@ public class Player {
 		this.$wonders = $wonders;
 	}
 
-	public static Leader getLeader() {
+	public Leader getLeader() {
 		return leader;
 	}
 
@@ -122,7 +122,7 @@ public class Player {
 		this.leader = leader;
 	}
 
-	public static int getNumCities() {
+	public int getNumCities() {
 		return numCities;
 	}
 
@@ -140,6 +140,7 @@ public class Player {
 				return true;
 		return false;
 	}
+
 	public boolean hasWonder(int wonderID) {
 		for (int i = 0; i < $wonders.size(); i++)
 			if ($wonders.get(i).getWonderID() == wonderID)

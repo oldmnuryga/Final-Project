@@ -6,7 +6,7 @@ public class Cannon extends Unit {
 		super.hitpoints = 70;
 		super.attackRating = 14;
 		super.productionCost = 185;
-		super.location  = null;
+		super.location = null;
 		super.ranged = false;
 		super.alive = true;
 		super.fortified = false;

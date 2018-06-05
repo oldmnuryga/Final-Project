@@ -3,7 +3,7 @@ package map;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class GrassTile extends Tile{	
+public class GrassTile extends Tile {
 	public GrassTile() {
 		super.terrainID = 1;
 		super.movesRequired = 1;

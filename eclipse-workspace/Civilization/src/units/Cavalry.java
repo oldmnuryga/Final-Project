@@ -6,7 +6,7 @@ public class Cavalry extends Unit {
 		super.hitpoints = 45;
 		super.attackRating = 25;
 		super.productionCost = 225;
-		super.location  = null;
+		super.location = null;
 		super.ranged = false;
 		super.alive = true;
 		super.fortified = false;

@@ -6,7 +6,7 @@ public class Archer extends Unit {
 		super.hitpoints = 30;
 		super.attackRating = 11;
 		super.productionCost = 40;
-		super.location  = null;
+		super.location = null;
 		super.ranged = true;
 		super.alive = true;
 		super.fortified = false;

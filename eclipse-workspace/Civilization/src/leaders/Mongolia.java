@@ -1,6 +1,5 @@
 package leaders;
 
-
 public class Mongolia extends Leader {
 	// Genghis Khan
 	// military strength +10%
@@ -10,6 +9,7 @@ public class Mongolia extends Leader {
 		abbrevLeaderName = "The Mongols";
 		super.leaderID = 3;
 	}
+
 	public String getName() {
 		return leaderName;
 	}

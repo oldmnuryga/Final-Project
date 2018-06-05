@@ -6,14 +6,14 @@ public class Scout extends Unit {
 		super.hitpoints = 20;
 		super.attackRating = 5;
 		super.productionCost = 25;
-		super.location  = null;
+		super.location = null;
 		super.ranged = false;
 		super.alive = true;
 		super.fortified = false;
 		super.maxMovement = 3;
-		//IGNORES TERRAIN IN CIV 5 (SO I MADE IT 3 MOVEMENT INSTEAD)
+		// IGNORES TERRAIN IN CIV 5 (SO I MADE IT 3 MOVEMENT INSTEAD)
 		super.maintenance = 1;
-		super.isAir = false;		
+		super.isAir = false;
 		super.isGround = true;
 		super.isNaval = false;
 		super.isSelected = false;
