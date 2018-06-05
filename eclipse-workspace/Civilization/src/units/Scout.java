@@ -1,5 +1,7 @@
 package units;
 
+import javax.swing.ImageIcon;
+
 public class Scout extends Unit {
 
 	public Scout() {
@@ -18,5 +20,6 @@ public class Scout extends Unit {
 		super.isNaval = false;
 		super.isSelected = false;
 		super.unitName = "Scout";
+		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Scout.png"));
 	}
 }

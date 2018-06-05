@@ -5,11 +5,11 @@ import java.io.IOException;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ImageIcon;
 
 import civilizations.Player;
-import sound.sounds;
-
 import map.Tile;
+import sound.sounds;
 import technology.Technology;
 
 public abstract class Unit {
@@ -32,6 +32,7 @@ public abstract class Unit {
 	protected String unitName;
 	protected int movesLeft = new Integer(maxMovement);
 	protected Player owner;
+	protected static ImageIcon unitImageIcon;
 
 	public int getCurrenthitpoints() {
 		return currenthitpoints;
@@ -203,6 +204,14 @@ public abstract class Unit {
 
 	public void setOwner(Player owner) {
 		this.owner = owner;
+	}
+
+	public static ImageIcon getUnitImageIcon() {
+		return unitImageIcon;
+	}
+
+	public void setUnitImageIcon(ImageIcon unitImageIcon) {
+		this.unitImageIcon = unitImageIcon;
 	}
 
 	// Do Something Methods

@@ -1,5 +1,9 @@
 package units;
 
+import javax.swing.ImageIcon;
+
+import map.Tile;
+
 public class Warrior extends Unit {
 
 	public Warrior() {
@@ -17,5 +21,6 @@ public class Warrior extends Unit {
 		super.isNaval = false;
 		super.isSelected = false;
 		super.unitName = "Warrior";
+		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Warrior.png"));
 	}
 }

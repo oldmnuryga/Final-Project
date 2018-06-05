@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -25,6 +26,7 @@ import map.SandTile;
 import map.Tile;
 import map.WaterTile;
 import sound.sounds;
+import units.Settler;
 
 public class CivilizationGame {
 	// CONSTANTS
@@ -195,6 +197,7 @@ public class CivilizationGame {
 				mapPanel.add($mapButtons[i][j]);
 			}
 		}
+		spawnInitialSettler();
 
 		frame.pack();
 		titleFrame.pack();
@@ -222,9 +225,23 @@ public class CivilizationGame {
 		repaintTiles();
 	}
 
+	public void spawnInitialSettler() {
+		Random rand = new Random();
+		boolean found = true;
+		while(found) {
+			int tempX = rand.nextInt(Tile.getMAP_SIZE());
+			int tempY = rand.nextInt(Tile.getMAP_SIZE());
+			if(Tile.get$map()[tempX][tempY].getTerrainID() == 1) {
+				$mapButtons[tempX][tempY].setIcon(Settler.getUnitImageIcon());
+				Tile.get$map()[tempX][tempY].setUnitOnTile(new Settler());
+				Tile.get$map()[tempX][tempY].getUnitOnTile().setSelected(true);
+				found = false;
+			}
+		}
+	}
+
 	public class TileListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-
 			// Click sound
 			try {
 				sounds.clickPlay();

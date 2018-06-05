@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import civilizations.Player;
-import leaders.Leader;
+import units.Unit;
 
 public abstract class Tile {
 	protected final static int MAP_SIZE = 30;
@@ -33,6 +33,7 @@ public abstract class Tile {
 	protected ImageIcon tileImageIcon;
 	protected JLabel tileLabel;
 	protected boolean isCity = false;
+	protected Unit unitOnTile;
 	protected static Tile[][] $map = new Tile[MAP_SIZE][MAP_SIZE];
 
 	public static void generateMap() {
@@ -462,6 +463,17 @@ public abstract class Tile {
 		return FOREST_GENERATION_SIZE_MULTIPLIER;
 	}
 
+	public Unit getUnitOnTile() {
+		return unitOnTile;
+	}
+
+	public void setUnitOnTile(Unit unitOnTile) {
+		this.unitOnTile = unitOnTile;
+	}
+
+	public void setCity(boolean isCity) {
+		this.isCity = isCity;
+	}
 	// public TIle getTileFromID(int ID){
 	// if(ID = 0
 	// return GrassTile;
