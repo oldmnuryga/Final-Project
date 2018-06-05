@@ -29,6 +29,8 @@ import sound.sounds;
 import units.Settler;
 
 public class CivilizationGame {
+	public static int turns;
+	
 	// CONSTANTS
 	private final int SCROLL_SPEED = 5;
 
@@ -44,6 +46,7 @@ public class CivilizationGame {
 	private JLabel lblTurns = new JLabel("Turns: ");
 	
 	private JButton btnEndTurn = new JButton("End Turn");
+	private JButton btnShowInstructions = new JButton("How to Play the Game");
 	private JPanel pnePlayerStats = new JPanel();
 	
 	private JFrame titleFrame = new JFrame("Civilization");
@@ -53,7 +56,7 @@ public class CivilizationGame {
 	private JButton btnGenghis = new JButton(iconGenghis);
 	private JButton btnSejong = new JButton(iconSejong);
 	private JButton btnWashington = new JButton(iconWashington);
-	private JLabel lblGenghis = new JLabel("Genghis Khan"), lblWashington = new JLabel("George Washington"),
+	private JLabel lblGenghis = new JLabel("Genghis Khan"), lblWashington = new JLabel("Washington"),
 			lblSejong = new JLabel("Sejong"), lblMussolini = new JLabel("Mussolini"),
 			lblCasimir = new JLabel("Casimir III");
 
@@ -128,7 +131,7 @@ public class CivilizationGame {
 		});
 		titleFrame.add(btnGenghis);
 		titleFrame.add(lblGenghis);
-		lblWashington.setFont(new Font("Monospaced", Font.ITALIC, 15));
+		lblWashington.setFont(new Font("Monospaced", Font.ITALIC, 20));
 		lblWashington.setBounds(504, 580, 200, 30);
 		btnWashington.setBounds(504, 605, 165, 251);
 		btnWashington.addActionListener(new ActionListener() {
@@ -179,6 +182,26 @@ public class CivilizationGame {
 
 		titleFrame.setVisible(true);
 
+		//game GUI
+		btnEndTurn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				turns++;
+				//other things
+			}
+		});
+		btnShowInstructions.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+			}
+		});
+		frame.add(pnePlayerStats);
+		pnePlayerStats.setBounds(0, 50, 200, 500);
+		pnePlayerStats.add(new JLabel("Anime")); 
+		lblGold.setBounds(200, 0, 150, 50);
+		frame.add(lblGold);
+		lblResearch.setBounds(350, 0, 100, 50);
+		frame.add(lblResearch);
+		
 		// mapPane
 		mapPanel.setPreferredSize(new Dimension(50 * Tile.getMAP_SIZE(), 50 * Tile.getMAP_SIZE()));
 		mapPanel.setLayout(null);
@@ -279,13 +302,7 @@ public class CivilizationGame {
 				e1.printStackTrace();
 			}
 
-			for (int i = 0; i < $mapButtons.length; i++) {
-				for (int j = 0; j < $mapButtons[i].length; j++) {
-					if (e.getSource() == $mapButtons[i][j]) {
-						changeTile(i, j);
-					}
-				}
-			}
+			
 		}
 	}
 }
