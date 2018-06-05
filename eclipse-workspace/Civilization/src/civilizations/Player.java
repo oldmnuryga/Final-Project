@@ -1,6 +1,5 @@
 package civilizations;
 
-import java.awt.Color;
 import java.util.ArrayList;
 
 import leaders.Leader;
@@ -22,11 +21,11 @@ public class Player {
 	protected ArrayList<Wonder> $wonders;
 
 	public Player() {
-		name = ""; //TODO
+		name = ""; // TODO
 		goldReserve = 0;
 		goldPerTurn = 0;
 		happiness = 1.0;
-		leader = getLeader(); //TODO
+		leader = getLeader(); // TODO
 		scienceExcess = 0.0;
 		sciencePerTurn = 10.0;
 		numCities = 0;
