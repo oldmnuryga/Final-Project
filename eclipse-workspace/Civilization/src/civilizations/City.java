@@ -9,7 +9,7 @@ import map.Tile;
 public class City {
 	protected String name;
 	protected Player owner;
-	protected Tile location;
+	protected static Tile location;
 	protected boolean capital;
 	protected boolean coastal;
 	protected double goldProduced;
@@ -26,7 +26,7 @@ public class City {
 	protected ArrayList<Tile> $cityTiles;
 	protected ArrayList<Building> $buildings;
 	protected ArrayList<Wonder> $wonders;
-	protected ImageIcon cityImageIcon;
+	protected static ImageIcon cityImageIcon;
 
 	public City(Player player, Tile cityLocation) {
 		owner = player;
@@ -279,8 +279,8 @@ public class City {
 		this.cityImageIcon = cityImageIcon;
 	}
 	
-	public void setCityGUI() {
-		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setTileImageIcon(this.cityImageIcon);
+	public static void setCityGUI() {
+		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setTileImageIcon(cityImageIcon);
 	}
 
 }

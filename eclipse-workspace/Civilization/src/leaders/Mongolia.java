@@ -17,8 +17,4 @@ public class Mongolia extends Leader {
 				Arrays.asList("Karakorum", "Beshbalik", "Turfan", "Hsia", "Old Sarai", "New Sarai"));
 
 	}
-
-	public String getName() {
-		return leaderName;
-	}
 }

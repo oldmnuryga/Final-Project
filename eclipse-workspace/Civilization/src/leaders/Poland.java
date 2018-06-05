@@ -16,8 +16,4 @@ public class Poland extends Leader {
 		cityNames = new ArrayList<String>(Arrays.asList("Warsaw", "Krakow", "Lodz", "Wroclaw", "Poznan", "Gdansk"));
 
 	}
-
-	public String getName() {
-		return leaderName;
-	}
 }

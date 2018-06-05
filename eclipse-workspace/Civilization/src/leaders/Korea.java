@@ -16,8 +16,4 @@ public class Korea extends Leader {
 		cityNames = new ArrayList<String>(Arrays.asList("Seoul", "Busan", "Pyongyang", "Jeonju", "Daegu", "Kaesong"));
 
 	}
-
-	public String getName() {
-		return leaderName;
-	}
 }

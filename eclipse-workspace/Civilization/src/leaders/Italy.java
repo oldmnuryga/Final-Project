@@ -17,8 +17,4 @@ public class Italy extends Leader {
 		cityNames = new ArrayList<String>(Arrays.asList("Rome", "Milan", "Turin", "Florence", "Naples", "Venice"));
 
 	}
-
-	public String getName() {
-		return leaderName;
-	}
 }
