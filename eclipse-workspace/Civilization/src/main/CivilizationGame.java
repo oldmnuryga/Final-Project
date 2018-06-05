@@ -37,7 +37,15 @@ public class CivilizationGame {
 
 	// JGRAPHICS CONSTRUCTORS
 	private JFrame frame = new JFrame("Civilization");
-
+	private JLabel lblGold = new JLabel("Gold: ");
+	private JLabel lblResearch = new JLabel("Research: ");
+	private JLabel lblProduction = new JLabel("Production: ");
+	private JLabel lblHappiness = new JLabel("Happiness: ");
+	private JLabel lblTurns = new JLabel("Turns: ");
+	
+	private JButton btnEndTurn = new JButton("End Turn");
+	private JPanel pnePlayerStats = new JPanel();
+	
 	private JFrame titleFrame = new JFrame("Civilization");
 	private JLabel title = new JLabel("P'jephphrey B's : Society Simulator VII");
 	private JButton btnCasimir = new JButton(iconCasimir);
@@ -94,6 +102,7 @@ public class CivilizationGame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
 		frame.setVisible(false);
+		
 		// frame.setResizable(false);
 
 		// Title screen
