@@ -7,10 +7,11 @@ public class ApolloProgram extends Wonder {
 	public ApolloProgram(City city) {
 		wonderID = 0;
 		location = city;
+		owner = location.getOwner();
 		name = "Apollo Program";
-		description = "Allows construction of spaceship parts.";
-		productionRequirement = 120;
-		techRequired = 12;
-		isWorldWonder = false;
+		description = "Allows building of spaceship parts";
+		productionRequirement = 600;
+		techRequired = 57;
+		techObsoletionID = -1;
 	}
 }

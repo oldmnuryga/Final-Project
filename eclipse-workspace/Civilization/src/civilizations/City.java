@@ -177,7 +177,7 @@ public class City {
 	}
 
 	public void setLocation(Tile location) {
-		this.location = location;
+		City.location = location;
 	}
 
 	public double getDefenseRating() {
@@ -276,11 +276,17 @@ public class City {
 	}
 
 	public void setCityImageIcon(ImageIcon cityImageIcon) {
-		this.cityImageIcon = cityImageIcon;
+		City.cityImageIcon = cityImageIcon;
 	}
-	
+
 	public static void setCityGUI() {
 		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setTileImageIcon(cityImageIcon);
+	}
+
+	protected void buildWonder(Wonder e) {
+		$wonders.add(e);
+		e.setBuilt(true);
+
 	}
 
 }

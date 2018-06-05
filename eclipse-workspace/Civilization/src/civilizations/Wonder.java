@@ -1,18 +1,14 @@
 package civilizations;
 
 public abstract class Wonder extends Structure {
-	protected Player owner = location.getOwner();
-	protected boolean isWorldWonder;
+	protected Player owner;
 	protected int wonderID;
 	protected int techObsoletionID;
 	protected boolean isObsolete = false;
 
 	public boolean canBeBuilt() {
-		if (owner.hasTechnology(techRequired)) {
-			if (isWorldWonder) { // TODO -- CHECK IF OTHER PLAYER HAS IT
-
-			}
-		}
+		if (owner.hasTechnology(techRequired) && !(owner.hasTechnology(techObsoletionID)))
+			return true;
 		return false;
 	}
 
@@ -22,14 +18,6 @@ public abstract class Wonder extends Structure {
 
 	public void setOwner(Player owner) {
 		this.owner = owner;
-	}
-
-	public boolean isWorldWonder() {
-		return isWorldWonder;
-	}
-
-	public void setWorldWonder(boolean isWorldWonder) {
-		this.isWorldWonder = isWorldWonder;
 	}
 
 	public int getWonderID() {
@@ -63,4 +51,8 @@ public abstract class Wonder extends Structure {
 		}
 		return false;
 	}
+
+	public abstract void uniqueAbility();
+
+	public abstract void obsoleteAbility();
 }

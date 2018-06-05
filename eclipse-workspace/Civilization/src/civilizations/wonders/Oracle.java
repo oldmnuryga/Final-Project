@@ -14,7 +14,16 @@ public class Oracle extends Wonder {
 		productionRequirement = 300;
 		techRequired = 8;
 		techObsoletionID = 34;
-		isWorldWonder = true;
+	}
+
+	public void uniqueAbility() {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void obsoleteAbility() {
+		// TODO Auto-generated method stub
+
 	}
 
 }
