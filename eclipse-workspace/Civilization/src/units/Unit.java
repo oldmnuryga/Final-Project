@@ -32,7 +32,7 @@ public abstract class Unit {
 	protected String unitName;
 	protected int movesLeft = new Integer(maxMovement);
 	protected Player owner;
-	protected ImageIcon unitImageIcon;
+	protected static ImageIcon unitImageIcon;
 
 	public int getCurrenthitpoints() {
 		return currenthitpoints;
@@ -206,7 +206,7 @@ public abstract class Unit {
 		this.owner = owner;
 	}
 
-	public ImageIcon getUnitImageIcon() {
+	public static ImageIcon getUnitImageIcon() {
 		return unitImageIcon;
 	}
 
