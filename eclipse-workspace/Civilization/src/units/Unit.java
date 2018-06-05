@@ -31,8 +31,8 @@ public abstract class Unit {
 	protected int buyCost;
 	protected String unitName;
 	protected int movesLeft = new Integer(maxMovement);
-	protected Player owner;
-	protected static ImageIcon unitImageIcon;
+	protected Player owner = null;
+	protected static ImageIcon unitImageIcon = null;
 
 	public int getCurrenthitpoints() {
 		return currenthitpoints;
@@ -206,7 +206,7 @@ public abstract class Unit {
 		this.owner = owner;
 	}
 
-	public static ImageIcon getUnitImageIcon() {
+	public ImageIcon getUnitImageIcon() {
 		return unitImageIcon;
 	}
 

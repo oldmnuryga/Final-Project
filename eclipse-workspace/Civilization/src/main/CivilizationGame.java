@@ -241,10 +241,23 @@ public class CivilizationGame {
 			int tempX = rand.nextInt(Tile.getMAP_SIZE());
 			int tempY = rand.nextInt(Tile.getMAP_SIZE());
 			if(Tile.get$map()[tempX][tempY].getTerrainID() == 1) {
-				$mapButtons[tempX][tempY].setIcon(Settler.getUnitImageIcon());
 				Tile.get$map()[tempX][tempY].setUnitOnTile(new Settler());
-				Tile.get$map()[tempX][tempY].getUnitOnTile().setSelected(true);
 				found = false;
+				updateTileGraphics();
+			}
+		}
+	}
+	
+	public void updateTileGraphics() {
+		for (int i = 0; i < $mapButtons.length; i++) {
+			for (int j = 0; j < $mapButtons[i].length; j++) {
+				if(Tile.get$map()[i][j].getOwner() != null) {
+					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getUnitOnTile().getUnitImageIcon());
+				} else if(Tile.get$map()[i][j].getUnitOnTile() != null) {
+					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
+				} else {
+					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getUnitOnTile().getUnitImageIcon());
+				}
 			}
 		}
 	}
