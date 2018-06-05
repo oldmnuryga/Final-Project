@@ -31,7 +31,7 @@ public class CivilizationGame {
 	// PLAYER INFO
 	private String playerName;
 	private int playerLeaderType; // 0 is genghis || 1 is washington || 2 is casimir || 3 is sejong || 4 is
-									// mussolini
+	// mussolini
 
 	// JGRAPHICS CONSTRUCTORS
 	private JFrame frame = new JFrame("Civilization");
@@ -43,7 +43,6 @@ public class CivilizationGame {
 	private JButton btnGenghis = new JButton(iconGenghis);
 	private JButton btnSejong = new JButton(iconSejong);
 	private JButton btnWashington = new JButton(iconWashington);
-	private JButton btnExport = new JButton("Export Map");
 	private JLabel lblGenghis = new JLabel("Genghis Khan"), lblWashington = new JLabel("George Washington"),
 			lblSejong = new JLabel("Sejong"), lblMussolini = new JLabel("Mussolini"),
 			lblCasimir = new JLabel("Casimir III");
@@ -201,22 +200,6 @@ public class CivilizationGame {
 				mapPanel.add($mapButtons[i][j]);
 			}
 		}
-
-		btnExport.setBounds(30, 30, 100, 20);
-		btnExport.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				for (int i = 0; i < $mapButtons.length; i++) {
-					for (int j = 0; j < $mapButtons[i].length; j++) {
-						System.out.print(Tile.get$map()[i][j].getTerrainID());
-					}
-					System.out.println();
-				}
-				System.out.println();
-			}
-		});
-		frame.add(btnExport);
 
 		frame.pack();
 		titleFrame.pack();
