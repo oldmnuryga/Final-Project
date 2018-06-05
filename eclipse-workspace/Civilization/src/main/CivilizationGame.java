@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Random;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -16,6 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import civilizations.Player;
+import leaders.*;
 import map.ForestTile;
 import map.GrassTile;
 import map.MountainTile;
@@ -23,19 +26,26 @@ import map.SandTile;
 import map.Tile;
 import map.WaterTile;
 import sound.sounds;
+import units.Settler;
 
 public class CivilizationGame {
 	// CONSTANTS
 	private final int SCROLL_SPEED = 5;
 
 	// PLAYER INFO
-	private String playerName;
-	private int playerLeaderType; // 0 is genghis || 1 is washington || 2 is casimir || 3 is sejong || 4 is
-	// mussolini
+	private Player player = new Player();
 
 	// JGRAPHICS CONSTRUCTORS
 	private JFrame frame = new JFrame("Civilization");
-
+	private JLabel lblGold = new JLabel("Gold: ");
+	private JLabel lblResearch = new JLabel("Research: ");
+	private JLabel lblProduction = new JLabel("Production: ");
+	private JLabel lblHappiness = new JLabel("Happiness: ");
+	private JLabel lblTurns = new JLabel("Turns: ");
+	
+	private JButton btnEndTurn = new JButton("End Turn");
+	private JPanel pnePlayerStats = new JPanel();
+	
 	private JFrame titleFrame = new JFrame("Civilization");
 	private JLabel title = new JLabel("P'jephphrey B's : Society Simulator VII");
 	private JButton btnCasimir = new JButton(iconCasimir);
@@ -92,6 +102,7 @@ public class CivilizationGame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
 		frame.setVisible(false);
+		
 		// frame.setResizable(false);
 
 		// Title screen
@@ -110,8 +121,7 @@ public class CivilizationGame {
 		btnGenghis.setBounds(250, 605, 165, 251);
 		btnGenghis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				playerName = "Genghis Khan";
-				playerLeaderType = 0;
+				player.setLeader(new Mongolia());
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 			}
@@ -123,8 +133,7 @@ public class CivilizationGame {
 		btnWashington.setBounds(504, 605, 165, 251);
 		btnWashington.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				playerName = "Washington";
-				playerLeaderType = 1;
+				player.setLeader(new America());
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 			}
@@ -136,8 +145,7 @@ public class CivilizationGame {
 		btnSejong.setBounds(758, 605, 165, 251);
 		btnSejong.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				playerName = "Sejong";
-				playerLeaderType = 3;
+				player.setLeader(new Korea());
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 			}
@@ -149,8 +157,7 @@ public class CivilizationGame {
 		btnMussolini.setBounds(1012, 605, 165, 251);
 		btnMussolini.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				playerName = "Mussolini";
-				playerLeaderType = 4;
+				player.setLeader(new Italy());
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 			}
@@ -162,8 +169,7 @@ public class CivilizationGame {
 		btnCasimir.setBounds(1266, 605, 165, 251);
 		btnCasimir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				playerName = "Casimir III";
-				playerLeaderType = 2;
+				player.setLeader(new Poland());
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 			}
@@ -200,6 +206,7 @@ public class CivilizationGame {
 				mapPanel.add($mapButtons[i][j]);
 			}
 		}
+		spawnInitialSettler();
 
 		frame.pack();
 		titleFrame.pack();
@@ -227,9 +234,23 @@ public class CivilizationGame {
 		repaintTiles();
 	}
 
+	public void spawnInitialSettler() {
+		Random rand = new Random();
+		boolean found = true;
+		while(found) {
+			int tempX = rand.nextInt(Tile.getMAP_SIZE());
+			int tempY = rand.nextInt(Tile.getMAP_SIZE());
+			if(Tile.get$map()[tempX][tempY].getTerrainID() == 1) {
+				$mapButtons[tempX][tempY].setIcon(Settler.getUnitImageIcon());
+				Tile.get$map()[tempX][tempY].setUnitOnTile(new Settler());
+				Tile.get$map()[tempX][tempY].getUnitOnTile().setSelected(true);
+				found = false;
+			}
+		}
+	}
+
 	public class TileListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-
 			// Click sound
 			try {
 				sounds.clickPlay();
