@@ -17,8 +17,4 @@ public class America extends Leader {
 				Arrays.asList("Washington", "New York", "Boston", "Philadelphia", "Atlanta", "Chicago"));
 
 	}
-
-	public String getName() {
-		return leaderName;
-	}
 }
