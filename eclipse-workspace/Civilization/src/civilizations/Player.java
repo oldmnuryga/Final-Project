@@ -18,21 +18,21 @@ public class Player {
 	protected ArrayList<Unit> $units;
 	protected ArrayList<City> $cities;
 	protected ArrayList<Technology> $technologies;
-	protected ArrayList<Wonder> $wonders;
+	protected boolean[] scienceVictory;
 
-	public Player() {
-		name = ""; // TODO
+	public Player(Leader tLeader) {
+		leader = tLeader;
+		name = leader.getLeaderName(); // TODO
 		goldReserve = 0;
 		goldPerTurn = 0;
 		happiness = 1.0;
-		leader = getLeader(); // TODO
 		scienceExcess = 0.0;
 		sciencePerTurn = 10.0;
 		numCities = 0;
 		$units = new ArrayList<Unit>();
 		$cities = new ArrayList<City>();
 		$technologies = new ArrayList<Technology>();
-		$wonders = new ArrayList<Wonder>();
+		scienceVictory = new boolean[3];
 
 	}
 
@@ -108,14 +108,6 @@ public class Player {
 		this.$technologies = $technologies;
 	}
 
-	public ArrayList<Wonder> get$wonders() {
-		return $wonders;
-	}
-
-	public void set$wonders(ArrayList<Wonder> $wonders) {
-		this.$wonders = $wonders;
-	}
-
 	public Leader getLeader() {
 		return leader;
 	}
@@ -143,16 +135,14 @@ public class Player {
 		return false;
 	}
 
-	public boolean hasWonder(int wonderID) {
-		for (int i = 0; i < $wonders.size(); i++)
-			if ($wonders.get(i).getWonderID() == wonderID)
-				return true;
-		return false;
-	}
-
 	public void addCity(City tCity) {
 		$cities.add(tCity);
 		this.setNumCities(this.getNumCities() + 1);
+	}
+
+	public void addUnit(Unit tUnit) {
+		$units.add(tUnit);
+		this.setGoldPerTurn(this.getGoldPerTurn() - tUnit.getMaintenance());
 	}
 
 }

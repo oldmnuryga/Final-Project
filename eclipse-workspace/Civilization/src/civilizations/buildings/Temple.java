@@ -29,7 +29,7 @@ public class Temple extends Building {
 		double happiness = 1.0;
 		if (location.getOwner().hasTechnology(8))
 			happiness = 2.0;
-		if (location.getOwner().hasWonder(15))
+		if (location.hasWonder(15))
 			happiness *= 2.0;
 		return happiness;
 	}

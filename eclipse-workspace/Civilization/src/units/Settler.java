@@ -14,7 +14,8 @@ import map.Tile;
 
 public class Settler extends Unit {
 
-	public Settler() {
+	public Settler(Player player) {
+		super.owner = player;
 		super.hitpoints = 15;
 		super.attackRating = 0;
 		super.productionCost = 106;
@@ -30,14 +31,8 @@ public class Settler extends Unit {
 		super.isSelected = false;
 		super.unitName = "Settler";
 		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Settler.png"));
-		super.owner = new Player();
 	}
 
-	
-	
-	
-	
-	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		// Checks if "P" is hit and checks to see if any tile next to it is owned
@@ -60,18 +55,17 @@ public class Settler extends Unit {
 
 	public void foundCity() {
 		System.out.println("eac");
-			this.removeUnit();
-			// Sets surrounding tiles to the owner
-			Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setOwner(owner);
-			Tile.get$map()[location.get$location()[0]][location.get$location()[1] - 1].setOwner(owner);
-			Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1] - 1].setOwner(owner);
-			Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1] + 1].setOwner(owner);
-			Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1] - 1].setOwner(owner);
-			Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1] + 1].setOwner(owner);
-			Tile.get$map()[location.get$location()[0]][location.get$location()[1] + 1].setOwner(owner);
-			Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1]].setOwner(owner);
-			City.setCityGUI();
-			CivilizationGame c = new CivilizationGame();
-			c.updateTileGraphics();
+		this.removeUnit();
+		// Sets surrounding tiles to the owner
+		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setOwner(owner);
+		Tile.get$map()[location.get$location()[0]][location.get$location()[1] - 1].setOwner(owner);
+		Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1] - 1].setOwner(owner);
+		Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1] + 1].setOwner(owner);
+		Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1] - 1].setOwner(owner);
+		Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1] + 1].setOwner(owner);
+		Tile.get$map()[location.get$location()[0]][location.get$location()[1] + 1].setOwner(owner);
+		Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1]].setOwner(owner);
+		City.setCityGUI();
+		c.updateTileGraphics();
 	}
 }

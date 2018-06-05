@@ -14,4 +14,13 @@ public class ApolloProgram extends Wonder {
 		techRequired = 57;
 		techObsoletionID = -1;
 	}
+
+	public void uniqueAbility() {
+		
+		
+	}
+
+	public void obsoleteAbility() {
+		
+	}
 }

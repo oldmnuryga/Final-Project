@@ -36,7 +36,7 @@ public class Cathedral extends Building {
 
 	public double decideHappiness() {
 		double happiness = 4.0;
-		if (location.getOwner().hasWonder(13))
+		if (location.hasWonder(13))
 			happiness = 6.0;
 		return happiness;
 	}
