@@ -1,6 +1,7 @@
 package units;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -32,6 +33,11 @@ public class Settler extends Unit {
 		super.owner = new Player();
 	}
 
+	
+	
+	
+	
+	
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		// Checks if "P" is hit and checks to see if any tile next to it is owned
