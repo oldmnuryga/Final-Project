@@ -246,7 +246,6 @@ public class CivilizationGame {
 
 	public class TileListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-
 			// Click sound
 			try {
 				sounds.clickPlay();

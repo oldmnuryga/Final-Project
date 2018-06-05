@@ -27,6 +27,7 @@ public class Settler extends Unit {
 		super.isNaval = false;
 		super.isSelected = false;
 		super.unitName = "Settler";
+		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Settler.png"));
 	}
 
 	public void keyPressed(KeyEvent e) {
