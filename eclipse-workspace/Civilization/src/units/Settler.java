@@ -66,6 +66,6 @@ public class Settler extends Unit {
 		Tile.get$map()[location.get$location()[0]][location.get$location()[1] + 1].setOwner(owner);
 		Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1]].setOwner(owner);
 		City.setCityGUI();
-		c.updateTileGraphics();
+		//City.updateTileGraphics();
 	}
 }

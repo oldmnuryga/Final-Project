@@ -3,19 +3,27 @@ package main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
+import java.util.Scanner;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 
 import civilizations.Player;
 import leaders.*;
@@ -29,13 +37,14 @@ import sound.sounds;
 import units.Settler;
 
 public class CivilizationGame {
-	public static int turns;
-	
+	public static int turns = 1;
+
 	// CONSTANTS
 	private final int SCROLL_SPEED = 5;
 
 	// PLAYER INFO
-	private Player player = new Player();
+	private Player player;
+	private int playerType;
 
 	// JGRAPHICS CONSTRUCTORS
 	private JFrame frame = new JFrame("Civilization");
@@ -43,12 +52,13 @@ public class CivilizationGame {
 	private JLabel lblResearch = new JLabel("Research: ");
 	private JLabel lblProduction = new JLabel("Production: ");
 	private JLabel lblHappiness = new JLabel("Happiness: ");
-	private JLabel lblTurns = new JLabel("Turns: ");
-	
+	private JLabel lblTurns = new JLabel("Turns: " + turns);
+	private JLabel lblFood = new JLabel("Food: ");
+
 	private JButton btnEndTurn = new JButton("End Turn");
 	private JButton btnShowInstructions = new JButton("How to Play the Game");
 	private JPanel pnePlayerStats = new JPanel();
-	
+
 	private JFrame titleFrame = new JFrame("Civilization");
 	private JLabel title = new JLabel("P'jephphrey B's : Society Simulator VII");
 	private JButton btnCasimir = new JButton(iconCasimir);
@@ -65,6 +75,9 @@ public class CivilizationGame {
 	private JPanel mapPanel = new JPanel();
 	private JScrollPane mapPane;
 	private JButton[][] $mapButtons = new JButton[Tile.getMAP_SIZE()][Tile.getMAP_SIZE()];
+	
+	private JFrame frInstructions = new JFrame("Civilization");
+
 
 	// BUTTON LISTENERS
 	private TileListener tileListener = new TileListener();
@@ -105,7 +118,7 @@ public class CivilizationGame {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
 		frame.setVisible(false);
-		
+
 		// frame.setResizable(false);
 
 		// Title screen
@@ -124,7 +137,9 @@ public class CivilizationGame {
 		btnGenghis.setBounds(250, 605, 165, 251);
 		btnGenghis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				player.setLeader(new Mongolia());
+				//player = new Player(new Mongolia());
+				playerType = 0;
+				updateLeader(0);
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 			}
@@ -136,7 +151,9 @@ public class CivilizationGame {
 		btnWashington.setBounds(504, 605, 165, 251);
 		btnWashington.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				player.setLeader(new America());
+				//player = new Player(new America());
+				playerType = 1;
+				updateLeader(1);
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 			}
@@ -148,7 +165,9 @@ public class CivilizationGame {
 		btnSejong.setBounds(758, 605, 165, 251);
 		btnSejong.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				player.setLeader(new Korea());
+				//player = new Player(new Korea());
+				playerType = 2;
+				updateLeader(2);
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 			}
@@ -160,7 +179,9 @@ public class CivilizationGame {
 		btnMussolini.setBounds(1012, 605, 165, 251);
 		btnMussolini.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				player.setLeader(new Italy());
+				//player = new Player(new Italy());
+				playerType = 3;
+				updateLeader(3);
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 			}
@@ -172,7 +193,9 @@ public class CivilizationGame {
 		btnCasimir.setBounds(1266, 605, 165, 251);
 		btnCasimir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				player.setLeader(new Poland());
+				//player = new Player(new Poland());
+				playerType = 4;
+				updateLeader(4);
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 			}
@@ -186,22 +209,70 @@ public class CivilizationGame {
 		btnEndTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				turns++;
+				updateTurnText();
 				//other things
 			}
 		});
+		try {
+			Scanner s = new Scanner(new File("src/main/instructions.txt"));
+			String instructions = s.nextLine();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} 
+
+		JTabbedPane tbpneInstructions = new JTabbedPane(JTabbedPane.LEFT,JTabbedPane.WRAP_TAB_LAYOUT);
+		JComponent panel1 = new JTextArea("Welcome to P'jephphrey B's : Society Simulator IV. " + "\n"
+				+ "The aim of this game is to find a city and grow as much as " + "\n"
+				+ "possible while staying out of debt. To begin the game, a settler" + "\n"
+				+ "is given to you in a random place. If you would like, the settler" + "\n"
+				+ "can be moved using the arrow keys and to make the city, press 'P'." + "\n"
+				+ "After finding your city, you should give your city a task to build " + "\n"
+				+ "to progress through the game. You can start to build units or buildings, " + "\n"
+				+ "but it is recommended that you begin building a worker to make farms " + "\n"
+				+ "and make the future of your city easy to maintain. After building the " + "\n"
+				+ "worker, you should start to make the worker build farms or trading posts " + "\n"
+				+ "or lumbermills. The lumbermills have to be built on forest tiles. " + "\n"
+				+ "After making the worker, the rest of the game is spent growing the " + "\n"
+				+ "city and making buildings.\n");
+		tbpneInstructions.addTab("Starting the Game",panel1);
+		JComponent panel2 = new JTextArea();
+		tbpneInstructions.addTab("Units",panel2);
+		JComponent panel3 = new JTextArea();
+		tbpneInstructions.addTab("Wonders",panel3);
+		JComponent panel4 = new JTextArea();
+		tbpneInstructions.addTab("Buildings",panel4);
+		JComponent panel5 = new JTextArea();
+		tbpneInstructions.addTab("City",panel5);
+		frInstructions.setPreferredSize(new Dimension(550, 550));
+		frInstructions.setLayout(null);
+		frInstructions.setVisible(false);
+		frInstructions.add(tbpneInstructions);
+		tbpneInstructions.setBounds(0, 0, 550, 550);
 		btnShowInstructions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				frInstructions.setVisible(true);
 			}
 		});
+		btnShowInstructions.setBounds(1600, 0, 200, 50);
+		frame.add(btnShowInstructions);
 		frame.add(pnePlayerStats);
 		pnePlayerStats.setBounds(0, 50, 200, 500);
-		pnePlayerStats.add(new JLabel("Anime")); 
+		updatePlayerStats();
 		lblGold.setBounds(200, 0, 150, 50);
 		frame.add(lblGold);
-		lblResearch.setBounds(350, 0, 100, 50);
+		lblResearch.setBounds(450, 0, 150, 50);
 		frame.add(lblResearch);
-		
+		lblProduction.setBounds(700, 0, 150, 50);
+		frame.add(lblProduction);
+		lblHappiness.setBounds(950, 0, 150, 50);
+		frame.add(lblHappiness);
+		lblFood.setBounds(1200, 0, 150, 50);
+		frame.add(lblFood);
+		lblTurns.setBounds(1450, 0, 150, 50);
+		frame.add(lblTurns);
+		btnEndTurn.setBounds(0, 850, 200, 75);
+		frame.add(btnEndTurn);
+
 		// mapPane
 		mapPanel.setPreferredSize(new Dimension(50 * Tile.getMAP_SIZE(), 50 * Tile.getMAP_SIZE()));
 		mapPanel.setLayout(null);
@@ -232,9 +303,42 @@ public class CivilizationGame {
 		spawnInitialSettler();
 
 		frame.pack();
+		frInstructions.pack();
 		titleFrame.pack();
 	}
+	public void updateTurnText() {
+		lblTurns.setText("Turns: " + turns);
+	}
+	public void updateLeader(int type) {
+		if(type == 0) 
+			player = new Player(new Mongolia());
+		else if(type == 1)
+			player = new Player(new America());
+		else if(type == 2)
+			player = new Player(new Korea());
+		else if(type == 3)
+			player = new Player(new Italy());
+		else player = new Player(new Poland());
+	}
+	public void updatePlayerStats() {
+		updateLeader(playerType);
+		pnePlayerStats.add(new JLabel("Player Name: " + player.getLeader().getLeaderName() + "\n"));
+		if(player.get$cities().size() != 0 ) 
+			pnePlayerStats.add(new JLabel("Player City Name: " + player.get$cities().get(0).getName() + "\n"));
+		pnePlayerStats.add(new JLabel("Owned Buildings: \n"));
+		if(player.get$cities().size() != 0)
+			for(int i=0;i<player.get$cities().get(0).get$buildings().size();i++) 
+				pnePlayerStats.add(new JLabel(player.get$cities().get(0).get$buildings().get(i).getName()));
+		//pnePlayerStats.add(new JLabel("Owned Wonders: "));
+		//	for(int i=0;i<player.get$wonders().size();i++)
+		//		pnePlayerStats.add(new JLabel(player.get$wonders().get(i).getName()));
+		pnePlayerStats.add(new JLabel("Owned Units: \n"));
+		if(player.get$units().size() != 0)
+			for(int i=0;i<player.get$units().size();i++) {
+				pnePlayerStats.add(new JLabel(player.get$units().get(i).getUnitName()));
+			}
 
+	}
 	public void repaintTiles() {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
@@ -264,14 +368,14 @@ public class CivilizationGame {
 			int tempX = rand.nextInt(Tile.getMAP_SIZE());
 			int tempY = rand.nextInt(Tile.getMAP_SIZE());
 			if(Tile.get$map()[tempX][tempY].getTerrainID() == 1) {
-				Tile.get$map()[tempX][tempY].setUnitOnTile(new Settler());
+				Tile.get$map()[tempX][tempY].setUnitOnTile(new Settler(player));
 				Tile.get$map()[tempX][tempY].getUnitOnTile().setSelected(true);
 				found = false;
 				updateTileGraphics();
 			}
 		}
 	}
-	
+
 	public void updateTileGraphics() {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
@@ -302,7 +406,7 @@ public class CivilizationGame {
 				e1.printStackTrace();
 			}
 
-			
+
 		}
 	}
 }
