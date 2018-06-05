@@ -242,6 +242,7 @@ public class CivilizationGame {
 			int tempY = rand.nextInt(Tile.getMAP_SIZE());
 			if(Tile.get$map()[tempX][tempY].getTerrainID() == 1) {
 				Tile.get$map()[tempX][tempY].setUnitOnTile(new Settler());
+				Tile.get$map()[tempX][tempY].getUnitOnTile().setSelected(true);
 				found = false;
 				updateTileGraphics();
 			}
@@ -256,7 +257,7 @@ public class CivilizationGame {
 				} else if(Tile.get$map()[i][j].getUnitOnTile() != null) {
 					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
 				} else {
-					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getUnitOnTile().getUnitImageIcon());
+					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
 				}
 			}
 		}

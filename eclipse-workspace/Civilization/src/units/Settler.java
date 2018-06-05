@@ -8,6 +8,7 @@ import javax.xml.transform.Templates;
 
 import civilizations.City;
 import civilizations.Player;
+import main.CivilizationGame;
 import map.Tile;
 
 public class Settler extends Unit {
@@ -28,6 +29,7 @@ public class Settler extends Unit {
 		super.isSelected = false;
 		super.unitName = "Settler";
 		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Settler.png"));
+		super.owner = new Player();
 	}
 
 	public void keyPressed(KeyEvent e) {
@@ -51,10 +53,7 @@ public class Settler extends Unit {
 	}
 
 	public void foundCity() {
-		Tile temp = this.getLocation();
-		if (temp.isCity() == false) {
-			temp.setOwner(owner);
-			temp.setIsCity(true);
+		System.out.println("eac");
 			this.removeUnit();
 			// Sets surrounding tiles to the owner
 			Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setOwner(owner);
@@ -65,11 +64,8 @@ public class Settler extends Unit {
 			Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1] + 1].setOwner(owner);
 			Tile.get$map()[location.get$location()[0]][location.get$location()[1] + 1].setOwner(owner);
 			Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1]].setOwner(owner);
-			Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1]].setOwner(owner);
-			temp.setTileLabel(new JLabel(temp.getTileImageIcon()));
-			this.getOwner().addCity(new City(this.getOwner(), temp));
 			City.setCityGUI();
-
-		}
+			CivilizationGame c = new CivilizationGame();
+			c.updateTileGraphics();
 	}
 }
