@@ -13,7 +13,7 @@ import map.Tile;
 import sound.sounds;
 import technology.Technology;
 
-public abstract class Unit implements KeyListener {
+public abstract class Unit{
 	protected int hitpoints;
 	protected int currenthitpoints = hitpoints;
 	protected int attackRating;
@@ -34,6 +34,7 @@ public abstract class Unit implements KeyListener {
 	protected int movesLeft = new Integer(maxMovement);
 	protected Player owner = null;
 	protected static ImageIcon unitImageIcon = null;
+	KeyTest test = new KeyTest();
 
 	public int getCurrenthitpoints() {
 		return currenthitpoints;
@@ -219,6 +220,8 @@ public abstract class Unit implements KeyListener {
 	// Do checks outside of methods
 	public void moveUnitLeft() {
 		this.location = Tile.get$map()[location.get$location()[0]][location.get$location()[1] - 1];
+		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setUnitOnTile(this);
+		Tile.get$map()[location.get$location()[0]][location.get$location()[1] - 1].setUnitOnTile(null);
 		this.movesLeft--;
 	}
 
@@ -257,16 +260,32 @@ public abstract class Unit implements KeyListener {
 		this.setLocation(null);
 	}
 
-	public void keyPressed(KeyEvent e, Tile toLeft, Tile above, Tile toRight, Tile below) {
-		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_LEFT && !(toLeft.getTerrainID() == 0 || toLeft.getTerrainID() == 3))
-			moveUnitLeft();
-		if (key == KeyEvent.VK_RIGHT && !(toRight.getTerrainID() == 0 || toRight.getTerrainID() == 3))
-			moveUnitRight();
-		if (key == KeyEvent.VK_UP && !(above.getTerrainID() == 0 || above.getTerrainID() == 3))
-			moveUnitUp();
-		if (key == KeyEvent.VK_DOWN && !(below.getTerrainID() == 0 || below.getTerrainID() == 3))
-			moveUnitDown();
+	public class KeyTest implements KeyListener{
+		public void keyPressed(KeyEvent e, Tile toLeft, Tile above, Tile toRight, Tile below) {
+			int key = e.getKeyCode();
+			if (key == KeyEvent.VK_A && !(toLeft.getTerrainID() == 0 || toLeft.getTerrainID() == 3))
+				System.out.println("reace");
+			//moveUnitLeft();
+			if (key == KeyEvent.VK_D && !(toRight.getTerrainID() == 0 || toRight.getTerrainID() == 3))
+				moveUnitRight();
+			if (key == KeyEvent.VK_W && !(above.getTerrainID() == 0 || above.getTerrainID() == 3))
+				moveUnitUp();
+			if (key == KeyEvent.VK_S && !(below.getTerrainID() == 0 || below.getTerrainID() == 3))
+				moveUnitDown();
+		}
 
+		public void keyTyped(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		public void keyPressed(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+		public void keyReleased(KeyEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
 	}
 }
