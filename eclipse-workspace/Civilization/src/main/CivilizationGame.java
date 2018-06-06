@@ -281,6 +281,7 @@ public class CivilizationGame {
 		frInstructions.setPreferredSize(new Dimension(550, 550));
 		frInstructions.setLayout(null);
 		frInstructions.setVisible(false);
+		frInstructions.setResizable(false);
 		frInstructions.add(tbpneInstructions);
 		tbpneInstructions.setBounds(0, 0, 550, 550);
 		btnShowInstructions.addActionListener(new ActionListener() {
