@@ -2,6 +2,7 @@ package civilizations;
 
 import java.util.ArrayList;
 
+import civilizations.buildings.SpaceshipPart;
 import leaders.Leader;
 import technology.Technology;
 import units.Unit;
@@ -124,6 +125,14 @@ public class Player {
 		this.numCities = numCities;
 	}
 
+	public boolean[] getScienceVictory() {
+		return scienceVictory;
+	}
+
+	public void setScienceVictory(boolean[] scienceVictory) {
+		this.scienceVictory = scienceVictory;
+	}
+
 	public void addTechnology(int techID) {
 		$technologies.add(Technology.get$technologies().get(techID));
 	}
@@ -145,4 +154,13 @@ public class Player {
 		this.setGoldPerTurn(this.getGoldPerTurn() - tUnit.getMaintenance());
 	}
 
+	public void addSpaceshipPart(SpaceshipPart spaceshipPart) {
+		setScienceVictoryArray(spaceshipPart.getSpaceshipID(), true);
+		spaceshipPart.setBuilt(true);
+
+	}
+
+	public void setScienceVictoryArray(int index, boolean target) {
+		getScienceVictory()[index] = target;
+	}
 }
