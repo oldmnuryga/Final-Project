@@ -47,7 +47,7 @@ public class CivilizationGame {
 	private int playerType;
 
 	// JGRAPHICS CONSTRUCTORS
-	private JFrame frame = new JFrame("Civilization");
+	private JFrame frame = new JFrame("P'jephphrey B's : Society Simulator VII");
 	private JLabel lblGold = new JLabel("Gold: ");
 	private JLabel lblResearch = new JLabel("Research: ");
 	private JLabel lblProduction = new JLabel("Production: ");
@@ -215,7 +215,7 @@ public class CivilizationGame {
 		});
 
 		JTabbedPane tbpneInstructions = new JTabbedPane(JTabbedPane.LEFT,JTabbedPane.WRAP_TAB_LAYOUT);
-		JComponent panel1 = new JTextArea("Welcome to P'jephphrey B's : Society Simulator IV. " + "\n"
+		JComponent panel1 = new JTextArea("Welcome to P'jephphrey B's : Society Simulator VII. " + "\n"
 				+ "The aim of this game is to find a city and grow as much as " + "\n"
 				+ "possible while staying out of debt. To begin the game, a settler" + "\n"
 				+ "is given to you in a random place. If you would like, the settler" + "\n"
