@@ -213,12 +213,6 @@ public class CivilizationGame {
 				//other things
 			}
 		});
-		try {
-			Scanner s = new Scanner(new File("src/main/instructions.txt"));
-			String instructions = s.nextLine();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} 
 
 		JTabbedPane tbpneInstructions = new JTabbedPane(JTabbedPane.LEFT,JTabbedPane.WRAP_TAB_LAYOUT);
 		JComponent panel1 = new JTextArea("Welcome to P'jephphrey B's : Society Simulator IV. " + "\n"
@@ -235,13 +229,54 @@ public class CivilizationGame {
 				+ "After making the worker, the rest of the game is spent growing the " + "\n"
 				+ "city and making buildings.\n");
 		tbpneInstructions.addTab("Starting the Game",panel1);
-		JComponent panel2 = new JTextArea();
+		JComponent panel2 = new JTextArea("There are many different units, in the beginning you start with " + "\n"
+				+ "a settler. To build a city with the " + "\n"
+				+ "settler, press 'P'. Another unit is a scout which has the main " + "\n"
+				+ "priority of looking through the map and finding things that are useful " + "\n"
+				+ "for your society. The most important unit of all is the worker. " + "\n"
+				+ "The worker is used to construct improvements on the tiles you own. " + "\n"
+				+ "Some of these improvements are farms, lumbermills, and trading posts. " + "\n"
+				+ "Farms are used to increase the food per turn that a city produces. " + "\n"
+				+ "Lumbermills are strictly made in forests and can be used to increase " + "\n"
+				+ "production per turn. Trading posts are used to increase gold per turn.");
 		tbpneInstructions.addTab("Units",panel2);
-		JComponent panel3 = new JTextArea();
+		JComponent panel3 = new JTextArea("Wonders are built by the player and can be used to benefit the "
+				+ "player with a specific stat. Some stats that get benefits from the " + "\n"
+				+ "wonders include happiness, research, production. To win the game, " + "\n"
+				+ "the Apollo Program must be built to begin the space race. After " + "\n"
+				+ "making it to the moon you win the game with a science victory. " + "\n"
+				+ "This is one of the few ways to finish the game. Wonders can " + "\n"
+				+ "only built once, and are a valuable resource for winning the " + "\n"
+				+ "game via the science victory.");
 		tbpneInstructions.addTab("Wonders",panel3);
-		JComponent panel4 = new JTextArea();
+		JComponent panel4 = new JTextArea("Buildings, like wonders, are things built by the city only once " + "\n"
+				+ "and provide many benefits to the player. For example a building " + "\n"
+				+ "may increase the production of a city by a certain percentage or " + "\n"
+				+ "increase the gold that a city produces by a number or percentage. " + "\n"
+				+ "The benefits of a building depends on the building and ranges " + "\n"
+				+ "in benefits from science to gold to production. Buildings are " + "\n"
+				+ "important to make cities produce more buildings or wonders " + "\n"
+				+ "faster, research technologies faster, and get enough money to " + "\n"
+				+ "buy units. But, buildings cost money to maintain, thus showing " + "\n"
+				+ "the importance of not making too many buildings of one type, as " + "\n"
+				+ "they may slow your progress through the game. It is very important " + "\n"
+				+ "to maintain a balanced society.");
 		tbpneInstructions.addTab("Buildings",panel4);
-		JComponent panel5 = new JTextArea();
+		JComponent panel5 = new JTextArea("A city can be built using settlers and is the beginning step to " + "\n"
+				+ "evolving your society through the ages. Cities gain citizens " + "\n"
+				+ "through the game and this is mainly dependent upon the amount " + "\n"
+				+ "of food that your city can produce through farms. Having a " + "\n"
+				+ "higher number of citizens increases science, production, and " + "\n"
+				+ "gold. Ensure that you have enough food for your city to be " + "\n"
+				+ "maintained and thrive. The growth of the border of your " + "\n"
+				+ "city is a static growth that grows every 10 turns. That " + "\n"
+				+ "newly owned tile can have an improvement built on it, either " + "\n"
+				+ "being a farm, lumbermill, or trading post. Make sure that every " + "\n"
+				+ "tile you own is used. The only tiles that cannot be used to " + "\n"
+				+ "build an improvement is water and mountain. Water and mountains " + "\n"
+				+ "are two types of tiles that should not be the majority of your " + "\n"
+				+ "land space in a city. Too many are detrimental to the evolution " + "\n"
+				+ "of your society.");
 		tbpneInstructions.addTab("City",panel5);
 		frInstructions.setPreferredSize(new Dimension(550, 550));
 		frInstructions.setLayout(null);
