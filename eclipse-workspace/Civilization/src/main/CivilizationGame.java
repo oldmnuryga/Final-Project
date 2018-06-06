@@ -208,7 +208,7 @@ public class CivilizationGame {
 		//game GUI
 		btnEndTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				turns++;
+				endTurn();
 				updateTurnText();
 				//other things
 			}
@@ -378,7 +378,13 @@ public class CivilizationGame {
 	public void repaintTiles() {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
-				$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
+				if(Tile.get$map()[i][j].getOwner() != null) {
+					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getUnitOnTile().getUnitImageIcon());
+				} else if(Tile.get$map()[i][j].getUnitOnTile() != null) {
+					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getUnitOnTile().getUnitImageIcon());
+				} else {
+					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
+				}
 			}
 		}
 	}
@@ -407,23 +413,13 @@ public class CivilizationGame {
 				Tile.get$map()[tempX][tempY].setUnitOnTile(new Settler(player));
 				Tile.get$map()[tempX][tempY].getUnitOnTile().setSelected(true);
 				found = false;
-				updateTileGraphics();
+				repaintTiles();
 			}
 		}
 	}
-
-	public void updateTileGraphics() {
-		for (int i = 0; i < $mapButtons.length; i++) {
-			for (int j = 0; j < $mapButtons[i].length; j++) {
-				if(Tile.get$map()[i][j].getOwner() != null) {
-					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getUnitOnTile().getUnitImageIcon());
-				} else if(Tile.get$map()[i][j].getUnitOnTile() != null) {
-					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
-				} else {
-					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
-				}
-			}
-		}
+	
+	public void endTurn() {
+		turns++;
 	}
 
 	public class TileListener implements ActionListener {
