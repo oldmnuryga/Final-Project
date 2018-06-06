@@ -1,6 +1,7 @@
 package units;
 
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -12,7 +13,7 @@ import map.Tile;
 import sound.sounds;
 import technology.Technology;
 
-public abstract class Unit {
+public abstract class Unit implements KeyListener {
 	protected int hitpoints;
 	protected int currenthitpoints = hitpoints;
 	protected int attackRating;
