@@ -14,6 +14,5 @@ public class Korea extends Leader {
 		super.leaderID = 2;
 		color = Color.YELLOW;
 		cityNames = new ArrayList<String>(Arrays.asList("Seoul", "Busan", "Pyongyang", "Jeonju", "Daegu", "Kaesong"));
-
 	}
 }
