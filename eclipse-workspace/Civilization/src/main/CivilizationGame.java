@@ -410,8 +410,8 @@ public class CivilizationGame {
 		Random rand = new Random();
 		boolean found = true;
 		while(found) {
-			int tempX = rand.nextInt(Tile.getMAP_SIZE());
-			int tempY = rand.nextInt(Tile.getMAP_SIZE());
+			int tempX = rand.nextInt(Tile.getMAP_SIZE() - 2) + 1;
+			int tempY = rand.nextInt(Tile.getMAP_SIZE() - 2) + 1;
 			if(Tile.get$map()[tempX][tempY].getTerrainID() == 1) {
 				Settler s = new Settler(player);
 				Tile.get$map()[tempX][tempY].setUnitOnTile(s);
@@ -420,7 +420,7 @@ public class CivilizationGame {
 				int[] temp = {tempX, tempY};
 				Tile.get$map()[tempX][tempY].set$location(temp);
 				s.setLocation(Tile.get$map()[tempX][tempY]);
-				s.foundCity();
+				//s.foundCity();
 				found = false;
 				repaintTiles();
 			}
