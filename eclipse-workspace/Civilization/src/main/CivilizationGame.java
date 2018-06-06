@@ -35,6 +35,7 @@ import map.Tile;
 import map.WaterTile;
 import sound.sounds;
 import units.Settler;
+import units.Unit;
 
 public class CivilizationGame {
 	public static int turns = 1;
@@ -77,6 +78,8 @@ public class CivilizationGame {
 	private JButton[][] $mapButtons = new JButton[Tile.getMAP_SIZE()][Tile.getMAP_SIZE()];
 	
 	private JFrame frInstructions = new JFrame("Civilization");
+	
+	private ImageIcon cityImageIcon = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("improvements/resources/cityOnGreen.png"));
 
 
 	// BUTTON LISTENERS
@@ -379,7 +382,7 @@ public class CivilizationGame {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if(Tile.get$map()[i][j].getOwner() != null) {
-					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getUnitOnTile().getUnitImageIcon());
+					$mapButtons[i][j].setIcon(cityImageIcon);
 				} else if(Tile.get$map()[i][j].getUnitOnTile() != null) {
 					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getUnitOnTile().getUnitImageIcon());
 				} else {
@@ -410,8 +413,14 @@ public class CivilizationGame {
 			int tempX = rand.nextInt(Tile.getMAP_SIZE());
 			int tempY = rand.nextInt(Tile.getMAP_SIZE());
 			if(Tile.get$map()[tempX][tempY].getTerrainID() == 1) {
-				Tile.get$map()[tempX][tempY].setUnitOnTile(new Settler(player));
+				Settler s = new Settler(player);
+				Tile.get$map()[tempX][tempY].setUnitOnTile(s);
+				Tile.get$map()[tempX][tempY].get$location();
 				Tile.get$map()[tempX][tempY].getUnitOnTile().setSelected(true);
+				int[] temp = {tempX, tempY};
+				Tile.get$map()[tempX][tempY].set$location(temp);
+				s.setLocation(Tile.get$map()[tempX][tempY]);
+				s.foundCity();
 				found = false;
 				repaintTiles();
 			}
