@@ -48,8 +48,8 @@ public abstract class Tile {
 		 */
 		int[][] $genArray = new int[MAP_SIZE][MAP_SIZE];
 		for (int iterations = 0; iterations < GENERATION_ITERATIONS; iterations++) {
-			int tempX = rand.nextInt(Tile.getMAP_SIZE() - 9) + 5;
-			int tempY = rand.nextInt(Tile.getMAP_SIZE() - 9) + 5;
+			int tempX = rand.nextInt(Tile.getMAP_SIZE() - 8) + 5;
+			int tempY = rand.nextInt(Tile.getMAP_SIZE() - 8) + 5;
 			int genType = rand.nextInt(6);
 			if (genType == 0) {
 				$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
@@ -131,8 +131,8 @@ public abstract class Tile {
 					$genArray[i][j] = 0;
 
 			for (int iterations = 0; iterations < SAND_GENERATION_ITERATIONS; iterations++) {
-				int tempX = rand.nextInt(Tile.getMAP_SIZE() - 7) + 5;
-				int tempY = rand.nextInt(Tile.getMAP_SIZE() - 7) + 5;
+				int tempX = rand.nextInt(Tile.getMAP_SIZE() - 8) + 5;
+				int tempY = rand.nextInt(Tile.getMAP_SIZE() - 8) + 5;
 				int genType = rand.nextInt(6);
 				if (genType == 0) {
 					$genArray[tempX][tempY] = SAND_GENERATION_SIZE_MULTIPLIER;

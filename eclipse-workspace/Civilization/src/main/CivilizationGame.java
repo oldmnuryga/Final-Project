@@ -35,6 +35,7 @@ import map.Tile;
 import map.WaterTile;
 import sound.sounds;
 import units.Settler;
+import units.Unit;
 
 public class CivilizationGame {
 	public static int turns = 1;
@@ -47,7 +48,7 @@ public class CivilizationGame {
 	private int playerType;
 
 	// JGRAPHICS CONSTRUCTORS
-	private JFrame frame = new JFrame("Civilization");
+	private JFrame frame = new JFrame("P'jephphrey B's : Society Simulator VII");
 	private JLabel lblGold = new JLabel("Gold: ");
 	private JLabel lblResearch = new JLabel("Research: ");
 	private JLabel lblProduction = new JLabel("Production: ");
@@ -77,6 +78,8 @@ public class CivilizationGame {
 	private JButton[][] $mapButtons = new JButton[Tile.getMAP_SIZE()][Tile.getMAP_SIZE()];
 	
 	private JFrame frInstructions = new JFrame("Civilization");
+	
+	private ImageIcon cityImageIcon = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("improvements/resources/cityOnGreen.png"));
 
 
 	// BUTTON LISTENERS
@@ -208,14 +211,14 @@ public class CivilizationGame {
 		//game GUI
 		btnEndTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				turns++;
+				endTurn();
 				updateTurnText();
 				//other things
 			}
 		});
 
 		JTabbedPane tbpneInstructions = new JTabbedPane(JTabbedPane.LEFT,JTabbedPane.WRAP_TAB_LAYOUT);
-		JComponent panel1 = new JTextArea("Welcome to P'jephphrey B's : Society Simulator IV. " + "\n"
+		JComponent panel1 = new JTextArea("Welcome to P'jephphrey B's : Society Simulator VII. " + "\n"
 				+ "The aim of this game is to find a city and grow as much as " + "\n"
 				+ "possible while staying out of debt. To begin the game, a settler" + "\n"
 				+ "is given to you in a random place. If you would like, the settler" + "\n"
@@ -378,7 +381,13 @@ public class CivilizationGame {
 	public void repaintTiles() {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
-				$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
+				if(Tile.get$map()[i][j].getOwner() != null) {
+					$mapButtons[i][j].setIcon(cityImageIcon);
+				} else if(Tile.get$map()[i][j].getUnitOnTile() != null) {
+					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getUnitOnTile().getUnitImageIcon());
+				} else {
+					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
+				}
 			}
 		}
 	}
@@ -404,26 +413,22 @@ public class CivilizationGame {
 			int tempX = rand.nextInt(Tile.getMAP_SIZE());
 			int tempY = rand.nextInt(Tile.getMAP_SIZE());
 			if(Tile.get$map()[tempX][tempY].getTerrainID() == 1) {
-				Tile.get$map()[tempX][tempY].setUnitOnTile(new Settler(player));
+				Settler s = new Settler(player);
+				Tile.get$map()[tempX][tempY].setUnitOnTile(s);
+				Tile.get$map()[tempX][tempY].get$location();
 				Tile.get$map()[tempX][tempY].getUnitOnTile().setSelected(true);
+				int[] temp = {tempX, tempY};
+				Tile.get$map()[tempX][tempY].set$location(temp);
+				s.setLocation(Tile.get$map()[tempX][tempY]);
+				s.foundCity();
 				found = false;
-				updateTileGraphics();
+				repaintTiles();
 			}
 		}
 	}
-
-	public void updateTileGraphics() {
-		for (int i = 0; i < $mapButtons.length; i++) {
-			for (int j = 0; j < $mapButtons[i].length; j++) {
-				if(Tile.get$map()[i][j].getOwner() != null) {
-					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getUnitOnTile().getUnitImageIcon());
-				} else if(Tile.get$map()[i][j].getUnitOnTile() != null) {
-					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
-				} else {
-					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
-				}
-			}
-		}
+	
+	public void endTurn() {
+		turns++;
 	}
 
 	public class TileListener implements ActionListener {
