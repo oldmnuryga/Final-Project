@@ -45,7 +45,6 @@ public class CivilizationGame {
 
 	// PLAYER INFO
 	private Player player;
-	private int playerType;
 
 	// JGRAPHICS CONSTRUCTORS
 	private JFrame frame = new JFrame("P'jephphrey B's : Society Simulator VII");
@@ -76,11 +75,11 @@ public class CivilizationGame {
 	private JPanel mapPanel = new JPanel();
 	private JScrollPane mapPane;
 	private JButton[][] $mapButtons = new JButton[Tile.getMAP_SIZE()][Tile.getMAP_SIZE()];
-	
-	private JFrame frInstructions = new JFrame("Civilization");
-	
-	private ImageIcon cityImageIcon = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("improvements/resources/cityOnGreen.png"));
 
+	private JFrame frInstructions = new JFrame("Civilization");
+
+	private ImageIcon cityImageIcon = new ImageIcon(
+			CivilizationGame.class.getClassLoader().getResource("improvements/resources/cityOnGreen.png"));
 
 	// BUTTON LISTENERS
 	private TileListener tileListener = new TileListener();
@@ -140,11 +139,11 @@ public class CivilizationGame {
 		btnGenghis.setBounds(250, 605, 165, 251);
 		btnGenghis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//player = new Player(new Mongolia());
-				playerType = 0;
-				updateLeader(0);
+				setPlayer(new Player(new Mongolia()));
+				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
+				frame.pack();
 			}
 		});
 		titleFrame.add(btnGenghis);
@@ -154,11 +153,11 @@ public class CivilizationGame {
 		btnWashington.setBounds(504, 605, 165, 251);
 		btnWashington.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//player = new Player(new America());
-				playerType = 1;
-				updateLeader(1);
+				setPlayer(new Player(new America()));
+				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
+				frame.pack();
 			}
 		});
 		titleFrame.add(btnWashington);
@@ -168,11 +167,11 @@ public class CivilizationGame {
 		btnSejong.setBounds(758, 605, 165, 251);
 		btnSejong.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//player = new Player(new Korea());
-				playerType = 2;
-				updateLeader(2);
+				setPlayer(new Player(new Korea()));
+				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
+				frame.pack();
 			}
 		});
 		titleFrame.add(btnSejong);
@@ -182,11 +181,11 @@ public class CivilizationGame {
 		btnMussolini.setBounds(1012, 605, 165, 251);
 		btnMussolini.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//player = new Player(new Italy());
-				playerType = 3;
-				updateLeader(3);
+				setPlayer(new Player(new Italy()));
+				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
+				frame.pack();
 			}
 		});
 		titleFrame.add(btnMussolini);
@@ -196,11 +195,11 @@ public class CivilizationGame {
 		btnCasimir.setBounds(1266, 605, 165, 251);
 		btnCasimir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//player = new Player(new Poland());
-				playerType = 4;
-				updateLeader(4);
+				setPlayer(new Player(new Poland()));
+				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
+				frame.pack();
 			}
 		});
 		titleFrame.add(btnCasimir);
@@ -208,16 +207,16 @@ public class CivilizationGame {
 
 		titleFrame.setVisible(true);
 
-		//game GUI
+		// game GUI
 		btnEndTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				endTurn();
 				updateTurnText();
-				//other things
+				// other things
 			}
 		});
 
-		JTabbedPane tbpneInstructions = new JTabbedPane(JTabbedPane.LEFT,JTabbedPane.WRAP_TAB_LAYOUT);
+		JTabbedPane tbpneInstructions = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
 		JComponent panel1 = new JTextArea("Welcome to P'jephphrey B's : Society Simulator VII. " + "\n"
 				+ "The aim of this game is to find a city and grow as much as " + "\n"
 				+ "possible while staying out of debt. To begin the game, a settler" + "\n"
@@ -231,7 +230,7 @@ public class CivilizationGame {
 				+ "or lumbermills. The lumbermills have to be built on forest tiles. " + "\n"
 				+ "After making the worker, the rest of the game is spent growing the " + "\n"
 				+ "city and making buildings.\n");
-		tbpneInstructions.addTab("Starting the Game",panel1);
+		tbpneInstructions.addTab("Starting the Game", panel1);
 		JComponent panel2 = new JTextArea("There are many different units, in the beginning you start with " + "\n"
 				+ "a settler. To build a city with the " + "\n"
 				+ "settler, press 'P'. Another unit is a scout which has the main " + "\n"
@@ -242,7 +241,7 @@ public class CivilizationGame {
 				+ "Farms are used to increase the food per turn that a city produces. " + "\n"
 				+ "Lumbermills are strictly made in forests and can be used to increase " + "\n"
 				+ "production per turn. Trading posts are used to increase gold per turn.");
-		tbpneInstructions.addTab("Units",panel2);
+		tbpneInstructions.addTab("Units", panel2);
 		JComponent panel3 = new JTextArea("Wonders are built by the player and can be used to benefit the "
 				+ "player with a specific stat. Some stats that get benefits from the " + "\n"
 				+ "wonders include happiness, research, production. To win the game, " + "\n"
@@ -251,7 +250,7 @@ public class CivilizationGame {
 				+ "This is one of the few ways to finish the game. Wonders can " + "\n"
 				+ "only built once, and are a valuable resource for winning the " + "\n"
 				+ "game via the science victory.");
-		tbpneInstructions.addTab("Wonders",panel3);
+		tbpneInstructions.addTab("Wonders", panel3);
 		JComponent panel4 = new JTextArea("Buildings, like wonders, are things built by the city only once " + "\n"
 				+ "and provide many benefits to the player. For example a building " + "\n"
 				+ "may increase the production of a city by a certain percentage or " + "\n"
@@ -264,7 +263,7 @@ public class CivilizationGame {
 				+ "the importance of not making too many buildings of one type, as " + "\n"
 				+ "they may slow your progress through the game. It is very important " + "\n"
 				+ "to maintain a balanced society.");
-		tbpneInstructions.addTab("Buildings",panel4);
+		tbpneInstructions.addTab("Buildings", panel4);
 		JComponent panel5 = new JTextArea("A city can be built using settlers and is the beginning step to " + "\n"
 				+ "evolving your society through the ages. Cities gain citizens " + "\n"
 				+ "through the game and this is mainly dependent upon the amount " + "\n"
@@ -278,9 +277,8 @@ public class CivilizationGame {
 				+ "tile you own is used. The only tiles that cannot be used to " + "\n"
 				+ "build an improvement is water and mountain. Water and mountains " + "\n"
 				+ "are two types of tiles that should not be the majority of your " + "\n"
-				+ "land space in a city. Too many are detrimental to the evolution " + "\n"
-				+ "of your society.");
-		tbpneInstructions.addTab("City",panel5);
+				+ "land space in a city. Too many are detrimental to the evolution " + "\n" + "of your society.");
+		tbpneInstructions.addTab("City", panel5);
 		frInstructions.setPreferredSize(new Dimension(550, 550));
 		frInstructions.setLayout(null);
 		frInstructions.setVisible(false);
@@ -294,9 +292,8 @@ public class CivilizationGame {
 		});
 		btnShowInstructions.setBounds(1600, 0, 200, 50);
 		frame.add(btnShowInstructions);
-		frame.add(pnePlayerStats);
 		pnePlayerStats.setBounds(0, 50, 200, 500);
-		updatePlayerStats();
+		frame.add(pnePlayerStats);
 		lblGold.setBounds(200, 0, 150, 50);
 		frame.add(lblGold);
 		lblResearch.setBounds(450, 0, 150, 50);
@@ -340,50 +337,43 @@ public class CivilizationGame {
 			}
 		}
 		spawnInitialSettler();
-
-		frame.pack();
 		frInstructions.pack();
 		titleFrame.pack();
 	}
+
 	public void updateTurnText() {
 		lblTurns.setText("Turns: " + turns);
 	}
-	public void updateLeader(int type) {
-		if(type == 0) 
-			player = new Player(new Mongolia());
-		else if(type == 1)
-			player = new Player(new America());
-		else if(type == 2)
-			player = new Player(new Korea());
-		else if(type == 3)
-			player = new Player(new Italy());
-		else player = new Player(new Poland());
-	}
+
 	public void updatePlayerStats() {
-		updateLeader(playerType);
+		// PLAYER NAME
 		pnePlayerStats.add(new JLabel("Player Name: " + player.getLeader().getLeaderName() + "\n"));
-		if(player.get$cities().size() != 0 ) 
+		// PLAYER CITIES
+		if (player.get$cities().size() != 0) {
 			pnePlayerStats.add(new JLabel("Player City Name: " + player.get$cities().get(0).getName() + "\n"));
-		pnePlayerStats.add(new JLabel("Owned Buildings: \n"));
-		if(player.get$cities().size() != 0)
-			for(int i=0;i<player.get$cities().get(0).get$buildings().size();i++) 
+			// PLAYER BUILDINGS
+			pnePlayerStats.add(new JLabel("Owned Buildings: \n"));
+			for (int i = 0; i < player.get$cities().get(0).get$buildings().size(); i++)
 				pnePlayerStats.add(new JLabel(player.get$cities().get(0).get$buildings().get(i).getName()));
-		//pnePlayerStats.add(new JLabel("Owned Wonders: "));
-		//	for(int i=0;i<player.get$wonders().size();i++)
-		//		pnePlayerStats.add(new JLabel(player.get$wonders().get(i).getName()));
+			pnePlayerStats.add(new JLabel("Owned Wonders: "));
+			if (player.get$cities().get(0).get$wonders().size() != 0)
+				for (int i = 0; i < player.get$cities().get(0).get$wonders().size(); i++)
+					pnePlayerStats.add(new JLabel(player.get$cities().get(0).get$wonders().get(i).getName()));
+		}
 		pnePlayerStats.add(new JLabel("Owned Units: \n"));
-		if(player.get$units().size() != 0)
-			for(int i=0;i<player.get$units().size();i++) {
+		if (player.get$units().size() != 0)
+			for (int i = 0; i < player.get$units().size(); i++) {
 				pnePlayerStats.add(new JLabel(player.get$units().get(i).getUnitName()));
 			}
 
 	}
+
 	public void repaintTiles() {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
-				if(Tile.get$map()[i][j].getOwner() != null) {
+				if (Tile.get$map()[i][j].getOwner() != null) {
 					$mapButtons[i][j].setIcon(cityImageIcon);
-				} else if(Tile.get$map()[i][j].getUnitOnTile() != null) {
+				} else if (Tile.get$map()[i][j].getUnitOnTile() != null) {
 					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getUnitOnTile().getUnitImageIcon());
 				} else {
 					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
@@ -409,26 +399,34 @@ public class CivilizationGame {
 	public void spawnInitialSettler() {
 		Random rand = new Random();
 		boolean found = true;
-		while(found) {
+		while (found) {
 			int tempX = rand.nextInt(Tile.getMAP_SIZE() - 2) + 1;
 			int tempY = rand.nextInt(Tile.getMAP_SIZE() - 2) + 1;
-			if(Tile.get$map()[tempX][tempY].getTerrainID() == 1) {
+			if (Tile.get$map()[tempX][tempY].getTerrainID() == 1) {
 				Settler s = new Settler(player);
 				Tile.get$map()[tempX][tempY].setUnitOnTile(s);
 				Tile.get$map()[tempX][tempY].get$location();
 				Tile.get$map()[tempX][tempY].getUnitOnTile().setSelected(true);
-				int[] temp = {tempX, tempY};
+				int[] temp = { tempX, tempY };
 				Tile.get$map()[tempX][tempY].set$location(temp);
 				s.setLocation(Tile.get$map()[tempX][tempY]);
-				//s.foundCity();
+				// s.foundCity();
 				found = false;
 				repaintTiles();
 			}
 		}
 	}
-	
+
 	public void endTurn() {
 		turns++;
+	}
+
+	public Player getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(Player player) {
+		this.player = player;
 	}
 
 	public class TileListener implements ActionListener {
@@ -446,7 +444,6 @@ public class CivilizationGame {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
 
 		}
 	}
