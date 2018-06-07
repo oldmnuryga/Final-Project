@@ -461,8 +461,8 @@ public class CivilizationGame {
 							$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("P"), "pressed");
 							$mapButtons[i][j].getActionMap().put("pressed", new AbstractAction() {
 								public void actionPerformed(ActionEvent e) {
-									System.out.println("reached");
 									((Settler) getPlayer().getOwnedUnitfromID(18)).foundCity();
+									repaintTiles();
 								}
 							});
 

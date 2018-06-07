@@ -57,7 +57,6 @@ public class Settler extends Unit {
 	}
 
 	public void foundCity() {
-		System.out.println(location.get$location());
 		// Sets surrounding tiles to the owner
 		Tile.get$map()[location.get$location()[0]][location.get$location()[1] - 1].setOwner(owner);
 		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setOwner(owner);
