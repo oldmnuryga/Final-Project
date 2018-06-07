@@ -3,6 +3,7 @@ package units;
 public class Tank extends Unit {
 
 	public Tank() {
+		super.unitID = 21;
 		super.hitpoints = 180;
 		super.attackRating = 48;
 		super.productionCost = 425;

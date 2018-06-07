@@ -3,6 +3,7 @@ package units;
 public class Knight extends Unit {
 
 	public Knight() {
+		super.unitID = 11;
 		super.hitpoints = 55;
 		super.attackRating = 20;
 		super.productionCost = 120;

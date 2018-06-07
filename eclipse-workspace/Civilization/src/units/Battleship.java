@@ -3,6 +3,7 @@ package units;
 public class Battleship extends Unit {
 
 	public Battleship() {
+		super.unitID = 3;
 		super.hitpoints = 140;
 		super.attackRating = 70;
 		super.productionCost = 375;

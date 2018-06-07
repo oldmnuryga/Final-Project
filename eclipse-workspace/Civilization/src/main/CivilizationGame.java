@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.util.Random;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,6 +20,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
+import javax.swing.KeyStroke;
+
 import civilizations.Player;
 import leaders.*;
 import map.ForestTile;
@@ -26,7 +31,7 @@ import map.SandTile;
 import map.Tile;
 import map.WaterTile;
 import sound.sounds;
-import units.Settler;
+import units.*;
 
 public class CivilizationGame {
 	public static int turns = 1;
@@ -134,6 +139,7 @@ public class CivilizationGame {
 				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
+				spawnInitialSettler();
 				frame.pack();
 			}
 		});
@@ -148,6 +154,7 @@ public class CivilizationGame {
 				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
+				spawnInitialSettler();
 				frame.pack();
 			}
 		});
@@ -162,6 +169,7 @@ public class CivilizationGame {
 				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
+				spawnInitialSettler();
 				frame.pack();
 			}
 		});
@@ -176,6 +184,7 @@ public class CivilizationGame {
 				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
+				spawnInitialSettler();
 				frame.pack();
 			}
 		});
@@ -190,6 +199,7 @@ public class CivilizationGame {
 				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
+				spawnInitialSettler();
 				frame.pack();
 			}
 		});
@@ -332,7 +342,6 @@ public class CivilizationGame {
 				mapPanel.add($mapButtons[i][j]);
 			}
 		}
-		spawnInitialSettler();
 		frInstructions.pack();
 		titleFrame.pack();
 	}
@@ -406,7 +415,6 @@ public class CivilizationGame {
 				int[] temp = { tempX, tempY };
 				Tile.get$map()[tempX][tempY].set$location(temp);
 				s.setLocation(Tile.get$map()[tempX][tempY]);
-				// s.foundCity();
 				found = false;
 				repaintTiles();
 			}
@@ -425,22 +433,44 @@ public class CivilizationGame {
 		this.player = player;
 	}
 
+	public JButton[][] get$mapButtons() {
+		return $mapButtons;
+	}
+
+	public void set$mapButtons(JButton[][] $mapButtons) {
+		this.$mapButtons = $mapButtons;
+	}
+
 	public class TileListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			// Click sound
 			try {
 				sounds.clickPlay();
 			} catch (UnsupportedAudioFileException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (LineUnavailableException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			// SETTLER CHECK
+			for (int i = 0; i < $mapButtons.length; i++) {
+				for (int j = 0; j < $mapButtons[i].length; j++) {
+					if (e.getSource() == $mapButtons[i][j]) {
+						if ($mapButtons[i][j].getIcon().equals(getPlayer().getOwnedUnitfromID(18).getUnitImageIcon())) {
+							$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("P"), "pressed");
+							$mapButtons[i][j].getActionMap().put("pressed", new AbstractAction() {
+								public void actionPerformed(ActionEvent e) {
+									System.out.println("reached");
+									((Settler) getPlayer().getOwnedUnitfromID(18)).foundCity();
+								}
+							});
 
+						}
+
+					}
+				}
+			}
 		}
 	}
 }

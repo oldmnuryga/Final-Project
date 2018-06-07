@@ -3,6 +3,7 @@ package units;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.imageio.ImageTypeSpecifier;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.xml.transform.Templates;
@@ -15,6 +16,7 @@ import map.Tile;
 public class Settler extends Unit {
 
 	public Settler(Player player) {
+		super.unitID = 18;
 		super.owner = player;
 		super.hitpoints = 15;
 		super.attackRating = 0;
@@ -31,6 +33,7 @@ public class Settler extends Unit {
 		super.isSelected = false;
 		super.unitName = "Settler";
 		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Settler.png"));
+		player.addUnit(this);
 	}
 
 	public void keyPressed(KeyEvent e) {

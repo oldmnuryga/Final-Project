@@ -3,6 +3,7 @@ package units;
 public class Bomber extends Unit {
 
 	public Bomber() {
+		super.unitID = 4;
 		super.hitpoints = 130;
 		super.attackRating = 75;
 		super.productionCost = 375;

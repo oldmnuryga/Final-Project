@@ -3,6 +3,7 @@ package units;
 public class Crossbowman extends Unit {
 
 	public Crossbowman() {
+		super.unitID = 8;
 		super.hitpoints = 40;
 		super.attackRating = 15;
 		super.productionCost = 120;

@@ -3,6 +3,7 @@ package units;
 public class Artillery extends Unit {
 
 	public Artillery() {
+		super.unitID = 2;
 		super.hitpoints = 95;
 		super.attackRating = 30;
 		super.productionCost = 250;

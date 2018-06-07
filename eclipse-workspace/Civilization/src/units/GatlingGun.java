@@ -3,6 +3,7 @@ package units;
 public class GatlingGun extends Unit {
 
 	public GatlingGun() {
+		super.unitID = 9;
 		super.hitpoints = 60;
 		super.attackRating = 34;
 		super.productionCost = 225;

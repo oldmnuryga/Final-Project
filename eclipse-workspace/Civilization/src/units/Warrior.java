@@ -7,6 +7,7 @@ import map.Tile;
 public class Warrior extends Unit {
 
 	public Warrior() {
+		super.unitID = 23;
 		super.hitpoints = 30;
 		super.attackRating = 8;
 		super.productionCost = 40;

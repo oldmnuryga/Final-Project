@@ -13,7 +13,8 @@ import map.Tile;
 import sound.sounds;
 import technology.Technology;
 
-public abstract class Unit{
+public abstract class Unit {
+	protected int unitID;
 	protected int hitpoints;
 	protected int currenthitpoints = hitpoints;
 	protected int attackRating;
@@ -35,6 +36,22 @@ public abstract class Unit{
 	protected Player owner = null;
 	protected static ImageIcon unitImageIcon = null;
 	KeyTest test = new KeyTest();
+
+	public int getUnitID() {
+		return unitID;
+	}
+
+	public void setUnitID(int unitID) {
+		this.unitID = unitID;
+	}
+
+	public KeyTest getTest() {
+		return test;
+	}
+
+	public void setTest(KeyTest test) {
+		this.test = test;
+	}
 
 	public int getCurrenthitpoints() {
 		return currenthitpoints;
@@ -260,12 +277,12 @@ public abstract class Unit{
 		this.setLocation(null);
 	}
 
-	public class KeyTest implements KeyListener{
+	public class KeyTest implements KeyListener {
 		public void keyPressed(KeyEvent e, Tile toLeft, Tile above, Tile toRight, Tile below) {
 			int key = e.getKeyCode();
 			if (key == KeyEvent.VK_A && !(toLeft.getTerrainID() == 0 || toLeft.getTerrainID() == 3))
 				System.out.println("reace");
-			//moveUnitLeft();
+			// moveUnitLeft();
 			if (key == KeyEvent.VK_D && !(toRight.getTerrainID() == 0 || toRight.getTerrainID() == 3))
 				moveUnitRight();
 			if (key == KeyEvent.VK_W && !(above.getTerrainID() == 0 || above.getTerrainID() == 3))
@@ -276,16 +293,17 @@ public abstract class Unit{
 
 		public void keyTyped(KeyEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 
 		public void keyPressed(KeyEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
+
 		public void keyReleased(KeyEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
 	}
 }

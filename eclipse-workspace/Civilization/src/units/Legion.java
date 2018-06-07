@@ -3,6 +3,7 @@ package units;
 public class Legion extends Unit {
 
 	public Legion() {
+		super.unitID = 12;
 		super.hitpoints = 40;
 		super.attackRating = 17;
 		super.productionCost = 75;

@@ -3,6 +3,7 @@ package units;
 public class GreatWarInfantry extends Unit {
 
 	public GreatWarInfantry() {
+		super.unitID = 10;
 		super.hitpoints = 125;
 		super.attackRating = 35;
 		super.productionCost = 320;

@@ -3,6 +3,7 @@ package units;
 public class Pikeman extends Unit {
 
 	public Pikeman() {
+		super.unitID = 15;
 		super.hitpoints = 40;
 		super.attackRating = 16;
 		super.productionCost = 90;

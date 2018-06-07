@@ -3,6 +3,7 @@ package units;
 public class Trebuchet extends Unit {
 
 	public Trebuchet() {
+		super.unitID = 22;
 		super.hitpoints = 80;
 		super.attackRating = 23;
 		super.productionCost = 120;

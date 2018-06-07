@@ -3,6 +3,7 @@ package units;
 public class Catapult extends Unit {
 
 	public Catapult() {
+		super.unitID = 6;
 		super.hitpoints = 50;
 		super.attackRating = 20;
 		super.productionCost = 75;

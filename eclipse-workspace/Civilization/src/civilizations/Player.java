@@ -2,6 +2,8 @@ package civilizations;
 
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 import civilizations.buildings.SpaceshipPart;
 import leaders.Leader;
 import technology.Technology;
@@ -162,5 +164,12 @@ public class Player {
 
 	public void setScienceVictoryArray(int index, boolean target) {
 		getScienceVictory()[index] = target;
+	}
+
+	public Unit getOwnedUnitfromID(int unitID) {
+		for (int i = 0; i < get$units().size(); i++)
+			if (get$units().get(i).getUnitID() == unitID)
+				return get$units().get(i);
+		return null;
 	}
 }

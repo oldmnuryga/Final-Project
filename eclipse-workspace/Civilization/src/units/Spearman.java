@@ -3,6 +3,7 @@ package units;
 public class Spearman extends Unit {
 
 	public Spearman() {
+		super.unitID = 19;
 		super.hitpoints = 45;
 		super.attackRating = 16;
 		super.productionCost = 56;

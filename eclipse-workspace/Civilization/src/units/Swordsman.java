@@ -3,6 +3,7 @@ package units;
 public class Swordsman extends Unit {
 
 	public Swordsman() {
+		super.unitID = 20;
 		super.hitpoints = 50;
 		super.attackRating = 19;
 		super.productionCost = 75;

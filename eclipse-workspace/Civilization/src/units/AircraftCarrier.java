@@ -3,6 +3,7 @@ package units;
 public class AircraftCarrier extends Unit {
 
 	public AircraftCarrier() {
+		super.unitID = 0;
 		super.hitpoints = 140;
 		super.attackRating = 60;
 		super.productionCost = 375;

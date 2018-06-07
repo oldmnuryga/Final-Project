@@ -3,6 +3,7 @@ package units;
 public class Archer extends Unit {
 
 	public Archer() {
+		super.unitID = 1;
 		super.hitpoints = 30;
 		super.attackRating = 11;
 		super.productionCost = 40;

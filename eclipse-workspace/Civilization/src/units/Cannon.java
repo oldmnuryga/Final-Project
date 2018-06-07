@@ -3,6 +3,7 @@ package units;
 public class Cannon extends Unit {
 
 	public Cannon() {
+		super.unitID = 5;
 		super.hitpoints = 70;
 		super.attackRating = 14;
 		super.productionCost = 185;
