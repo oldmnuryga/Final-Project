@@ -35,6 +35,7 @@ import map.Tile;
 import map.WaterTile;
 import sound.sounds;
 import units.Settler;
+import units.Unit;
 
 public class CivilizationGame {
 	public static int turns = 1;
@@ -540,8 +541,15 @@ public class CivilizationGame {
 		}
 	}
 	
-	public void calculateMovesRemaining(int x, int y, int leftMod, int rightMod) {
-		
+	public boolean canMove(Unit unit, int x, int y, int horizontalMod, int verticalMod) {
+		if(unit.getMovesLeft() - Tile.get$map()[x + horizontalMod][y + verticalMod].getMovesRequired() >= 0)
+			return true;
+		else
+			return false;
+	}
+	
+	public void calculateMovesLeft(Unit unit, int x, int y, int horizontalMod, int verticalMod) {
+		unit.setMovesLeft(unit.getMovesLeft() - Tile.get$map()[x + horizontalMod][y + verticalMod].getMovesRequired());
 	}
 	
 	public void removeUnit(int x, int y) {
