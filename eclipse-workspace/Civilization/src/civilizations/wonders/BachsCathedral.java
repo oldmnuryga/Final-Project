@@ -5,6 +5,7 @@ import civilizations.Wonder;
 
 public class BachsCathedral extends Wonder {
 	private int addedHappiness;
+
 	public BachsCathedral(City city) {
 		wonderID = 1;
 		location = city;
@@ -16,20 +17,22 @@ public class BachsCathedral extends Wonder {
 		techObsoletionID = -1;
 		addedHappiness = 3;
 	}
+
 	public int getAddedHappiness() {
 		return addedHappiness;
 	}
+
 	public void setAddedHappiness(int addedHappiness) {
 		this.addedHappiness = addedHappiness;
 	}
+
 	public void uniqueAbility() {
 		owner.setHappiness(owner.getHappiness() + addedHappiness);
 	}
-	public void obsoleteAbility() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	
-}
 
+	public void obsoleteAbility() {
+		owner.setHappiness(owner.getHappiness() - addedHappiness);
+
+	}
+
+}

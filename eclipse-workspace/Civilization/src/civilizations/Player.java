@@ -1,5 +1,6 @@
 package civilizations;
 
+import java.beans.beancontext.BeanContext;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -21,7 +22,8 @@ public class Player {
 	protected ArrayList<Unit> $units;
 	protected ArrayList<City> $cities;
 	protected ArrayList<Technology> $technologies;
-	protected boolean[] scienceVictory;
+	protected ArrayList<Technology> $potentialTechs;
+	protected boolean[] $scienceVictory;
 
 	public Player(Leader tLeader) {
 		leader = tLeader;
@@ -35,7 +37,8 @@ public class Player {
 		$units = new ArrayList<Unit>();
 		$cities = new ArrayList<City>();
 		$technologies = new ArrayList<Technology>();
-		scienceVictory = new boolean[3];
+		$potentialTechs = new ArrayList<Technology>();
+		$scienceVictory = new boolean[3];
 
 	}
 
@@ -127,12 +130,12 @@ public class Player {
 		this.numCities = numCities;
 	}
 
-	public boolean[] getScienceVictory() {
-		return scienceVictory;
+	public boolean[] get$ScienceVictory() {
+		return $scienceVictory;
 	}
 
-	public void setScienceVictory(boolean[] scienceVictory) {
-		this.scienceVictory = scienceVictory;
+	public void set$ScienceVictory(boolean[] scienceVictory) {
+		this.$scienceVictory = scienceVictory;
 	}
 
 	public void addTechnology(int techID) {
@@ -157,13 +160,13 @@ public class Player {
 	}
 
 	public void addSpaceshipPart(SpaceshipPart spaceshipPart) {
-		setScienceVictoryArray(spaceshipPart.getSpaceshipID(), true);
+		set$ScienceVictoryArray(spaceshipPart.getSpaceshipID(), true);
 		spaceshipPart.setBuilt(true);
 
 	}
 
-	public void setScienceVictoryArray(int index, boolean target) {
-		getScienceVictory()[index] = target;
+	public void set$ScienceVictoryArray(int index, boolean target) {
+		get$ScienceVictory()[index] = target;
 	}
 
 	public Unit getOwnedUnitfromID(int unitID) {
@@ -171,5 +174,18 @@ public class Player {
 			if (get$units().get(i).getUnitID() == unitID)
 				return get$units().get(i);
 		return null;
+	}
+
+	public void findPotentialTechs() {
+		for (int i = 0; i < Technology.get$technologies().size(); i++) {
+			Technology technology = Technology.get$technologies().get(i);
+			boolean areResearched = true;
+			for (int j = 0; j < technology.get$comesFrom().size(); j++)
+				if (!(hasTechnology(technology.get$comesFrom().get(i))))
+					areResearched = false;
+			if (areResearched)
+				$potentialTechs.add(technology);
+
+		}
 	}
 }
