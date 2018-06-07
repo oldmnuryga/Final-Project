@@ -32,7 +32,7 @@ public abstract class Unit {
 	protected Technology requiredTech;
 	protected int buyCost;
 	protected String unitName;
-	protected int movesLeft = maxMovement;
+	protected int movesLeft;// = maxMovement;
 	protected Player owner = null;
 	protected static ImageIcon unitImageIcon = null;
 	KeyTest test = new KeyTest();
