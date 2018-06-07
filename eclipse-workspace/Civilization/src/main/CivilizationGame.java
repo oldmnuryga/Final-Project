@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -39,6 +40,7 @@ import units.Unit;
 
 public class CivilizationGame {
 	public static int turns = 1;
+	private int year = -3000;
 
 	// CONSTANTS
 	private final int SCROLL_SPEED = 5;
@@ -426,6 +428,28 @@ public class CivilizationGame {
 
 	public void endTurn() {
 		turns++;
+		changeYear();
+		System.out.println(year);
+	}
+
+	public void changeYear() {
+		if(turns == 1)
+			year = -3000;
+		else
+			year = (int) (962 * Math.log(turns) - 479)-3000;
+		updateTurnText();
+		if(turns > 300) {
+			endGame();
+		}
+	}
+	
+	public void endGame() {
+		//custom title, custom icon
+		JOptionPane.showMessageDialog(frame,
+		    "You have won the game.",
+		    "Congrats. What's wrong with you? Why are you still here? What are you gaining from this? Do you think this is ok? What the hell is wrong with you? You are so dumb. Weakling. Peasant. Die.",
+		    JOptionPane.INFORMATION_MESSAGE,
+		    icon);
 	}
 
 	public Player getPlayer() {
