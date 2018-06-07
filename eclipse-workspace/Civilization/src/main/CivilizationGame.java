@@ -3,28 +3,20 @@ package main;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Random;
-import java.util.Scanner;
-
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
-
 import civilizations.Player;
 import leaders.*;
 import map.ForestTile;
@@ -35,7 +27,6 @@ import map.Tile;
 import map.WaterTile;
 import sound.sounds;
 import units.Settler;
-import units.Unit;
 
 public class CivilizationGame {
 	public static int turns = 1;
@@ -217,7 +208,7 @@ public class CivilizationGame {
 		});
 
 		JTabbedPane tbpneInstructions = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
-		JComponent panel1 = new JTextArea("Welcome to P'jephphrey B's : Society Simulator VII. " + "\n"
+		JTextArea panel1 = new JTextArea("Welcome to P'jephphrey B's : Society Simulator VII. " + "\n"
 				+ "The aim of this game is to find a city and grow as much as " + "\n"
 				+ "possible while staying out of debt. To begin the game, a settler" + "\n"
 				+ "is given to you in a random place. If you would like, the settler" + "\n"
@@ -231,7 +222,7 @@ public class CivilizationGame {
 				+ "After making the worker, the rest of the game is spent growing the " + "\n"
 				+ "city and making buildings.\n");
 		tbpneInstructions.addTab("Starting the Game", panel1);
-		JComponent panel2 = new JTextArea("There are many different units, in the beginning you start with " + "\n"
+		JTextArea panel2 = new JTextArea("There are many different units, in the beginning you start with " + "\n"
 				+ "a settler. To build a city with the " + "\n"
 				+ "settler, press 'P'. Another unit is a scout which has the main " + "\n"
 				+ "priority of looking through the map and finding things that are useful " + "\n"
@@ -242,7 +233,7 @@ public class CivilizationGame {
 				+ "Lumbermills are strictly made in forests and can be used to increase " + "\n"
 				+ "production per turn. Trading posts are used to increase gold per turn.");
 		tbpneInstructions.addTab("Units", panel2);
-		JComponent panel3 = new JTextArea("Wonders are built by the player and can be used to benefit the "
+		JTextArea panel3 = new JTextArea("Wonders are built by the player and can be used to benefit the "
 				+ "player with a specific stat. Some stats that get benefits from the " + "\n"
 				+ "wonders include happiness, research, production. To win the game, " + "\n"
 				+ "the Apollo Program must be built to begin the space race. After " + "\n"
@@ -251,7 +242,7 @@ public class CivilizationGame {
 				+ "only built once, and are a valuable resource for winning the " + "\n"
 				+ "game via the science victory.");
 		tbpneInstructions.addTab("Wonders", panel3);
-		JComponent panel4 = new JTextArea("Buildings, like wonders, are things built by the city only once " + "\n"
+		JTextArea panel4 = new JTextArea("Buildings, like wonders, are things built by the city only once " + "\n"
 				+ "and provide many benefits to the player. For example a building " + "\n"
 				+ "may increase the production of a city by a certain percentage or " + "\n"
 				+ "increase the gold that a city produces by a number or percentage. " + "\n"
@@ -264,7 +255,7 @@ public class CivilizationGame {
 				+ "they may slow your progress through the game. It is very important " + "\n"
 				+ "to maintain a balanced society.");
 		tbpneInstructions.addTab("Buildings", panel4);
-		JComponent panel5 = new JTextArea("A city can be built using settlers and is the beginning step to " + "\n"
+		JTextArea panel5 = new JTextArea("A city can be built using settlers and is the beginning step to " + "\n"
 				+ "evolving your society through the ages. Cities gain citizens " + "\n"
 				+ "through the game and this is mainly dependent upon the amount " + "\n"
 				+ "of food that your city can produce through farms. Having a " + "\n"
@@ -279,6 +270,11 @@ public class CivilizationGame {
 				+ "are two types of tiles that should not be the majority of your " + "\n"
 				+ "land space in a city. Too many are detrimental to the evolution " + "\n" + "of your society.");
 		tbpneInstructions.addTab("City", panel5);
+		panel1.setEditable(false);
+		panel2.setEditable(false);
+		panel3.setEditable(false);
+		panel4.setEditable(false);
+		panel5.setEditable(false);
 		frInstructions.setPreferredSize(new Dimension(550, 550));
 		frInstructions.setLayout(null);
 		frInstructions.setVisible(false);
