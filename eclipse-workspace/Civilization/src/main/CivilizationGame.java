@@ -1,17 +1,16 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Random;
+
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -23,7 +22,11 @@ import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 
 import civilizations.Player;
-import leaders.*;
+import leaders.America;
+import leaders.Italy;
+import leaders.Korea;
+import leaders.Mongolia;
+import leaders.Poland;
 import map.ForestTile;
 import map.GrassTile;
 import map.MountainTile;
@@ -31,7 +34,7 @@ import map.SandTile;
 import map.Tile;
 import map.WaterTile;
 import sound.sounds;
-import units.*;
+import units.Settler;
 
 public class CivilizationGame {
 	public static int turns = 1;
@@ -458,10 +461,13 @@ public class CivilizationGame {
 					if (e.getSource() == $mapButtons[i][j]) {
 						if (Tile.get$map()[i][j].getUnitOnTile() != null && Tile.get$map()[i][j].getUnitOnTile().getUnitID() == 18) {
 							//$mapButtons[i][j].getIcon().equals(player.getOwnedUnitfromID(18).getUnitImageIcon())
+							int x = i;
+							int y = j;
 							$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("P"), "found");
 							$mapButtons[i][j].getActionMap().put("found", new AbstractAction() {
 								public void actionPerformed(ActionEvent e) {
 									((Settler) getPlayer().getOwnedUnitfromID(18)).foundCity();
+									removeUnit(x, y);
 									repaintTiles();
 								}
 							});
@@ -532,5 +538,13 @@ public class CivilizationGame {
 				}
 			}
 		}
+	}
+	
+	public void removeUnit(int x, int y) {
+		Tile.get$map()[x][y].getUnitOnTile().removeUnit();
+		ArrayList $tempArr = Tile.get$map()[x][y].getUnitOnTile().getOwner().get$units();
+		$tempArr.remove(Tile.get$map()[x][y].getUnitOnTile());
+		Tile.get$map()[x][y].getUnitOnTile().getOwner().set$units($tempArr);
+		Tile.get$map()[x][y].setUnitOnTile(null);
 	}
 }
