@@ -540,6 +540,10 @@ public class CivilizationGame {
 		}
 	}
 	
+	public void calculateMovesRemaining(int x, int y, int leftMod, int rightMod) {
+		
+	}
+	
 	public void removeUnit(int x, int y) {
 		//Tile.get$map()[x][y].getUnitOnTile().removeUnit();
 		ArrayList $tempArr = Tile.get$map()[x][y].getUnitOnTile().getOwner().get$units();
