@@ -26,6 +26,7 @@ public class Settler extends Unit {
 		super.alive = true;
 		super.fortified = false;
 		super.maxMovement = 2;
+		super.movesLeft = 2;
 		super.maintenance = 1;
 		super.isAir = false;
 		super.isGround = true;
