@@ -489,8 +489,8 @@ public class CivilizationGame {
 									Tile.get$map()[x - 1][y].setUnitOnTile(Tile.get$map()[x][y].getUnitOnTile());
 									Tile.get$map()[x - 1][y].getUnitOnTile().setLocation(Tile.get$map()[x - 1][y]);
 									Tile.get$map()[x][y].setUnitOnTile(null);
-									$mapButtons[x - 1][y].setSelected(true);
-									$mapButtons[x][y].setSelected(false);
+									//$mapButtons[x - 1][y].setSelected(true);
+									//$mapButtons[x][y].setSelected(false);
 								}
 								repaintTiles();
 							}
