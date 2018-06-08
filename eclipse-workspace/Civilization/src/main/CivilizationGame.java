@@ -111,7 +111,9 @@ public class CivilizationGame {
 	static ImageIcon iconWashington = new ImageIcon(
 			CivilizationGame.class.getClassLoader().getResource("main/resources/washingtonIcon.jpg"));
 	static ImageIcon iconTrophy = new ImageIcon(
-			CivilizationGame.class.getClassLoader().getResource("main/resources/trophy.jpg"));
+			CivilizationGame.class.getClassLoader().getResource("main/resources/trophy.png"));
+	static ImageIcon grassTilePolandImageIcon = new ImageIcon(
+			CivilizationGame.class.getClassLoader().getResource("map/resources/grassTilePoland.png"));
 
 	public CivilizationGame() {
 		// ADD STUFF
@@ -386,7 +388,7 @@ public class CivilizationGame {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getOwner() != null) {
-					$mapButtons[i][j].setIcon(cityImageIcon);
+					$mapButtons[i][j].setIcon(grassTilePolandImageIcon);
 				} else if (Tile.get$map()[i][j].getUnitOnTile() != null) {
 					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getUnitOnTile().getUnitImageIcon());
 				} else {
@@ -586,7 +588,7 @@ public class CivilizationGame {
 	}
 
 	public boolean canMove(Unit unit, int x, int y, int horizontalMod, int verticalMod) {
-		if(unit.getMovesLeft() - Tile.get$map()[x + horizontalMod][y + verticalMod].getMovesRequired() >= 0)
+		if(unit.getMovesLeft() - Tile.get$map()[x + horizontalMod][y + verticalMod].getMovesRequired() >= 0 && Tile.get$map()[x + horizontalMod][y + verticalMod].isCrossable())
 			return true;
 		else
 			return false;
