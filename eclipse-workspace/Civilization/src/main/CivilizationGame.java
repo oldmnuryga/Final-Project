@@ -391,11 +391,18 @@ public class CivilizationGame {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getOwner() != null) {
-					$mapButtons[i][j].setIcon(player.getLeader().getGrassTile());
+					$mapButtons[i][j].setIcon(player.getLeader().getTileIconFromID(Tile.get$map()[i][j].getTerrainID()));
 				} else if (Tile.get$map()[i][j].getUnitOnTile() != null) {
 					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getUnitOnTile().getUnitImageIcon());
 				} else {
 					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
+				}
+				if (Tile.get$map()[i][j].isCity() == true) {
+					if(Tile.get$map()[i][j].getTerrainID() == 2) {
+						$mapButtons[i][j].setIcon(player.getLeader().getCityOnSandImprovement());
+					} else {
+						$mapButtons[i][j].setIcon(player.getLeader().getCityOnGreenImprovement());
+					}
 				}
 			}
 		}
@@ -441,7 +448,7 @@ public class CivilizationGame {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getUnitOnTile() != null)
 					Tile.get$map()[i][j].getUnitOnTile()
-							.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
+					.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
 			}
 		}
 	}
@@ -506,6 +513,67 @@ public class CivilizationGame {
 								public void actionPerformed(ActionEvent e) {
 									((Settler) getPlayer().getOwnedUnitfromID(18)).foundCity();
 									removeUnit(x, y);
+									repaintTiles();
+								}
+							});
+						}
+						//Found City mk2
+						if (Tile.get$map()[i][j].isCity()) {
+							int x = i;
+							int y = j;
+							$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("O"), "expandCity");
+							$mapButtons[i][j].getActionMap().put("expandCity", new AbstractAction() {
+								public void actionPerformed(ActionEvent e) {
+									Tile.get$map()[x-2][y-2].setOwner(player);
+									Tile.get$map()[x-2][y-1].setOwner(player);
+									Tile.get$map()[x-2][y].setOwner(player);
+									Tile.get$map()[x-2][y+1].setOwner(player);
+									Tile.get$map()[x-2][y+2].setOwner(player);
+									Tile.get$map()[x-1][y-2].setOwner(player);
+									Tile.get$map()[x-1][y+2].setOwner(player);
+									Tile.get$map()[x][y-2].setOwner(player);
+									Tile.get$map()[x][y+2].setOwner(player);
+									Tile.get$map()[x+1][y-2].setOwner(player);
+									Tile.get$map()[x+1][y+2].setOwner(player);
+									Tile.get$map()[x+2][y-2].setOwner(player);
+									Tile.get$map()[x+2][y-1].setOwner(player);
+									Tile.get$map()[x+2][y].setOwner(player);
+									Tile.get$map()[x+2][y+1].setOwner(player);
+									Tile.get$map()[x+2][y+2].setOwner(player);
+									repaintTiles();
+								}
+							});
+						}
+						if (Tile.get$map()[i][j].isCity()) {
+							int x = i;
+							int y = j;
+							$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("I"), "expandCity2");
+							$mapButtons[i][j].getActionMap().put("expandCity2", new AbstractAction() {
+								public void actionPerformed(ActionEvent e) {
+									Tile.get$map()[x-3][y-3].setOwner(player);
+									Tile.get$map()[x-3][y-2].setOwner(player);
+									Tile.get$map()[x-3][y-1].setOwner(player);
+									Tile.get$map()[x-3][y].setOwner(player);
+									Tile.get$map()[x-3][y+1].setOwner(player);
+									Tile.get$map()[x-3][y+2].setOwner(player);
+									Tile.get$map()[x-3][y+3].setOwner(player);
+									Tile.get$map()[x-2][y-3].setOwner(player);
+									Tile.get$map()[x-2][y+3].setOwner(player);
+									Tile.get$map()[x-1][y-3].setOwner(player);
+									Tile.get$map()[x-1][y+3].setOwner(player);
+									Tile.get$map()[x][y-3].setOwner(player);
+									Tile.get$map()[x][y+3].setOwner(player);
+									Tile.get$map()[x+1][y-3].setOwner(player);
+									Tile.get$map()[x+1][y+3].setOwner(player);
+									Tile.get$map()[x+2][y-3].setOwner(player);
+									Tile.get$map()[x+2][y+3].setOwner(player);
+									Tile.get$map()[x+3][y-3].setOwner(player);
+									Tile.get$map()[x+3][y-2].setOwner(player);
+									Tile.get$map()[x+3][y-1].setOwner(player);
+									Tile.get$map()[x+3][y].setOwner(player);
+									Tile.get$map()[x+3][y+1].setOwner(player);
+									Tile.get$map()[x+3][y+2].setOwner(player);
+									Tile.get$map()[x+3][y+3].setOwner(player);
 									repaintTiles();
 								}
 							});

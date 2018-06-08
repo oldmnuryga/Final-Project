@@ -2,10 +2,9 @@ package leaders;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
-
-import main.CivilizationGame;
 
 public abstract class Leader {
 	protected String civName;
@@ -14,24 +13,7 @@ public abstract class Leader {
 	protected String abbrevLeaderName;
 	protected ArrayList<String> cityNames;
 	protected Color color;
-	protected ImageIcon grassTile = new ImageIcon(
-			CivilizationGame.class.getClassLoader().getResource("map/resources/grassTile" + civName + ".png"));
-	protected ImageIcon forestTile = new ImageIcon(
-			CivilizationGame.class.getClassLoader().getResource("map/resources/forestTile" + civName + ".png"));
-	protected ImageIcon forest2Tile = new ImageIcon(
-			CivilizationGame.class.getClassLoader().getResource("map/resources/forestTile2" + civName + ".png"));
-	protected ImageIcon mountainTile = new ImageIcon(
-			CivilizationGame.class.getClassLoader().getResource("map/resources/mountainTile" + civName + ".png"));
-	protected ImageIcon sandTile = new ImageIcon(
-			CivilizationGame.class.getClassLoader().getResource("map/resources/sandTile" + civName + ".png"));
-	protected ImageIcon waterTile = new ImageIcon(
-			CivilizationGame.class.getClassLoader().getResource("map/resources/waterTile" + civName + ".png"));
-	protected ImageIcon farmImprovement = new ImageIcon(CivilizationGame.class.getClassLoader()
-			.getResource("improvements/resources/farmImprovement" + civName + ".png"));
-	protected ImageIcon cityOnGreenImprovement = new ImageIcon(CivilizationGame.class.getClassLoader()
-			.getResource("improvements/resources/cityOnGreen" + civName + ".png"));
-	protected ImageIcon cityOnSandImprovement = new ImageIcon(CivilizationGame.class.getClassLoader()
-			.getResource("improvements/resources/cityOnSand" + civName + ".png"));
+	protected ImageIcon grassTile,forestTile,forest2Tile,mountainTile,sandTile,waterTile,farmImprovement,cityOnGreenImprovement,cityOnSandImprovement;
 
 	public String getCivName() {
 		return civName;
@@ -153,4 +135,19 @@ public abstract class Leader {
 		this.cityOnSandImprovement = cityOnSandImprovement;
 	}
 
+	public ImageIcon getTileIconFromID(int ID) {
+		Random rand = new Random();
+		if(ID == 0)
+			return waterTile;
+		else if(ID == 1)
+			return grassTile;
+		else if(ID == 2)
+			return sandTile;
+		else if(ID == 3)
+			return mountainTile;
+		else if(rand.nextInt(100) + 1 > 50)
+			return forestTile;
+		else
+			return forest2Tile;
+	}
 }
