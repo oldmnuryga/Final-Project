@@ -110,6 +110,8 @@ public class CivilizationGame {
 			CivilizationGame.class.getClassLoader().getResource("main/resources/sejongIcon.jpg"));
 	static ImageIcon iconWashington = new ImageIcon(
 			CivilizationGame.class.getClassLoader().getResource("main/resources/washingtonIcon.jpg"));
+	static ImageIcon iconTrophy = new ImageIcon(
+			CivilizationGame.class.getClassLoader().getResource("main/resources/trophy.jpg"));
 
 	public CivilizationGame() {
 		// ADD STUFF
@@ -455,7 +457,7 @@ public class CivilizationGame {
 				"You have won the game.",
 				"Congrats. What's wrong with you? Why are you still here? What are you gaining from this? Do you think this is ok? What the hell is wrong with you? You are so dumb. Weakling. Peasant. Die.",
 				JOptionPane.INFORMATION_MESSAGE,
-				icon);
+				iconTrophy);
 	}
 
 	public Player getPlayer() {
