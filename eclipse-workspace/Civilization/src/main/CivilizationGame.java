@@ -678,4 +678,3 @@ public class CivilizationGame {
 		Tile.get$map()[x][y].setUnitOnTile(null);
 	}
 }
-this is bullshit
