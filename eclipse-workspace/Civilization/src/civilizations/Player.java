@@ -1,10 +1,6 @@
 package civilizations;
 
-import java.beans.beancontext.BeanContext;
 import java.util.ArrayList;
-
-import javax.swing.ImageIcon;
-
 import civilizations.buildings.SpaceshipPart;
 import leaders.Leader;
 import technology.Technology;
@@ -181,10 +177,12 @@ public class Player {
 			Technology technology = Technology.get$technologies().get(i);
 			boolean areResearched = true;
 			for (int j = 0; j < technology.get$comesFrom().size(); j++)
-				if (!(hasTechnology(technology.get$comesFrom().get(i))))
+				if (!(hasTechnology(technology.get$comesFrom().get(j))))
 					areResearched = false;
-			if (areResearched)
+			if (areResearched) {
 				$potentialTechs.add(technology);
+				System.out.println(technology.toString());
+			}
 
 		}
 	}

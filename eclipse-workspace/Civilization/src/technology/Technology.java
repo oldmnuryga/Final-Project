@@ -134,13 +134,11 @@ public class Technology {
 	}
 
 	public static void importTechnologies() {
-		ArrayList<Technology> $allTechnologies = new ArrayList<Technology>();
 		try {
 			FileReader f = new FileReader("src/technology/tree.txt");
 			BufferedReader br = new BufferedReader(f);
 			for (int i = 0; i < NUMBER_OF_TECHNOLOGIES; i++) {
 				String temp = br.readLine();
-				System.out.println(temp);
 				Scanner s = new Scanner(temp).useDelimiter(",");
 				ArrayList<Integer> $tleadsTo = new ArrayList<Integer>();
 				ArrayList<Integer> $tcomesFrom = new ArrayList<Integer>();

@@ -14,6 +14,7 @@ public class civilizationMain {
 	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		Tile.generateMap();
 		sounds.musicPlay();
+		Technology.importTechnologies();
 		CivilizationGame c = new CivilizationGame();
 		c.display();
 	}

@@ -9,6 +9,7 @@ public class Poland extends Leader {
 	// winged hussar (unit) replace lancer
 	// +2 food from cathedral
 	public Poland() {
+		civName = "Poland";
 		leaderName = "Casimir III";
 		abbrevLeaderName = "The Polish";
 		super.leaderID = 4;

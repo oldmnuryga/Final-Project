@@ -9,6 +9,7 @@ public class Mongolia extends Leader {
 	// military strength +10%
 	// +20 hit points per unit
 	public Mongolia() {
+		civName = "Mongolia";
 		leaderName = "Genghis Khan";
 		abbrevLeaderName = "The Mongols";
 		super.leaderID = 3;

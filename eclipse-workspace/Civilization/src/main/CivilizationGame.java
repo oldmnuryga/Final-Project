@@ -112,8 +112,6 @@ public class CivilizationGame {
 			CivilizationGame.class.getClassLoader().getResource("main/resources/washingtonIcon.jpg"));
 	static ImageIcon iconTrophy = new ImageIcon(
 			CivilizationGame.class.getClassLoader().getResource("main/resources/trophy.png"));
-	static ImageIcon grassTilePolandImageIcon = new ImageIcon(
-			CivilizationGame.class.getClassLoader().getResource("map/resources/grassTilePoland.png"));
 
 	public CivilizationGame() {
 		// ADD STUFF
@@ -134,10 +132,10 @@ public class CivilizationGame {
 		titleFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		titleFrame.setLayout(null);
 		title.setBounds(400, 200, 1200, 150);
-		//title.setFont(new Font("Monospaced", Font.BOLD, 70));
+		// title.setFont(new Font("Monospaced", Font.BOLD, 70));
 		title.setFont(new Font("Monospaced", Font.BOLD, 45));
-		//title.setForeground(Color.GREEN);
-		//title.setBackground(Color.BLUE);
+		// title.setForeground(Color.GREEN);
+		// title.setBackground(Color.BLUE);
 		title.setOpaque(true);
 		title.setBorder(null);
 		titleFrame.add(title);
@@ -150,6 +148,7 @@ public class CivilizationGame {
 				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
+				getPlayer().findPotentialTechs();
 				spawnInitialSettler();
 				frame.pack();
 			}
@@ -166,6 +165,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
+				getPlayer().findPotentialTechs();
 				frame.pack();
 			}
 		});
@@ -181,6 +181,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
+				getPlayer().findPotentialTechs();
 				frame.pack();
 			}
 		});
@@ -196,6 +197,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
+				getPlayer().findPotentialTechs();
 				frame.pack();
 			}
 		});
@@ -211,6 +213,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
+				getPlayer().findPotentialTechs();
 				frame.pack();
 			}
 		});
@@ -388,7 +391,7 @@ public class CivilizationGame {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getOwner() != null) {
-					$mapButtons[i][j].setIcon(grassTilePolandImageIcon);
+					$mapButtons[i][j].setIcon(player.getLeader().getGrassTile());
 				} else if (Tile.get$map()[i][j].getUnitOnTile() != null) {
 					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getUnitOnTile().getUnitImageIcon());
 				} else {
@@ -436,30 +439,29 @@ public class CivilizationGame {
 		System.out.println(year);
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
-				if(Tile.get$map()[i][j].getUnitOnTile() != null)
-					Tile.get$map()[i][j].getUnitOnTile().setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
+				if (Tile.get$map()[i][j].getUnitOnTile() != null)
+					Tile.get$map()[i][j].getUnitOnTile()
+							.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
 			}
 		}
 	}
 
 	public void changeYear() {
-		if(turns == 1)
+		if (turns == 1)
 			year = -3000;
 		else
-			year = (int) (962 * Math.log(turns) - 479)-3000;
+			year = (int) (962 * Math.log(turns) - 479) - 3000;
 		updateTurnText();
-		if(turns > 300) {
+		if (turns > 300) {
 			endGame();
 		}
 	}
 
 	public void endGame() {
-		//custom title, custom icon
-		JOptionPane.showMessageDialog(frame,
-				"You have won the game.",
+		// custom title, custom icon
+		JOptionPane.showMessageDialog(frame, "You have won the game.",
 				"Congrats. What's wrong with you? Why are you still here? What are you gaining from this? Do you think this is ok? What the hell is wrong with you? You are so dumb. Weakling. Peasant. Die.",
-				JOptionPane.INFORMATION_MESSAGE,
-				iconTrophy);
+				JOptionPane.INFORMATION_MESSAGE, iconTrophy);
 	}
 
 	public Player getPlayer() {
@@ -490,12 +492,13 @@ public class CivilizationGame {
 			} catch (LineUnavailableException e1) {
 				e1.printStackTrace();
 			}
-			//SETTLER CHECK
+			// SETTLER CHECK
 			for (int i = 0; i < $mapButtons.length; i++) {
 				for (int j = 0; j < $mapButtons[i].length; j++) {
 					if (e.getSource() == $mapButtons[i][j]) {
-						if (Tile.get$map()[i][j].getUnitOnTile() != null && Tile.get$map()[i][j].getUnitOnTile().getUnitID() == 18) {
-							//$mapButtons[i][j].getIcon().equals(player.getOwnedUnitfromID(18).getUnitImageIcon())
+						if (Tile.get$map()[i][j].getUnitOnTile() != null
+								&& Tile.get$map()[i][j].getUnitOnTile().getUnitID() == 18) {
+							// $mapButtons[i][j].getIcon().equals(player.getOwnedUnitfromID(18).getUnitImageIcon())
 							int x = i;
 							int y = j;
 							$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("P"), "found");
@@ -511,7 +514,7 @@ public class CivilizationGame {
 				}
 			}
 
-			//UNIT MOVEMENT
+			// UNIT MOVEMENT
 			for (int i = 0; i < $mapButtons.length; i++) {
 				for (int j = 0; j < $mapButtons[i].length; j++) {
 					int x = i;
@@ -520,14 +523,14 @@ public class CivilizationGame {
 						$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("W"), "up");
 						$mapButtons[i][j].getActionMap().put("up", new AbstractAction() {
 							public void actionPerformed(ActionEvent e) {
-								if(x > 1) {
-									if(canMove(Tile.get$map()[x][y].getUnitOnTile(), x, y, -1, 0)) {
+								if (x > 1) {
+									if (canMove(Tile.get$map()[x][y].getUnitOnTile(), x, y, -1, 0)) {
 										calculateMovesLeft(Tile.get$map()[x][y].getUnitOnTile(), x, y, -1, 0);
 										Tile.get$map()[x - 1][y].setUnitOnTile(Tile.get$map()[x][y].getUnitOnTile());
 										Tile.get$map()[x - 1][y].getUnitOnTile().setLocation(Tile.get$map()[x - 1][y]);
 										Tile.get$map()[x][y].setUnitOnTile(null);
-										//$mapButtons[x - 1][y].setSelected(true);
-										//$mapButtons[x][y].setSelected(false);
+										// $mapButtons[x - 1][y].setSelected(true);
+										// $mapButtons[x][y].setSelected(false);
 									}
 								}
 								repaintTiles();
@@ -536,14 +539,14 @@ public class CivilizationGame {
 						$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("A"), "left");
 						$mapButtons[i][j].getActionMap().put("left", new AbstractAction() {
 							public void actionPerformed(ActionEvent e) {
-								if(y > 1) {
-									if(canMove(Tile.get$map()[x][y].getUnitOnTile(), x, y, 0, -1)) {
+								if (y > 1) {
+									if (canMove(Tile.get$map()[x][y].getUnitOnTile(), x, y, 0, -1)) {
 										calculateMovesLeft(Tile.get$map()[x][y].getUnitOnTile(), x, y, 0, -1);
 										Tile.get$map()[x][y - 1].setUnitOnTile(Tile.get$map()[x][y].getUnitOnTile());
 										Tile.get$map()[x][y - 1].getUnitOnTile().setLocation(Tile.get$map()[x][y - 1]);
 										Tile.get$map()[x][y].setUnitOnTile(null);
-										//$mapButtons[x][y - 1].setSelected(true);
-										//$mapButtons[x][y].setSelected(false);
+										// $mapButtons[x][y - 1].setSelected(true);
+										// $mapButtons[x][y].setSelected(false);
 									}
 								}
 								repaintTiles();
@@ -552,14 +555,14 @@ public class CivilizationGame {
 						$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("S"), "down");
 						$mapButtons[i][j].getActionMap().put("down", new AbstractAction() {
 							public void actionPerformed(ActionEvent e) {
-								if(x < Tile.getMAP_SIZE() - 2) {
-									if(canMove(Tile.get$map()[x][y].getUnitOnTile(), x, y, 1, 0)) {
+								if (x < Tile.getMAP_SIZE() - 2) {
+									if (canMove(Tile.get$map()[x][y].getUnitOnTile(), x, y, 1, 0)) {
 										calculateMovesLeft(Tile.get$map()[x][y].getUnitOnTile(), x, y, 1, 0);
 										Tile.get$map()[x + 1][y].setUnitOnTile(Tile.get$map()[x][y].getUnitOnTile());
 										Tile.get$map()[x + 1][y].getUnitOnTile().setLocation(Tile.get$map()[x + 1][y]);
 										Tile.get$map()[x][y].setUnitOnTile(null);
-										//$mapButtons[x + 1][y].setSelected(true);
-										//$mapButtons[x][y].setSelected(false);
+										// $mapButtons[x + 1][y].setSelected(true);
+										// $mapButtons[x][y].setSelected(false);
 									}
 								}
 								repaintTiles();
@@ -568,14 +571,14 @@ public class CivilizationGame {
 						$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("D"), "right");
 						$mapButtons[i][j].getActionMap().put("right", new AbstractAction() {
 							public void actionPerformed(ActionEvent e) {
-								if(y < Tile.getMAP_SIZE() - 2) {
-									if(canMove(Tile.get$map()[x][y].getUnitOnTile(), x, y, 0, 1)) {
+								if (y < Tile.getMAP_SIZE() - 2) {
+									if (canMove(Tile.get$map()[x][y].getUnitOnTile(), x, y, 0, 1)) {
 										calculateMovesLeft(Tile.get$map()[x][y].getUnitOnTile(), x, y, 0, 1);
 										Tile.get$map()[x][y + 1].setUnitOnTile(Tile.get$map()[x][y].getUnitOnTile());
 										Tile.get$map()[x][y + 1].getUnitOnTile().setLocation(Tile.get$map()[x][y + 1]);
 										Tile.get$map()[x][y].setUnitOnTile(null);
-										//$mapButtons[x][y + 1].setSelected(true);
-										//$mapButtons[x][y].setSelected(false);
+										// $mapButtons[x][y + 1].setSelected(true);
+										// $mapButtons[x][y].setSelected(false);
 									}
 								}
 								repaintTiles();
@@ -588,7 +591,8 @@ public class CivilizationGame {
 	}
 
 	public boolean canMove(Unit unit, int x, int y, int horizontalMod, int verticalMod) {
-		if(unit.getMovesLeft() - Tile.get$map()[x + horizontalMod][y + verticalMod].getMovesRequired() >= 0 && Tile.get$map()[x + horizontalMod][y + verticalMod].isCrossable())
+		if (unit.getMovesLeft() - Tile.get$map()[x + horizontalMod][y + verticalMod].getMovesRequired() >= 0
+				&& Tile.get$map()[x + horizontalMod][y + verticalMod].isCrossable())
 			return true;
 		else
 			return false;
@@ -599,7 +603,7 @@ public class CivilizationGame {
 	}
 
 	public void removeUnit(int x, int y) {
-		//Tile.get$map()[x][y].getUnitOnTile().removeUnit();
+		// Tile.get$map()[x][y].getUnitOnTile().removeUnit();
 		ArrayList $tempArr = Tile.get$map()[x][y].getUnitOnTile().getOwner().get$units();
 		$tempArr.remove(Tile.get$map()[x][y].getUnitOnTile());
 		Tile.get$map()[x][y].getUnitOnTile().getOwner().set$units($tempArr);
