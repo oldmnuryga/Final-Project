@@ -2,12 +2,14 @@ package units;
 
 import javax.swing.ImageIcon;
 
+import civilizations.Player;
 import map.Tile;
 
 public class Warrior extends Unit {
 
-	public Warrior() {
+	public Warrior(Player player) {
 		super.unitID = 23;
+		super.owner = player;
 		super.hitpoints = 30;
 		super.attackRating = 8;
 		super.productionCost = 40;
