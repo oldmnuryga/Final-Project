@@ -3,7 +3,6 @@ package units;
 import javax.swing.ImageIcon;
 
 import civilizations.Player;
-import map.Tile;
 
 public class Warrior extends Unit {
 
@@ -18,6 +17,7 @@ public class Warrior extends Unit {
 		super.alive = true;
 		super.fortified = false;
 		super.maxMovement = 2;
+		super.movesLeft = 2;
 		super.maintenance = 1;
 		super.isAir = false;
 		super.isGround = true;
@@ -25,5 +25,6 @@ public class Warrior extends Unit {
 		super.isSelected = false;
 		super.unitName = "Warrior";
 		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Warrior.png"));
+		player.addUnit(this);
 	}
 }

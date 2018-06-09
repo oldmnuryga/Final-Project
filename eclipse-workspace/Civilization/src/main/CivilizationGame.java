@@ -1,5 +1,6 @@
 package main;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -39,6 +40,7 @@ import sound.sounds;
 import technology.Technology;
 import units.Settler;
 import units.Unit;
+import units.Warrior;
 
 public class CivilizationGame {
 	public static int turns = 1;
@@ -49,6 +51,10 @@ public class CivilizationGame {
 
 	// PLAYER INFO
 	private Player player;
+
+	//UNIT GENERATION:
+	private int settlerTempX;
+	private int settlerTempY;
 
 	// JGRAPHICS CONSTRUCTORS
 	private JFrame frame = new JFrame("Society Simulator VII");
@@ -72,9 +78,9 @@ public class CivilizationGame {
 	private JButton btnGenghis = new JButton(iconGenghis);
 	private JButton btnSejong = new JButton(iconSejong);
 	private JButton btnWashington = new JButton(iconWashington);
-	private JLabel lblGenghis = new JLabel("Genghis Khan"), lblWashington = new JLabel("Washington"),
-			lblSejong = new JLabel("Sejong"), lblMussolini = new JLabel("Mussolini"),
-			lblCasimir = new JLabel("Casimir III");
+	private JLabel lblGenghis = new JLabel("MONGOLIA"), lblWashington = new JLabel("AMERICA"),
+			lblSejong = new JLabel("KOREA"), lblMussolini = new JLabel("ITALY"),
+			lblCasimir = new JLabel("POLAND");
 
 	private JPanel leftPanel = new JPanel(); // 200 from right
 	private JPanel topPanel = new JPanel(); // 50 from top
@@ -183,12 +189,10 @@ public class CivilizationGame {
 		// title.setForeground(Color.GREEN);
 		// title.setBackground(Color.BLUE);
 		JLabel background = new JLabel();
-		background.setIcon(background1);
-		background.setBounds(0, 0, 1920, 1015);
-		titleFrame.add(background);
 		lblGenghis.setFont(new Font("Monospaced", Font.ITALIC, 20));
-		lblGenghis.setBounds(250, 580, 165, 30);
-		btnGenghis.setBounds(250, 605, 165, 251);
+		lblGenghis.setForeground(Color.WHITE);
+		lblGenghis.setBounds(300, 580, 165, 30);
+		btnGenghis.setBounds(300, 605, 165, 251);
 		btnGenghis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setPlayer(new Player(new Mongolia()));
@@ -197,14 +201,16 @@ public class CivilizationGame {
 				frame.setVisible(true);
 				getPlayer().findPotentialTechs();
 				spawnInitialSettler();
+				spawnInitialWarrior();
 				frame.pack();
 			}
 		});
 		titleFrame.add(btnGenghis);
 		titleFrame.add(lblGenghis);
 		lblWashington.setFont(new Font("Monospaced", Font.ITALIC, 20));
-		lblWashington.setBounds(504, 580, 200, 30);
-		btnWashington.setBounds(504, 605, 165, 251);
+		lblWashington.setForeground(Color.WHITE);
+		lblWashington.setBounds(600, 580, 200, 30);
+		btnWashington.setBounds(600, 605, 165, 251);
 		btnWashington.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setPlayer(new Player(new America()));
@@ -212,6 +218,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
+				spawnInitialWarrior();
 				getPlayer().findPotentialTechs();
 				frame.pack();
 			}
@@ -219,8 +226,9 @@ public class CivilizationGame {
 		titleFrame.add(btnWashington);
 		titleFrame.add(lblWashington);
 		lblSejong.setFont(new Font("Monospaced", Font.ITALIC, 20));
-		lblSejong.setBounds(758, 580, 165, 30);
-		btnSejong.setBounds(758, 605, 165, 251);
+		lblSejong.setForeground(Color.WHITE);
+		lblSejong.setBounds(900, 580, 165, 30);
+		btnSejong.setBounds(900, 605, 165, 251);
 		btnSejong.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setPlayer(new Player(new Korea()));
@@ -228,6 +236,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
+				spawnInitialWarrior();
 				getPlayer().findPotentialTechs();
 				frame.pack();
 			}
@@ -235,8 +244,9 @@ public class CivilizationGame {
 		titleFrame.add(btnSejong);
 		titleFrame.add(lblSejong);
 		lblMussolini.setFont(new Font("Monospaced", Font.ITALIC, 20));
-		lblMussolini.setBounds(1012, 580, 165, 30);
-		btnMussolini.setBounds(1012, 605, 165, 251);
+		lblMussolini.setForeground(Color.WHITE);
+		lblMussolini.setBounds(1200, 580, 165, 30);
+		btnMussolini.setBounds(1200, 605, 165, 251);
 		btnMussolini.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setPlayer(new Player(new Italy()));
@@ -244,6 +254,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
+				spawnInitialWarrior();
 				getPlayer().findPotentialTechs();
 				frame.pack();
 			}
@@ -251,8 +262,9 @@ public class CivilizationGame {
 		titleFrame.add(btnMussolini);
 		titleFrame.add(lblMussolini);
 		lblCasimir.setFont(new Font("Monospaced", Font.ITALIC, 20));
-		lblCasimir.setBounds(1266, 580, 165, 30);
-		btnCasimir.setBounds(1266, 605, 165, 251);
+		lblCasimir.setForeground(Color.WHITE);
+		lblCasimir.setBounds(1500, 580, 165, 30);
+		btnCasimir.setBounds(1500, 605, 165, 251);
 		btnCasimir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setPlayer(new Player(new Poland()));
@@ -260,16 +272,19 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
+				spawnInitialWarrior();
 				getPlayer().findPotentialTechs();
 				frame.pack();
 			}
 		});
 		titleFrame.add(btnCasimir);
 		titleFrame.add(lblCasimir);
-
+		background.setIcon(background1);
+		background.setBounds(0, 0, 1920, 1015);
+		titleFrame.add(background);
 		titleFrame.setVisible(true);
 
-		// game GUI
+		//Game GUI
 		btnEndTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				endTurn();
@@ -279,7 +294,7 @@ public class CivilizationGame {
 		});
 
 		JTabbedPane tbpneInstructions = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
-		JTextArea panel1 = new JTextArea("Welcome to P'jephphrey B's : Society Simulator VII. " + "\n"
+		JTextArea panel1 = new JTextArea("Welcome to Society Simulator VII. " + "\n"
 				+ "The aim of this game is to find a city and grow as much as " + "\n"
 				+ "possible while staying out of debt. To begin the game, a settler" + "\n"
 				+ "is given to you in a random place. If you would like, the settler" + "\n"
@@ -424,7 +439,7 @@ public class CivilizationGame {
 	public void updateYearText() {
 		lblYear.setText("Year: " + Math.abs(year) + ((year < 0)? " BC" : " AD"));
 	}
-	
+
 	public void updateFoodText() {
 		int foodTotal = 0;
 		for (int i = 0; i < player.get$cities().size(); i++) {
@@ -437,7 +452,7 @@ public class CivilizationGame {
 		}
 		lblFood.setText("Food: " + foodTotal);
 	}
-	
+
 	public void updateGoldText() {
 		int goldTotal = 0;
 		for (int i = 0; i < player.get$cities().size(); i++) {
@@ -450,7 +465,7 @@ public class CivilizationGame {
 		}
 		lblGold.setText("Gold: " + goldTotal);
 	}
-	
+
 	public void updateProductionText() {
 		int scienceTotal = 0;
 		for (int i = 0; i < player.get$cities().size(); i++) {
@@ -463,7 +478,7 @@ public class CivilizationGame {
 		}
 		lblProduction.setText("Production: " + scienceTotal);
 	}
-	
+
 	public void updateScienceText() {
 		int scienceTotal = 0;
 		for (int i = 0; i < player.get$cities().size(); i++) {
@@ -476,7 +491,7 @@ public class CivilizationGame {
 		}
 		lblResearch.setText("Science: " + scienceTotal);
 	}
-	
+
 	public void updateHappinessText() {
 		int happinessTotal = 0;
 		for (int i = 0; i < player.get$cities().size(); i++) {
@@ -511,6 +526,22 @@ public class CivilizationGame {
 				pnePlayerStats.add(new JLabel(player.get$units().get(i).getUnitName()));
 			}
 
+	}
+
+	public int getSettlerTempX() {
+		return settlerTempX;
+	}
+
+	public void setSettlerTempX(int settlerTempX) {
+		this.settlerTempX = settlerTempX;
+	}
+
+	public int getSettlerTempY() {
+		return settlerTempY;
+	}
+
+	public void setSettlerTempY(int settlerTempY) {
+		this.settlerTempY = settlerTempY;
 	}
 
 	public void repaintTiles() {
@@ -558,6 +589,8 @@ public class CivilizationGame {
 			if (Tile.get$map()[tempX][tempY].getTerrainID() == 1) {
 				Tile.get$map()[tempX][tempY].setUnitOnTile(new Settler(player));
 				Tile.get$map()[tempX][tempY].getUnitOnTile().setSelected(true);
+				setSettlerTempX(tempX);
+				setSettlerTempY(tempY);
 				int[] temp = { tempX, tempY };
 				Tile.get$map()[tempX][tempY].set$location(temp);
 				Tile.get$map()[tempX][tempY].getUnitOnTile().setLocation(Tile.get$map()[tempX][tempY]);
@@ -566,6 +599,29 @@ public class CivilizationGame {
 			}
 		}
 	}
+
+	public void spawnInitialWarrior() {
+		boolean found = true;
+		int i = 1;
+		int z = 1;
+		while (found) {
+			while(Tile.get$map()[settlerTempX + i][settlerTempY + z].getTerrainID() != 1) {
+				if(i % 2 == 0)
+					i++;
+				else
+					z++;
+			}
+			settlerTempY = settlerTempY + z;
+			settlerTempX = settlerTempX + i;
+				Tile.get$map()[settlerTempX][settlerTempY].setUnitOnTile(new Warrior(player));
+				int[] temp = { settlerTempX, settlerTempY };
+				Tile.get$map()[settlerTempX][settlerTempY].set$location(temp);
+				Tile.get$map()[settlerTempX][settlerTempY].getUnitOnTile().setLocation(Tile.get$map()[settlerTempX][settlerTempY]);
+				found = false;
+			//	Tile.get$map()[settlerTempX][settlerTempY].getUnitOnTile().setUnitImageIcon(Warrior.getUnitImageIcon());
+				repaintTiles();
+			}
+		}
 
 	public void endTurn() {
 		turns++;
@@ -688,15 +744,15 @@ public class CivilizationGame {
 							$mapButtons[i][j].getActionMap().put("found", new AbstractAction() {
 								public void actionPerformed(ActionEvent e) {
 									try {
-									((Settler) getPlayer().getOwnedUnitfromID(18)).foundCity(player.get$cities().size());
-									removeUnit(x, y);
-									repaintTiles();
-									/*City c = new City(player, Tile.get$map()[x][y]);
+										((Settler) getPlayer().getOwnedUnitfromID(18)).foundCity(player.get$cities().size());
+										removeUnit(x, y);
+										repaintTiles();
+										/*City c = new City(player, Tile.get$map()[x][y]);
 									ArrayList<City> $city = new ArrayList<City>();
 									$city.add(c);
 									player.set$cities($city);*/
-									frPickResearch.setVisible(true);
-									frPickResearch.pack();
+										frPickResearch.setVisible(true);
+										frPickResearch.pack();
 									} catch (Exception ef) {
 										JOptionPane.showMessageDialog(frame, "There is no settler to found a city");
 									}
@@ -858,13 +914,13 @@ public class CivilizationGame {
 
 	public boolean canMove(Unit unit, int x, int y, int horizontalMod, int verticalMod){
 		try {
-		if (unit.getMovesLeft() - Tile.get$map()[x + horizontalMod][y + verticalMod].getMovesRequired() >= 0
-				&& Tile.get$map()[x + horizontalMod][y + verticalMod].isCrossable())
-			return true;
-		else
-			return false;
+			if (unit.getMovesLeft() - Tile.get$map()[x + horizontalMod][y + verticalMod].getMovesRequired() >= 0
+					&& Tile.get$map()[x + horizontalMod][y + verticalMod].isCrossable())
+				return true;
+			else
+				return false;
 		} catch (Exception e) {
-			
+
 		}
 		return false;
 	}

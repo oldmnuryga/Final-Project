@@ -225,7 +225,7 @@ public abstract class Unit {
 		this.owner = owner;
 	}
 
-	public ImageIcon getUnitImageIcon() {
+	public static ImageIcon getUnitImageIcon() {
 		return unitImageIcon;
 	}
 
