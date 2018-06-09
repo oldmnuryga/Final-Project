@@ -292,7 +292,8 @@ public class City {
 	public boolean hasWonder(int wonderID) {
 		for (int i = 0; i < $wonders.size(); i++)
 			if ($wonders.get(i).getWonderID() == wonderID)
-				return true;
+				if (!(owner.hasTechnology($wonders.get(i).getTechObsoletionID())))
+					return true;
 		return false;
 	}
 

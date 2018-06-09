@@ -31,6 +31,6 @@ public class CancerCure extends Wonder {
 	}
 
 	public void obsoleteAbility() {
-
+		owner.setHappiness(owner.getHappiness() - addedHappiness);
 	}
 }

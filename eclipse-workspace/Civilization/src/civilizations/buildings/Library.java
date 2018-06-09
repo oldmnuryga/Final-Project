@@ -14,7 +14,7 @@ public class Library extends Building {
 		productionRequirement = 80;
 		goldMaintenance = 1;
 		techRequired = 11;
-		addedScience = location.getScienceRate() * 0.5;
+		addedScience = decideScienceRate();
 	}
 
 	public double getAddedScience() {
@@ -32,5 +32,12 @@ public class Library extends Building {
 	public void removeAbility() {
 		location.setScienceRate(location.getScienceRate() - addedScience);
 
+	}
+
+	public double decideScienceRate() {
+		double scienceRate = location.getScienceRate() * 0.5;
+		if (location.hasWonder(8))
+			scienceRate *= 1.666;
+		return scienceRate;
 	}
 }

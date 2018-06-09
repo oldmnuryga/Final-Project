@@ -14,7 +14,7 @@ public class University extends Building {
 		productionRequirement = 160;
 		goldMaintenance = 3;
 		techRequired = 28;
-		addedScience = location.getScienceRate() * 0.5;
+		addedScience = decideScienceRate();
 	}
 
 	public double getAddedScience() {
@@ -32,5 +32,11 @@ public class University extends Building {
 	public void removeAbility() {
 		location.setScienceRate(location.getScienceRate() - addedScience);
 
+	}
+	public double decideScienceRate() {
+		double scienceRate = location.getScienceRate() * 0.5;
+		if (location.hasWonder(8))
+			scienceRate *= 1.666;
+		return scienceRate;
 	}
 }

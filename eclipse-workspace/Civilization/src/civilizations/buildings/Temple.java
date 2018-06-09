@@ -9,8 +9,8 @@ public class Temple extends Building {
 	public Temple(City city) {
 		buildingID = 12;
 		location = city;
-		name = "Nuclear Plant.";
-		description = "Production +50%.";
+		name = "Temple";
+		description = "Increases Happiness.";
 		productionRequirement = 160;
 		goldMaintenance = 2;
 		techRequired = 65;
@@ -29,7 +29,7 @@ public class Temple extends Building {
 		double happiness = 1.0;
 		if (location.getOwner().hasTechnology(8))
 			happiness = 2.0;
-		if (location.hasWonder(15))
+		if (location.hasWonder(9))
 			happiness *= 2.0;
 		return happiness;
 	}

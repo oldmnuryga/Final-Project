@@ -6,7 +6,7 @@ import civilizations.buildings.Temple;
 
 public class Oracle extends Wonder {
 	public Oracle(City city) {
-		wonderID = 15;
+		wonderID = 9;
 		location = city;
 		owner = location.getOwner();
 		name = "Oracle";
