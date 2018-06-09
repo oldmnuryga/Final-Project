@@ -506,25 +506,28 @@ public class CivilizationGame {
 							Tile.get$map()[i + tempX][j + tempY].setOwner(player);
 							repaintTiles();
 						}
-
-						if (Tile.get$map()[i - 2][j - 2].getOwner().equals(player)
-								&& Tile.get$map()[i - 2][j - 1].getOwner().equals(player)
-								&& Tile.get$map()[i - 2][j].getOwner().equals(player)
-								&& Tile.get$map()[i - 2][j + 1].getOwner().equals(player)
-								&& Tile.get$map()[i - 2][j + 2].getOwner().equals(player)
-								&& Tile.get$map()[i - 1][j - 2].getOwner().equals(player)
-								&& Tile.get$map()[i - 1][j + 2].getOwner().equals(player)
-								&& Tile.get$map()[i][j - 2].getOwner().equals(player)
-								&& Tile.get$map()[i][j + 2].getOwner().equals(player)
-								&& Tile.get$map()[i + 1][j - 2].getOwner().equals(player)
-								&& Tile.get$map()[i + 1][j + 2].getOwner().equals(player)
-								&& Tile.get$map()[i + 2][j - 2].getOwner().equals(player)
-								&& Tile.get$map()[i + 2][j - 1].getOwner().equals(player)
-								&& Tile.get$map()[i + 2][j].getOwner().equals(player)
-								&& Tile.get$map()[i + 2][j + 1].getOwner().equals(player)
-								&& Tile.get$map()[i + 2][j + 2].getOwner().equals(player)) {
-							x += 2;
-							y += 2;
+						try {
+							if (Tile.get$map()[i - 2][j - 2].getOwner().equals(player)
+									&& Tile.get$map()[i - 2][j - 1].getOwner().equals(player)
+									&& Tile.get$map()[i - 2][j].getOwner().equals(player)
+									&& Tile.get$map()[i - 2][j + 1].getOwner().equals(player)
+									&& Tile.get$map()[i - 2][j + 2].getOwner().equals(player)
+									&& Tile.get$map()[i - 1][j - 2].getOwner().equals(player)
+									&& Tile.get$map()[i - 1][j + 2].getOwner().equals(player)
+									&& Tile.get$map()[i][j - 2].getOwner().equals(player)
+									&& Tile.get$map()[i][j + 2].getOwner().equals(player)
+									&& Tile.get$map()[i + 1][j - 2].getOwner().equals(player)
+									&& Tile.get$map()[i + 1][j + 2].getOwner().equals(player)
+									&& Tile.get$map()[i + 2][j - 2].getOwner().equals(player)
+									&& Tile.get$map()[i + 2][j - 1].getOwner().equals(player)
+									&& Tile.get$map()[i + 2][j].getOwner().equals(player)
+									&& Tile.get$map()[i + 2][j + 1].getOwner().equals(player)
+									&& Tile.get$map()[i + 2][j + 2].getOwner().equals(player)) {
+								x += 2;
+								y += 2;
+							}
+						} catch (NullPointerException e) {
+							
 						}
 					}
 				}
