@@ -153,8 +153,9 @@ public class CivilizationGame {
 			$research[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					int cost = Technology.get$technologies().get(q).getScienceCost();
-					int turnsTo = (cost / (int) City.getScienceRate())+1;
-					
+/*					int turnsTo = (cost / (int) player.get$cities().get(0).getScienceRate())+1;
+					System.out.println(turnsTo);*/
+					frPickResearch.setVisible(false);
 				}
 			});
 			boolean can = false;
@@ -623,6 +624,10 @@ public class CivilizationGame {
 									((Settler) getPlayer().getOwnedUnitfromID(18)).foundCity();
 									removeUnit(x, y);
 									repaintTiles();
+									/*City c = new City(player, Tile.get$map()[x][y]);
+									ArrayList<City> $city = new ArrayList<City>();
+									$city.add(c);
+									player.set$cities($city);*/
 									frPickResearch.setVisible(true);
 									frPickResearch.pack();
 								}
