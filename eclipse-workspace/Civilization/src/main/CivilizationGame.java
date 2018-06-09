@@ -58,7 +58,7 @@ public class CivilizationGame {
 	private JLabel lblHappiness = new JLabel("Happiness: ");
 	private JLabel lblTurns = new JLabel("Turns: " + turns);
 	private JLabel lblFood = new JLabel("Food: ");
-	private JLabel lblYear = new JLabel("Year: " + year);
+	private JLabel lblYear = new JLabel("3000 BC");
 	private JFrame frPickResearch = new JFrame("Research");
 	private JButton[] $research = new JButton[Technology.getNumberOfTechnologies()];
 
@@ -424,7 +424,7 @@ public class CivilizationGame {
 	}
 
 	public void updateYearText() {
-		lblYear.setText("Year: " + year);
+		lblYear.setText("Year: " + Math.abs(year) + ((year < 0)? " BC" : " AD"));
 	}
 
 	public void updatePlayerStats() {
