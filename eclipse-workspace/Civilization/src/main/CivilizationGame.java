@@ -457,7 +457,7 @@ public class CivilizationGame {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getUnitOnTile() != null)
 					Tile.get$map()[i][j].getUnitOnTile()
-							.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
+					.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
 			}
 		}
 	}
@@ -505,20 +505,33 @@ public class CivilizationGame {
 							Tile.get$map()[i+tempX][j+tempY].setOwner(player);
 							repaintTiles();
 						}
-						for(int k = -2; k < 3; k++) {
-							for(int q = -2; q < 3; q++) {
-								if(Tile.get$map()[i+k][j+q].getOwner().equals(player)) {
-									x+=2;
-									y+=2;
-								}
-							}
+						
+						if(Tile.get$map()[i-2][j-2].getOwner().equals(player) && 
+								Tile.get$map()[i-2][j-1].getOwner().equals(player) &&
+								Tile.get$map()[i-2][j].getOwner().equals(player) &&
+								Tile.get$map()[i-2][j+1].getOwner().equals(player) &&
+								Tile.get$map()[i-2][j+2].getOwner().equals(player) &&
+								Tile.get$map()[i-1][j-2].getOwner().equals(player) &&
+								Tile.get$map()[i-1][j+2].getOwner().equals(player) &&
+								Tile.get$map()[i][j-2].getOwner().equals(player) &&
+								Tile.get$map()[i][j+2].getOwner().equals(player) &&
+								Tile.get$map()[i+1][j-2].getOwner().equals(player) &&
+								Tile.get$map()[i+1][j+2].getOwner().equals(player) &&
+								Tile.get$map()[i+2][j-2].getOwner().equals(player) &&
+								Tile.get$map()[i+2][j-1].getOwner().equals(player) &&
+								Tile.get$map()[i+2][j].getOwner().equals(player) &&
+								Tile.get$map()[i+2][j+1].getOwner().equals(player) &&
+								Tile.get$map()[i+2][j+2].getOwner().equals(player)) {
+							x+=2;
+							y+=2;
 						}
 					}
 				}
 			}
 		}
 	}
-	
+
+
 	public void set$mapButtons(JButton[][] $mapButtons) {
 		this.$mapButtons = $mapButtons;
 	}
@@ -692,7 +705,7 @@ public class CivilizationGame {
 				}
 
 			// CITY SCREEN
-/*			for (int k = 0; k < $mapButtons.length; k++) {
+			/*			for (int k = 0; k < $mapButtons.length; k++) {
 				for (int k2 = 0; k2 < $mapButtons.length; k2++) {
 					if (e.getSource() == $mapButtons[k][k2]) {
 						if (condition) {
