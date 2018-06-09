@@ -133,24 +133,26 @@ public class CivilizationGame {
 
 		// Research screen
 		
-		frPickResearch.setPreferredSize(new Dimension(1000,600));
+		frPickResearch.setPreferredSize(new Dimension(1350,950));
 		frPickResearch.setLayout(null);
-		frPickResearch.setVisible(true);
+		frPickResearch.setVisible(false);
 		
+		int tx = 15, ty = 15;
 		for(int i = 0; i < Technology.get$technologies().size(); i++) {
 			$research[i] = new JButton(Technology.get$technologies().get(i).getName());
-			int tx = 15, ty = 15;
-			$research[i].setBounds(tx,ty,100,75);
+			$research[i].setBounds(tx,ty,150,75);
 			frPickResearch.add($research[i]);
-			tx+= 115;
-			if(tx % 935 == 0) 
+			tx+= 165;
+			if(tx % 1335 == 0) {
 				ty+=100;
+				tx=15;
+			}
 			
-			//if(!Technology.get$technologies().get(i).isAchievable()) 
-			//	$research[i].setEnabled(false);
+			if(!Technology.get$technologies().get(i).isAchievable()) 
+				$research[i].setEnabled(false);
 			
 		}
-		frPickResearch.pack();
+
 		
 		// Title screen
 		titleFrame.setPreferredSize(new Dimension(1920, 1015));
@@ -600,6 +602,8 @@ public class CivilizationGame {
 									((Settler) getPlayer().getOwnedUnitfromID(18)).foundCity();
 									removeUnit(x, y);
 									repaintTiles();
+									frPickResearch.setVisible(true);
+									frPickResearch.pack();
 								}
 							});
 						}
