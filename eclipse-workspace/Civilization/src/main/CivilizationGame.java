@@ -56,6 +56,7 @@ public class CivilizationGame {
 	private JLabel lblHappiness = new JLabel("Happiness: ");
 	private JLabel lblTurns = new JLabel("Turns: " + turns);
 	private JLabel lblFood = new JLabel("Food: ");
+	private JLabel lblYear = new JLabel("Year: " + year);
 
 	private JButton btnEndTurn = new JButton("End Turn");
 	private JButton btnShowInstructions = new JButton("How to Play the Game");
@@ -310,7 +311,7 @@ public class CivilizationGame {
 				frInstructions.setVisible(true);
 			}
 		});
-		btnShowInstructions.setBounds(1600, 0, 200, 50);
+		btnShowInstructions.setBounds(1700, 0, 200, 50);
 		frame.add(btnShowInstructions);
 		pnePlayerStats.setBounds(0, 50, 200, 500);
 		frame.add(pnePlayerStats);
@@ -326,6 +327,8 @@ public class CivilizationGame {
 		frame.add(lblFood);
 		lblTurns.setBounds(1450, 0, 150, 50);
 		frame.add(lblTurns);
+		lblYear.setBounds(1600,0, 150, 50);
+		frame.add(lblYear);
 		btnEndTurn.setBounds(0, 850, 200, 75);
 		frame.add(btnEndTurn);
 
@@ -370,6 +373,10 @@ public class CivilizationGame {
 
 	public void updateTurnText() {
 		lblTurns.setText("Turns: " + turns);
+	}
+	
+	public void updateYearText() {
+		lblYear.setText("Year: " + year);
 	}
 
 	public void updatePlayerStats() {
@@ -452,6 +459,7 @@ public class CivilizationGame {
 	public void endTurn() {
 		turns++;
 		changeYear();
+		updateYearText();
 		System.out.println(year);
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
