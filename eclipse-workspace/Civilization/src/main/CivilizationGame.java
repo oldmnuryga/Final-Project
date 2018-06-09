@@ -687,6 +687,7 @@ public class CivilizationGame {
 							$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("P"), "found");
 							$mapButtons[i][j].getActionMap().put("found", new AbstractAction() {
 								public void actionPerformed(ActionEvent e) {
+									try {
 									((Settler) getPlayer().getOwnedUnitfromID(18)).foundCity(player.get$cities().size());
 									removeUnit(x, y);
 									repaintTiles();
@@ -696,6 +697,9 @@ public class CivilizationGame {
 									player.set$cities($city);*/
 									frPickResearch.setVisible(true);
 									frPickResearch.pack();
+									} catch (Exception ef) {
+										JOptionPane.showMessageDialog(frame, "There is no settler to found a city");
+									}
 								}
 							});
 						}
@@ -852,12 +856,17 @@ public class CivilizationGame {
 		}
 	}
 
-	public boolean canMove(Unit unit, int x, int y, int horizontalMod, int verticalMod) {
+	public boolean canMove(Unit unit, int x, int y, int horizontalMod, int verticalMod){
+		try {
 		if (unit.getMovesLeft() - Tile.get$map()[x + horizontalMod][y + verticalMod].getMovesRequired() >= 0
 				&& Tile.get$map()[x + horizontalMod][y + verticalMod].isCrossable())
 			return true;
 		else
 			return false;
+		} catch (Exception e) {
+			
+		}
+		return false;
 	}
 
 	public void calculateMovesLeft(Unit unit, int x, int y, int horizontalMod, int verticalMod) {
