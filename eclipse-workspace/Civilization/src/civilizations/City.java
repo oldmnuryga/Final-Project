@@ -19,7 +19,7 @@ public class City {
 	protected double foodRate;
 	protected double foodBox;
 	protected double foodCap;
-	protected double scienceRate;
+	protected static double scienceRate;
 	protected double defenseRating;
 	protected int citizens;
 	protected int citizenCap;
@@ -140,12 +140,12 @@ public class City {
 		this.foodCap = foodCap;
 	}
 
-	public double getScienceRate() {
+	public static double getScienceRate() {
 		return scienceRate;
 	}
 
-	public void setScienceRate(double scienceRate) {
-		this.scienceRate = scienceRate;
+	public static void setScienceRate(double scienceRate) {
+		City.scienceRate = scienceRate;
 	}
 
 	public int getCitizens() {

@@ -22,6 +22,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 
+import civilizations.City;
 import civilizations.Player;
 import leaders.America;
 import leaders.Italy;
@@ -132,12 +133,12 @@ public class CivilizationGame {
 		// frame.setResizable(false);
 
 		// Research screen
-		
+
 		frPickResearch.setPreferredSize(new Dimension(1350,950));
 		frPickResearch.setLayout(null);
 		frPickResearch.setVisible(false);
-		
-		
+
+
 		int tx = 15, ty = 15;
 		for(int i = 0; i < Technology.get$technologies().size(); i++) {
 			$research[i] = new JButton(Technology.get$technologies().get(i).getName());
@@ -148,6 +149,14 @@ public class CivilizationGame {
 				ty+=100;
 				tx=15;
 			}
+			int q = i;
+			$research[i].addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					int cost = Technology.get$technologies().get(q).getScienceCost();
+					int turnsTo = (cost / (int) City.getScienceRate())+1;
+					
+				}
+			});
 			boolean can = false;
 			if(Technology.get$technologies().get(i).get$comesFrom().size() == 0) {
 				can = true;
@@ -160,12 +169,12 @@ public class CivilizationGame {
 					}
 				}
 			} 
-			
+
 			if(!can) 
-				$research[i].setEnabled(false);;
+				$research[i].setEnabled(false);
 		}
 
-		
+
 		// Title screen
 		titleFrame.setPreferredSize(new Dimension(1920, 1015));
 		titleFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -412,7 +421,7 @@ public class CivilizationGame {
 	public void updateTurnText() {
 		lblTurns.setText("Turns: " + turns);
 	}
-	
+
 	public void updateYearText() {
 		lblYear.setText("Year: " + year);
 	}
@@ -503,7 +512,7 @@ public class CivilizationGame {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getUnitOnTile() != null)
 					Tile.get$map()[i][j].getUnitOnTile()
-							.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
+					.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
 			}
 		}
 		growCity();
@@ -573,15 +582,15 @@ public class CivilizationGame {
 								y += 2;
 							}
 						} catch (NullPointerException e) {
-							
+
 						}
 					}
 				}
 			}
 		}
 	}
-	
-	
+
+
 
 	public void set$mapButtons(JButton[][] $mapButtons) {
 		this.$mapButtons = $mapButtons;

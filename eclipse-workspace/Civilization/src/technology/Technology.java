@@ -34,13 +34,6 @@ public class Technology {
 		// Empty constructor for access to methods
 	}
 
-	public int getTurnsUntilTech() {
-
-		// science cost / get city science per turn
-		// quotient +1 = turns until tech
-
-		return turnsUntilTech;
-	}
 
 	public String toString() {
 		return "ID: " + technologyID + "\nName: " + name + "\nAchievable: " + achievable + "\nResearched: "
