@@ -12,15 +12,20 @@ public class City {
 	protected static Tile location;
 	protected boolean capital;
 	protected boolean coastal;
+	protected double goldTotal;
 	protected double goldProduced;
 	protected double goldUsed;
 	protected double productionRate;
 	protected double productionExcess;
+	protected double productionTotal;
 	protected double foodRate;
 	protected double foodBox;
 	protected double foodCap;
+	protected double foodTotal;
 	protected double scienceRate;
+	protected double scienceTotal;
 	protected double defenseRating;
+	protected double happinessTotal;
 	protected int citizens;
 	protected int citizenCap;
 	protected ArrayList<Tile> $cityTiles;
@@ -36,14 +41,19 @@ public class City {
 		location = cityLocation;
 		goldProduced = 0;
 		goldUsed = 0;
+		goldTotal = 0;
 		productionRate = 0;
 		productionExcess = 0;
+		productionTotal = 0;
 		foodRate = 0;
 		foodBox = 0;
 		foodCap = 0;
+		foodTotal = 0;
 		scienceRate = 0;
+		scienceTotal = 0;
 		citizens = 1;
 		citizenCap = 10;
+		happinessTotal = 0;
 		$cityTiles = new ArrayList<Tile>();
 		$buildings = new ArrayList<Building>();
 		$wonders = new ArrayList<Wonder>();
@@ -168,6 +178,14 @@ public class City {
 		return citizenCap;
 	}
 
+	public double getHappinessTotal() {
+		return happinessTotal;
+	}
+
+	public void setHappinessTotal(double happinessTotal) {
+		this.happinessTotal = happinessTotal;
+	}
+
 	public void setCitizenCap(int num) {
 		this.citizenCap = num;
 	}
@@ -233,6 +251,38 @@ public class City {
 	public boolean isCoastal() {
 		return false;
 	}
+	
+	public double getGoldTotal() {
+		return goldTotal;
+	}
+
+	public void setGoldTotal(double goldTotal) {
+		this.goldTotal = goldTotal;
+	}
+
+	public double getProductionTotal() {
+		return productionTotal;
+	}
+
+	public void setProductionTotal(double productionTotal) {
+		this.productionTotal = productionTotal;
+	}
+
+	public double getFoodTotal() {
+		return foodTotal;
+	}
+
+	public void setFoodTotal(double foodTotal) {
+		this.foodTotal = foodTotal;
+	}
+
+	public double getScienceTotal() {
+		return scienceTotal;
+	}
+
+	public void setScienceTotal(double scienceTotal) {
+		this.scienceTotal = scienceTotal;
+	}
 
 	protected void buildBuilding(Building e) {
 		$buildings.add(e);
@@ -297,4 +347,34 @@ public class City {
 		return false;
 	}
 
+	public Tile instantiateTileValues(int x, int y) {
+		Tile.get$map()[location.get$location()[0] + x][location.get$location()[1] + y].setOwner(owner);
+		return Tile.get$map()[location.get$location()[0] + x][location.get$location()[1] + y];
+	}
+
+	public void expandCity(int city) {
+		ArrayList<Tile> $tempArr = new ArrayList<Tile>();
+
+		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setIsCity(true);
+
+		for(int i = -2; i <= 2; i++) {
+			for (int j = -2; j <= 2; j++) {
+				$tempArr.add(instantiateTileValues(i, j));
+			}
+		}
+		owner.get$cities().get(city).set$cityTiles($tempArr);
+	}
+
+	public void expandCity2(int city) {
+		ArrayList<Tile> $tempArr = new ArrayList<Tile>();
+
+		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setIsCity(true);
+
+		for(int i = -3; i <= 3; i++) {
+			for (int j = -3; j <= 3; j++) {
+				$tempArr.add(instantiateTileValues(i, j));
+			}
+		}
+		owner.get$cities().get(city).set$cityTiles($tempArr);
+	}
 }
