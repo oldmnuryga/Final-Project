@@ -13,6 +13,10 @@ public class SandTile extends Tile {
 		super.foodPotential = 1.0;
 		super.goldBase = 1.0;
 		super.goldPotential = 3.0;
+		super.happinessBase = -0.5;
+		super.happinessPotential = 1.5;
+		super.scienceBase = 2.0;
+		super.sciencePotential = 4.0;
 		super.crossable = true;
 		super.occupied = false;
 		super.improved = false;

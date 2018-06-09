@@ -304,11 +304,11 @@ public class CivilizationGame {
 				+ "Some of these improvements are farms, lumbermills, and trading posts. " + "\n"
 				+ "Farms are used to increase the food per turn that a city produces. " + "\n"
 				+ "Lumbermills are strictly made in forests and can be used to increase " + "\n"
-				+ "production per turn. Trading posts are used to increase gold per turn.");
+				+ "science per turn. Trading posts are used to increase gold per turn.");
 		tbpneInstructions.addTab("Units", panel2);
 		JTextArea panel3 = new JTextArea("Wonders are built by the player and can be used to benefit the "
 				+ "player with a specific stat. Some stats that get benefits from the " + "\n"
-				+ "wonders include happiness, research, production. To win the game, " + "\n"
+				+ "wonders include happiness, research, science. To win the game, " + "\n"
 				+ "the Apollo Program must be built to begin the space race. After " + "\n"
 				+ "making it to the moon you win the game with a science victory. " + "\n"
 				+ "This is one of the few ways to finish the game. Wonders can " + "\n"
@@ -317,10 +317,10 @@ public class CivilizationGame {
 		tbpneInstructions.addTab("Wonders", panel3);
 		JTextArea panel4 = new JTextArea("Buildings, like wonders, are things built by the city only once " + "\n"
 				+ "and provide many benefits to the player. For example a building " + "\n"
-				+ "may increase the production of a city by a certain percentage or " + "\n"
+				+ "may increase the science of a city by a certain percentage or " + "\n"
 				+ "increase the gold that a city produces by a number or percentage. " + "\n"
 				+ "The benefits of a building depends on the building and ranges " + "\n"
-				+ "in benefits from science to gold to production. Buildings are " + "\n"
+				+ "in benefits from science to gold to science. Buildings are " + "\n"
 				+ "important to make cities produce more buildings or wonders " + "\n"
 				+ "faster, research technologies faster, and get enough money to " + "\n"
 				+ "buy units. But, buildings cost money to maintain, thus showing " + "\n"
@@ -332,7 +332,7 @@ public class CivilizationGame {
 				+ "evolving your society through the ages. Cities gain citizens " + "\n"
 				+ "through the game and this is mainly dependent upon the amount " + "\n"
 				+ "of food that your city can produce through farms. Having a " + "\n"
-				+ "higher number of citizens increases science, production, and " + "\n"
+				+ "higher number of citizens increases science, science, and " + "\n"
 				+ "gold. Ensure that you have enough food for your city to be " + "\n"
 				+ "maintained and thrive. The growth of the border of your " + "\n"
 				+ "city is a static growth that grows every 10 turns. That " + "\n"
@@ -434,10 +434,62 @@ public class CivilizationGame {
 			for (int j = 0; j < player.get$cities().get(i).get$cityTiles().size(); j++) {
 				foodVal += player.get$cities().get(i).get$cityTiles().get(j).getFoodBase();
 			}
-			player.get$cities().get(i).setFoodBox(player.get$cities().get(i).getFoodBox() + foodVal);
-			foodTotal += player.get$cities().get(i).getFoodBox();
+			player.get$cities().get(i).setFoodTotal(player.get$cities().get(i).getFoodTotal() + foodVal);
+			foodTotal += player.get$cities().get(i).getFoodTotal();
 		}
 		lblFood.setText("Food: " + foodTotal);
+	}
+	
+	public void updateGoldText() {
+		int goldTotal = 0;
+		for (int i = 0; i < player.get$cities().size(); i++) {
+			int goldVal = 0;
+			for (int j = 0; j < player.get$cities().get(i).get$cityTiles().size(); j++) {
+				goldVal += player.get$cities().get(i).get$cityTiles().get(j).getGoldBase();
+			}
+			player.get$cities().get(i).setGoldTotal(player.get$cities().get(i).getGoldTotal() + goldVal);
+			goldTotal += player.get$cities().get(i).getGoldTotal();
+		}
+		lblGold.setText("Gold: " + goldTotal);
+	}
+	
+	public void updateProductionText() {
+		int scienceTotal = 0;
+		for (int i = 0; i < player.get$cities().size(); i++) {
+			int scienceVal = 0;
+			for (int j = 0; j < player.get$cities().get(i).get$cityTiles().size(); j++) {
+				scienceVal += player.get$cities().get(i).get$cityTiles().get(j).getProductionBase();
+			}
+			player.get$cities().get(i).setProductionTotal(player.get$cities().get(i).getProductionTotal() + scienceVal);
+			scienceTotal += player.get$cities().get(i).getProductionTotal();
+		}
+		lblProduction.setText("Production: " + scienceTotal);
+	}
+	
+	public void updateScienceText() {
+		int scienceTotal = 0;
+		for (int i = 0; i < player.get$cities().size(); i++) {
+			int scienceVal = 0;
+			for (int j = 0; j < player.get$cities().get(i).get$cityTiles().size(); j++) {
+				scienceVal += player.get$cities().get(i).get$cityTiles().get(j).getScienceBase();
+			}
+			player.get$cities().get(i).setScienceTotal(player.get$cities().get(i).getScienceTotal() + scienceVal);
+			scienceTotal += player.get$cities().get(i).getScienceTotal();
+		}
+		lblResearch.setText("Science: " + scienceTotal);
+	}
+	
+	public void updateHappinessText() {
+		int happinessTotal = 0;
+		for (int i = 0; i < player.get$cities().size(); i++) {
+			int HappinessVal = 0;
+			for (int j = 0; j < player.get$cities().get(i).get$cityTiles().size(); j++) {
+				HappinessVal += player.get$cities().get(i).get$cityTiles().get(j).getHappinessBase();
+			}
+			player.get$cities().get(i).setHappinessTotal(player.get$cities().get(i).getHappinessTotal() + HappinessVal);
+			happinessTotal += player.get$cities().get(i).getHappinessTotal();
+		}
+		lblHappiness.setText("Happiness: " + happinessTotal);
 	}
 
 	public void updatePlayerStats() {
@@ -522,6 +574,10 @@ public class CivilizationGame {
 		changeYear();
 		updateYearText();
 		updateFoodText();
+		updateGoldText();
+		updateHappinessText();
+		updateProductionText();
+		updateScienceText();
 		System.out.println(year);
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
@@ -654,7 +710,8 @@ public class CivilizationGame {
 							$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("O"), "expandCity");
 							$mapButtons[i][j].getActionMap().put("expandCity", new AbstractAction() {
 								public void actionPerformed(ActionEvent e) {
-									Tile.get$map()[x - 2][y - 2].setOwner(player);
+									player.get$cities().get(0).expandCity(0);
+									/*Tile.get$map()[x - 2][y - 2].setOwner(player);
 									Tile.get$map()[x - 2][y - 1].setOwner(player);
 									Tile.get$map()[x - 2][y].setOwner(player);
 									Tile.get$map()[x - 2][y + 1].setOwner(player);
@@ -669,7 +726,7 @@ public class CivilizationGame {
 									Tile.get$map()[x + 2][y - 1].setOwner(player);
 									Tile.get$map()[x + 2][y].setOwner(player);
 									Tile.get$map()[x + 2][y + 1].setOwner(player);
-									Tile.get$map()[x + 2][y + 2].setOwner(player);
+									Tile.get$map()[x + 2][y + 2].setOwner(player);*/
 									repaintTiles();
 								}
 							});
@@ -680,7 +737,8 @@ public class CivilizationGame {
 							$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("I"), "expandCity2");
 							$mapButtons[i][j].getActionMap().put("expandCity2", new AbstractAction() {
 								public void actionPerformed(ActionEvent e) {
-									Tile.get$map()[x - 3][y - 3].setOwner(player);
+									player.get$cities().get(0).expandCity2(0);
+									/*Tile.get$map()[x - 3][y - 3].setOwner(player);
 									Tile.get$map()[x - 3][y - 2].setOwner(player);
 									Tile.get$map()[x - 3][y - 1].setOwner(player);
 									Tile.get$map()[x - 3][y].setOwner(player);
@@ -703,7 +761,7 @@ public class CivilizationGame {
 									Tile.get$map()[x + 3][y].setOwner(player);
 									Tile.get$map()[x + 3][y + 1].setOwner(player);
 									Tile.get$map()[x + 3][y + 2].setOwner(player);
-									Tile.get$map()[x + 3][y + 3].setOwner(player);
+									Tile.get$map()[x + 3][y + 3].setOwner(player);*/
 									repaintTiles();
 								}
 							});

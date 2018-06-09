@@ -16,6 +16,10 @@ public class ForestTile extends Tile {
 		super.foodPotential = 2.0;
 		super.goldBase = 1.0;
 		super.goldPotential = 2.0;
+		super.happinessBase = 0.5;
+		super.happinessPotential = 1.5;
+		super.scienceBase = 1.5;
+		super.sciencePotential = 3.5;
 		super.crossable = true;
 		super.occupied = false;
 		super.improved = false;

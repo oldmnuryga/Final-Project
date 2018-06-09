@@ -13,6 +13,10 @@ public class MountainTile extends Tile {
 		super.foodPotential = 1.0;
 		super.goldBase = 1.0;
 		super.goldPotential = 2.0;
+		super.happinessBase = -2.0;
+		super.happinessPotential = 0.0;
+		super.scienceBase = 2.0;
+		super.sciencePotential = 4.0;
 		super.crossable = false;
 		super.occupied = false;
 		super.improved = false;

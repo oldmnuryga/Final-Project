@@ -13,6 +13,10 @@ public class GrassTile extends Tile {
 		super.foodPotential = 2.0;
 		super.goldBase = 1.0;
 		super.goldPotential = 2.0;
+		super.happinessBase = 1.0;
+		super.happinessPotential = 2.0;
+		super.scienceBase = 1.0;
+		super.sciencePotential = 3.0;
 		super.crossable = true;
 		super.occupied = false;
 		super.improved = false;

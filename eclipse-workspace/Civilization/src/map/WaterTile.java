@@ -13,6 +13,10 @@ public class WaterTile extends Tile {
 		super.foodPotential = 2.0;
 		super.goldBase = 0.25;
 		super.goldPotential = 2.0;
+		super.happinessBase = -1.0;
+		super.happinessPotential = 1.0;
+		super.scienceBase = 1.5;
+		super.sciencePotential = 3.0;
 		super.crossable = true;
 		super.occupied = false;
 		super.improved = false;

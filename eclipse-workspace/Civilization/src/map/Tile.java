@@ -25,6 +25,10 @@ public abstract class Tile {
 	protected double foodPotential;
 	protected double goldBase;
 	protected double goldPotential;
+	protected double happinessBase;
+	protected double happinessPotential;
+	protected double scienceBase;
+	protected double sciencePotential;
 	protected boolean crossable;
 	protected boolean occupied;
 	protected boolean improved;
@@ -474,6 +478,40 @@ public abstract class Tile {
 	public void setCity(boolean isCity) {
 		this.isCity = isCity;
 	}
+
+	public double getHappinessBase() {
+		return happinessBase;
+	}
+
+	public void setHappinessBase(double happinessBase) {
+		this.happinessBase = happinessBase;
+	}
+
+	public double getHappinessPotential() {
+		return happinessPotential;
+	}
+
+	public void setHappinessPotential(double happinessPotential) {
+		this.happinessPotential = happinessPotential;
+	}
+
+	public double getScienceBase() {
+		return scienceBase;
+	}
+
+	public void setScienceBase(double scienceBase) {
+		this.scienceBase = scienceBase;
+	}
+
+	public double getSciencePotential() {
+		return sciencePotential;
+	}
+
+	public void setSciencePotential(double sciencePotential) {
+		this.sciencePotential = sciencePotential;
+	}
+	
+	
 	// public TIle getTileFromID(int ID){
 	// if(ID = 0
 	// return GrassTile;
