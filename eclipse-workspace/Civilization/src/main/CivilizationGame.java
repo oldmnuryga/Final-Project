@@ -154,8 +154,6 @@ public class CivilizationGame {
 			$research[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					int cost = Technology.get$technologies().get(q).getScienceCost();
-/*					int turnsTo = (cost / (int) player.get$cities().get(0).getScienceRate())+1;
-					System.out.println(turnsTo);*/
 					frPickResearch.setVisible(false);
 				}
 			});
@@ -660,8 +658,6 @@ public class CivilizationGame {
 			}
 		}
 	}
-
-
 
 	public void set$mapButtons(JButton[][] $mapButtons) {
 		this.$mapButtons = $mapButtons;

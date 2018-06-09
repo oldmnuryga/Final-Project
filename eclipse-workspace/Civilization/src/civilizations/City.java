@@ -12,6 +12,8 @@ public class City {
 	protected static Tile location;
 	protected boolean capital;
 	protected boolean coastal;
+	protected boolean researching;
+	protected boolean producing;
 	protected double goldTotal;
 	protected double goldProduced;
 	protected double goldUsed;
@@ -232,6 +234,22 @@ public class City {
 
 	public double getGoldUsed() {
 		return goldUsed;
+	}
+
+	public boolean isResearching() {
+		return researching;
+	}
+
+	public void setResearching(boolean researching) {
+		this.researching = researching;
+	}
+
+	public boolean isProducing() {
+		return producing;
+	}
+
+	public void setProducing(boolean producing) {
+		this.producing = producing;
 	}
 
 	public void setGoldUsed(double goldUsed) {
