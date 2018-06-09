@@ -457,9 +457,10 @@ public class CivilizationGame {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getUnitOnTile() != null)
 					Tile.get$map()[i][j].getUnitOnTile()
-					.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
+							.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
 			}
 		}
+		growCity();
 	}
 
 	public void changeYear() {
@@ -495,42 +496,41 @@ public class CivilizationGame {
 	public void growCity() {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
-				if(Tile.get$map()[i][j].isCity() == true) {
-					if(turns % 12 == 0) {
+				if (Tile.get$map()[i][j].isCity() == true) {
+					if (turns % 12 == 0) {
 						Random g = new Random();
 						int x = 3, y = 3;
-						int tempX = g.nextInt(x)-1;
-						int tempY = g.nextInt(y)-1;
-						if(Tile.get$map()[i+tempX][j+tempY].getOwner().equals(null)) {
-							Tile.get$map()[i+tempX][j+tempY].setOwner(player);
+						int tempX = g.nextInt(x) - 1;
+						int tempY = g.nextInt(y) - 1;
+						if (Tile.get$map()[i + tempX][j + tempY].getOwner().equals(null)) {
+							Tile.get$map()[i + tempX][j + tempY].setOwner(player);
 							repaintTiles();
 						}
-						
-						if(Tile.get$map()[i-2][j-2].getOwner().equals(player) && 
-								Tile.get$map()[i-2][j-1].getOwner().equals(player) &&
-								Tile.get$map()[i-2][j].getOwner().equals(player) &&
-								Tile.get$map()[i-2][j+1].getOwner().equals(player) &&
-								Tile.get$map()[i-2][j+2].getOwner().equals(player) &&
-								Tile.get$map()[i-1][j-2].getOwner().equals(player) &&
-								Tile.get$map()[i-1][j+2].getOwner().equals(player) &&
-								Tile.get$map()[i][j-2].getOwner().equals(player) &&
-								Tile.get$map()[i][j+2].getOwner().equals(player) &&
-								Tile.get$map()[i+1][j-2].getOwner().equals(player) &&
-								Tile.get$map()[i+1][j+2].getOwner().equals(player) &&
-								Tile.get$map()[i+2][j-2].getOwner().equals(player) &&
-								Tile.get$map()[i+2][j-1].getOwner().equals(player) &&
-								Tile.get$map()[i+2][j].getOwner().equals(player) &&
-								Tile.get$map()[i+2][j+1].getOwner().equals(player) &&
-								Tile.get$map()[i+2][j+2].getOwner().equals(player)) {
-							x+=2;
-							y+=2;
+
+						if (Tile.get$map()[i - 2][j - 2].getOwner().equals(player)
+								&& Tile.get$map()[i - 2][j - 1].getOwner().equals(player)
+								&& Tile.get$map()[i - 2][j].getOwner().equals(player)
+								&& Tile.get$map()[i - 2][j + 1].getOwner().equals(player)
+								&& Tile.get$map()[i - 2][j + 2].getOwner().equals(player)
+								&& Tile.get$map()[i - 1][j - 2].getOwner().equals(player)
+								&& Tile.get$map()[i - 1][j + 2].getOwner().equals(player)
+								&& Tile.get$map()[i][j - 2].getOwner().equals(player)
+								&& Tile.get$map()[i][j + 2].getOwner().equals(player)
+								&& Tile.get$map()[i + 1][j - 2].getOwner().equals(player)
+								&& Tile.get$map()[i + 1][j + 2].getOwner().equals(player)
+								&& Tile.get$map()[i + 2][j - 2].getOwner().equals(player)
+								&& Tile.get$map()[i + 2][j - 1].getOwner().equals(player)
+								&& Tile.get$map()[i + 2][j].getOwner().equals(player)
+								&& Tile.get$map()[i + 2][j + 1].getOwner().equals(player)
+								&& Tile.get$map()[i + 2][j + 2].getOwner().equals(player)) {
+							x += 2;
+							y += 2;
 						}
 					}
 				}
 			}
 		}
 	}
-
 
 	public void set$mapButtons(JButton[][] $mapButtons) {
 		this.$mapButtons = $mapButtons;
@@ -705,16 +705,15 @@ public class CivilizationGame {
 				}
 
 			// CITY SCREEN
-			/*			for (int k = 0; k < $mapButtons.length; k++) {
-				for (int k2 = 0; k2 < $mapButtons.length; k2++) {
-					if (e.getSource() == $mapButtons[k][k2]) {
-						if (condition) {
-
-						}
-					}
-				}
-
-			}*/
+			/*
+			 * for (int k = 0; k < $mapButtons.length; k++) { for (int k2 = 0; k2 <
+			 * $mapButtons.length; k2++) { if (e.getSource() == $mapButtons[k][k2]) { if
+			 * (condition) {
+			 * 
+			 * } } }
+			 * 
+			 * }
+			 */
 		}
 	}
 
