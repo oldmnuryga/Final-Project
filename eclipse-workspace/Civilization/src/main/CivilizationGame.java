@@ -51,7 +51,7 @@ public class CivilizationGame {
 	private Player player;
 
 	// JGRAPHICS CONSTRUCTORS
-	private JFrame frame = new JFrame("P'jephphrey B's : Society Simulator VII");
+	private JFrame frame = new JFrame("Society Simulator VII");
 	private JLabel lblGold = new JLabel("Gold: ");
 	private JLabel lblResearch = new JLabel("Research: ");
 	private JLabel lblProduction = new JLabel("Production: ");
@@ -67,7 +67,6 @@ public class CivilizationGame {
 	private JPanel pnePlayerStats = new JPanel();
 
 	private JFrame titleFrame = new JFrame("Civilization");
-	private JLabel title = new JLabel("P'jephphrey B's : Society Simulator VII");
 	private JButton btnCasimir = new JButton(iconCasimir);
 	private JButton btnMussolini = new JButton(iconMussolini);
 	private JButton btnGenghis = new JButton(iconGenghis);
@@ -117,6 +116,8 @@ public class CivilizationGame {
 			CivilizationGame.class.getClassLoader().getResource("main/resources/washingtonIcon.jpg"));
 	static ImageIcon iconTrophy = new ImageIcon(
 			CivilizationGame.class.getClassLoader().getResource("main/resources/trophy.png"));
+	static ImageIcon background1 = new ImageIcon(
+			CivilizationGame.class.getClassLoader().getResource("main/resources/background1.png"));
 
 	public CivilizationGame() {
 		// ADD STUFF
@@ -180,14 +181,13 @@ public class CivilizationGame {
 		titleFrame.setPreferredSize(new Dimension(1920, 1015));
 		titleFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		titleFrame.setLayout(null);
-		title.setBounds(400, 200, 1200, 150);
 		// title.setFont(new Font("Monospaced", Font.BOLD, 70));
-		title.setFont(new Font("Monospaced", Font.BOLD, 45));
 		// title.setForeground(Color.GREEN);
 		// title.setBackground(Color.BLUE);
-		title.setOpaque(true);
-		title.setBorder(null);
-		titleFrame.add(title);
+		JLabel background = new JLabel();
+		background.setIcon(background1);
+		background.setBounds(0, 0, 1920, 1015);
+		titleFrame.add(background);
 		lblGenghis.setFont(new Font("Monospaced", Font.ITALIC, 20));
 		lblGenghis.setBounds(250, 580, 165, 30);
 		btnGenghis.setBounds(250, 605, 165, 251);
