@@ -35,6 +35,7 @@ import map.SandTile;
 import map.Tile;
 import map.WaterTile;
 import sound.sounds;
+import technology.Technology;
 import units.Settler;
 import units.Unit;
 
@@ -57,6 +58,8 @@ public class CivilizationGame {
 	private JLabel lblTurns = new JLabel("Turns: " + turns);
 	private JLabel lblFood = new JLabel("Food: ");
 	private JLabel lblYear = new JLabel("Year: " + year);
+	private JFrame frPickResearch = new JFrame("Research");
+	private JButton[] $research = new JButton[Technology.getNumberOfTechnologies()];
 
 	private JButton btnEndTurn = new JButton("End Turn");
 	private JButton btnShowInstructions = new JButton("How to Play the Game");
@@ -128,6 +131,27 @@ public class CivilizationGame {
 
 		// frame.setResizable(false);
 
+		// Research screen
+		
+		frPickResearch.setPreferredSize(new Dimension(1000,600));
+		frPickResearch.setLayout(null);
+		frPickResearch.setVisible(true);
+		
+		for(int i = 0; i < Technology.get$technologies().size(); i++) {
+			$research[i] = new JButton(Technology.get$technologies().get(i).getName());
+			int tx = 15, ty = 15;
+			$research[i].setBounds(tx,ty,100,75);
+			frPickResearch.add($research[i]);
+			tx+= 115;
+			if(tx % 935 == 0) 
+				ty+=100;
+			
+			//if(!Technology.get$technologies().get(i).isAchievable()) 
+			//	$research[i].setEnabled(false);
+			
+		}
+		frPickResearch.pack();
+		
 		// Title screen
 		titleFrame.setPreferredSize(new Dimension(1920, 1015));
 		titleFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -510,27 +534,27 @@ public class CivilizationGame {
 						int x = 3, y = 3;
 						int tempX = g.nextInt(x) - 1;
 						int tempY = g.nextInt(y) - 1;
-						if (Tile.get$map()[i + tempX][j + tempY].getOwner().equals(null)) {
+						if (Tile.get$map()[i + tempX][j + tempY].getOwner() == (null)) {
 							Tile.get$map()[i + tempX][j + tempY].setOwner(player);
 							repaintTiles();
 						}
 						try {
-							if (Tile.get$map()[i - 2][j - 2].getOwner().equals(player)
-									&& Tile.get$map()[i - 2][j - 1].getOwner().equals(player)
-									&& Tile.get$map()[i - 2][j].getOwner().equals(player)
-									&& Tile.get$map()[i - 2][j + 1].getOwner().equals(player)
-									&& Tile.get$map()[i - 2][j + 2].getOwner().equals(player)
-									&& Tile.get$map()[i - 1][j - 2].getOwner().equals(player)
-									&& Tile.get$map()[i - 1][j + 2].getOwner().equals(player)
-									&& Tile.get$map()[i][j - 2].getOwner().equals(player)
-									&& Tile.get$map()[i][j + 2].getOwner().equals(player)
-									&& Tile.get$map()[i + 1][j - 2].getOwner().equals(player)
-									&& Tile.get$map()[i + 1][j + 2].getOwner().equals(player)
-									&& Tile.get$map()[i + 2][j - 2].getOwner().equals(player)
-									&& Tile.get$map()[i + 2][j - 1].getOwner().equals(player)
-									&& Tile.get$map()[i + 2][j].getOwner().equals(player)
-									&& Tile.get$map()[i + 2][j + 1].getOwner().equals(player)
-									&& Tile.get$map()[i + 2][j + 2].getOwner().equals(player)) {
+							if (Tile.get$map()[i - 2][j - 2].getOwner() == (player)
+									&& Tile.get$map()[i - 2][j - 1].getOwner() == (player)
+									&& Tile.get$map()[i - 2][j].getOwner() == (player)
+									&& Tile.get$map()[i - 2][j + 1].getOwner() == (player)
+									&& Tile.get$map()[i - 2][j + 2].getOwner() == (player)
+									&& Tile.get$map()[i - 1][j - 2].getOwner() == (player)
+									&& Tile.get$map()[i - 1][j + 2].getOwner() == (player)
+									&& Tile.get$map()[i][j - 2].getOwner() == (player)
+									&& Tile.get$map()[i][j + 2].getOwner() == (player)
+									&& Tile.get$map()[i + 1][j - 2].getOwner() == (player)
+									&& Tile.get$map()[i + 1][j + 2].getOwner() == (player)
+									&& Tile.get$map()[i + 2][j - 2].getOwner() == (player)
+									&& Tile.get$map()[i + 2][j - 1].getOwner() == (player)
+									&& Tile.get$map()[i + 2][j].getOwner() == (player)
+									&& Tile.get$map()[i + 2][j + 1].getOwner() == (player)
+									&& Tile.get$map()[i + 2][j + 2].getOwner() == (player)) {
 								x += 2;
 								y += 2;
 							}
@@ -542,6 +566,8 @@ public class CivilizationGame {
 			}
 		}
 	}
+	
+	
 
 	public void set$mapButtons(JButton[][] $mapButtons) {
 		this.$mapButtons = $mapButtons;
