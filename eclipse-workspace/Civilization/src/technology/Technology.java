@@ -105,11 +105,11 @@ public class Technology {
 		this.$leadsTo = $leadsTo;
 	}
 
-	public ArrayList<Integer> get$comesFrom() {
+	public  ArrayList<Integer> get$comesFrom() {
 		return $comesFrom;
 	}
 
-	public void set$comesFrom(ArrayList<Integer> $comesFrom) {
+	public  void set$comesFrom(ArrayList<Integer> $comesFrom) {
 		this.$comesFrom = $comesFrom;
 	}
 
@@ -132,6 +132,20 @@ public class Technology {
 	public void setTurnsUntilTech(int turnsUntilTech) {
 		this.turnsUntilTech = turnsUntilTech;
 	}
+	
+/*	public void setAchievable() {
+		if(get$comesFrom().size() == 0) {
+			this.achievable = true;
+		} else {
+			for(int i = 0; i < get$comesFrom().size(); i++) {
+				if(get$technologies()[get$comesFrom().get(i)].isResearched() == true) {
+					this.achievable = true;
+				} else {
+					this.achievable = false;
+				}
+			}
+		} 
+	}*/
 
 	public static void importTechnologies() {
 		try {

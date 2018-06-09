@@ -137,6 +137,7 @@ public class CivilizationGame {
 		frPickResearch.setLayout(null);
 		frPickResearch.setVisible(false);
 		
+		
 		int tx = 15, ty = 15;
 		for(int i = 0; i < Technology.get$technologies().size(); i++) {
 			$research[i] = new JButton(Technology.get$technologies().get(i).getName());
@@ -147,10 +148,21 @@ public class CivilizationGame {
 				ty+=100;
 				tx=15;
 			}
+			boolean can = false;
+			if(Technology.get$technologies().get(i).get$comesFrom().size() == 0) {
+				can = true;
+			} else {
+				for(int z = 0; z < Technology.get$technologies().get(i).get$comesFrom().size(); z++) {
+					if(Technology.get$technologies().get(Technology.get$technologies().get(i).get$comesFrom().get(z)).isResearched()) {
+						can = true;
+					} else {
+						can = false;
+					}
+				}
+			} 
 			
-			if(!Technology.get$technologies().get(i).isAchievable()) 
-				$research[i].setEnabled(false);
-			
+			if(!can) 
+				$research[i].setEnabled(false);;
 		}
 
 		
