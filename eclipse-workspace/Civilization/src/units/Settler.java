@@ -1,16 +1,12 @@
 package units;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
-import javax.imageio.ImageTypeSpecifier;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.xml.transform.Templates;
 
 import civilizations.City;
 import civilizations.Player;
-import main.CivilizationGame;
 import map.Tile;
 
 public class Settler extends Unit {
@@ -54,20 +50,37 @@ public class Settler extends Unit {
 						|| Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1]].getOwner() == null
 						|| Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1]]
 								.getOwner() == null))
-			this.foundCity();
+			this.foundCity(0);
 	}
 
-	public void foundCity() {
+	public void foundCity(int city) {
+		ArrayList<Tile> $tempArr = new ArrayList<Tile>();
 		// Sets surrounding tiles to the owner
 		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setIsCity(true);
+		$tempArr.add(Tile.get$map()[location.get$location()[0]][location.get$location()[1]]);
 		Tile.get$map()[location.get$location()[0]][location.get$location()[1] - 1].setOwner(owner);
+		$tempArr.add(Tile.get$map()[location.get$location()[0]][location.get$location()[1] - 1]);
 		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setOwner(owner);
+		$tempArr.add(Tile.get$map()[location.get$location()[0]][location.get$location()[1]]);
 		Tile.get$map()[location.get$location()[0]][location.get$location()[1] + 1].setOwner(owner);
+		$tempArr.add(Tile.get$map()[location.get$location()[0]][location.get$location()[1] + 1]);
 		Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1] - 1].setOwner(owner);
+		$tempArr.add(Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1] - 1]);
 		Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1]].setOwner(owner);
+		$tempArr.add(Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1]]);
 		Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1] + 1].setOwner(owner);
+		$tempArr.add(Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1] + 1]);
 		Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1] - 1].setOwner(owner);
+		$tempArr.add(Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1] - 1]);
 		Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1]].setOwner(owner);
+		$tempArr.add(Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1]]);
 		Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1] + 1].setOwner(owner);
+		$tempArr.add(Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1] + 1]);
+		owner.addCity(new City(owner, Tile.get$map()[location.get$location()[0]][location.get$location()[1]]));
+		owner.get$cities().get(city).set$cityTiles($tempArr);
+	}
+	
+	public void expandCity(int city) {
+		
 	}
 }

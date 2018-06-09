@@ -42,7 +42,7 @@ import units.Unit;
 
 public class CivilizationGame {
 	public static int turns = 1;
-	private int year = -3000;
+	private int year;
 
 	// CONSTANTS
 	private final int SCROLL_SPEED = 5;
@@ -426,6 +426,19 @@ public class CivilizationGame {
 	public void updateYearText() {
 		lblYear.setText("Year: " + Math.abs(year) + ((year < 0)? " BC" : " AD"));
 	}
+	
+	public void updateFoodText() {
+		int foodTotal = 0;
+		for (int i = 0; i < player.get$cities().size(); i++) {
+			int foodVal = 0;
+			for (int j = 0; j < player.get$cities().get(i).get$cityTiles().size(); j++) {
+				foodVal += player.get$cities().get(i).get$cityTiles().get(j).getFoodBase();
+			}
+			player.get$cities().get(i).setFoodBox(player.get$cities().get(i).getFoodBox() + foodVal);
+			foodTotal += player.get$cities().get(i).getFoodBox();
+		}
+		lblFood.setText("Food: " + foodTotal);
+	}
 
 	public void updatePlayerStats() {
 		// PLAYER NAME
@@ -508,6 +521,7 @@ public class CivilizationGame {
 		turns++;
 		changeYear();
 		updateYearText();
+		updateFoodText();
 		System.out.println(year);
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
@@ -582,7 +596,7 @@ public class CivilizationGame {
 								x += 2;
 								y += 2;
 							}
-						} catch (NullPointerException e) {
+						} catch (Exception e) {
 
 						}
 					}
@@ -621,7 +635,7 @@ public class CivilizationGame {
 							$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("P"), "found");
 							$mapButtons[i][j].getActionMap().put("found", new AbstractAction() {
 								public void actionPerformed(ActionEvent e) {
-									((Settler) getPlayer().getOwnedUnitfromID(18)).foundCity();
+									((Settler) getPlayer().getOwnedUnitfromID(18)).foundCity(player.get$cities().size());
 									removeUnit(x, y);
 									repaintTiles();
 									/*City c = new City(player, Tile.get$map()[x][y]);
