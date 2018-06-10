@@ -47,7 +47,7 @@ public class CivilizationGame {
 	private int year;
 
 	// CONSTANTS
-	private final int SCROLL_SPEED = 5;
+	private final int SCROLL_SPEED = 10;
 
 	// PLAYER INFO
 	private Player player;
@@ -203,7 +203,7 @@ public class CivilizationGame {
 				frame.setVisible(true);
 				getPlayer().findPotentialTechs();
 				spawnInitialSettler();
-				spawnInitialWarrior();
+				//spawnInitialWarrior();
 				frame.pack();
 			}
 		});
@@ -220,7 +220,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
-				spawnInitialWarrior();
+				//spawnInitialWarrior();
 				getPlayer().findPotentialTechs();
 				frame.pack();
 			}
@@ -238,7 +238,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
-				spawnInitialWarrior();
+				//spawnInitialWarrior();
 				getPlayer().findPotentialTechs();
 				frame.pack();
 			}
@@ -256,7 +256,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
-				spawnInitialWarrior();
+				//spawnInitialWarrior();
 				getPlayer().findPotentialTechs();
 				frame.pack();
 			}
@@ -274,7 +274,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
-				spawnInitialWarrior();
+				//spawnInitialWarrior();
 				getPlayer().findPotentialTechs();
 				frame.pack();
 			}
@@ -554,15 +554,14 @@ public class CivilizationGame {
 							.setIcon(player.getLeader().getTileIconFromID(Tile.get$map()[i][j].getTerrainID()));
 				} else if (Tile.get$map()[i][j].getUnitOnTile() != null) {
 					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getUnitOnTile().getUnitImageIcon());
-				} else {
-					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
-				}
-				if (Tile.get$map()[i][j].isCity() == true) {
+				} else if (Tile.get$map()[i][j].isCity() == true) {
 					if (Tile.get$map()[i][j].getTerrainID() == 2) {
 						$mapButtons[i][j].setIcon(player.getLeader().getCityOnSandImprovement());
 					} else {
 						$mapButtons[i][j].setIcon(player.getLeader().getCityOnGreenImprovement());
 					}
+				} else {
+					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
 				}
 			}
 		}
@@ -602,7 +601,7 @@ public class CivilizationGame {
 		}
 	}
 
-	public void spawnInitialWarrior() {
+	/*public void spawnInitialWarrior() {
 		boolean found = true;
 		int i = 1;
 		int z = 1;
@@ -623,7 +622,7 @@ public class CivilizationGame {
 			//	Tile.get$map()[settlerTempX][settlerTempY].getUnitOnTile().setUnitImageIcon(Warrior.getUnitImageIcon());
 				repaintTiles();
 			}
-		}
+		}*/
 
 	public void endTurn() {
 		turns++;
@@ -964,7 +963,7 @@ public class CivilizationGame {
 	public boolean canMove(Unit unit, int x, int y, int horizontalMod, int verticalMod){
 		try {
 			if (unit.getMovesLeft() - Tile.get$map()[x + horizontalMod][y + verticalMod].getMovesRequired() >= 0
-					&& Tile.get$map()[x + horizontalMod][y + verticalMod].isCrossable())
+					&& Tile.get$map()[x + horizontalMod][y + verticalMod].isCrossable() && Tile.get$map()[x + horizontalMod][y + verticalMod].getUnitOnTile() == null)
 				return true;
 			else
 				return false;
