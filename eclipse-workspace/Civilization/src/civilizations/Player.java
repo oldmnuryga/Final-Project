@@ -179,11 +179,8 @@ public class Player {
 			for (int j = 0; j < technology.get$comesFrom().size(); j++)
 				if (!(hasTechnology(technology.get$comesFrom().get(j))))
 					areResearched = false;
-			if (areResearched) {
+			if (areResearched)
 				$potentialTechs.add(technology);
-				System.out.println(technology.toString());
-			}
-
 		}
 	}
 

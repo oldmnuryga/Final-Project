@@ -23,7 +23,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 
-import civilizations.City;
 import civilizations.Player;
 import leaders.America;
 import leaders.Italy;
@@ -40,7 +39,6 @@ import sound.sounds;
 import technology.Technology;
 import units.Settler;
 import units.Unit;
-import units.Warrior;
 
 public class CivilizationGame {
 	public static int turns = 1;
@@ -52,7 +50,7 @@ public class CivilizationGame {
 	// PLAYER INFO
 	private Player player;
 
-	//UNIT GENERATION:
+	// UNIT GENERATION:
 	private int settlerTempX;
 	private int settlerTempY;
 
@@ -66,10 +64,8 @@ public class CivilizationGame {
 	private JLabel lblFood = new JLabel("Food: ");
 	private JLabel lblYear = new JLabel("3000 BC");
 	private JFrame frPickResearch = new JFrame("Research");
-	private JButton[] $research = new JButton[Technology.getNumberOfTechnologies()];
 	private JFrame frPickProduction = new JFrame("Production");
 
-	
 	private JButton btnEndTurn = new JButton("End Turn");
 	private JButton btnShowInstructions = new JButton("How to Play the Game");
 	private JPanel pnePlayerStats = new JPanel();
@@ -81,8 +77,7 @@ public class CivilizationGame {
 	private JButton btnSejong = new JButton(iconSejong);
 	private JButton btnWashington = new JButton(iconWashington);
 	private JLabel lblGenghis = new JLabel("MONGOLIA"), lblWashington = new JLabel("AMERICA"),
-			lblSejong = new JLabel("KOREA"), lblMussolini = new JLabel("ITALY"),
-			lblCasimir = new JLabel("POLAND");
+			lblSejong = new JLabel("KOREA"), lblMussolini = new JLabel("ITALY"), lblCasimir = new JLabel("POLAND");
 
 	private JPanel leftPanel = new JPanel(); // 200 from right
 	private JPanel topPanel = new JPanel(); // 50 from top
@@ -127,6 +122,8 @@ public class CivilizationGame {
 	static ImageIcon background1 = new ImageIcon(
 			CivilizationGame.class.getClassLoader().getResource("main/resources/background1.png"));
 
+	private Technology currentResearchedTech;
+
 	public CivilizationGame() {
 		// ADD STUFF
 
@@ -142,46 +139,9 @@ public class CivilizationGame {
 		// frame.setResizable(false);
 
 		// Research screen
-
-		frPickResearch.setPreferredSize(new Dimension(1350,950));
+		frPickResearch.setPreferredSize(new Dimension(500, 900));
 		frPickResearch.setLayout(null);
 		frPickResearch.setVisible(false);
-
-
-		int tx = 15, ty = 15;
-		for(int i = 0; i < Technology.get$technologies().size(); i++) {
-			$research[i] = new JButton(Technology.get$technologies().get(i).getName());
-			$research[i].setBounds(tx,ty,150,75);
-			frPickResearch.add($research[i]);
-			tx+= 165;
-			if(tx % 1335 == 0) {
-				ty+=100;
-				tx=15;
-			}
-			int q = i;
-			$research[i].addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					int cost = Technology.get$technologies().get(q).getScienceCost();
-					frPickResearch.setVisible(false);
-				}
-			});
-			boolean can = false;
-			if(Technology.get$technologies().get(i).get$comesFrom().size() == 0) {
-				can = true;
-			} else {
-				for(int z = 0; z < Technology.get$technologies().get(i).get$comesFrom().size(); z++) {
-					if(Technology.get$technologies().get(Technology.get$technologies().get(i).get$comesFrom().get(z)).isResearched()) {
-						can = true;
-					} else {
-						can = false;
-					}
-				}
-			} 
-
-			if(!can) 
-				$research[i].setEnabled(false);
-		}
-
 
 		// Title screen
 		titleFrame.setPreferredSize(new Dimension(1920, 1015));
@@ -201,9 +161,8 @@ public class CivilizationGame {
 				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
-				getPlayer().findPotentialTechs();
 				spawnInitialSettler();
-				//spawnInitialWarrior();
+				// spawnInitialWarrior();
 				frame.pack();
 			}
 		});
@@ -220,8 +179,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
-				//spawnInitialWarrior();
-				getPlayer().findPotentialTechs();
+				// spawnInitialWarrior();
 				frame.pack();
 			}
 		});
@@ -238,8 +196,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
-				//spawnInitialWarrior();
-				getPlayer().findPotentialTechs();
+				// spawnInitialWarrior();
 				frame.pack();
 			}
 		});
@@ -256,8 +213,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
-				//spawnInitialWarrior();
-				getPlayer().findPotentialTechs();
+				// spawnInitialWarrior();
 				frame.pack();
 			}
 		});
@@ -274,8 +230,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
-				//spawnInitialWarrior();
-				getPlayer().findPotentialTechs();
+				// spawnInitialWarrior();
 				frame.pack();
 			}
 		});
@@ -286,7 +241,7 @@ public class CivilizationGame {
 		titleFrame.add(background);
 		titleFrame.setVisible(true);
 
-		//Game GUI
+		// Game GUI
 		btnEndTurn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				endTurn();
@@ -390,7 +345,7 @@ public class CivilizationGame {
 		frame.add(lblFood);
 		lblTurns.setBounds(1450, 0, 150, 50);
 		frame.add(lblTurns);
-		lblYear.setBounds(1600,0, 150, 50);
+		lblYear.setBounds(1600, 0, 150, 50);
 		frame.add(lblYear);
 		btnEndTurn.setBounds(0, 850, 200, 75);
 		frame.add(btnEndTurn);
@@ -439,7 +394,7 @@ public class CivilizationGame {
 	}
 
 	public void updateYearText() {
-		lblYear.setText("Year: " + Math.abs(year) + ((year < 0)? " BC" : " AD"));
+		lblYear.setText("Year: " + Math.abs(year) + ((year < 0) ? " BC" : " AD"));
 	}
 
 	public void updateFoodText() {
@@ -601,28 +556,19 @@ public class CivilizationGame {
 		}
 	}
 
-	/*public void spawnInitialWarrior() {
-		boolean found = true;
-		int i = 1;
-		int z = 1;
-		while (found) {
-			while(Tile.get$map()[settlerTempX + i][settlerTempY + z].getTerrainID() != 1) {
-				if(i % 2 == 0)
-					i++;
-				else
-					z++;
-			}
-			settlerTempY = settlerTempY + z;
-			settlerTempX = settlerTempX + i;
-				Tile.get$map()[settlerTempX][settlerTempY].setUnitOnTile(new Warrior(player));
-				int[] temp = { settlerTempX, settlerTempY };
-				Tile.get$map()[settlerTempX][settlerTempY].set$location(temp);
-				Tile.get$map()[settlerTempX][settlerTempY].getUnitOnTile().setLocation(Tile.get$map()[settlerTempX][settlerTempY]);
-				found = false;
-			//	Tile.get$map()[settlerTempX][settlerTempY].getUnitOnTile().setUnitImageIcon(Warrior.getUnitImageIcon());
-				repaintTiles();
-			}
-		}*/
+	/*
+	 * public void spawnInitialWarrior() { boolean found = true; int i = 1; int z =
+	 * 1; while (found) { while(Tile.get$map()[settlerTempX + i][settlerTempY +
+	 * z].getTerrainID() != 1) { if(i % 2 == 0) i++; else z++; } settlerTempY =
+	 * settlerTempY + z; settlerTempX = settlerTempX + i;
+	 * Tile.get$map()[settlerTempX][settlerTempY].setUnitOnTile(new
+	 * Warrior(player)); int[] temp = { settlerTempX, settlerTempY };
+	 * Tile.get$map()[settlerTempX][settlerTempY].set$location(temp);
+	 * Tile.get$map()[settlerTempX][settlerTempY].getUnitOnTile().setLocation(Tile.
+	 * get$map()[settlerTempX][settlerTempY]); found = false; //
+	 * Tile.get$map()[settlerTempX][settlerTempY].getUnitOnTile().setUnitImageIcon(
+	 * Warrior.getUnitImageIcon()); repaintTiles(); } }
+	 */
 
 	public void endTurn() {
 		turns++;
@@ -633,12 +579,11 @@ public class CivilizationGame {
 		updateHappinessText();
 		updateProductionText();
 		updateScienceText();
-		System.out.println(year);
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getUnitOnTile() != null)
 					Tile.get$map()[i][j].getUnitOnTile()
-					.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
+							.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
 			}
 		}
 		growCity();
@@ -715,51 +660,52 @@ public class CivilizationGame {
 			}
 		}
 	}
-	
+
 	public void uniqueLeaderAbility() {
-		if(player.getLeader().getLeaderID() == 0) {
-			//america
+		if (player.getLeader().getLeaderID() == 0) {
+			// america
 			// all land units have +1 movement
 			// +2 gpt
-			player.setGoldPerTurn(player.getGoldPerTurn()+2);
-			for(int z = 0; z < player.get$units().size();z++) {
-				player.get$units().get(z).setMaxMovement(player.get$units().get(z).getMaxMovement()+2);
+			player.setGoldPerTurn(player.getGoldPerTurn() + 2);
+			for (int z = 0; z < player.get$units().size(); z++) {
+				player.get$units().get(z).setMaxMovement(player.get$units().get(z).getMaxMovement() + 2);
 			}
-		} else if(player.getLeader().getLeaderID() == 1) {
-			//italy
+		} else if (player.getLeader().getLeaderID() == 1) {
+			// italy
 			// +2 food
 			// +1 production
-			for(int i = 0; i < player.get$cities().size(); i++) {
+			for (int i = 0; i < player.get$cities().size(); i++) {
 				player.get$cities().get(i).setFoodRate(player.get$cities().get(i).getFoodRate() + 2);
 				player.get$cities().get(i).setProductionRate(player.get$cities().get(i).getProductionRate() + 1);
 			}
-		} else if(player.getLeader().getLeaderID() == 2) {
-			//korea
+		} else if (player.getLeader().getLeaderID() == 2) {
+			// korea
 			// +10% science
 			// university gold maintenance is 1 not 3
-			player.setSciencePerTurn((player.getSciencePerTurn()*1.1));
-			for(int i = 0; i < player.get$cities().size(); i++) {
-				if(player.get$cities().get(i).getCertainBuilding(13).isBuilt()) 
-					player.get$cities().get(i).getCertainBuilding(13).setGoldMaintenance(player.get$cities().get(i).getCertainBuilding(13).getGoldMaintenance() - 2);
+			player.setSciencePerTurn((player.getSciencePerTurn() * 1.1));
+			for (int i = 0; i < player.get$cities().size(); i++) {
+				if (player.get$cities().get(i).getCertainBuilding(13).isBuilt())
+					player.get$cities().get(i).getCertainBuilding(13).setGoldMaintenance(
+							player.get$cities().get(i).getCertainBuilding(13).getGoldMaintenance() - 2);
 			}
-		} else if(player.getLeader().getLeaderID() == 3) {
-			//mongolia
+		} else if (player.getLeader().getLeaderID() == 3) {
+			// mongolia
 			// military strength +10%
 			// +20 hit points per unit
-			for(int i = 0; i < player.get$units().size(); i++) {
+			for (int i = 0; i < player.get$units().size(); i++) {
 				player.get$units().get(i).setAttackRating((int) (player.get$units().get(i).getAttackRating() * 1.1));
 				player.get$units().get(i).setHitpoints(player.get$units().get(i).getHitpoints() + 20);
 			}
-			
-		} else if(player.getLeader().getLeaderID() == 4) {
-			//poland
+
+		} else if (player.getLeader().getLeaderID() == 4) {
+			// poland
 			// +2 prod
 			// cathedral costs no maintenance
-			for(int z = 0; z < player.get$cities().size(); z++) {
+			for (int z = 0; z < player.get$cities().size(); z++) {
 				player.get$cities().get(z).getCertainBuilding(3).setGoldMaintenance(0);
 				player.get$cities().get(z).setProductionRate(player.get$cities().get(z).getProductionRate() + 2);
 			}
-			
+
 		}
 	}
 
@@ -792,13 +738,15 @@ public class CivilizationGame {
 							$mapButtons[i][j].getActionMap().put("found", new AbstractAction() {
 								public void actionPerformed(ActionEvent e) {
 									try {
-										((Settler) getPlayer().getOwnedUnitfromID(18)).foundCity(player.get$cities().size());
+										((Settler) getPlayer().getOwnedUnitfromID(18))
+												.foundCity(player.get$cities().size());
 										removeUnit(x, y);
 										repaintTiles();
-										/*City c = new City(player, Tile.get$map()[x][y]);
-									ArrayList<City> $city = new ArrayList<City>();
-									$city.add(c);
-									player.set$cities($city);*/
+										/*
+										 * City c = new City(player, Tile.get$map()[x][y]); ArrayList<City> $city = new
+										 * ArrayList<City>(); $city.add(c); player.set$cities($city);
+										 */
+										displayResearch();
 										frPickResearch.setVisible(true);
 										frPickResearch.pack();
 									} catch (Exception ef) {
@@ -815,22 +763,19 @@ public class CivilizationGame {
 							$mapButtons[i][j].getActionMap().put("expandCity", new AbstractAction() {
 								public void actionPerformed(ActionEvent e) {
 									player.get$cities().get(0).expandCity(0);
-									/*Tile.get$map()[x - 2][y - 2].setOwner(player);
-									Tile.get$map()[x - 2][y - 1].setOwner(player);
-									Tile.get$map()[x - 2][y].setOwner(player);
-									Tile.get$map()[x - 2][y + 1].setOwner(player);
-									Tile.get$map()[x - 2][y + 2].setOwner(player);
-									Tile.get$map()[x - 1][y - 2].setOwner(player);
-									Tile.get$map()[x - 1][y + 2].setOwner(player);
-									Tile.get$map()[x][y - 2].setOwner(player);
-									Tile.get$map()[x][y + 2].setOwner(player);
-									Tile.get$map()[x + 1][y - 2].setOwner(player);
-									Tile.get$map()[x + 1][y + 2].setOwner(player);
-									Tile.get$map()[x + 2][y - 2].setOwner(player);
-									Tile.get$map()[x + 2][y - 1].setOwner(player);
-									Tile.get$map()[x + 2][y].setOwner(player);
-									Tile.get$map()[x + 2][y + 1].setOwner(player);
-									Tile.get$map()[x + 2][y + 2].setOwner(player);*/
+									/*
+									 * Tile.get$map()[x - 2][y - 2].setOwner(player); Tile.get$map()[x - 2][y -
+									 * 1].setOwner(player); Tile.get$map()[x - 2][y].setOwner(player);
+									 * Tile.get$map()[x - 2][y + 1].setOwner(player); Tile.get$map()[x - 2][y +
+									 * 2].setOwner(player); Tile.get$map()[x - 1][y - 2].setOwner(player);
+									 * Tile.get$map()[x - 1][y + 2].setOwner(player); Tile.get$map()[x][y -
+									 * 2].setOwner(player); Tile.get$map()[x][y + 2].setOwner(player);
+									 * Tile.get$map()[x + 1][y - 2].setOwner(player); Tile.get$map()[x + 1][y +
+									 * 2].setOwner(player); Tile.get$map()[x + 2][y - 2].setOwner(player);
+									 * Tile.get$map()[x + 2][y - 1].setOwner(player); Tile.get$map()[x +
+									 * 2][y].setOwner(player); Tile.get$map()[x + 2][y + 1].setOwner(player);
+									 * Tile.get$map()[x + 2][y + 2].setOwner(player);
+									 */
 									repaintTiles();
 								}
 							});
@@ -842,30 +787,24 @@ public class CivilizationGame {
 							$mapButtons[i][j].getActionMap().put("expandCity2", new AbstractAction() {
 								public void actionPerformed(ActionEvent e) {
 									player.get$cities().get(0).expandCity2(0);
-									/*Tile.get$map()[x - 3][y - 3].setOwner(player);
-									Tile.get$map()[x - 3][y - 2].setOwner(player);
-									Tile.get$map()[x - 3][y - 1].setOwner(player);
-									Tile.get$map()[x - 3][y].setOwner(player);
-									Tile.get$map()[x - 3][y + 1].setOwner(player);
-									Tile.get$map()[x - 3][y + 2].setOwner(player);
-									Tile.get$map()[x - 3][y + 3].setOwner(player);
-									Tile.get$map()[x - 2][y - 3].setOwner(player);
-									Tile.get$map()[x - 2][y + 3].setOwner(player);
-									Tile.get$map()[x - 1][y - 3].setOwner(player);
-									Tile.get$map()[x - 1][y + 3].setOwner(player);
-									Tile.get$map()[x][y - 3].setOwner(player);
-									Tile.get$map()[x][y + 3].setOwner(player);
-									Tile.get$map()[x + 1][y - 3].setOwner(player);
-									Tile.get$map()[x + 1][y + 3].setOwner(player);
-									Tile.get$map()[x + 2][y - 3].setOwner(player);
-									Tile.get$map()[x + 2][y + 3].setOwner(player);
-									Tile.get$map()[x + 3][y - 3].setOwner(player);
-									Tile.get$map()[x + 3][y - 2].setOwner(player);
-									Tile.get$map()[x + 3][y - 1].setOwner(player);
-									Tile.get$map()[x + 3][y].setOwner(player);
-									Tile.get$map()[x + 3][y + 1].setOwner(player);
-									Tile.get$map()[x + 3][y + 2].setOwner(player);
-									Tile.get$map()[x + 3][y + 3].setOwner(player);*/
+									/*
+									 * Tile.get$map()[x - 3][y - 3].setOwner(player); Tile.get$map()[x - 3][y -
+									 * 2].setOwner(player); Tile.get$map()[x - 3][y - 1].setOwner(player);
+									 * Tile.get$map()[x - 3][y].setOwner(player); Tile.get$map()[x - 3][y +
+									 * 1].setOwner(player); Tile.get$map()[x - 3][y + 2].setOwner(player);
+									 * Tile.get$map()[x - 3][y + 3].setOwner(player); Tile.get$map()[x - 2][y -
+									 * 3].setOwner(player); Tile.get$map()[x - 2][y + 3].setOwner(player);
+									 * Tile.get$map()[x - 1][y - 3].setOwner(player); Tile.get$map()[x - 1][y +
+									 * 3].setOwner(player); Tile.get$map()[x][y - 3].setOwner(player);
+									 * Tile.get$map()[x][y + 3].setOwner(player); Tile.get$map()[x + 1][y -
+									 * 3].setOwner(player); Tile.get$map()[x + 1][y + 3].setOwner(player);
+									 * Tile.get$map()[x + 2][y - 3].setOwner(player); Tile.get$map()[x + 2][y +
+									 * 3].setOwner(player); Tile.get$map()[x + 3][y - 3].setOwner(player);
+									 * Tile.get$map()[x + 3][y - 2].setOwner(player); Tile.get$map()[x + 3][y -
+									 * 1].setOwner(player); Tile.get$map()[x + 3][y].setOwner(player);
+									 * Tile.get$map()[x + 3][y + 1].setOwner(player); Tile.get$map()[x + 3][y +
+									 * 2].setOwner(player); Tile.get$map()[x + 3][y + 3].setOwner(player);
+									 */
 									repaintTiles();
 								}
 							});
@@ -960,10 +899,11 @@ public class CivilizationGame {
 		}
 	}
 
-	public boolean canMove(Unit unit, int x, int y, int horizontalMod, int verticalMod){
+	public boolean canMove(Unit unit, int x, int y, int horizontalMod, int verticalMod) {
 		try {
 			if (unit.getMovesLeft() - Tile.get$map()[x + horizontalMod][y + verticalMod].getMovesRequired() >= 0
-					&& Tile.get$map()[x + horizontalMod][y + verticalMod].isCrossable() && Tile.get$map()[x + horizontalMod][y + verticalMod].getUnitOnTile() == null)
+					&& Tile.get$map()[x + horizontalMod][y + verticalMod].isCrossable()
+					&& Tile.get$map()[x + horizontalMod][y + verticalMod].getUnitOnTile() == null)
 				return true;
 			else
 				return false;
@@ -983,5 +923,27 @@ public class CivilizationGame {
 		$tempArr.remove(Tile.get$map()[x][y].getUnitOnTile());
 		Tile.get$map()[x][y].getUnitOnTile().getOwner().set$units($tempArr);
 		Tile.get$map()[x][y].setUnitOnTile(null);
+	}
+
+	public void displayResearch() {
+		player.findPotentialTechs();
+		ArrayList<Technology> $potentialTechs = player.get$potentialTechs();
+		JButton[] $research = new JButton[$potentialTechs.size()];
+		System.out.println($potentialTechs.size());
+		int tx = 15, ty = 15;
+		for (int i = 0; i < $potentialTechs.size(); i++) {
+			$research[i] = new JButton($potentialTechs.get(i).getName());
+			$research[i].setBounds(tx, ty, 455, 75);
+			frPickResearch.add($research[i]);
+			ty += 90;
+			$research[i].addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					for (int j = 0; j < $potentialTechs.size(); j++)
+						if ($potentialTechs.get(j).getName().equals(((JButton) arg0.getSource()).getText()))
+							currentResearchedTech = $potentialTechs.get(j);
+					frPickResearch.setVisible(false);
+				}
+			});
+		}
 	}
 }

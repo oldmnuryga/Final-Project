@@ -85,6 +85,7 @@ public class Settler extends Unit {
 		//		$tempArr.add(Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1] + 1]);
 		owner.addCity(new City(owner, Tile.get$map()[location.get$location()[0]][location.get$location()[1]]));
 		owner.get$cities().get(city).set$cityTiles($tempArr);
+		
 	}
 
 	public Tile instantiateTileValues(int x, int y) {
