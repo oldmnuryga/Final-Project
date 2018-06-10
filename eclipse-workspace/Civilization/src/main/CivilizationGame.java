@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
@@ -49,6 +50,8 @@ public class CivilizationGame {
 
 	// PLAYER INFO
 	private Player player;
+	private int cityLifetime;
+	private int movesToTech;
 
 	// UNIT GENERATION:
 	private int settlerTempX;
@@ -595,16 +598,16 @@ public class CivilizationGame {
 		else
 			year = (int) (962 * Math.log(turns) - 479) - 3000;
 		updateTurnText();
-		if (turns > 300) {
+		if (turns > 303) 
 			endGame();
-		}
 	}
 
 	public void endGame() {
 		// custom title, custom icon
 		JOptionPane.showMessageDialog(frame, "You have won the game.",
-				"Congrats. What's wrong with you? Why are you still here? What are you gaining from this? Do you think this is ok? What the hell is wrong with you? You are so dumb. Weakling. Peasant. Die.",
+				"Congrats.",
 				JOptionPane.INFORMATION_MESSAGE, iconTrophy);
+		frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 	}
 
 	public Player getPlayer() {
@@ -749,6 +752,7 @@ public class CivilizationGame {
 										displayResearch();
 										frPickResearch.setVisible(true);
 										frPickResearch.pack();
+										cityLifetime = 0;
 									} catch (Exception ef) {
 										JOptionPane.showMessageDialog(frame, "There is no settler to found a city");
 									}
@@ -898,6 +902,17 @@ public class CivilizationGame {
 			 */
 		}
 	}
+	
+	public double calculateMovesTech(int techID, double sciPerTurn) {
+		double moves = 1;
+		for(int i = 0; i < Technology.get$technologies().size(); i++) {
+			if(Technology.get$technologies().get(i).getTechnologyID() == techID) {
+				int cost = Technology.get$technologies().get(i).getScienceCost();
+				moves = (cost / sciPerTurn)+1;
+			}
+		}
+		return moves;
+	}
 
 	public boolean canMove(Unit unit, int x, int y, int horizontalMod, int verticalMod) {
 		try {
@@ -936,12 +951,14 @@ public class CivilizationGame {
 			$research[i].setBounds(tx, ty, 455, 75);
 			frPickResearch.add($research[i]);
 			ty += 90;
+			int z = i;
 			$research[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					for (int j = 0; j < $potentialTechs.size(); j++)
 						if ($potentialTechs.get(j).getName().equals(((JButton) arg0.getSource()).getText()))
 							currentResearchedTech = $potentialTechs.get(j);
 					frPickResearch.setVisible(false);
+					movesToTech = (int) (calculateMovesTech($potentialTechs.get(z).getTechnologyID(), player.getSciencePerTurn()) + .5);
 				}
 			});
 		}
