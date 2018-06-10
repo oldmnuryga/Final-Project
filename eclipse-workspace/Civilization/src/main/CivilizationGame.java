@@ -142,7 +142,7 @@ public class CivilizationGame {
 		// frame.setResizable(false);
 
 		// Research screen
-		frPickResearch.setPreferredSize(new Dimension(500, 900));
+		frPickResearch.setPreferredSize(new Dimension(500, 1000));
 		frPickResearch.setLayout(null);
 		frPickResearch.setVisible(false);
 
