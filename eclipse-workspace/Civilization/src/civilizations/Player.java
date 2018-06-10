@@ -186,4 +186,21 @@ public class Player {
 
 		}
 	}
+
+	public ArrayList<Technology> get$potentialTechs() {
+		return $potentialTechs;
+	}
+
+	public void set$potentialTechs(ArrayList<Technology> $potentialTechs) {
+		this.$potentialTechs = $potentialTechs;
+	}
+
+	public boolean[] get$scienceVictory() {
+		return $scienceVictory;
+	}
+
+	public void set$scienceVictory(boolean[] $scienceVictory) {
+		this.$scienceVictory = $scienceVictory;
+	}
+
 }
