@@ -52,7 +52,7 @@ public class CivilizationGame {
 	private Player player;
 	private int cityLifetime = 1;
 	private int movesToTech;
-	
+
 	// UNIT GENERATION:
 	private int settlerTempX;
 	private int settlerTempY;
@@ -586,15 +586,15 @@ public class CivilizationGame {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getUnitOnTile() != null)
 					Tile.get$map()[i][j].getUnitOnTile()
-					.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
-				if(Tile.get$map()[i][j].isCity()) {
+							.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
+				if (Tile.get$map()[i][j].isCity()) {
 					cityLifetime++;
 					System.out.println(cityLifetime);
 				}
 			}
 		}
 		growCity();
-		if(cityLifetime >= movesToTech) {
+		if (cityLifetime >= movesToTech) {
 			finishResearch(currentResearchedTech);
 		}
 	}
@@ -605,15 +605,14 @@ public class CivilizationGame {
 		else
 			year = (int) (962 * Math.log(turns) - 479) - 3000;
 		updateTurnText();
-		if (turns > 303) 
+		if (turns > 303)
 			endGame();
 	}
 
 	public void endGame() {
 		// custom title, custom icon
-		JOptionPane.showMessageDialog(frame, "You have won the game.",
-				"Congrats.",
-				JOptionPane.INFORMATION_MESSAGE, iconTrophy);
+		JOptionPane.showMessageDialog(frame, "You have won the game.", "Congrats.", JOptionPane.INFORMATION_MESSAGE,
+				iconTrophy);
 		frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
 	}
 
@@ -749,7 +748,7 @@ public class CivilizationGame {
 								public void actionPerformed(ActionEvent e) {
 									try {
 										((Settler) getPlayer().getOwnedUnitfromID(18))
-										.foundCity(player.get$cities().size());
+												.foundCity(player.get$cities().size());
 										removeUnit(x, y);
 										repaintTiles();
 										/*
@@ -912,10 +911,10 @@ public class CivilizationGame {
 
 	public double calculateMovesTech(int techID, double sciPerTurn) {
 		double moves = 1;
-		for(int i = 0; i < Technology.get$technologies().size(); i++) {
-			if(Technology.get$technologies().get(i).getTechnologyID() == techID) {
+		for (int i = 0; i < Technology.get$technologies().size(); i++) {
+			if (Technology.get$technologies().get(i).getTechnologyID() == techID) {
 				int cost = Technology.get$technologies().get(i).getScienceCost();
-				moves = (cost / sciPerTurn)+1;
+				moves = (cost / sciPerTurn) + 1;
 			}
 		}
 		return moves;
@@ -950,49 +949,38 @@ public class CivilizationGame {
 	public void displayResearch() {
 		player.findPotentialTechs();
 		ArrayList<Technology> $potentialTechs = player.get$potentialTechs();
-		for (int i = 0; i < $potentialTechs.size(); i++) {
-			if($potentialTechs.get(i).isResearched()) {
-				$potentialTechs.remove(i);
-			}
-		}
-		JButton[] $research = new JButton[$potentialTechs.size()];
-		System.out.println("Potential tech size" + $potentialTechs.size());
+		ArrayList<JButton> $research = new ArrayList<JButton>();
 		int tx = 15, ty = 15;
 		for (int i = 0; i < $potentialTechs.size(); i++) {
-			$research[i] = new JButton($potentialTechs.get(i).getName());
-			$research[i].setBounds(tx, ty, 455, 75);
-			frPickResearch.add($research[i]);
+			$research.add(new JButton($potentialTechs.get(i).getName()));
+			$research.get($research.size() - 1).setBounds(tx, ty, 455, 75);
+			frPickResearch.add($research.get($research.size() - 1));
 			ty += 90;
 			int z = i;
-			$research[i].addActionListener(new ActionListener() {
+			$research.get(i).addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					for (int j = 0; j < $potentialTechs.size(); j++)
 						if ($potentialTechs.get(j).getName().equals(((JButton) arg0.getSource()).getText()))
 							currentResearchedTech = $potentialTechs.get(j);
+					$research.remove(((JButton) arg0.getSource()));
 					frPickResearch.setVisible(false);
-					movesToTech = (int) (calculateMovesTech($potentialTechs.get(z).getTechnologyID(), player.getSciencePerTurn()) + .5);
+					movesToTech = (int) (calculateMovesTech($potentialTechs.get(z).getTechnologyID(),
+							player.getSciencePerTurn()) + .5);
 				}
 			});
 		}
 	}
+
 	public void finishResearch(Technology finished) {
-		cityLifetime+=movesToTech;
-		displayResearch();
-		player.get$technologies().add(finished);
-		for (int j = 0; j < Technology.get$technologies().size(); j++) 
-			if(Technology.get$technologies().get(j).getTechnologyID() == finished.getTechnologyID()) 
-				Technology.get$technologies().get(j).setResearched(true);
-			
-		
-		JOptionPane.showMessageDialog(frame, "You finished " + finished.getName(),
-				"Completed Research",
+		currentResearchedTech = null;
+		frPickResearch.getContentPane().removeAll();
+		cityLifetime += movesToTech;
+		player.addTechnology(finished.getTechnologyID());
+		player.get$technologies().get(player.get$technologies().size() - 1).setResearched(true);
+		JOptionPane.showMessageDialog(frame, "You finished " + finished.getName(), "Completed Research",
 				JOptionPane.INFORMATION_MESSAGE);
-		ArrayList<Technology> potTech = player.get$potentialTechs();
-		for(int i = 0; i < potTech.size(); i++) 
-			if(potTech.get(i).isResearched()) 
-				potTech.remove(i);
-			
-		player.set$potentialTechs(potTech);
+		player.name();
+		displayResearch();
 		frPickResearch.setVisible(true);
 	}
 }

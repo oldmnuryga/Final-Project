@@ -173,22 +173,17 @@ public class Player {
 	}
 
 	public void findPotentialTechs() {
+		this.get$potentialTechs().clear();
 		for (int i = 0; i < Technology.get$technologies().size(); i++) {
 			Technology technology = Technology.get$technologies().get(i);
+			if (hasTechnology(technology.getTechnologyID()))
+				continue;
 			boolean areResearched = true;
-			boolean researched = false;
-			if (this.hasTechnology(i))
-				researched = true;
 			for (int j = 0; j < technology.get$comesFrom().size(); j++)
 				if (!(hasTechnology(technology.get$comesFrom().get(j))))
 					areResearched = false;
-			if (areResearched || researched)
-				$potentialTechs.add(technology);
-/*			for(int z = 0; z < get$potentialTechs().size(); z++) {
-				if(get$potentialTechs().get(z).isResearched()) {
-					$potentialTechs.remove(z);
-				}
-			}*/
+			if (areResearched)
+				this.get$potentialTechs().add(technology);
 		}
 	}
 
@@ -208,4 +203,9 @@ public class Player {
 		this.$scienceVictory = $scienceVictory;
 	}
 
+	public void name() {
+		for (int i = 0; i < get$technologies().size(); i++) {
+			System.out.println(get$technologies().get(i).getName());
+		}
+	}
 }
