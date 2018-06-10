@@ -950,6 +950,11 @@ public class CivilizationGame {
 	public void displayResearch() {
 		player.findPotentialTechs();
 		ArrayList<Technology> $potentialTechs = player.get$potentialTechs();
+		for (int i = 0; i < $potentialTechs.size(); i++) {
+			if($potentialTechs.get(i).isResearched()) {
+				$potentialTechs.remove(i);
+			}
+		}
 		JButton[] $research = new JButton[$potentialTechs.size()];
 		System.out.println("Potential tech size" + $potentialTechs.size());
 		int tx = 15, ty = 15;
@@ -988,8 +993,6 @@ public class CivilizationGame {
 				potTech.remove(i);
 			
 		player.set$potentialTechs(potTech);
-//		System.out.println(potTech);
 		frPickResearch.setVisible(true);
-
 	}
 }
