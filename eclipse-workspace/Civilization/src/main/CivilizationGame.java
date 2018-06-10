@@ -67,7 +67,9 @@ public class CivilizationGame {
 	private JLabel lblYear = new JLabel("3000 BC");
 	private JFrame frPickResearch = new JFrame("Research");
 	private JButton[] $research = new JButton[Technology.getNumberOfTechnologies()];
+	private JFrame frPickProduction = new JFrame("Production");
 
+	
 	private JButton btnEndTurn = new JButton("End Turn");
 	private JButton btnShowInstructions = new JButton("How to Play the Game");
 	private JPanel pnePlayerStats = new JPanel();
@@ -712,6 +714,56 @@ public class CivilizationGame {
 					}
 				}
 			}
+		}
+	}
+	
+	public void uniqueLeaderAbility() {
+		if(player.getLeader().getLeaderID() == 0) {
+			//america
+			// all land units have +1 movement
+			// +2 gpt
+			player.setGoldPerTurn(player.getGoldPerTurn()+2);
+			for(int z = 0; z < player.get$units().size();z++) {
+				player.get$units().get(z).setMaxMovement(player.get$units().get(z).getMaxMovement()+2);
+			}
+		} else if(player.getLeader().getLeaderID() == 1) {
+			//italy
+			// +2 food
+			// +1 production
+			for(int i = 0; i < player.get$cities().size(); i++) {
+				player.get$cities().get(i).setFoodRate(player.get$cities().get(i).getFoodRate() + 2);
+				player.get$cities().get(i).setProductionRate(player.get$cities().get(i).getProductionRate() + 1);
+			}
+		} else if(player.getLeader().getLeaderID() == 2) {
+			//korea
+			// +10% science
+			// university gold maintenance is 1 not 3
+			player.setSciencePerTurn((player.getSciencePerTurn()*1.1));
+			for(int i = 0; i < player.get$cities().size(); i++) {
+				if(player.get$cities().get(i).getCertainBuilding(13).isBuilt()) {
+					player.get$cities().get(i).getCertainBuilding(13).setGoldMaintenance(player.get$cities().get(i).getCertainBuilding(13).getGoldMaintenance() - 2);
+				}
+				
+				
+			}
+		} else if(player.getLeader().getLeaderID() == 3) {
+			//mongolia
+			// military strength +10%
+			// +20 hit points per unit
+			for(int i = 0; i < player.get$units().size(); i++) {
+				player.get$units().get(i).setAttackRating((int) (player.get$units().get(i).getAttackRating() * 1.1));
+				player.get$units().get(i).setHitpoints(player.get$units().get(i).getHitpoints() + 20);
+			}
+			
+		} else if(player.getLeader().getLeaderID() == 4) {
+			//poland
+			// +2 prod
+			// cathedral costs no maintenance
+			for(int z = 0; z < player.get$cities().size(); z++) {
+				player.get$cities().get(z).getCertainBuilding(3).setGoldMaintenance(0);
+				player.get$cities().get(z).setProductionRate(player.get$cities().get(z).getProductionRate() + 2);
+			}
+			
 		}
 	}
 
