@@ -52,7 +52,7 @@ public class CivilizationGame {
 	private Player player;
 	private int cityLifetime = 1;
 	private int movesToTech;
-
+	
 	// UNIT GENERATION:
 	private int settlerTempX;
 	private int settlerTempY;
@@ -594,6 +594,9 @@ public class CivilizationGame {
 			}
 		}
 		growCity();
+		if(cityLifetime >= movesToTech) {
+			finishResearch(currentResearchedTech);
+		}
 	}
 
 	public void changeYear() {
@@ -948,7 +951,7 @@ public class CivilizationGame {
 		player.findPotentialTechs();
 		ArrayList<Technology> $potentialTechs = player.get$potentialTechs();
 		JButton[] $research = new JButton[$potentialTechs.size()];
-		System.out.println($potentialTechs.size());
+		System.out.println("Potential tech size" + $potentialTechs.size());
 		int tx = 15, ty = 15;
 		for (int i = 0; i < $potentialTechs.size(); i++) {
 			$research[i] = new JButton($potentialTechs.get(i).getName());
@@ -971,6 +974,22 @@ public class CivilizationGame {
 		cityLifetime+=movesToTech;
 		displayResearch();
 		player.get$technologies().add(finished);
+		for (int j = 0; j < Technology.get$technologies().size(); j++) 
+			if(Technology.get$technologies().get(j).getTechnologyID() == finished.getTechnologyID()) 
+				Technology.get$technologies().get(j).setResearched(true);
+			
+		
+		JOptionPane.showMessageDialog(frame, "You finished " + finished.getName(),
+				"Completed Research",
+				JOptionPane.INFORMATION_MESSAGE);
+		ArrayList<Technology> potTech = player.get$potentialTechs();
+		for(int i = 0; i < potTech.size(); i++) 
+			if(potTech.get(i).isResearched()) 
+				potTech.remove(i);
+			
+		player.set$potentialTechs(potTech);
+//		System.out.println(potTech);
+		frPickResearch.setVisible(true);
 
 	}
 }

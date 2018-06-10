@@ -12,7 +12,7 @@ public class Technology {
 	private int technologyID;
 	private String name;
 	private boolean achievable;
-	private boolean researched;
+	private boolean researched = false;
 	private int scienceCost;
 	private ArrayList<Integer> $leadsTo;
 	private ArrayList<Integer> $comesFrom;

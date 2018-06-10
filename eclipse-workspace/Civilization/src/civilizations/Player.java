@@ -181,6 +181,11 @@ public class Player {
 					areResearched = false;
 			if (areResearched)
 				$potentialTechs.add(technology);
+/*			for(int z = 0; z < get$potentialTechs().size(); z++) {
+				if(get$potentialTechs().get(z).isResearched()) {
+					$potentialTechs.remove(z);
+				}
+			}*/
 		}
 	}
 
