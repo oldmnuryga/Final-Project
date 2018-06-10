@@ -34,7 +34,7 @@ public abstract class Unit {
 	protected String unitName;
 	protected int movesLeft;// = maxMovement;
 	protected Player owner = null;
-	protected static ImageIcon unitImageIcon = null;
+	protected ImageIcon unitImageIcon = null;
 	KeyTest test = new KeyTest();
 
 	public int getUnitID() {
@@ -225,7 +225,7 @@ public abstract class Unit {
 		this.owner = owner;
 	}
 
-	public static ImageIcon getUnitImageIcon() {
+	public ImageIcon getUnitImageIcon() {
 		return unitImageIcon;
 	}
 
