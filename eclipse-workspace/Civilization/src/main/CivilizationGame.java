@@ -989,7 +989,6 @@ public class CivilizationGame {
 		player.get$technologies().get(player.get$technologies().size() - 1).setResearched(true);
 		JOptionPane.showMessageDialog(frame, "You finished " + finished.getName(), "Completed Research",
 				JOptionPane.INFORMATION_MESSAGE);
-		player.name();
 		displayResearch();
 		frPickResearch.setVisible(true);
 	}
