@@ -40,6 +40,7 @@ import sound.sounds;
 import technology.Technology;
 import units.Settler;
 import units.Unit;
+import units.Warrior;
 
 public class CivilizationGame {
 	public static int turns = 1;
@@ -165,7 +166,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
-				// spawnInitialWarrior();
+				spawnInitialWarrior();
 				frame.pack();
 			}
 		});
@@ -182,7 +183,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
-				// spawnInitialWarrior();
+				spawnInitialWarrior();
 				frame.pack();
 			}
 		});
@@ -199,7 +200,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
-				// spawnInitialWarrior();
+				spawnInitialWarrior();
 				frame.pack();
 			}
 		});
@@ -216,7 +217,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
-				// spawnInitialWarrior();
+				spawnInitialWarrior();
 				frame.pack();
 			}
 		});
@@ -233,7 +234,7 @@ public class CivilizationGame {
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
-				// spawnInitialWarrior();
+				spawnInitialWarrior();
 				frame.pack();
 			}
 		});
@@ -559,19 +560,28 @@ public class CivilizationGame {
 		}
 	}
 
-	/*
-	 * public void spawnInitialWarrior() { boolean found = true; int i = 1; int z =
-	 * 1; while (found) { while(Tile.get$map()[settlerTempX + i][settlerTempY +
-	 * z].getTerrainID() != 1) { if(i % 2 == 0) i++; else z++; } settlerTempY =
-	 * settlerTempY + z; settlerTempX = settlerTempX + i;
-	 * Tile.get$map()[settlerTempX][settlerTempY].setUnitOnTile(new
-	 * Warrior(player)); int[] temp = { settlerTempX, settlerTempY };
-	 * Tile.get$map()[settlerTempX][settlerTempY].set$location(temp);
-	 * Tile.get$map()[settlerTempX][settlerTempY].getUnitOnTile().setLocation(Tile.
-	 * get$map()[settlerTempX][settlerTempY]); found = false; //
-	 * Tile.get$map()[settlerTempX][settlerTempY].getUnitOnTile().setUnitImageIcon(
-	 * Warrior.getUnitImageIcon()); repaintTiles(); } }
-	 */
+	public void spawnInitialWarrior() {
+		boolean found = true;
+		int i = 1;
+		int z = 1;
+		while (found) {
+			while (Tile.get$map()[settlerTempX + i][settlerTempY + z].getTerrainID() != 1) {
+				if (i % 2 == 0)
+					i++;
+				else
+					z++;
+			}
+			settlerTempY = settlerTempY + z;
+			settlerTempX = settlerTempX + i;
+			Tile.get$map()[settlerTempX][settlerTempY].setUnitOnTile(new Warrior(player));
+			int[] temp = { settlerTempX, settlerTempY };
+			Tile.get$map()[settlerTempX][settlerTempY].set$location(temp);
+			Tile.get$map()[settlerTempX][settlerTempY].getUnitOnTile()
+					.setLocation(Tile.get$map()[settlerTempX][settlerTempY]);
+			found = false;
+			repaintTiles();
+		}
+	}
 
 	public void endTurn() {
 		turns++;
