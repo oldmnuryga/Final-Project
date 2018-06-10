@@ -740,11 +740,8 @@ public class CivilizationGame {
 			// university gold maintenance is 1 not 3
 			player.setSciencePerTurn((player.getSciencePerTurn()*1.1));
 			for(int i = 0; i < player.get$cities().size(); i++) {
-				if(player.get$cities().get(i).getCertainBuilding(13).isBuilt()) {
+				if(player.get$cities().get(i).getCertainBuilding(13).isBuilt()) 
 					player.get$cities().get(i).getCertainBuilding(13).setGoldMaintenance(player.get$cities().get(i).getCertainBuilding(13).getGoldMaintenance() - 2);
-				}
-				
-				
 			}
 		} else if(player.getLeader().getLeaderID() == 3) {
 			//mongolia
