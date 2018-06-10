@@ -202,10 +202,4 @@ public class Player {
 	public void set$scienceVictory(boolean[] $scienceVictory) {
 		this.$scienceVictory = $scienceVictory;
 	}
-
-	public void name() {
-		for (int i = 0; i < get$technologies().size(); i++) {
-			System.out.println(get$technologies().get(i).getName());
-		}
-	}
 }
