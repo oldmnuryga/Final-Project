@@ -50,7 +50,7 @@ public class CivilizationGame {
 
 	// PLAYER INFO
 	private Player player;
-	private int cityLifetime;
+	private int cityLifetime = 1;
 	private int movesToTech;
 
 	// UNIT GENERATION:
@@ -586,7 +586,11 @@ public class CivilizationGame {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getUnitOnTile() != null)
 					Tile.get$map()[i][j].getUnitOnTile()
-							.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
+					.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
+				if(Tile.get$map()[i][j].isCity()) {
+					cityLifetime++;
+					System.out.println(cityLifetime);
+				}
 			}
 		}
 		growCity();
@@ -742,7 +746,7 @@ public class CivilizationGame {
 								public void actionPerformed(ActionEvent e) {
 									try {
 										((Settler) getPlayer().getOwnedUnitfromID(18))
-												.foundCity(player.get$cities().size());
+										.foundCity(player.get$cities().size());
 										removeUnit(x, y);
 										repaintTiles();
 										/*
@@ -902,7 +906,7 @@ public class CivilizationGame {
 			 */
 		}
 	}
-	
+
 	public double calculateMovesTech(int techID, double sciPerTurn) {
 		double moves = 1;
 		for(int i = 0; i < Technology.get$technologies().size(); i++) {
@@ -962,5 +966,11 @@ public class CivilizationGame {
 				}
 			});
 		}
+	}
+	public void finishResearch(Technology finished) {
+		cityLifetime+=movesToTech;
+		displayResearch();
+		player.get$technologies().add(finished);
+
 	}
 }
