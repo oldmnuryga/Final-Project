@@ -147,6 +147,8 @@ public class CivilizationGame {
 		frPickResearch.setPreferredSize(new Dimension(500, 1000));
 		frPickResearch.setLayout(null);
 		frPickResearch.setVisible(false);
+		frPickResearch.setAlwaysOnTop(true);
+		frPickResearch.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
 		// Title screen
 		titleFrame.setPreferredSize(new Dimension(1920, 1015));

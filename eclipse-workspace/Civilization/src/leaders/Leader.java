@@ -145,9 +145,9 @@ public abstract class Leader {
 			return sandTile;
 		else if(ID == 3)
 			return mountainTile;
-		else if(rand.nextInt(100) + 1 > 50)
+		else //if(rand.nextInt(100) + 1 > 50)
 			return forestTile;
-		else
-			return forest2Tile;
+		//else
+		//	return forest2Tile;
 	}
 }
