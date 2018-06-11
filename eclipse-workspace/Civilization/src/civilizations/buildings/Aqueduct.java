@@ -19,6 +19,17 @@ public class Aqueduct extends Building {
 		oldCitizenCap = 10;
 	}
 
+	public Aqueduct() {
+		buildingID = 0;
+		name = "Aqueduct";
+		description = "Allows City to Grow over 10.";
+		productionRequirement = 120;
+		goldMaintenance = 2;
+		techRequired = 12;
+		newCitizenCap = 30;
+		oldCitizenCap = 10;
+	}
+
 	public int getNewCitizenCap() {
 		return newCitizenCap;
 	}
@@ -38,6 +49,7 @@ public class Aqueduct extends Building {
 	public void uniqueAbility() {
 		location.setCitizenCap(newCitizenCap);
 	}
+
 	public void removeAbility() {
 		location.setCitizenCap(oldCitizenCap);
 	}

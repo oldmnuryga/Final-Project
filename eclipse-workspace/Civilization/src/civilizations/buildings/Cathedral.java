@@ -17,6 +17,16 @@ public class Cathedral extends Building {
 		addedHappiness = (int) decideHappiness();
 	}
 
+	public Cathedral() {
+		buildingID = 3;
+		name = "Cathedral";
+		description = "+4 Happiness.";
+		productionRequirement = 160;
+		goldMaintenance = 3;
+		techRequired = 34;
+		addedHappiness = (int) decideHappiness();
+	}
+
 	public int getAddedHappiness() {
 		return addedHappiness;
 	}

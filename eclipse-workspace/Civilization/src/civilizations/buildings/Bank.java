@@ -17,6 +17,16 @@ public class Bank extends Building {
 		addedGold = location.getGoldProduced() * 0.5;
 	}
 
+	public Bank() {
+		buildingID = 1;
+		name = "Bank";
+		description = "Taxes and Luxuries increase by 50%. Requires a market.";
+		productionRequirement = 120;
+		goldMaintenance = 3;
+		techRequired = 26;
+		addedGold = location.getGoldProduced() * 0.5;
+	}
+
 	public double getAddedGold() {
 		return addedGold;
 	}

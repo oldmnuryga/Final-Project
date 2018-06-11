@@ -17,6 +17,16 @@ public class University extends Building {
 		addedScience = decideScienceRate();
 	}
 
+	public University() {
+		buildingID = 13;
+		name = "University";
+		description = "Science +50%.";
+		productionRequirement = 160;
+		goldMaintenance = 3;
+		techRequired = 28;
+		addedScience = decideScienceRate();
+	}
+
 	public double getAddedScience() {
 		return addedScience;
 	}
@@ -33,6 +43,7 @@ public class University extends Building {
 		location.setScienceRate(location.getScienceRate() - addedScience);
 
 	}
+
 	public double decideScienceRate() {
 		double scienceRate = location.getScienceRate() * 0.5;
 		if (location.hasWonder(8))

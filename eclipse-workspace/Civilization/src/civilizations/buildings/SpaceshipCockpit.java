@@ -13,4 +13,14 @@ public class SpaceshipCockpit extends SpaceshipPart {
 		goldMaintenance = 0;
 		techRequired = 52;
 	}
+
+	public SpaceshipCockpit() {
+		buildingID = 15;
+		spaceshipID = 0;
+		name = "Spaceship Cockpit";
+		description = "One of the three parts required for a science victory.";
+		productionRequirement = 200;
+		goldMaintenance = 0;
+		techRequired = 52;
+	}
 }

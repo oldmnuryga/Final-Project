@@ -166,11 +166,11 @@ public class CivilizationGame {
 		btnGenghis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setPlayer(new Player(new Mongolia()));
-				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
 				spawnInitialWarrior();
+				updatePlayerStats();
 				frame.pack();
 			}
 		});
@@ -183,11 +183,11 @@ public class CivilizationGame {
 		btnWashington.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setPlayer(new Player(new America()));
-				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
 				spawnInitialWarrior();
+				updatePlayerStats();
 				frame.pack();
 			}
 		});
@@ -200,11 +200,11 @@ public class CivilizationGame {
 		btnSejong.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setPlayer(new Player(new Korea()));
-				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
 				spawnInitialWarrior();
+				updatePlayerStats();
 				frame.pack();
 			}
 		});
@@ -217,11 +217,11 @@ public class CivilizationGame {
 		btnMussolini.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setPlayer(new Player(new Italy()));
-				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
 				spawnInitialWarrior();
+				updatePlayerStats();
 				frame.pack();
 			}
 		});
@@ -234,11 +234,11 @@ public class CivilizationGame {
 		btnCasimir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setPlayer(new Player(new Poland()));
-				updatePlayerStats();
 				titleFrame.setVisible(false);
 				frame.setVisible(true);
 				spawnInitialSettler();
 				spawnInitialWarrior();
+				updatePlayerStats();
 				frame.pack();
 			}
 		});
@@ -491,7 +491,10 @@ public class CivilizationGame {
 		pnePlayerStats.add(new JLabel("Owned Units: \n"));
 		if (player.get$units().size() != 0)
 			for (int i = 0; i < player.get$units().size(); i++) {
-				pnePlayerStats.add(new JLabel(player.get$units().get(i).getUnitName()));
+				if (player.get$units().size() > 1 && i < player.get$units().size() - 1)
+					pnePlayerStats.add(new JLabel(player.get$units().get(i).getUnitName() + ", "));
+				else
+					pnePlayerStats.add(new JLabel(player.get$units().get(i).getUnitName()));
 			}
 
 	}

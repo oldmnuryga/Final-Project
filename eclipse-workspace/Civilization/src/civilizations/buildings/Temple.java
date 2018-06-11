@@ -17,6 +17,16 @@ public class Temple extends Building {
 		addedHappiness = decideHappiness();
 	}
 
+	public Temple() {
+		buildingID = 12;
+		name = "Temple";
+		description = "Increases Happiness.";
+		productionRequirement = 160;
+		goldMaintenance = 2;
+		techRequired = 65;
+		addedHappiness = decideHappiness();
+	}
+
 	public double getAddedHappiness() {
 		return addedHappiness;
 	}

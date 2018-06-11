@@ -17,6 +17,16 @@ public class Factory extends Building {
 		addedProduction = location.getProductionRate() * 0.5;
 	}
 
+	public Factory() {
+		buildingID = 5;
+		name = "Factory";
+		description = "Production +50%. Becomes obsolete with a Mfg. plant.";
+		productionRequirement = 200;
+		goldMaintenance = 4;
+		techRequired = 42;
+		addedProduction = location.getProductionRate() * 0.5;
+	}
+
 	public double getAddedProduction() {
 		return addedProduction;
 	}

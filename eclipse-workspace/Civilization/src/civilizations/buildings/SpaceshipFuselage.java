@@ -13,4 +13,14 @@ public class SpaceshipFuselage extends SpaceshipPart {
 		goldMaintenance = 0;
 		techRequired = 58;
 	}
+
+	public SpaceshipFuselage() {
+		buildingID = 17;
+		spaceshipID = 2;
+		name = "Spaceship Fuselage";
+		description = "One of the three parts required for a science victory.";
+		productionRequirement = 200;
+		goldMaintenance = 0;
+		techRequired = 58;
+	}
 }

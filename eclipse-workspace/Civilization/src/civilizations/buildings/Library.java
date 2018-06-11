@@ -17,6 +17,16 @@ public class Library extends Building {
 		addedScience = decideScienceRate();
 	}
 
+	public Library() {
+		buildingID = 8;
+		name = "Library";
+		description = "Science +50%.";
+		productionRequirement = 80;
+		goldMaintenance = 1;
+		techRequired = 11;
+		addedScience = decideScienceRate();
+	}
+
 	public double getAddedScience() {
 		return addedScience;
 	}
