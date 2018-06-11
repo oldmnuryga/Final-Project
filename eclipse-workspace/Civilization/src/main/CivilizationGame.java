@@ -618,7 +618,8 @@ public class CivilizationGame {
 		int i = 1;
 		int z = 1;
 		while (found) {
-			while (Tile.get$map()[settlerTempX + i][settlerTempY + z].getTerrainID() != 1) {
+			
+			while (Tile.get$map()[settlerTempX + i][settlerTempY + z].getTerrainID() != 1 && Tile.get$map()[settlerTempX + i][settlerTempY + z].getTerrainID() != 4 && Tile.get$map()[settlerTempX + i][settlerTempY + z].getTerrainID() != 2) {
 				if (i % 2 == 0)
 					i++;
 				else
