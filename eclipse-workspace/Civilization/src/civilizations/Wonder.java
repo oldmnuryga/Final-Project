@@ -18,7 +18,7 @@ public abstract class Wonder extends Structure {
 	protected int wonderID;
 	protected int techObsoletionID;
 	protected boolean isObsolete = false;
-	
+
 	public static ArrayList<Wonder> $allWonders = new ArrayList<Wonder>();
 
 	public boolean canBeBuilt() {
@@ -66,7 +66,7 @@ public abstract class Wonder extends Structure {
 		}
 		return false;
 	}
-	
+
 	public static void instantiateWonderArrayList() {
 		$allWonders.add(new ApolloProgram());
 		$allWonders.add(new BachsCathedral());

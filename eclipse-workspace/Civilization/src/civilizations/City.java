@@ -342,6 +342,10 @@ public class City {
 	}
 
 	public void findPotentialBuildings() {
+		this.get$potentialBuildings().clear();
+		for (int i = 0; i < Building.get$allBuildings().size(); i++)
+			if (owner.hasTechnology(Building.get$allBuildings().get(i).getTechRequired()))
+				$potentialBuildings.add(Building.get$allBuildings().get(i));
 
 	}
 

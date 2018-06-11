@@ -43,6 +43,14 @@ public abstract class Building extends Structure {
 		return buildingID;
 	}
 
+	public static ArrayList<Building> get$allBuildings() {
+		return $allBuildings;
+	}
+
+	public static void set$allBuildings(ArrayList<Building> $allBuildings) {
+		Building.$allBuildings = $allBuildings;
+	}
+
 	public void setBuildingID(int buildingID) {
 		this.buildingID = buildingID;
 	}
