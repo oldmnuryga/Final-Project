@@ -18,7 +18,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -921,15 +920,22 @@ public class CivilizationGame {
 									frPickProduction.setLayout(null);
 									frPickProduction.setPreferredSize(new Dimension(1500, 1000));
 
-									JMenu pickProduction = new JMenu("Production");
-									frPickProduction.add(pickProduction);
+									JScrollPane pickUnit = new JScrollPane();
+									JScrollPane pickWonder = new JScrollPane();
+									JScrollPane pickBuilding = new JScrollPane();
+									frPickProduction.add(pickUnit);
+									frPickProduction.add(pickWonder);
+									frPickProduction.add(pickBuilding);
+									pickUnit.setBounds(0, 0, 500, 1000);
+									pickWonder.setBounds(500, 0, 500, 1000);
+									pickBuilding.setBounds(1000, 0, 500, 1000);
 
 									for (int i = 0; i < player.get$cities().get(0).get$potentialWonders().size(); i++) {
 										JButton[] wonder = new JButton[player.get$cities().get(0).get$potentialWonders()
 										                               .size()];
 										wonder[i] = new JButton(
 												player.get$cities().get(0).get$potentialBuildings().get(i).getName());
-										pickProduction.add(wonder[i]);
+										pickWonder.add(wonder[i]);
 										int w = 0, t = 0;
 										wonder[i].setBounds(w, t, 455, 75);
 										t += 90;
