@@ -40,6 +40,7 @@ public class sounds {
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 	
+	//Plays sound for choosing Gengis
 	public static void gengisSoundPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(gengisFile);
 		Clip clip = AudioSystem.getClip();
