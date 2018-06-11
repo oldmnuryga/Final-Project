@@ -204,7 +204,7 @@ public class CivilizationGame {
 				spawnInitialWarrior();
 				frame.pack();
 			}
-		});
+		});		
 		titleFrame.add(btnSejong);
 		titleFrame.add(lblSejong);
 		lblMussolini.setFont(new Font("Monospaced", Font.ITALIC, 20));
@@ -379,6 +379,8 @@ public class CivilizationGame {
 				/*
 				 * $mapButtons[i][j].setBorder(null); $mapButtons[i][j].setBorderPainted(false);
 				 */
+				$mapButtons[i][j].setEnabled(false);
+				$mapButtons[i][j].setDisabledIcon(fog);
 				mapPanel.add($mapButtons[i][j]);
 			}
 		}
@@ -525,10 +527,10 @@ public class CivilizationGame {
 				}
 			}
 		}
-		checkFogOfWar();
+		repaintFog();
 	}
 
-	private void checkFogVisible(int x, int y) {
+	/*	private void checkFogVisible(int x, int y) {
 		if (x + 2 < Tile.getMAP_SIZE() && y + 2 < Tile.getMAP_SIZE() && x - 2 > 0 && y - 2 > 0) {
 			for (int i = -2; i <= 2; i++) {
 				for (int j = -2; j <= 2; j++) {
@@ -555,6 +557,27 @@ public class CivilizationGame {
 			}
 		}
 
+	}*/
+
+	private void repaintFog() {
+		/*for (int i = 0; i < $mapButtons.length; i++) {
+			for (int j = 0; j < $mapButtons[i].length; j++) {
+				$mapButtons[i][j].setEnabled(false);
+			}
+		}*/
+		for (int i = 0; i < $mapButtons.length; i++) {
+			for (int j = 0; j < $mapButtons[i].length; j++) {
+				if(Tile.get$map()[i][j].getUnitOnTile() != null || Tile.get$map()[i][j].isCity() || Tile.get$map()[i][j].getOwner() != null) {
+					for (int x = -2; x <= 2; x++) {
+						for (int y = -2; y <= 2; y++) {
+							try {
+								$mapButtons[i + x][j + y].setEnabled(true);
+							} catch (Exception e) {}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	public void changeTile(int i, int j) {
