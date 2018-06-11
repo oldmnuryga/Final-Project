@@ -13,6 +13,7 @@ public class sounds {
 	protected static File musicfile = new File("src/sound/resources/civMusic.wav");
 	protected static File unitdeathfile = new File("src/sound/resources/gruntLongFinal.mp3");
 	protected static File clickfile = new File("src/sound/resources/click.wav");
+	protected static File gengisFile = new File("src/sound/resources/yo.wav");
 
 	// Plays on click of mouse
 	public static void clickPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
@@ -37,5 +38,12 @@ public class sounds {
 		clip.open(audioInputStream);
 		clip.start();
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
+	}
+	
+	public static void gengisSoundPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(gengisFile);
+		Clip clip = AudioSystem.getClip();
+		clip.open(audioInputStream);
+		clip.start();
 	}
 }
