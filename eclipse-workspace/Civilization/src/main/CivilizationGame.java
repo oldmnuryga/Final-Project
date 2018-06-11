@@ -475,20 +475,20 @@ public class CivilizationGame {
 	public void updatePlayerStats() {
 		pnePlayerStats.removeAll();
 		// PLAYER NAME
-		pnePlayerStats.add(new JLabel("Player Name: " + player.getLeader().getLeaderName() + "\n"));
+		pnePlayerStats.add(new JLabel("Player Name: " + player.getLeader().getLeaderName() + "\n\n"));
 		// PLAYER CITIES
 		if (player.get$cities().size() != 0) {
-			pnePlayerStats.add(new JLabel("Player City Name: " + player.get$cities().get(0).getName() + "\n"));
+			pnePlayerStats.add(new JLabel("Player City Name: " + player.get$cities().get(0).getName() + "\n\n"));
 			// PLAYER BUILDINGS
-			pnePlayerStats.add(new JLabel("Owned Buildings: \n"));
+			pnePlayerStats.add(new JLabel("Owned Buildings: \n\n"));
 			for (int i = 0; i < player.get$cities().get(0).get$buildings().size(); i++)
 				pnePlayerStats.add(new JLabel(player.get$cities().get(0).get$buildings().get(i).getName()));
-			pnePlayerStats.add(new JLabel("Owned Wonders: \n"));
+			pnePlayerStats.add(new JLabel("Owned Wonders: \n\n"));
 			if (player.get$cities().get(0).get$wonders().size() != 0)
 				for (int i = 0; i < player.get$cities().get(0).get$wonders().size(); i++)
 					pnePlayerStats.add(new JLabel(player.get$cities().get(0).get$wonders().get(i).getName()));
 		}
-		pnePlayerStats.add(new JLabel("Owned Units: \n"));
+		pnePlayerStats.add(new JLabel("Owned Units: \n\n"));
 		if (player.get$units().size() != 0)
 			for (int i = 0; i < player.get$units().size(); i++) {
 				if (player.get$units().size() > 1 && i < player.get$units().size() - 1)
@@ -630,7 +630,7 @@ public class CivilizationGame {
 			int[] temp = { settlerTempX, settlerTempY };
 			Tile.get$map()[settlerTempX][settlerTempY].set$location(temp);
 			Tile.get$map()[settlerTempX][settlerTempY].getUnitOnTile()
-			.setLocation(Tile.get$map()[settlerTempX][settlerTempY]);
+					.setLocation(Tile.get$map()[settlerTempX][settlerTempY]);
 			found = false;
 			repaintTiles();
 		}
@@ -650,7 +650,7 @@ public class CivilizationGame {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getUnitOnTile() != null)
 					Tile.get$map()[i][j].getUnitOnTile()
-					.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
+							.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
 				if (Tile.get$map()[i][j].isCity()) {
 					cityLifetime++;
 					System.out.println(cityLifetime);
@@ -825,7 +825,7 @@ public class CivilizationGame {
 								public void actionPerformed(ActionEvent e) {
 									try {
 										((Settler) getPlayer().getOwnedUnitfromID(18))
-										.foundCity(player.get$cities().size());
+												.foundCity(player.get$cities().size());
 										removeUnit(x, y);
 										repaintTiles();
 										/*
@@ -900,26 +900,29 @@ public class CivilizationGame {
 
 									frPickProduction.setVisible(true);
 									frPickProduction.setLayout(null);
-									frPickProduction.setPreferredSize(new Dimension(1500,1000));
+									frPickProduction.setPreferredSize(new Dimension(1500, 1000));
 
 									JScrollPane pickUnit = new JScrollPane();
 									JScrollPane pickWonder = new JScrollPane();
 									JScrollPane pickBuilding = new JScrollPane();
 
 									pickUnit.setBounds(0, 0, 500, 1000);
-									pickWonder.setBounds(500,0,500,1000);
-									pickBuilding.setBounds(1000,0,500,1000);
-									
-									for(int i = 0; i < player.get$cities().get(0).get$potentialWonders().size(); i++) {
-										JButton[] wonder = new JButton[player.get$cities().get(0).get$potentialWonders().size()];
-										wonder[i] = new JButton(player.get$cities().get(0).get$potentialBuildings().get(i).getName());
+									pickWonder.setBounds(500, 0, 500, 1000);
+									pickBuilding.setBounds(1000, 0, 500, 1000);
+
+									for (int i = 0; i < player.get$cities().get(0).get$potentialWonders().size(); i++) {
+										JButton[] wonder = new JButton[player.get$cities().get(0).get$potentialWonders()
+												.size()];
+										wonder[i] = new JButton(
+												player.get$cities().get(0).get$potentialBuildings().get(i).getName());
 										pickWonder.add(wonder[i]);
 										int w = 0, t = 0;
-										wonder[i].setBounds(w,t,455,75);
-										t+=90;
+										wonder[i].setBounds(w, t, 455, 75);
+										t += 90;
 									}
-									for(int i = 0; i < player.get$cities().get(0).get$potentialBuildings().size(); i++) {
-										
+									for (int i = 0; i < player.get$cities().get(0).get$potentialBuildings()
+											.size(); i++) {
+
 									}
 
 									frPickProduction.pack();
