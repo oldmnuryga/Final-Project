@@ -3,7 +3,7 @@ package units;
 import javax.swing.ImageIcon;
 
 import civilizations.Player;
-
+//UNIT AND ITS PARAMETERS
 public class Scout extends Unit {
 
 	public Scout() {
@@ -16,6 +16,7 @@ public class Scout extends Unit {
 		super.alive = true;
 		super.fortified = false;
 		super.maxMovement = 3;
+		super.movesLeft = 3;
 		// IGNORES TERRAIN IN CIV 5 (SO I MADE IT 3 MOVEMENT INSTEAD)
 		super.maintenance = 1;
 		super.isAir = false;

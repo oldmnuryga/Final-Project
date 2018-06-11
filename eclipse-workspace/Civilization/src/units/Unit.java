@@ -14,6 +14,7 @@ import map.Tile;
 import sound.sounds;
 import technology.Technology;
 
+//CONSTRUCTOR FOR UNITS
 public abstract class Unit {
 	protected int unitID;
 	protected int hitpoints;
@@ -37,6 +38,7 @@ public abstract class Unit {
 	protected Player owner = null;
 	protected ImageIcon unitImageIcon = null;
 
+	//ALL THE UNITS IN ARRAYLIST
 	public static ArrayList<Unit> $allUnits = new ArrayList<Unit>();
 
 	public int getUnitID() {
@@ -237,6 +239,7 @@ public abstract class Unit {
 
 	// Do Something Methods
 	// Do checks outside of methods
+	// Movement
 	public void moveUnitLeft() {
 		this.location = Tile.get$map()[location.get$location()[0]][location.get$location()[1] - 1];
 		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setUnitOnTile(this);
@@ -259,6 +262,7 @@ public abstract class Unit {
 		this.movesLeft--;
 	}
 
+	// (UNUSED) Fortifies the unit
 	public void fortify() {
 		this.setFortified(true);
 	}
@@ -273,12 +277,13 @@ public abstract class Unit {
 			sounds.unitDeathPlay();
 		}
 	}
-
+	// Removes unit from board
 	public void removeUnit() {
 		this.setAlive(false);
 		this.setLocation(null);
 	}
 
+	//Adds units to the total arraylist
 	public static void instantiateUnitArrayList() {
 		$allUnits.add(new Archer());
 		$allUnits.add(new Artillery());
@@ -298,6 +303,7 @@ public abstract class Unit {
 		$allUnits.add(new Warrior());
 	}
 
+	//Movement key listners
 	public class KeyTest implements KeyListener {
 		public void keyPressed(KeyEvent e, Tile toLeft, Tile above, Tile toRight, Tile below) {
 			int key = e.getKeyCode();

@@ -14,9 +14,12 @@ public class Technology {
 	private boolean achievable;
 	private boolean researched = false;
 	private int scienceCost;
-	private ArrayList<Integer> $leadsTo;
+	// Array List of the indexes of the technologies that are required to make a technology
+	// One of these arrays are made per technology
 	private ArrayList<Integer> $comesFrom;
-	private int turnsUntilTech;
+	// Array List of the indexes of the technologies that come after said researched technology
+	private ArrayList<Integer> $leadsTo;
+	// Array List of all the technologies in the game
 	private static ArrayList<Technology> $technologies = new ArrayList<Technology>();
 
 	public Technology(int ttechnologyID, String tname, int tscienceCost, ArrayList<Integer> $tleadsTo,
@@ -65,7 +68,9 @@ public class Technology {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 
+	// Method to find if a research is available to be researched
 	public boolean isAchievable() {
 		return achievable;
 	}
@@ -73,7 +78,7 @@ public class Technology {
 	public void setAchievable(boolean achievable) {
 		this.achievable = achievable;
 	}
-
+	// Method to call if you want to see if a research has been researched
 	public boolean isResearched() {
 		return researched;
 	}
@@ -122,9 +127,6 @@ public class Technology {
 		return NUMBER_OF_TECHNOLOGIES;
 	}
 
-	public void setTurnsUntilTech(int turnsUntilTech) {
-		this.turnsUntilTech = turnsUntilTech;
-	}
 	
 /*	public void setAchievable() {
 		if(get$comesFrom().size() == 0) {
