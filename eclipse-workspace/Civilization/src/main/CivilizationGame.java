@@ -509,10 +509,7 @@ public class CivilizationGame {
 	public void repaintTiles() {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
-				if (Tile.get$map()[i][j].getOwner() != null) {
-					$mapButtons[i][j]
-							.setIcon(player.getLeader().getTileIconFromID(Tile.get$map()[i][j].getTerrainID()));
-				} else if (Tile.get$map()[i][j].getUnitOnTile() != null) {
+				if (Tile.get$map()[i][j].getUnitOnTile() != null) {
 					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getUnitOnTile().getUnitImageIcon());
 				} else if (Tile.get$map()[i][j].isCity() == true) {
 					if (Tile.get$map()[i][j].getTerrainID() == 2) {
@@ -520,8 +517,11 @@ public class CivilizationGame {
 					} else {
 						$mapButtons[i][j].setIcon(player.getLeader().getCityOnGreenImprovement());
 					}
-				} else {
+				} else if(Tile.get$map()[i][j].getOwner() == null){
 					$mapButtons[i][j].setIcon(Tile.get$map()[i][j].getTileImageIcon());
+				} else {
+					$mapButtons[i][j]
+							.setIcon(player.getLeader().getTileIconFromID(Tile.get$map()[i][j].getTerrainID()));
 				}
 			}
 		}
@@ -608,7 +608,7 @@ public class CivilizationGame {
 			int[] temp = { settlerTempX, settlerTempY };
 			Tile.get$map()[settlerTempX][settlerTempY].set$location(temp);
 			Tile.get$map()[settlerTempX][settlerTempY].getUnitOnTile()
-					.setLocation(Tile.get$map()[settlerTempX][settlerTempY]);
+			.setLocation(Tile.get$map()[settlerTempX][settlerTempY]);
 			found = false;
 			repaintTiles();
 		}
@@ -627,7 +627,7 @@ public class CivilizationGame {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getUnitOnTile() != null)
 					Tile.get$map()[i][j].getUnitOnTile()
-							.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
+					.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
 				if (Tile.get$map()[i][j].isCity()) {
 					cityLifetime++;
 					System.out.println(cityLifetime);
@@ -789,7 +789,7 @@ public class CivilizationGame {
 								public void actionPerformed(ActionEvent e) {
 									try {
 										((Settler) getPlayer().getOwnedUnitfromID(18))
-												.foundCity(player.get$cities().size());
+										.foundCity(player.get$cities().size());
 										removeUnit(x, y);
 										repaintTiles();
 										/*
