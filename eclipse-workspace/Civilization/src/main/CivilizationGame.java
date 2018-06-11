@@ -53,6 +53,7 @@ public class CivilizationGame {
 	private Player player;
 	private int cityLifetime = 1;
 	private int movesToTech;
+	private int kiernanIsBadAtComputerScience;
 
 	// UNIT GENERATION:
 	private int settlerTempX;
@@ -664,6 +665,17 @@ public class CivilizationGame {
 			finishResearch(currentResearchedTech);
 		}
 	}
+	public void finishResearch(Technology finished) {
+		cityLifetime = 1;
+		currentResearchedTech = null;
+		frPickResearch.getContentPane().removeAll();
+		player.addTechnology(finished.getTechnologyID());
+		player.get$technologies().get(player.get$technologies().size() - 1).setResearched(true);
+		JOptionPane.showMessageDialog(frame, "You finished " + finished.getName(), "Completed Research",
+				JOptionPane.INFORMATION_MESSAGE);
+		displayResearch();
+		frPickResearch.setVisible(true);
+	}
 
 	public void changeYear() {
 		if (turns == 1)
@@ -1037,15 +1049,5 @@ public class CivilizationGame {
 		}
 	}
 
-	public void finishResearch(Technology finished) {
-		currentResearchedTech = null;
-		frPickResearch.getContentPane().removeAll();
-		cityLifetime += movesToTech;
-		player.addTechnology(finished.getTechnologyID());
-		player.get$technologies().get(player.get$technologies().size() - 1).setResearched(true);
-		JOptionPane.showMessageDialog(frame, "You finished " + finished.getName(), "Completed Research",
-				JOptionPane.INFORMATION_MESSAGE);
-		displayResearch();
-		frPickResearch.setVisible(true);
-	}
+
 }
