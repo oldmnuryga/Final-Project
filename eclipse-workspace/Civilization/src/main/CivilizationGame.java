@@ -611,8 +611,8 @@ public class CivilizationGame {
 		Random rand = new Random();
 		boolean found = true;
 		while (found) {
-			int tempX = rand.nextInt(Tile.getMAP_SIZE() - 2) + 1;
-			int tempY = rand.nextInt(Tile.getMAP_SIZE() - 2) + 1;
+			int tempX = rand.nextInt(Tile.getMAP_SIZE() - 4) + 2;
+			int tempY = rand.nextInt(Tile.getMAP_SIZE() - 4) + 2;
 			if (Tile.get$map()[tempX][tempY].getTerrainID() == 1) {
 				Tile.get$map()[tempX][tempY].setUnitOnTile(new Settler(player));
 				Tile.get$map()[tempX][tempY].getUnitOnTile().setSelected(true);
@@ -627,12 +627,11 @@ public class CivilizationGame {
 		}
 	}
 
-	public void spawnInitialWarrior() {
-		boolean found = true;
+	public boolean spawnInitialWarrior() {
+		/*boolean found = true;
 		int i = 1;
 		int z = 1;
 		while (found) {
-
 			while (Tile.get$map()[settlerTempX + i][settlerTempY + z].getTerrainID() != 1 && Tile.get$map()[settlerTempX + i][settlerTempY + z].getTerrainID() != 4 && Tile.get$map()[settlerTempX + i][settlerTempY + z].getTerrainID() != 2) {
 				if (i % 2 == 0)
 					i++;
@@ -648,7 +647,26 @@ public class CivilizationGame {
 			.setLocation(Tile.get$map()[settlerTempX][settlerTempY]);
 			found = false;
 			repaintTiles();
+		}*/
+		for (int i = 0; i < $mapButtons.length; i++) {
+			for (int j = 0; j < $mapButtons[i].length; j++) {
+				if(Tile.get$map()[i][j].getUnitOnTile() != null && Tile.get$map()[i][j].getUnitOnTile().getUnitID() == 18) {
+					for (int x = -2; x <= 2; x++) {
+						for (int y = -2; y <= 2; y++) {
+							if((x != 0 || y != 0) && Tile.get$map()[i + x][j + y].getTerrainID() == 1) {
+								Tile.get$map()[i + x][j + y].setUnitOnTile(new Warrior(player));
+								int[] temp = { i + x, j + y };
+								Tile.get$map()[i + x][j + y].set$location(temp);
+								Tile.get$map()[i + x][j + y].getUnitOnTile().setLocation(Tile.get$map()[i + x][j + y]);
+								repaintTiles();
+								return true;
+							}
+						}
+					}
+				}
+			}
 		}
+		return false;
 	}
 
 	public void endTurn() {
@@ -683,13 +701,13 @@ public class CivilizationGame {
 		currentResearchedTech = null;
 		frPickResearch.getContentPane().removeAll();
 		try {
-		player.addTechnology(finished.getTechnologyID());
-		player.get$technologies().get(player.get$technologies().size() - 1).setResearched(true);
-		JOptionPane.showMessageDialog(frame, "You finished " + finished.getName(), "Completed Research",
-				JOptionPane.INFORMATION_MESSAGE);
-		check = false;
-		displayResearch();
-		frPickResearch.setVisible(true);
+			player.addTechnology(finished.getTechnologyID());
+			player.get$technologies().get(player.get$technologies().size() - 1).setResearched(true);
+			JOptionPane.showMessageDialog(frame, "You finished " + finished.getName(), "Completed Research",
+					JOptionPane.INFORMATION_MESSAGE);
+			check = false;
+			displayResearch();
+			frPickResearch.setVisible(true);
 		} catch (Exception e) {}
 	}
 
@@ -756,7 +774,6 @@ public class CivilizationGame {
 								y += 2;
 							}
 						} catch (Exception e) {
-
 						}
 					}
 				}
@@ -1081,31 +1098,31 @@ public class CivilizationGame {
 			player.findPotentialTechs();
 			if(check == false) {
 				btnEndTurn.setEnabled(false);
-			ArrayList<Technology> $potentialTechs = player.get$potentialTechs();
-			ArrayList<JButton> $research = new ArrayList<JButton>();
-			int tx = 15, ty = 15;
-			for (int i = 0; i < $potentialTechs.size(); i++) {
-				$research.add(new JButton($potentialTechs.get(i).getName()));
-				$research.get($research.size() - 1).setBounds(tx, ty, 455, 75);
-				frPickResearch.add($research.get($research.size() - 1));
-				ty += 90;
-				int z = i;
-				$research.get(i).addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						for (int j = 0; j < $potentialTechs.size(); j++)
-							if ($potentialTechs.get(j).getName().equals(((JButton) arg0.getSource()).getText()))
-								currentResearchedTech = $potentialTechs.get(j);
-						$research.remove(((JButton) arg0.getSource()));
-						frPickResearch.setVisible(false);
-						check = true;
-						btnEndTurn.setEnabled(true);
-						movesToTech = (int) (calculateMovesTech($potentialTechs.get(z).getTechnologyID(),
-								player.getSciencePerTurn()) + .5);
-					}
-				});
-			}
+				ArrayList<Technology> $potentialTechs = player.get$potentialTechs();
+				ArrayList<JButton> $research = new ArrayList<JButton>();
+				int tx = 15, ty = 15;
+				for (int i = 0; i < $potentialTechs.size(); i++) {
+					$research.add(new JButton($potentialTechs.get(i).getName()));
+					$research.get($research.size() - 1).setBounds(tx, ty, 455, 75);
+					frPickResearch.add($research.get($research.size() - 1));
+					ty += 90;
+					int z = i;
+					$research.get(i).addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+							for (int j = 0; j < $potentialTechs.size(); j++)
+								if ($potentialTechs.get(j).getName().equals(((JButton) arg0.getSource()).getText()))
+									currentResearchedTech = $potentialTechs.get(j);
+							$research.remove(((JButton) arg0.getSource()));
+							frPickResearch.setVisible(false);
+							check = true;
+							btnEndTurn.setEnabled(true);
+							movesToTech = (int) (calculateMovesTech($potentialTechs.get(z).getTechnologyID(),
+									player.getSciencePerTurn()) + .5);
+						}
+					});
+				}
 			}
 		} catch(Exception e) {}
-		}
+	}
 
 }
