@@ -83,4 +83,13 @@ public abstract class Wonder extends Structure {
 	public abstract void uniqueAbility();
 
 	public abstract void obsoleteAbility();
+
+	public static ArrayList<Wonder> get$allWonders() {
+		return $allWonders;
+	}
+
+	public static void set$allWonders(ArrayList<Wonder> $allWonders) {
+		Wonder.$allWonders = $allWonders;
+	}
+	
 }

@@ -349,6 +349,14 @@ public class City {
 
 	}
 
+	public void findPotentialWonders() {
+		this.get$potentialWonders().clear();
+		for (int i = 0; i < Wonder.get$allWonders().size(); i++)
+			if (owner.hasTechnology(Wonder.get$allWonders().get(i).getTechRequired()))
+				$potentialWonders.add(Wonder.get$allWonders().get(i));
+
+	}
+
 	public ImageIcon getCityImageIcon() {
 		return cityImageIcon;
 	}
