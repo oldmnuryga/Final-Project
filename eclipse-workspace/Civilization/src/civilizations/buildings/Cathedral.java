@@ -24,7 +24,7 @@ public class Cathedral extends Building {
 		productionRequirement = 160;
 		goldMaintenance = 3;
 		techRequired = 34;
-		addedHappiness = (int) decideHappiness();
+		//addedHappiness = (int) decideHappiness();
 	}
 
 	public int getAddedHappiness() {

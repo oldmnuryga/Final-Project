@@ -24,7 +24,7 @@ public class Walls extends Building {
 		productionRequirement = 120;
 		goldMaintenance = 2;
 		techRequired = 5;
-		addedDefense = location.getDefenseRating();
+	//	addedDefense = location.getDefenseRating();
 	}
 
 	public double getAddedDefense() {

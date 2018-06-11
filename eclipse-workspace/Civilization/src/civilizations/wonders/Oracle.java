@@ -18,7 +18,7 @@ public class Oracle extends Wonder {
 	
 	public Oracle() {
 		wonderID = 9;
-		owner = location.getOwner();
+		//owner = location.getOwner();
 		name = "Oracle";
 		description = "Doubles effect of Temples.";
 		productionRequirement = 300;

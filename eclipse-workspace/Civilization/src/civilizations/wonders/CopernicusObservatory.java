@@ -18,7 +18,7 @@ public class CopernicusObservatory extends Wonder {
 	}
 	public CopernicusObservatory() {
 		wonderID = 3;
-		owner = location.getOwner();
+	//	owner = location.getOwner();
 		name = "Copernicus' Observatory";
 		description = "Doubles Science output.";
 		productionRequirement = 300;

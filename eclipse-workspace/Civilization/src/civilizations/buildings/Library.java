@@ -24,7 +24,7 @@ public class Library extends Building {
 		productionRequirement = 80;
 		goldMaintenance = 1;
 		techRequired = 11;
-		addedScience = decideScienceRate();
+	//	addedScience = decideScienceRate();
 	}
 
 	public double getAddedScience() {

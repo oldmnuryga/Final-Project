@@ -19,13 +19,13 @@ public class HangingGardens extends Wonder {
 	}
 	public HangingGardens() {
 		wonderID = 6;
-		owner = location.getOwner();
+		//owner = location.getOwner();
 		name = "Hanging Gardens";
 		description = "+1 Happiness Per Existing City.";
 		productionRequirement = 300;
 		techRequired = 3;
 		techObsoletionID = 30;
-		addedHappiness = owner.get$cities().size();
+		//addedHappiness = owner.get$cities().size();
 	}
 
 	public void uniqueAbility() {

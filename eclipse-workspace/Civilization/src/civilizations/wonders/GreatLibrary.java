@@ -16,7 +16,7 @@ public class GreatLibrary extends Wonder {
 	}
 	public GreatLibrary() {
 		wonderID = 5;
-		owner = location.getOwner();
+	//	owner = location.getOwner();
 		name = "Great Library";
 		description = "One Free Technology";
 		productionRequirement = 300;

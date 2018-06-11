@@ -24,7 +24,7 @@ public class Factory extends Building {
 		productionRequirement = 200;
 		goldMaintenance = 4;
 		techRequired = 42;
-		addedProduction = location.getProductionRate() * 0.5;
+		//addedProduction = location.getProductionRate() * 0.5;
 	}
 
 	public double getAddedProduction() {

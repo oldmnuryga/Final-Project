@@ -24,7 +24,7 @@ public class Temple extends Building {
 		productionRequirement = 160;
 		goldMaintenance = 2;
 		techRequired = 65;
-		addedHappiness = decideHappiness();
+	//	addedHappiness = decideHappiness();
 	}
 
 	public double getAddedHappiness() {

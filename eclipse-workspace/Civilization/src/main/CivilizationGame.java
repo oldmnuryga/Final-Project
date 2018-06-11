@@ -630,7 +630,7 @@ public class CivilizationGame {
 			int[] temp = { settlerTempX, settlerTempY };
 			Tile.get$map()[settlerTempX][settlerTempY].set$location(temp);
 			Tile.get$map()[settlerTempX][settlerTempY].getUnitOnTile()
-					.setLocation(Tile.get$map()[settlerTempX][settlerTempY]);
+			.setLocation(Tile.get$map()[settlerTempX][settlerTempY]);
 			found = false;
 			repaintTiles();
 		}
@@ -650,7 +650,7 @@ public class CivilizationGame {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getUnitOnTile() != null)
 					Tile.get$map()[i][j].getUnitOnTile()
-							.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
+					.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
 				if (Tile.get$map()[i][j].isCity()) {
 					cityLifetime++;
 					System.out.println(cityLifetime);
@@ -825,7 +825,7 @@ public class CivilizationGame {
 								public void actionPerformed(ActionEvent e) {
 									try {
 										((Settler) getPlayer().getOwnedUnitfromID(18))
-												.foundCity(player.get$cities().size());
+										.foundCity(player.get$cities().size());
 										removeUnit(x, y);
 										repaintTiles();
 										/*
@@ -893,6 +893,36 @@ public class CivilizationGame {
 									 * 2].setOwner(player); Tile.get$map()[x + 3][y + 3].setOwner(player);
 									 */
 									repaintTiles();
+								}
+							});
+							$mapButtons[i][j].addActionListener(new ActionListener() {
+								public void actionPerformed(ActionEvent arg0) {
+
+									frPickProduction.setVisible(true);
+									frPickProduction.setLayout(null);
+									frPickProduction.setPreferredSize(new Dimension(1500,1000));
+
+									JScrollPane pickUnit = new JScrollPane();
+									JScrollPane pickWonder = new JScrollPane();
+									JScrollPane pickBuilding = new JScrollPane();
+
+									pickUnit.setBounds(0, 0, 500, 1000);
+									pickWonder.setBounds(500,0,500,1000);
+									pickBuilding.setBounds(1000,0,500,1000);
+									
+									for(int i = 0; i < player.get$cities().get(0).get$potentialWonders().size(); i++) {
+										JButton[] wonder = new JButton[player.get$cities().get(0).get$potentialWonders().size()];
+										wonder[i] = new JButton(player.get$cities().get(0).get$potentialBuildings().get(i).getName());
+										pickWonder.add(wonder[i]);
+										int w = 0, t = 0;
+										wonder[i].setBounds(w,t,455,75);
+										t+=90;
+									}
+									for(int i = 0; i < player.get$cities().get(0).get$potentialBuildings().size(); i++) {
+										
+									}
+
+									frPickProduction.pack();
 								}
 							});
 						}

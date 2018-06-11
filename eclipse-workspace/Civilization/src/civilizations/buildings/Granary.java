@@ -26,7 +26,7 @@ public class Granary extends Building {
 		productionRequirement = 60;
 		goldMaintenance = 1;
 		techRequired = 3;
-		oldFoodCap = location.getFoodCap();
+		//oldFoodCap = location.getFoodCap();
 		newFoodCap = oldFoodCap / 2.0;
 	}
 

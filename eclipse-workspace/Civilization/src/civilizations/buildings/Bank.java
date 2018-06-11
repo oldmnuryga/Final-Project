@@ -24,7 +24,7 @@ public class Bank extends Building {
 		productionRequirement = 120;
 		goldMaintenance = 3;
 		techRequired = 26;
-		addedGold = location.getGoldProduced() * 0.5;
+	//	addedGold = location.getGoldProduced() * 0.5;
 	}
 
 	public double getAddedGold() {

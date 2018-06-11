@@ -19,7 +19,7 @@ public class BachsCathedral extends Wonder {
 	}
 	public BachsCathedral() {
 		wonderID = 1;
-		owner = location.getOwner();
+	//	owner = location.getOwner();
 		name = "Bach's Cathedral";
 		description = "+3 Happiness";
 		productionRequirement = 400;

@@ -17,7 +17,7 @@ public class MichelangelosChapel extends Wonder {
 	}
 	public MichelangelosChapel() {
 		wonderID = 7;
-		owner = location.getOwner();
+		//owner = location.getOwner();
 		name = "Michelangelo's Chapel";
 		description = "Increases effect of Cathedrals";
 		productionRequirement = 300;

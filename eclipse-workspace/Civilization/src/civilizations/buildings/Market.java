@@ -24,7 +24,7 @@ public class Market extends Building {
 		productionRequirement = 80;
 		goldMaintenance = 1;
 		techRequired = 14;
-		addedGold = location.getGoldProduced() * 0.5;
+	//	addedGold = location.getGoldProduced() * 0.5;
 	}
 
 	public double getAddedGold() {

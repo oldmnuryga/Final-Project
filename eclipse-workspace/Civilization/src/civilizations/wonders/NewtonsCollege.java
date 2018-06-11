@@ -18,7 +18,7 @@ public class NewtonsCollege extends Wonder {
 	}
 	public NewtonsCollege() {
 		wonderID = 8;
-		owner = location.getOwner();
+	//	owner = location.getOwner();
 		name = "Newton's College";
 		description = "Increases effect of libraries and universities by 66%.";
 		productionRequirement = 400;

@@ -24,7 +24,7 @@ public class University extends Building {
 		productionRequirement = 160;
 		goldMaintenance = 3;
 		techRequired = 28;
-		addedScience = decideScienceRate();
+	//	addedScience = decideScienceRate();
 	}
 
 	public double getAddedScience() {

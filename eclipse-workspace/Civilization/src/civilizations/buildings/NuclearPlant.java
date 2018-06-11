@@ -24,7 +24,7 @@ public class NuclearPlant extends Building {
 		productionRequirement = 160;
 		goldMaintenance = 2;
 		techRequired = 65;
-		addedProduction = location.getProductionRate() * 0.5;
+	//	addedProduction = location.getProductionRate() * 0.5;
 	}
 
 	public double getAddedProduction() {

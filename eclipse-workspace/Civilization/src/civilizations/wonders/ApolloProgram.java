@@ -16,7 +16,7 @@ public class ApolloProgram extends Wonder {
 	}
 	public ApolloProgram() {
 		wonderID = 0;
-		owner = location.getOwner();
+	//	owner = location.getOwner();
 		name = "Apollo Program";
 		description = "Allows building of spaceship parts";
 		productionRequirement = 600;

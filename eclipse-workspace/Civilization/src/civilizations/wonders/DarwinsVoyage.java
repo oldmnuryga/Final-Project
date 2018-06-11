@@ -16,7 +16,7 @@ public class DarwinsVoyage extends Wonder {
 	}
 	public DarwinsVoyage() {
 		wonderID = 4;
-		owner = location.getOwner();
+	//	owner = location.getOwner();
 		name = "Darwin's Voyage";
 		description = "Two Free Technologies";
 		productionRequirement = 300;
