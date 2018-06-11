@@ -18,6 +18,7 @@ public class WaterTile extends Tile {
 		super.scienceBase = 1.5;
 		super.sciencePotential = 3.0;
 		super.crossable = false;
+		super.defaultCrossable = false;
 		super.occupied = false;
 		super.improved = false;
 		super.owner = null;

@@ -69,6 +69,7 @@ public class CivilizationGame {
 	private JLabel lblYear = new JLabel("3000 BC");
 	private JFrame frPickResearch = new JFrame("Research");
 	private JFrame frPickProduction = new JFrame("Production");
+	private ImageIcon fog = new ImageIcon(Tile.class.getClassLoader().getResource("map/resources/fog.png"));
 
 	private JButton btnEndTurn = new JButton("End Turn");
 	private JButton btnShowInstructions = new JButton("How to Play the Game");
@@ -524,6 +525,36 @@ public class CivilizationGame {
 				}
 			}
 		}
+		checkFogOfWar();
+	}
+
+	private void checkFogVisible(int x, int y) {
+		if (x + 2 < Tile.getMAP_SIZE() && y + 2 < Tile.getMAP_SIZE() && x - 2 > 0 && y - 2 > 0) {
+			for (int i = -2; i <= 2; i++) {
+				for (int j = -2; j <= 2; j++) {
+					if (Tile.get$map()[x + i][y + j].getUnitOnTile() != null
+							|| Tile.get$map()[x + i][y + j].getOwner() != null) {
+						Tile.get$map()[x][y].setTileVisible(true);
+						$mapButtons[x][y].setEnabled(true);
+						Tile.get$map()[x][y].setCrossable(Tile.get$map()[x][y].isDefaultCrossable());
+					}
+				}
+			}
+		}
+	}
+
+	private void checkFogOfWar() {
+		for (int i = 0; i < $mapButtons.length; i++) {
+			for (int j = 0; j < $mapButtons[i].length; j++) {
+				checkFogVisible(i, j);
+				if (Tile.get$map()[i][j].isTileVisible() == false) {
+					$mapButtons[i][j].setEnabled(false);
+					Tile.get$map()[i][j].setCrossable(false);
+					$mapButtons[i][j].setDisabledIcon(fog);
+				}
+			}
+		}
+
 	}
 
 	public void changeTile(int i, int j) {

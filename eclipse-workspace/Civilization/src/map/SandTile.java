@@ -18,6 +18,7 @@ public class SandTile extends Tile {
 		super.scienceBase = 2.0;
 		super.sciencePotential = 4.0;
 		super.crossable = true;
+		super.defaultCrossable = true;
 		super.occupied = false;
 		super.improved = false;
 		super.owner = null;

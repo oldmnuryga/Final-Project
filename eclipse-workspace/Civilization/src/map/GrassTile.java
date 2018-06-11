@@ -18,6 +18,7 @@ public class GrassTile extends Tile {
 		super.scienceBase = 1.0;
 		super.sciencePotential = 3.0;
 		super.crossable = true;
+		super.defaultCrossable = true;
 		super.occupied = false;
 		super.improved = false;
 		super.owner = null;

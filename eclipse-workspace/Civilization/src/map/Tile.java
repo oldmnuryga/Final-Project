@@ -30,8 +30,10 @@ public abstract class Tile {
 	protected double scienceBase;
 	protected double sciencePotential;
 	protected boolean crossable;
+	protected boolean defaultCrossable;
 	protected boolean occupied;
 	protected boolean improved;
+	protected boolean tileVisible = false;
 	protected Player owner;
 	protected int[] $location = new int[2];
 	protected ImageIcon tileImageIcon;
@@ -294,7 +296,14 @@ public abstract class Tile {
 	public int getTerrainID() {
 		return terrainID;
 	}
-
+	
+	public boolean isTileVisible() {
+		return this.tileVisible;
+	}
+	public void setTileVisible(boolean statement) {
+		this.tileVisible = statement;
+	}
+	
 	public static int getTEXTURE_SIZE() {
 		return TEXTURE_SIZE;
 	}
@@ -397,6 +406,14 @@ public abstract class Tile {
 
 	public int[] get$location() {
 		return $location;
+	}
+
+	public boolean isDefaultCrossable() {
+		return defaultCrossable;
+	}
+
+	public void setDefaultCrossable(boolean defaultCrossable) {
+		this.defaultCrossable = defaultCrossable;
 	}
 
 	public JLabel getTileLabel() {

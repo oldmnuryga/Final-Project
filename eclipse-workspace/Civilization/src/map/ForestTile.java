@@ -21,6 +21,7 @@ public class ForestTile extends Tile {
 		super.scienceBase = 1.5;
 		super.sciencePotential = 3.5;
 		super.crossable = true;
+		super.defaultCrossable = true;
 		super.occupied = false;
 		super.improved = false;
 		super.owner = null;

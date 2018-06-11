@@ -18,6 +18,7 @@ public class MountainTile extends Tile {
 		super.scienceBase = 2.0;
 		super.sciencePotential = 4.0;
 		super.crossable = false;
+		super.defaultCrossable = false;
 		super.occupied = false;
 		super.improved = false;
 		super.owner = null;
