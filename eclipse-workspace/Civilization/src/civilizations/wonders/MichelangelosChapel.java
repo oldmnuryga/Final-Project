@@ -15,6 +15,15 @@ public class MichelangelosChapel extends Wonder {
 		techRequired = 18;
 		techObsoletionID = 28;
 	}
+	public MichelangelosChapel() {
+		wonderID = 7;
+		owner = location.getOwner();
+		name = "Michelangelo's Chapel";
+		description = "Increases effect of Cathedrals";
+		productionRequirement = 300;
+		techRequired = 18;
+		techObsoletionID = 28;
+	}
 
 	public void uniqueAbility() {
 		if (location.hasBuilding(3)) {

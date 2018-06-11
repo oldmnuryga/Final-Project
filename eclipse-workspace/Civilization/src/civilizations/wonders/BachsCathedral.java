@@ -17,6 +17,16 @@ public class BachsCathedral extends Wonder {
 		techObsoletionID = -1;
 		addedHappiness = 3;
 	}
+	public BachsCathedral() {
+		wonderID = 1;
+		owner = location.getOwner();
+		name = "Bach's Cathedral";
+		description = "+3 Happiness";
+		productionRequirement = 400;
+		techRequired = 34;
+		techObsoletionID = -1;
+		addedHappiness = 3;
+	}
 
 	public int getAddedHappiness() {
 		return addedHappiness;

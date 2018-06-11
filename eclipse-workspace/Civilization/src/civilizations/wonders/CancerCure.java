@@ -17,6 +17,16 @@ public class CancerCure extends Wonder {
 		techObsoletionID = -1;
 		addedHappiness = getOwner().get$cities().size();
 	}
+	public CancerCure() {
+		wonderID = 2;
+		owner = location.getOwner();
+		name = "The Cure for Cancer";
+		description = "+1 Happiness per Existing City";
+		productionRequirement = 600;
+		techRequired = 54;
+		techObsoletionID = -1;
+		addedHappiness = getOwner().get$cities().size();
+	}
 
 	public int getAddedHappiness() {
 		return addedHappiness;

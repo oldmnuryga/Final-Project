@@ -14,6 +14,15 @@ public class ApolloProgram extends Wonder {
 		techRequired = 57;
 		techObsoletionID = -1;
 	}
+	public ApolloProgram() {
+		wonderID = 0;
+		owner = location.getOwner();
+		name = "Apollo Program";
+		description = "Allows building of spaceship parts";
+		productionRequirement = 600;
+		techRequired = 57;
+		techObsoletionID = -1;
+	}
 
 	public void uniqueAbility() {
 		

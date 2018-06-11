@@ -15,6 +15,16 @@ public class Oracle extends Wonder {
 		techRequired = 8;
 		techObsoletionID = 34;
 	}
+	
+	public Oracle() {
+		wonderID = 9;
+		owner = location.getOwner();
+		name = "Oracle";
+		description = "Doubles effect of Temples.";
+		productionRequirement = 300;
+		techRequired = 8;
+		techObsoletionID = 34;
+	}
 
 	public void uniqueAbility() {
 		// TODO Auto-generated method stub

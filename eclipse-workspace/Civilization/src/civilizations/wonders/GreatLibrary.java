@@ -14,6 +14,15 @@ public class GreatLibrary extends Wonder {
 		techRequired = 18;
 		techObsoletionID = 28;
 	}
+	public GreatLibrary() {
+		wonderID = 5;
+		owner = location.getOwner();
+		name = "Great Library";
+		description = "One Free Technology";
+		productionRequirement = 300;
+		techRequired = 18;
+		techObsoletionID = 28;
+	}
 
 	public void uniqueAbility() {
 

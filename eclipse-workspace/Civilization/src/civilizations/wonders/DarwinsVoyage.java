@@ -14,6 +14,15 @@ public class DarwinsVoyage extends Wonder {
 		techRequired = 29;
 		techObsoletionID = -1;
 	}
+	public DarwinsVoyage() {
+		wonderID = 4;
+		owner = location.getOwner();
+		name = "Darwin's Voyage";
+		description = "Two Free Technologies";
+		productionRequirement = 300;
+		techRequired = 29;
+		techObsoletionID = -1;
+	}
 
 	public void uniqueAbility() {
 	
