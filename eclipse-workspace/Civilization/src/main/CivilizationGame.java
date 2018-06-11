@@ -810,6 +810,7 @@ public class CivilizationGame {
 			} catch (LineUnavailableException e1) {
 				e1.printStackTrace();
 			}
+
 			// SETTLER CHECK
 			for (int i = 0; i < $mapButtons.length; i++) {
 				for (int j = 0; j < $mapButtons[i].length; j++) {
