@@ -14,6 +14,15 @@ public class Barracks extends Building {
 		techRequired = -1;
 	}
 
+	public Barracks() {
+		buildingID = 2;
+		name = "Barracks";
+		description = "All units have 10% more health.";
+		productionRequirement = 40;
+		goldMaintenance = 0;
+		techRequired = -1;
+	}
+
 	public void uniqueAbility() {
 		for (int j = 0; j < location.getOwner().get$units().size(); j++)
 			location.getOwner().get$units().get(j)

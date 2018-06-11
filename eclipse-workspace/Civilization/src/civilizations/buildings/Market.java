@@ -17,6 +17,16 @@ public class Market extends Building {
 		addedGold = location.getGoldProduced() * 0.5;
 	}
 
+	public Market() {
+		buildingID = 10;
+		name = "Market";
+		description = "Gold +50%.";
+		productionRequirement = 80;
+		goldMaintenance = 1;
+		techRequired = 14;
+		addedGold = location.getGoldProduced() * 0.5;
+	}
+
 	public double getAddedGold() {
 		return addedGold;
 	}

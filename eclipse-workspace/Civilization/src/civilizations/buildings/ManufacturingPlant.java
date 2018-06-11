@@ -17,6 +17,16 @@ public class ManufacturingPlant extends Building {
 		addedProduction = location.getProductionRate();
 	}
 
+	public ManufacturingPlant() {
+		buildingID = 9;
+		name = "Manufacturing Plant";
+		description = "Production +100%.";
+		productionRequirement = 320;
+		goldMaintenance = 6;
+		techRequired = 61;
+		addedProduction = location.getProductionRate();
+	}
+
 	public double getAddedProduction() {
 		return addedProduction;
 	}

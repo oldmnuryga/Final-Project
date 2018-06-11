@@ -33,6 +33,8 @@ public class City {
 	protected ArrayList<Tile> $cityTiles;
 	protected ArrayList<Building> $buildings;
 	protected ArrayList<Wonder> $wonders;
+	protected ArrayList<Building> $potentialBuildings;
+	protected ArrayList<Wonder> $potentialWonders;
 	protected static ImageIcon cityImageIcon;
 
 	public City(Player player, Tile cityLocation) {
@@ -59,21 +61,21 @@ public class City {
 		$cityTiles = new ArrayList<Tile>();
 		$buildings = new ArrayList<Building>();
 		$wonders = new ArrayList<Wonder>();
-//		if (owner.getLeader().getLeaderID() == 0)
-//			cityImageIcon = new ImageIcon(
-//					City.class.getClassLoader().getResource("improvement/resources/americaCity.pdf"));
-//		if (owner.getLeader().getLeaderID() == 1)
-//			cityImageIcon = new ImageIcon(
-//					City.class.getClassLoader().getResource("improvement/resources/italyCity.pdf"));
-//		if (owner.getLeader().getLeaderID() == 2)
-//			cityImageIcon = new ImageIcon(
-//					City.class.getClassLoader().getResource("improvement/resources/koreaCity.pdf"));
-//		if (owner.getLeader().getLeaderID() == 3)
-//			cityImageIcon = new ImageIcon(
-//					City.class.getClassLoader().getResource("improvement/resources/mongoliaCity.pdf"));
-//		if (owner.getLeader().getLeaderID() == 4)
-//			cityImageIcon = new ImageIcon(
-//					City.class.getClassLoader().getResource("improvement/resources/polandCity.pdf"));
+		// if (owner.getLeader().getLeaderID() == 0)
+		// cityImageIcon = new ImageIcon(
+		// City.class.getClassLoader().getResource("improvement/resources/americaCity.pdf"));
+		// if (owner.getLeader().getLeaderID() == 1)
+		// cityImageIcon = new ImageIcon(
+		// City.class.getClassLoader().getResource("improvement/resources/italyCity.pdf"));
+		// if (owner.getLeader().getLeaderID() == 2)
+		// cityImageIcon = new ImageIcon(
+		// City.class.getClassLoader().getResource("improvement/resources/koreaCity.pdf"));
+		// if (owner.getLeader().getLeaderID() == 3)
+		// cityImageIcon = new ImageIcon(
+		// City.class.getClassLoader().getResource("improvement/resources/mongoliaCity.pdf"));
+		// if (owner.getLeader().getLeaderID() == 4)
+		// cityImageIcon = new ImageIcon(
+		// City.class.getClassLoader().getResource("improvement/resources/polandCity.pdf"));
 	}
 
 	public String getName() {
@@ -152,11 +154,11 @@ public class City {
 		this.foodCap = foodCap;
 	}
 
-	public  double getScienceRate() {
+	public double getScienceRate() {
 		return scienceRate;
 	}
 
-	public  void setScienceRate(double scienceRate) {
+	public void setScienceRate(double scienceRate) {
 		this.scienceRate = scienceRate;
 	}
 
@@ -269,7 +271,7 @@ public class City {
 	public boolean isCoastal() {
 		return false;
 	}
-	
+
 	public double getGoldTotal() {
 		return goldTotal;
 	}
@@ -339,12 +341,32 @@ public class City {
 		getOwner().setGoldReserve(getOwner().getGoldReserve() + e.getGoldSellPrice());
 	}
 
+	public void findPotentialBuildings() {
+
+	}
+
 	public ImageIcon getCityImageIcon() {
 		return cityImageIcon;
 	}
 
 	public void setCityImageIcon(ImageIcon cityImageIcon) {
 		City.cityImageIcon = cityImageIcon;
+	}
+
+	public ArrayList<Building> get$potentialBuildings() {
+		return $potentialBuildings;
+	}
+
+	public void set$potentialBuildings(ArrayList<Building> $potentialBuildings) {
+		this.$potentialBuildings = $potentialBuildings;
+	}
+
+	public ArrayList<Wonder> get$potentialWonders() {
+		return $potentialWonders;
+	}
+
+	public void set$potentialWonders(ArrayList<Wonder> $potentialWonders) {
+		this.$potentialWonders = $potentialWonders;
 	}
 
 	public static void setCityGUI() {
@@ -375,7 +397,7 @@ public class City {
 
 		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setIsCity(true);
 
-		for(int i = -2; i <= 2; i++) {
+		for (int i = -2; i <= 2; i++) {
 			for (int j = -2; j <= 2; j++) {
 				$tempArr.add(instantiateTileValues(i, j));
 			}
@@ -388,7 +410,7 @@ public class City {
 
 		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setIsCity(true);
 
-		for(int i = -3; i <= 3; i++) {
+		for (int i = -3; i <= 3; i++) {
 			for (int j = -3; j <= 3; j++) {
 				$tempArr.add(instantiateTileValues(i, j));
 			}

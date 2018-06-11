@@ -19,6 +19,17 @@ public class Granary extends Building {
 		newFoodCap = oldFoodCap / 2.0;
 	}
 
+	public Granary() {
+		buildingID = 6;
+		name = "Granary";
+		description = "Reduces food needed to grow population by 50%.";
+		productionRequirement = 60;
+		goldMaintenance = 1;
+		techRequired = 3;
+		oldFoodCap = location.getFoodCap();
+		newFoodCap = oldFoodCap / 2.0;
+	}
+
 	public double getNewFoodCap() {
 		return newFoodCap;
 	}

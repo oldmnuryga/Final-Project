@@ -17,6 +17,16 @@ public class Colosseum extends Building {
 		addedHappiness = 3;
 	}
 
+	public Colosseum() {
+		buildingID = 4;
+		name = "Colosseum";
+		description = "+3 Happiness.";
+		productionRequirement = 100;
+		goldMaintenance = 4;
+		techRequired = 12;
+		addedHappiness = 3;
+	}
+
 	public int getAddedHappiness() {
 		return addedHappiness;
 	}

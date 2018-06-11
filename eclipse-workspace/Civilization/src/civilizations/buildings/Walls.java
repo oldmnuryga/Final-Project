@@ -17,6 +17,16 @@ public class Walls extends Building {
 		addedDefense = location.getDefenseRating();
 	}
 
+	public Walls() {
+		buildingID = 14;
+		name = "City Walls";
+		description = "City Defense +100%.";
+		productionRequirement = 120;
+		goldMaintenance = 2;
+		techRequired = 5;
+		addedDefense = location.getDefenseRating();
+	}
+
 	public double getAddedDefense() {
 		return addedDefense;
 	}
