@@ -28,7 +28,7 @@ public class Player {
 		goldPerTurn = 0;
 		happiness = 1.0;
 		scienceExcess = 0.0;
-		sciencePerTurn = 2.0;
+		sciencePerTurn = 3.0;
 		numCities = 0;
 		$units = new ArrayList<Unit>();
 		$cities = new ArrayList<City>();
