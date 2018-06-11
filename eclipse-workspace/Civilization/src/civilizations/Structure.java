@@ -1,5 +1,6 @@
 package civilizations;
 
+// ABSTRACT CLASS FOR STRUCTURES - HELPS WITH ORGANIZING CODE, LEADS TO BUILDING AND WONDER - CONTAINS PARAMETERS AND GETTERS AND SETTERS
 public abstract class Structure {
 	protected String name;
 	protected String description;

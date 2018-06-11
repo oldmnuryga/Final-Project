@@ -1,4 +1,5 @@
 package civilizations;
+//ABSTRACT CLASS FOR WONDERS - HELPS WITH ORGANIZING CODE, USED TO EASILY SET UP DIFFERENT WONDERS WITH DIFFERENT ABILITIES - CONTAINS PARAMETERS, METHODS, AND GETTERS AND SETTERS
 
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ public abstract class Wonder extends Structure {
 
 	public static ArrayList<Wonder> $allWonders = new ArrayList<Wonder>();
 
+	// CHECKS IF WONDER CAN BE BUILT
 	public boolean canBeBuilt() {
 		if (owner.hasTechnology(techRequired) && !(owner.hasTechnology(techObsoletionID)))
 			return true;
@@ -59,6 +61,7 @@ public abstract class Wonder extends Structure {
 		this.isObsolete = isObsolete;
 	}
 
+	// CHECKS IF THE WONDER HAS BECOME OBSOLETE WITH TECHNOLOGY
 	public boolean checkObsolete() {
 		if (owner.hasTechnology(techObsoletionID)) {
 			return true;
@@ -67,6 +70,7 @@ public abstract class Wonder extends Structure {
 		return false;
 	}
 
+	// CREATES AN ARRAY CONTAINING EVERY KIND OF WONDER TO USE AS REFERENCE
 	public static void instantiateWonderArrayList() {
 		$allWonders.add(new ApolloProgram());
 		$allWonders.add(new BachsCathedral());
@@ -91,5 +95,5 @@ public abstract class Wonder extends Structure {
 	public static void set$allWonders(ArrayList<Wonder> $allWonders) {
 		Wonder.$allWonders = $allWonders;
 	}
-	
+
 }

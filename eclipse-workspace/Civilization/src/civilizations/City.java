@@ -1,5 +1,6 @@
 package civilizations;
 
+//CLASS FOR CITY OBJECT - THIS CONTROLS GOLD, PRODUCTION, AND CITIZEN GROWTH, INCLUDES GETTERS AND SETTERS AND DIFFERENT METHODS
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -63,21 +64,6 @@ public class City {
 		$cityTiles = new ArrayList<Tile>();
 		$buildings = new ArrayList<Building>();
 		$wonders = new ArrayList<Wonder>();
-		// if (owner.getLeader().getLeaderID() == 0)
-		// cityImageIcon = new ImageIcon(
-		// City.class.getClassLoader().getResource("improvement/resources/americaCity.pdf"));
-		// if (owner.getLeader().getLeaderID() == 1)
-		// cityImageIcon = new ImageIcon(
-		// City.class.getClassLoader().getResource("improvement/resources/italyCity.pdf"));
-		// if (owner.getLeader().getLeaderID() == 2)
-		// cityImageIcon = new ImageIcon(
-		// City.class.getClassLoader().getResource("improvement/resources/koreaCity.pdf"));
-		// if (owner.getLeader().getLeaderID() == 3)
-		// cityImageIcon = new ImageIcon(
-		// City.class.getClassLoader().getResource("improvement/resources/mongoliaCity.pdf"));
-		// if (owner.getLeader().getLeaderID() == 4)
-		// cityImageIcon = new ImageIcon(
-		// City.class.getClassLoader().getResource("improvement/resources/polandCity.pdf"));
 	}
 
 	public String getName() {
@@ -220,6 +206,7 @@ public class City {
 		this.$buildings = $buildings;
 	}
 
+	// RETURNS A BUILDING THAT THE PLAYER OWNS
 	public Building getCertainBuilding(int buildingID) {
 		for (int i = 0; i < $buildings.size(); i++) {
 			if ($buildings.get(i).getBuildingID() == buildingID)
@@ -306,6 +293,7 @@ public class City {
 		this.scienceTotal = scienceTotal;
 	}
 
+	// ADDS A BUILDING THAT WAS BUILT THROUGH PRODUCTION
 	protected void buildBuilding(Building e) {
 		$buildings.add(e);
 		e.setBuilt(true);
@@ -313,6 +301,7 @@ public class City {
 		setGoldUsed(getGoldUsed() + e.getGoldMaintenance());
 	}
 
+	// ADDS A BUILDING THAT WAS BUILT THROUGH BUYING WITH GOLD
 	protected void buyBuilding(Building e) {
 		getOwner().setGoldReserve(getOwner().getGoldReserve() - e.getGoldPurchaseCost());
 		$buildings.add(e);
@@ -321,6 +310,7 @@ public class City {
 		setGoldUsed(getGoldUsed() + e.getGoldMaintenance());
 	}
 
+	// CHECKS IF CITY HAS A CERTAIN BUILDING
 	public boolean hasBuilding(int buildingID) {
 		for (int i = 0; i < $buildings.size(); i++)
 			if ($buildings.get(i).getBuildingID() == buildingID)
@@ -328,6 +318,7 @@ public class City {
 		return false;
 	}
 
+	// REMOVES A BUILDING FROM CITY
 	protected void removeBuilding(Building e) {
 		setGoldUsed(getGoldUsed() - e.getGoldMaintenance());
 		e.removeAbility();
@@ -335,6 +326,7 @@ public class City {
 		$buildings.remove(e);
 	}
 
+	// SELLS A BUILDING FROM THE CITY
 	protected void sellBuilding(Building e) {
 		this.setGoldUsed(this.getGoldUsed() - e.getGoldMaintenance());
 		e.removeAbility();
@@ -343,23 +335,25 @@ public class City {
 		getOwner().setGoldReserve(getOwner().getGoldReserve() + e.getGoldSellPrice());
 	}
 
+	// CHECKS TO SEE WHICH BUILDINGS CAN BE BUILT
 	public void findPotentialBuildings() {
 		this.get$potentialBuildings().clear();
 		for (int i = 0; i < Building.get$allBuildings().size(); i++)
-			if (owner.hasTechnology(Building.get$allBuildings().get(i).getTechRequired()))
+			if (Building.get$allBuildings().get(i).canBeBuilt())
 				$potentialBuildings.add(Building.get$allBuildings().get(i));
 
 	}
 
+	// CHECKS TO SEE WHICH WONDERS CAN BE BUILT
 	public void findPotentialWonders() {
 		this.get$potentialWonders().clear();
 		for (int i = 0; i < Wonder.get$allWonders().size(); i++)
-			if (owner.hasTechnology(Wonder.get$allWonders().get(i).getTechRequired())
-					&& (!(owner.hasTechnology(Wonder.get$allWonders().get(i).getTechObsoletionID()))))
+			if (Wonder.get$allWonders().get(i).canBeBuilt())
 				$potentialWonders.add(Wonder.get$allWonders().get(i));
 
 	}
 
+	// CHECKS TO SEE WHICH UNITS CAN BE BUILT
 	public void findPotentialUnits() {
 		this.get$potentialUnits().clear();
 		for (int i = 0; i < Unit.get$allUnits().size(); i++)
@@ -399,16 +393,14 @@ public class City {
 		this.$potentialUnits = $potentialUnits;
 	}
 
-	public static void setCityGUI() {
-		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setTileImageIcon(cityImageIcon);
-	}
-
+	// ADDS WONDER TO CITY
 	protected void buildWonder(Wonder e) {
 		$wonders.add(e);
 		e.setBuilt(true);
 
 	}
 
+	// CHECKS IF CITY HAS A WONDER
 	public boolean hasWonder(int wonderID) {
 		for (int i = 0; i < $wonders.size(); i++)
 			if ($wonders.get(i).getWonderID() == wonderID)
@@ -417,11 +409,14 @@ public class City {
 		return false;
 	}
 
+	// HELPER METHOD FOR DEALING WITH ARRAY VALUES AROUND A CERTAIN COORDINATE FOR
+	// TILES
 	public Tile instantiateTileValues(int x, int y) {
 		Tile.get$map()[location.get$location()[0] + x][location.get$location()[1] + y].setOwner(owner);
 		return Tile.get$map()[location.get$location()[0] + x][location.get$location()[1] + y];
 	}
 
+	// GROWS THE CITY BORDER
 	public void expandCity(int city) {
 		ArrayList<Tile> $tempArr = new ArrayList<Tile>();
 
@@ -435,6 +430,7 @@ public class City {
 		owner.get$cities().get(city).set$cityTiles($tempArr);
 	}
 
+	// GROWS THE CITY BORDER AGAIN
 	public void expandCity2(int city) {
 		ArrayList<Tile> $tempArr = new ArrayList<Tile>();
 

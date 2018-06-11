@@ -1,4 +1,5 @@
 package civilizations;
+//CLASS FOR PLAYER OBJECT - THIS CONTROLS GOLD, TECHNOLOGY, AND HAPPINESS, INCLUDES GETTERS AND SETTERS AND DIFFERENT METHODS
 
 import java.util.ArrayList;
 import civilizations.buildings.SpaceshipPart;
@@ -134,10 +135,12 @@ public class Player {
 		this.$scienceVictory = scienceVictory;
 	}
 
+	// ADDS TECHNOLOGY TO PLAYER
 	public void addTechnology(int techID) {
 		$technologies.add(Technology.get$technologies().get(techID));
 	}
 
+	// CHECKS IF PLAYER HAS CERTAIN TECH
 	public boolean hasTechnology(int techID) {
 		for (int i = 0; i < $technologies.size(); i++)
 			if ($technologies.get(i).getTechnologyID() == techID)
@@ -145,16 +148,19 @@ public class Player {
 		return false;
 	}
 
+	// ADDS A CITY TO PLAYER
 	public void addCity(City tCity) {
 		$cities.add(tCity);
 		this.setNumCities(this.getNumCities() + 1);
 	}
 
+	// ADDS AN UNIT TO PLAYER
 	public void addUnit(Unit tUnit) {
 		$units.add(tUnit);
 		this.setGoldPerTurn(this.getGoldPerTurn() - tUnit.getMaintenance());
 	}
 
+	// ADDS A SPACESHIP PART NECESSARY FOR SCIENCE VICTORY TO PLAYER
 	public void addSpaceshipPart(SpaceshipPart spaceshipPart) {
 		set$ScienceVictoryArray(spaceshipPart.getSpaceshipID(), true);
 		spaceshipPart.setBuilt(true);
@@ -165,6 +171,7 @@ public class Player {
 		get$ScienceVictory()[index] = target;
 	}
 
+	// RETURNS CERTAIN UNIT
 	public Unit getOwnedUnitfromID(int unitID) {
 		for (int i = 0; i < get$units().size(); i++)
 			if (get$units().get(i).getUnitID() == unitID)
@@ -172,6 +179,7 @@ public class Player {
 		return null;
 	}
 
+	// FINDS WHICH TECHS CAN BE RESEARCHED
 	public void findPotentialTechs() {
 		this.get$potentialTechs().clear();
 		for (int i = 0; i < Technology.get$technologies().size(); i++) {

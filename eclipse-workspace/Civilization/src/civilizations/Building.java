@@ -1,4 +1,5 @@
 package civilizations;
+//ABSTRACT CLASS FOR BUILDINGS - HELPS WITH ORGANIZING CODE, USED TO EASILY SET UP DIFFERENT BUILDINGS WITH DIFFERENT ABILITIES - CONTAINS PARAMETERS, METHODS, AND GETTERS AND SETTERS
 
 import java.util.ArrayList;
 
@@ -55,12 +56,14 @@ public abstract class Building extends Structure {
 		this.buildingID = buildingID;
 	}
 
+	// CHECKS IF A BUILDING CAN BE BUILT
 	public boolean canBeBuilt() {
 		if (techRequired < 0 || location.getOwner().hasTechnology(techRequired))
 			return true;
 		return false;
 	}
 
+	// CREATES AN ARRAY CONTAINING EVERY KIND OF BUILDING TO USE AS REFERENCE
 	public static void instantiateBuildingArrayList() {
 		$allBuildings.add(new Aqueduct());
 		$allBuildings.add(new Bank());
