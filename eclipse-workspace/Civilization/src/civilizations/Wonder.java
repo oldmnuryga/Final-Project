@@ -1,10 +1,25 @@
 package civilizations;
 
+import java.util.ArrayList;
+
+import civilizations.wonders.ApolloProgram;
+import civilizations.wonders.BachsCathedral;
+import civilizations.wonders.CancerCure;
+import civilizations.wonders.CopernicusObservatory;
+import civilizations.wonders.DarwinsVoyage;
+import civilizations.wonders.GreatLibrary;
+import civilizations.wonders.HangingGardens;
+import civilizations.wonders.MichelangelosChapel;
+import civilizations.wonders.NewtonsCollege;
+import civilizations.wonders.Oracle;
+
 public abstract class Wonder extends Structure {
 	protected Player owner;
 	protected int wonderID;
 	protected int techObsoletionID;
 	protected boolean isObsolete = false;
+	
+	public static ArrayList<Wonder> $allWonders = new ArrayList<Wonder>();
 
 	public boolean canBeBuilt() {
 		if (owner.hasTechnology(techRequired) && !(owner.hasTechnology(techObsoletionID)))
@@ -50,6 +65,19 @@ public abstract class Wonder extends Structure {
 
 		}
 		return false;
+	}
+	
+	public static void instantiateWonderArrayList() {
+		$allWonders.add(new ApolloProgram());
+		$allWonders.add(new BachsCathedral());
+		$allWonders.add(new CancerCure());
+		$allWonders.add(new CopernicusObservatory());
+		$allWonders.add(new DarwinsVoyage());
+		$allWonders.add(new GreatLibrary());
+		$allWonders.add(new HangingGardens());
+		$allWonders.add(new MichelangelosChapel());
+		$allWonders.add(new NewtonsCollege());
+		$allWonders.add(new Oracle());
 	}
 
 	public abstract void uniqueAbility();

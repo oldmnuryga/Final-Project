@@ -3,6 +3,7 @@ package units;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -35,6 +36,8 @@ public abstract class Unit {
 	protected int movesLeft;// = maxMovement;
 	protected Player owner = null;
 	protected ImageIcon unitImageIcon = null;
+	
+	public static ArrayList<Unit> $allUnits = new ArrayList<Unit>();
 	KeyTest test = new KeyTest();
 
 	public int getUnitID() {
@@ -275,6 +278,30 @@ public abstract class Unit {
 	public void removeUnit() {
 		this.setAlive(false);
 		this.setLocation(null);
+	}
+	
+	public static void instantiateUnitArrayList() {
+		$allUnits.add(new Archer());
+		$allUnits.add(new Artillery());
+		$allUnits.add(new Cannon());
+		$allUnits.add(new Catapult());
+		$allUnits.add(new Cavalry());
+		$allUnits.add(new Crossbowman());
+		$allUnits.add(new GatlingGun());
+		$allUnits.add(new GreatWarInfantry());
+		$allUnits.add(new Knight());
+		$allUnits.add(new Legion());
+		$allUnits.add(new Marine());
+		$allUnits.add(new Musketman());
+		$allUnits.add(new Pikeman());
+		$allUnits.add(new Rifleman());
+		$allUnits.add(new Scout());
+		$allUnits.add(new Settler());
+		$allUnits.add(new Spearman());
+		$allUnits.add(new Swordsman());
+		$allUnits.add(new Tank());
+		$allUnits.add(new Trebuchet());
+		$allUnits.add(new Warrior());
 	}
 
 	public class KeyTest implements KeyListener {

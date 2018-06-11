@@ -32,6 +32,25 @@ public class Settler extends Unit {
 		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Settler.png"));
 		player.addUnit(this);
 	}
+	public Settler() {
+		super.unitID = 18;
+		super.hitpoints = 15;
+		super.attackRating = 0;
+		super.productionCost = 106;
+		super.location = null;
+		super.ranged = false;
+		super.alive = true;
+		super.fortified = false;
+		super.maxMovement = 2;
+		super.movesLeft = 2;
+		super.maintenance = 1;
+		super.isAir = false;
+		super.isGround = true;
+		super.isNaval = false;
+		super.isSelected = false;
+		super.unitName = "Settler";
+		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Settler.png"));
+	}
 
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();

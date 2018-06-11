@@ -53,7 +53,7 @@ public abstract class Building extends Structure {
 		return false;
 	}
 
-	public void instantiateBuildingArrayList() {
+	public static void instantiateBuildingArrayList() {
 		$allBuildings.add(new Aqueduct());
 		$allBuildings.add(new Bank());
 		$allBuildings.add(new Barracks());
