@@ -1,7 +1,7 @@
 package units;
 
 import civilizations.Player;
-
+//UNIT AND ITS PARAMETERS
 public class Legion extends Unit {
 
 	public Legion() {

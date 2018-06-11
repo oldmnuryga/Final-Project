@@ -3,7 +3,7 @@ package units;
 import javax.swing.ImageIcon;
 
 import civilizations.Player;
-
+//UNIT AND ITS PARAMETERS
 public class Warrior extends Unit {
 
 	public Warrior(Player player) {

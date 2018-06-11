@@ -1,7 +1,7 @@
 package units;
 
 import civilizations.Player;
-
+//UNIT AND ITS PARAMETERS
 public class Artillery extends Unit {
 
 	public Artillery() {

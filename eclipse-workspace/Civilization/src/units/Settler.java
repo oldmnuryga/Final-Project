@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 import civilizations.City;
 import civilizations.Player;
 import map.Tile;
-
+//UNIT AND ITS PARAMETERS
 public class Settler extends Unit {
 
 	public Settler(Player player) {
@@ -52,7 +52,7 @@ public class Settler extends Unit {
 		super.unitName = "Settler";
 		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Settler.png"));
 	}
-
+	//Listens for P to find city
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
 		// Checks if "P" is hit and checks to see if any tile next to it is owned
@@ -73,6 +73,7 @@ public class Settler extends Unit {
 			this.foundCity(0);
 	}
 
+	//FINDS CITY AND SETS SURRONDING TILE TO PLAYER AS OWNER
 	public void foundCity(int city) {
 		ArrayList<Tile> $tempArr = new ArrayList<Tile>();
 
@@ -124,6 +125,7 @@ public class Settler extends Unit {
 
 	}
 
+	//SETS THE TILE OWNER
 	public Tile instantiateTileValues(int x, int y) {
 		Tile.get$map()[location.get$location()[0] + x][location.get$location()[1] + y].setOwner(owner);
 		return Tile.get$map()[location.get$location()[0] + x][location.get$location()[1] + y];
