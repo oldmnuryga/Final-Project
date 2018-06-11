@@ -9,7 +9,7 @@ import civilizations.Player;
 import units.Unit;
 
 public abstract class Tile {
-	protected final static int MAP_SIZE = 25;
+	protected final static int MAP_SIZE = 20;
 	protected final static int TEXTURE_SIZE = 50;
 	protected final static int GENERATION_ITERATIONS = 7;
 	protected final static int GENERATION_SIZE_MULTIPLIER = 5;
