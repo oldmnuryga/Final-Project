@@ -18,5 +18,6 @@ public class Spearman extends Unit {
 		super.isNaval = false;
 		super.isSelected = false;
 		super.unitName = "Spearman";
-	}  
+		super.techRequired = 6;
+	}
 }

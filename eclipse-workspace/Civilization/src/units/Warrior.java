@@ -27,6 +27,7 @@ public class Warrior extends Unit {
 		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Warrior.png"));
 		player.addUnit(this);
 	}
+
 	public Warrior() {
 		super.unitID = 23;
 		super.hitpoints = 30;

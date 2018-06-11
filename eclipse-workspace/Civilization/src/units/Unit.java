@@ -29,16 +29,15 @@ public abstract class Unit {
 	protected boolean isGround;
 	protected boolean isSelected;
 	protected int maxMovement;
+	protected int techRequired = -1;
 	protected int maintenance;
-	protected Technology requiredTech;
 	protected int buyCost;
 	protected String unitName;
-	protected int movesLeft;// = maxMovement;
+	protected int movesLeft;
 	protected Player owner = null;
 	protected ImageIcon unitImageIcon = null;
-	
+
 	public static ArrayList<Unit> $allUnits = new ArrayList<Unit>();
-	KeyTest test = new KeyTest();
 
 	public int getUnitID() {
 		return unitID;
@@ -48,12 +47,20 @@ public abstract class Unit {
 		this.unitID = unitID;
 	}
 
-	public KeyTest getTest() {
-		return test;
+	public int getTechRequired() {
+		return techRequired;
 	}
 
-	public void setTest(KeyTest test) {
-		this.test = test;
+	public void setTechRequired(int techRequired) {
+		this.techRequired = techRequired;
+	}
+
+	public static ArrayList<Unit> get$allUnits() {
+		return $allUnits;
+	}
+
+	public static void set$allUnits(ArrayList<Unit> $allUnits) {
+		Unit.$allUnits = $allUnits;
 	}
 
 	public int getCurrenthitpoints() {
@@ -86,14 +93,6 @@ public abstract class Unit {
 
 	public void setUnitName(String unitName) {
 		this.unitName = unitName;
-	}
-
-	public Technology getRequiredTech() {
-		return requiredTech;
-	}
-
-	public void setRequiredTech(Technology requiredTech) {
-		this.requiredTech = requiredTech;
 	}
 
 	public boolean isAir() {
@@ -279,16 +278,13 @@ public abstract class Unit {
 		this.setAlive(false);
 		this.setLocation(null);
 	}
-	
+
 	public static void instantiateUnitArrayList() {
 		$allUnits.add(new Archer());
 		$allUnits.add(new Artillery());
 		$allUnits.add(new Cannon());
 		$allUnits.add(new Catapult());
 		$allUnits.add(new Cavalry());
-		$allUnits.add(new Crossbowman());
-		$allUnits.add(new GatlingGun());
-		$allUnits.add(new GreatWarInfantry());
 		$allUnits.add(new Knight());
 		$allUnits.add(new Legion());
 		$allUnits.add(new Marine());
@@ -298,9 +294,7 @@ public abstract class Unit {
 		$allUnits.add(new Scout());
 		$allUnits.add(new Settler());
 		$allUnits.add(new Spearman());
-		$allUnits.add(new Swordsman());
 		$allUnits.add(new Tank());
-		$allUnits.add(new Trebuchet());
 		$allUnits.add(new Warrior());
 	}
 

@@ -1,5 +1,7 @@
 package units;
 
+import civilizations.Player;
+
 public class Rifleman extends Unit {
 
 	public Rifleman() {
@@ -18,5 +20,27 @@ public class Rifleman extends Unit {
 		super.isNaval = false;
 		super.isSelected = false;
 		super.unitName = "Rifleman";
+		super.techRequired = 50;
+	}
+
+	public Rifleman(Player player) {
+		super.unitID = 16;
+		super.hitpoints = 90;
+		super.attackRating = 30;
+		super.productionCost = 225;
+		super.location = null;
+		super.ranged = false;
+		super.alive = true;
+		super.fortified = false;
+		super.maxMovement = 2;
+		super.maintenance = 3;
+		super.isAir = false;
+		super.isGround = true;
+		super.isNaval = false;
+		super.isSelected = false;
+		super.unitName = "Rifleman";
+		super.techRequired = 50;
+		super.owner = player;
+		owner.addUnit(this);
 	}
 }

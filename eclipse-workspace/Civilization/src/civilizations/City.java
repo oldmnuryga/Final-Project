@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 import map.Tile;
+import units.Unit;
 
 public class City {
 	protected String name;
@@ -35,6 +36,7 @@ public class City {
 	protected ArrayList<Wonder> $wonders;
 	protected ArrayList<Building> $potentialBuildings;
 	protected ArrayList<Wonder> $potentialWonders;
+	protected ArrayList<Unit> $potentialUnits;
 	protected static ImageIcon cityImageIcon;
 
 	public City(Player player, Tile cityLocation) {
@@ -352,9 +354,17 @@ public class City {
 	public void findPotentialWonders() {
 		this.get$potentialWonders().clear();
 		for (int i = 0; i < Wonder.get$allWonders().size(); i++)
-			if (owner.hasTechnology(Wonder.get$allWonders().get(i).getTechRequired()))
+			if (owner.hasTechnology(Wonder.get$allWonders().get(i).getTechRequired())
+					&& (!(owner.hasTechnology(Wonder.get$allWonders().get(i).getTechObsoletionID()))))
 				$potentialWonders.add(Wonder.get$allWonders().get(i));
 
+	}
+
+	public void findPotentialUnits() {
+		this.get$potentialUnits().clear();
+		for (int i = 0; i < Unit.get$allUnits().size(); i++)
+			if (owner.hasTechnology(Unit.get$allUnits().get(i).getTechRequired()))
+				$potentialUnits.add(Unit.get$allUnits().get(i));
 	}
 
 	public ImageIcon getCityImageIcon() {
@@ -379,6 +389,14 @@ public class City {
 
 	public void set$potentialWonders(ArrayList<Wonder> $potentialWonders) {
 		this.$potentialWonders = $potentialWonders;
+	}
+
+	public ArrayList<Unit> get$potentialUnits() {
+		return $potentialUnits;
+	}
+
+	public void set$potentialUnits(ArrayList<Unit> $potentialUnits) {
+		this.$potentialUnits = $potentialUnits;
 	}
 
 	public static void setCityGUI() {
