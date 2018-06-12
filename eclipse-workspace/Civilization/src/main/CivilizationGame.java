@@ -22,7 +22,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
+import javax.swing.JViewport;
 import javax.swing.KeyStroke;
+import javax.swing.border.EmptyBorder;
 
 import civilizations.Building;
 import civilizations.Player;
@@ -61,9 +63,9 @@ public class CivilizationGame {
 	private int settlerTempY;
 
 	// JGRAPHICS CONSTRUCTORS
-	private JScrollPane pickUnit = new JScrollPane();
-	private JScrollPane pickWonder = new JScrollPane();
-	private JScrollPane pickBuilding = new JScrollPane();
+	private JScrollPane pickUnit = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	private JScrollPane pickWonder = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	private JScrollPane pickBuilding = new JScrollPane(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 	private JFrame frame = new JFrame("Society Simulator VII");
 	private JLabel lblGold = new JLabel("Gold: ");
 	private JLabel lblResearch = new JLabel("Research: ");
@@ -73,6 +75,7 @@ public class CivilizationGame {
 	private JLabel lblFood = new JLabel("Food: ");
 	private JLabel lblYear = new JLabel("3000 BC");
 	private JFrame frPickResearch = new JFrame("Research");
+	private JPanel paPickProduction = new JPanel();
 	private JFrame frPickProduction = new JFrame("Production");
 	private ImageIcon fog = new ImageIcon(Tile.class.getClassLoader().getResource("map/resources/fog.png"));
 
@@ -459,6 +462,42 @@ public class CivilizationGame {
 		}
 		lblProduction.setText("Production: " + scienceTotal);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+	//SHOULD BE PRODUCTION ABOVE! SOMEONE FIX!
+	//////// ^^^^^^^^^^^^^^^^^^^^^^^^^^
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public void updateScienceText() {
 		int scienceTotal = 0;
@@ -924,21 +963,34 @@ public class CivilizationGame {
 							});
 							$mapButtons[i][j].addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {
-
+									
+//									JViewport viewport = new JViewport();
 									frPickProduction.setPreferredSize(new Dimension(1500, 1000));
-									frPickProduction.setVisible(true);
 									frPickProduction.setLayout(null);
 									frPickProduction.setResizable(false);
-
+//									frPickProduction.add(paPickProduction);
+//									paPickProduction.setPreferredSize(new Dimension(1500, 1000));
+									
+//									viewport.setView(paPickProduction);
 									pickUnit = new JScrollPane();
 									pickUnit.createVerticalScrollBar();
 									pickUnit.setLayout(null);
+//									pickUnit.setViewport(viewport);
+								//	pickUnit.setViewportBorder(null);
+								//	pickUnit.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
 									pickWonder = new JScrollPane();
 									pickWonder.createVerticalScrollBar();
 									pickWonder.setLayout(null);
+//									pickWonder.setViewport(viewport);
+								//	pickWonder.setViewportBorder(null);
+								//	pickWonder.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
 									pickBuilding = new JScrollPane();
 									pickBuilding.createVerticalScrollBar();
 									pickBuilding.setLayout(null);
+//									pickBuilding.setViewport(viewport);
+								//	pickBuilding.setViewportBorder(null);
+								//	pickBuilding.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
+									
 
 									pickUnit.setBounds(0, 0, 500, 1000);
 									pickWonder.setBounds(500, 0, 500, 1000);
@@ -953,6 +1005,9 @@ public class CivilizationGame {
 									JLabel lblBuilding = new JLabel("Buildings: ");
 									lblBuilding.setBounds(20, 0, 300, 30);
 									pickBuilding.add(lblBuilding);
+									
+									frPickProduction.setVisible(true);
+//									paPickProduction.setVisible(true);
 
 									ArrayList<JButton> unit = new ArrayList<JButton>();
 									int z = 30;
