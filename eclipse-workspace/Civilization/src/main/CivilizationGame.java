@@ -932,14 +932,14 @@ public class CivilizationGame {
 
 									pickUnit = new JScrollPane();
 									pickUnit.createVerticalScrollBar();
+									pickUnit.setLayout(null);
 									pickWonder = new JScrollPane();
 									pickWonder.createVerticalScrollBar();
+									pickWonder.setLayout(null);
 									pickBuilding = new JScrollPane();
 									pickBuilding.createVerticalScrollBar();
+									pickBuilding.setLayout(null);
 
-									frPickProduction.add(pickUnit);
-									frPickProduction.add(pickWonder);
-									frPickProduction.add(pickBuilding);
 									pickUnit.setBounds(0, 0, 500, 1000);
 									pickWonder.setBounds(500, 0, 500, 1000);
 									pickBuilding.setBounds(1000, 0, 500, 1000);
@@ -951,7 +951,7 @@ public class CivilizationGame {
 									lblWonder.setBounds(20, 0, 300, 30);
 									pickWonder.add(lblWonder);
 									JLabel lblBuilding = new JLabel("Buildings: ");
-									lblBuilding.setBounds(0, 20, 300, 30);
+									lblBuilding.setBounds(20, 0, 300, 30);
 									pickBuilding.add(lblBuilding);
 
 									ArrayList<JButton> unit = new ArrayList<JButton>();
@@ -993,7 +993,10 @@ public class CivilizationGame {
 									 * 
 									 * }
 									 */
-
+									frPickProduction.add(pickUnit);
+									frPickProduction.add(pickWonder);
+									frPickProduction.add(pickBuilding);
+									frPickProduction.repaint();
 									frPickProduction.pack();
 								}
 							});
