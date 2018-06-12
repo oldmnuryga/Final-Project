@@ -1017,10 +1017,18 @@ public class CivilizationGame {
 										wonder.get(i).setBounds(20, q, 360, 65);
 										q += 80;
 										
-										if(Wonder.get$allWonders().get(i).isObsolete()) 
-											wonder.get(i).setEnabled(false);
-										else 
-											wonder.get(i).setEnabled(true);
+										for(int e = 0; e < Technology.get$technologies().size(); e++) {
+											if(Wonder.get$allWonders().get(i).isObsolete()) 
+												wonder.get(i).setEnabled(false);
+											else if(Wonder.get$allWonders().get(i).getTechRequired() == -1) {
+												wonder.get(i).setEnabled(true);
+											} else if(Technology.get$technologies().get(Wonder.get$allWonders().get(i).getTechRequired()).isResearched()) {
+												wonder.get(i).setEnabled(true);
+											} else {
+												wonder.get(i).setEnabled(false);
+											}
+											
+										}
 										
 										
 /*										for(int r = 0; r < Technology.get$technologies().size(); r++) {
