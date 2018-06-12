@@ -296,14 +296,15 @@ public abstract class Tile {
 	public int getTerrainID() {
 		return terrainID;
 	}
-	
+
 	public boolean isTileVisible() {
 		return this.tileVisible;
 	}
+
 	public void setTileVisible(boolean statement) {
 		this.tileVisible = statement;
 	}
-	
+
 	public static int getTEXTURE_SIZE() {
 		return TEXTURE_SIZE;
 	}
@@ -527,8 +528,7 @@ public abstract class Tile {
 	public void setSciencePotential(double sciencePotential) {
 		this.sciencePotential = sciencePotential;
 	}
-	
-	
+
 	// public TIle getTileFromID(int ID){
 	// if(ID = 0
 	// return GrassTile;

@@ -568,6 +568,7 @@ public class CivilizationGame {
 			}
 		}
 		repaintFog();
+		frame.repaint();
 	}
 
 	/*
@@ -704,20 +705,27 @@ public class CivilizationGame {
 				}
 			}
 		}
-		/*
-		 * if(currentBuildingProd != null) buildingProdTimeSpent++; if(currentUnitProd
-		 * != null) unitProdTimeSpent++; if(currentWonderProd != null)
-		 * wonderProdTimeSpent++; if(buildingProdTimeSpent >= (int)
-		 * calculateMovesBuildingProd(currentBuildingProd.getBuildingID(),
-		 * player.get$cities().get(0).getProductionRate()))
-		 * finishBuildingProd(currentBuildingProd); if(unitProdTimeSpent >= (int)
-		 * calculateMovesUnitProd(currentUnitProd.getUnitID(),
-		 * player.get$cities().get(0).getProductionRate()))
-		 * finishUnitProd(currentUnitProd); if(wonderProdTimeSpent >= (int)
-		 * calculateMovesWonderProd(currentWonderProd.getWonderID(),
-		 * player.get$cities().get(0).getProductionRate()))
-		 * finishWonderProd(currentWonderProd);
-		 */
+
+		if (currentBuildingProd != null) {
+			buildingProdTimeSpent++;
+			if (buildingProdTimeSpent >= (int) calculateMovesBuildingProd(currentBuildingProd.getBuildingID(),
+					player.get$cities().get(0).getProductionRate()))
+				finishBuildingProd(currentBuildingProd);
+		}
+		if (currentUnitProd != null) {
+			unitProdTimeSpent++;
+			if (unitProdTimeSpent >= (int) calculateMovesUnitProd(currentUnitProd.getUnitID(),
+					player.get$cities().get(0).getProductionRate()))
+				finishUnitProd(currentUnitProd);
+		}
+		if (currentWonderProd != null) {
+			wonderProdTimeSpent++;
+			if (wonderProdTimeSpent >= (int) calculateMovesWonderProd(currentWonderProd.getWonderID(),
+					player.get$cities().get(0).getProductionRate()))
+				finishWonderProd(currentWonderProd);
+		}
+
+		System.out.println("reached1");
 		growCity();
 		if (researchTimeSpent >= movesToTech) {
 			finishResearch(currentResearchedTech);
@@ -757,15 +765,13 @@ public class CivilizationGame {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].isCity() == true) {
+					System.out.println("reached2");
 					if (turns % 12 == 0) {
+						System.out.println("reached3");
 						Random g = new Random();
-						int x = 3, y = 3;
-						int tempX = g.nextInt(x) - 1;
-						int tempY = g.nextInt(y) - 1;
-						if (Tile.get$map()[i + tempX][j + tempY].getOwner() == (null)) {
-							Tile.get$map()[i + tempX][j + tempY].setOwner(player);
-							repaintTiles();
-						}
+						int min = -2;
+						int max = 2;
+
 						try {
 							if (Tile.get$map()[i - 2][j - 2].getOwner() == (player)
 									&& Tile.get$map()[i - 2][j - 1].getOwner() == (player)
@@ -783,11 +789,24 @@ public class CivilizationGame {
 									&& Tile.get$map()[i + 2][j].getOwner() == (player)
 									&& Tile.get$map()[i + 2][j + 1].getOwner() == (player)
 									&& Tile.get$map()[i + 2][j + 2].getOwner() == (player)) {
-								x += 2;
-								y += 2;
+								min--;
+								max++;
 							}
 						} catch (Exception e) {
+							System.out.println("growCity() failed.");
 						}
+						int tempX = g.nextInt(max + 1 - min) + min;
+						int tempY = g.nextInt(max + 1 - min) + min;
+						while (Tile.get$map()[i + tempX][j + tempY].getOwner() != null) {
+							tempX = g.nextInt(max + 1 - min) + min;
+							tempY = g.nextInt(max + 1 - min) + min;
+						}
+						Tile.get$map()[i + tempX][j + tempY].setOwner(player);
+						System.out.println(
+								tempX + " " + tempY + " " + Tile.get$map()[i + tempX][j + tempY].getOwner().toString());
+
+						repaintTiles();
+						player.get$cities().get(0).get$cityTiles().add(Tile.get$map()[i + tempX][j + tempY]);
 					}
 				}
 			}
@@ -889,56 +908,9 @@ public class CivilizationGame {
 									}
 								}
 							});
-						}
-						// Found City mk2
-						if (Tile.get$map()[i][j].isCity()) {
-							$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("O"), "expandCity");
-							$mapButtons[i][j].getActionMap().put("expandCity", new AbstractAction() {
-								public void actionPerformed(ActionEvent e) {
-									player.get$cities().get(0).expandCity(0);
-									/*
-									 * Tile.get$map()[x - 2][y - 2].setOwner(player); Tile.get$map()[x - 2][y -
-									 * 1].setOwner(player); Tile.get$map()[x - 2][y].setOwner(player);
-									 * Tile.get$map()[x - 2][y + 1].setOwner(player); Tile.get$map()[x - 2][y +
-									 * 2].setOwner(player); Tile.get$map()[x - 1][y - 2].setOwner(player);
-									 * Tile.get$map()[x - 1][y + 2].setOwner(player); Tile.get$map()[x][y -
-									 * 2].setOwner(player); Tile.get$map()[x][y + 2].setOwner(player);
-									 * Tile.get$map()[x + 1][y - 2].setOwner(player); Tile.get$map()[x + 1][y +
-									 * 2].setOwner(player); Tile.get$map()[x + 2][y - 2].setOwner(player);
-									 * Tile.get$map()[x + 2][y - 1].setOwner(player); Tile.get$map()[x +
-									 * 2][y].setOwner(player); Tile.get$map()[x + 2][y + 1].setOwner(player);
-									 * Tile.get$map()[x + 2][y + 2].setOwner(player);
-									 */
-									repaintTiles();
-								}
-							});
-						}
-						if (Tile.get$map()[i][j].isCity()) {
-							$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("I"), "expandCity2");
-							$mapButtons[i][j].getActionMap().put("expandCity2", new AbstractAction() {
-								public void actionPerformed(ActionEvent e) {
-									player.get$cities().get(0).expandCity2(0);
-									/*
-									 * Tile.get$map()[x - 3][y - 3].setOwner(player); Tile.get$map()[x - 3][y -
-									 * 2].setOwner(player); Tile.get$map()[x - 3][y - 1].setOwner(player);
-									 * Tile.get$map()[x - 3][y].setOwner(player); Tile.get$map()[x - 3][y +
-									 * 1].setOwner(player); Tile.get$map()[x - 3][y + 2].setOwner(player);
-									 * Tile.get$map()[x - 3][y + 3].setOwner(player); Tile.get$map()[x - 2][y -
-									 * 3].setOwner(player); Tile.get$map()[x - 2][y + 3].setOwner(player);
-									 * Tile.get$map()[x - 1][y - 3].setOwner(player); Tile.get$map()[x - 1][y +
-									 * 3].setOwner(player); Tile.get$map()[x][y - 3].setOwner(player);
-									 * Tile.get$map()[x][y + 3].setOwner(player); Tile.get$map()[x + 1][y -
-									 * 3].setOwner(player); Tile.get$map()[x + 1][y + 3].setOwner(player);
-									 * Tile.get$map()[x + 2][y - 3].setOwner(player); Tile.get$map()[x + 2][y +
-									 * 3].setOwner(player); Tile.get$map()[x + 3][y - 3].setOwner(player);
-									 * Tile.get$map()[x + 3][y - 2].setOwner(player); Tile.get$map()[x + 3][y -
-									 * 1].setOwner(player); Tile.get$map()[x + 3][y].setOwner(player);
-									 * Tile.get$map()[x + 3][y + 1].setOwner(player); Tile.get$map()[x + 3][y +
-									 * 2].setOwner(player); Tile.get$map()[x + 3][y + 3].setOwner(player);
-									 */
-									repaintTiles();
-								}
-							});
+
+							// Found City mk2
+
 							$mapButtons[i][j].addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {
 									btnEndTurn.setEnabled(false);
@@ -948,7 +920,6 @@ public class CivilizationGame {
 									frPickProduction.setResizable(false);
 									// frPickProduction.add(paPickProduction);
 									// paPickProduction.setPreferredSize(new Dimension(1500, 1000));
-
 									// viewport.setView(paPickProduction);
 									pickUnit = new JScrollPane();
 									pickUnit.createVerticalScrollBar();
@@ -1257,44 +1228,49 @@ public class CivilizationGame {
 
 	public void finishBuildingProd(Building e) {
 		if (e instanceof Aqueduct)
-			player.get$cities().get(0).get$buildings().add(new Aqueduct(player.get$cities().get(0)));
+			player.get$cities().get(0).buildBuilding(new Aqueduct(player.get$cities().get(0)));
 		else if (e instanceof Bank)
-			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
+			player.get$cities().get(0).buildBuilding(new Bank(player.get$cities().get(0)));
 		else if (e instanceof Barracks)
-			player.get$cities().get(0).get$buildings().add(new Barracks(player.get$cities().get(0)));
+			player.get$cities().get(0).buildBuilding(new Barracks(player.get$cities().get(0)));
 		else if (e instanceof Cathedral)
-			player.get$cities().get(0).get$buildings().add(new Cathedral(player.get$cities().get(0)));
+			player.get$cities().get(0).buildBuilding(new Cathedral(player.get$cities().get(0)));
 		else if (e instanceof Colosseum)
-			player.get$cities().get(0).get$buildings().add(new Colosseum(player.get$cities().get(0)));
+			player.get$cities().get(0).buildBuilding(new Colosseum(player.get$cities().get(0)));
 		else if (e instanceof Factory)
-			player.get$cities().get(0).get$buildings().add(new Factory(player.get$cities().get(0)));
+			player.get$cities().get(0).buildBuilding(new Factory(player.get$cities().get(0)));
 		else if (e instanceof Granary)
-			player.get$cities().get(0).get$buildings().add(new Granary(player.get$cities().get(0)));
+			player.get$cities().get(0).buildBuilding(new Granary(player.get$cities().get(0)));
 		else if (e instanceof HydroPlant)
-			player.get$cities().get(0).get$buildings().add(new HydroPlant(player.get$cities().get(0)));
+			player.get$cities().get(0).buildBuilding(new HydroPlant(player.get$cities().get(0)));
 		else if (e instanceof Library)
-			player.get$cities().get(0).get$buildings().add(new Library(player.get$cities().get(0)));
+			player.get$cities().get(0).buildBuilding(new Library(player.get$cities().get(0)));
 		else if (e instanceof ManufacturingPlant)
-			player.get$cities().get(0).get$buildings().add(new ManufacturingPlant(player.get$cities().get(0)));
+			player.get$cities().get(0).buildBuilding(new ManufacturingPlant(player.get$cities().get(0)));
 		else if (e instanceof Market)
-			player.get$cities().get(0).get$buildings().add(new Market(player.get$cities().get(0)));
+			player.get$cities().get(0).buildBuilding(new Market(player.get$cities().get(0)));
 		else if (e instanceof NuclearPlant)
-			player.get$cities().get(0).get$buildings().add(new NuclearPlant(player.get$cities().get(0)));
-		else if (e instanceof Bank)
-			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
-		else if (e instanceof Bank)
-			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
-		else if (e instanceof Bank)
-			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
-		else if (e instanceof Bank)
-			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
-		else if (e instanceof Bank)
-			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
-		else if (e instanceof Bank)
-			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
+			player.get$cities().get(0).buildBuilding(new NuclearPlant(player.get$cities().get(0)));
+		else if (e instanceof SpaceshipCockpit) {
+			player.get$cities().get(0).buildBuilding(new SpaceshipCockpit(player.get$cities().get(0)));
+			player.addSpaceshipPart(new SpaceshipCockpit(player.get$cities().get(0)));
+		} else if (e instanceof SpaceshipEngine) {
+			player.get$cities().get(0).buildBuilding(new SpaceshipEngine(player.get$cities().get(0)));
+			player.addSpaceshipPart(new SpaceshipEngine(player.get$cities().get(0)));
+		} else if (e instanceof SpaceshipFuselage) {
+			player.get$cities().get(0).buildBuilding(new SpaceshipFuselage(player.get$cities().get(0)));
+			player.addSpaceshipPart(new SpaceshipFuselage(player.get$cities().get(0)));
+		} else if (e instanceof Temple)
+			player.get$cities().get(0).buildBuilding(new Temple(player.get$cities().get(0)));
+		else if (e instanceof University)
+			player.get$cities().get(0).buildBuilding(new University(player.get$cities().get(0)));
+		else if (e instanceof Walls)
+			player.get$cities().get(0).buildBuilding(new Walls(player.get$cities().get(0)));
 
 		JOptionPane.showMessageDialog(frame, "You finished " + e.getName(), "Completed Building",
 				JOptionPane.INFORMATION_MESSAGE);
+		currentBuildingProd = null;
+		frPickProduction.setVisible(true);
 	}
 
 	public double calculateMovesWonderProd(int wonderID, double prodPerTurn) {
