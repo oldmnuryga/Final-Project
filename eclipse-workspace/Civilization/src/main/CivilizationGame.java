@@ -701,14 +701,11 @@ public class CivilizationGame {
 							.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
 				if (Tile.get$map()[i][j].isCity()) {
 					researchTimeSpent++;
-					// System.out.println(researchTimeSpent);
 				}
 			}
 		}
-		System.out.println(buildingProdTimeSpent);
 		if (currentBuildingProd != null) {
 			buildingProdTimeSpent++;
-			System.out.println(calculateMovesBuildingProd(currentBuildingProd.getBuildingID(),
 					player.get$cities().get(0).getProductionRate()));
 			if (buildingProdTimeSpent >= (int) calculateMovesBuildingProd(currentBuildingProd.getBuildingID(),
 					player.get$cities().get(0).getProductionRate()))
@@ -1224,7 +1221,6 @@ public class CivilizationGame {
 
 	public void finishBuildingProd(Building e) {
 		buildingProdTimeSpent = 1;
-		System.out.println("reached finish building");
 		if (e instanceof Aqueduct)
 			player.get$cities().get(0).buildBuilding(new Aqueduct(player.get$cities().get(0)));
 		else if (e instanceof Bank)
