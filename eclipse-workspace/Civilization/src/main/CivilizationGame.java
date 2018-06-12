@@ -1016,6 +1016,21 @@ public class CivilizationGame {
 										pickUnit.add(unit.get(i));
 										unit.get(i).setBounds(20, z, 360, 35);
 										z += 50;
+										for(int r = 0; r < Technology.get$technologies().size(); r++) {
+											if(Unit.get$allUnits().get(i).getTechRequired() == -1) {
+												unit.get(i).setEnabled(true);
+											} else if(Technology.get$technologies().get(Unit.get$allUnits().get(i).getTechRequired()).isResearched()) {
+												unit.get(i).setEnabled(true);
+											} else {
+												unit.get(i).setEnabled(false);
+											}
+											
+										}
+										unit.get(i).addActionListener(new ActionListener() {
+											public void actionPerformed(ActionEvent arg0) {
+												
+											}
+										});
 									}
 
 									ArrayList<JButton> wonder = new ArrayList<JButton>();
@@ -1025,6 +1040,34 @@ public class CivilizationGame {
 										pickWonder.add(wonder.get(i));
 										wonder.get(i).setBounds(20, q, 360, 65);
 										q += 80;
+										
+										if(Wonder.get$allWonders().get(i).isObsolete()) 
+											wonder.get(i).setEnabled(false);
+										else 
+											wonder.get(i).setEnabled(true);
+										
+										
+/*										for(int r = 0; r < Technology.get$technologies().size(); r++) {
+											if(player.get$technologies().get(Wonder.get$allWonders().get(i).getTechRequired()).isResearched() && Wonder.get$allWonders().get(i).checkObsolete() == false) {
+												wonder.get(i).setEnabled(true);
+											} else if (Wonder.get$allWonders().get(i).getTechRequired() == -1 && Wonder.get$allWonders().get(i).checkObsolete() == false) {
+												wonder.get(i).setEnabled(true);
+											} else {
+												wonder.get(i).setEnabled(false);
+											}
+										}*/
+												
+/*										if(Wonder.get$allWonders().get(i).canBeBuilt()) {
+											wonder.get(i).setEnabled(true);
+										} else {
+											wonder.get(i).setEnabled(false);
+										}*/
+										
+										wonder.get(i).addActionListener(new ActionListener() {
+											public void actionPerformed(ActionEvent arg0) {
+												
+											}
+										});
 									}
 
 									ArrayList<JButton> building = new ArrayList<JButton>();
@@ -1034,6 +1077,18 @@ public class CivilizationGame {
 										pickBuilding.add(building.get(i));
 										building.get(i).setBounds(20, t, 360, 34);
 										t += 44;
+										
+/*										if(Building.get$allBuildings().get(i).canBeBuilt()) {
+											building.get(i).setEnabled(true);
+										} else {
+											building.get(i).setEnabled(false);
+										}*/
+										
+										building.get(i).addActionListener(new ActionListener() {
+											public void actionPerformed(ActionEvent arg0) {
+												
+											}
+										});
 									}
 
 									/*
