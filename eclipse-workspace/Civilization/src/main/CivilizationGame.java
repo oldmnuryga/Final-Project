@@ -706,7 +706,6 @@ public class CivilizationGame {
 		}
 		if (currentBuildingProd != null) {
 			buildingProdTimeSpent++;
-					player.get$cities().get(0).getProductionRate()));
 			if (buildingProdTimeSpent >= (int) calculateMovesBuildingProd(currentBuildingProd.getBuildingID(),
 					player.get$cities().get(0).getProductionRate()))
 				finishBuildingProd(currentBuildingProd);
