@@ -7,9 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
+import java.security.acl.Owner;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.management.InstanceAlreadyExistsException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.AbstractAction;
@@ -22,13 +24,12 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
-import javax.swing.JViewport;
 import javax.swing.KeyStroke;
-import javax.swing.border.EmptyBorder;
 
 import civilizations.Building;
 import civilizations.Player;
 import civilizations.Wonder;
+import civilizations.buildings.*;
 import leaders.America;
 import leaders.Italy;
 import leaders.Korea;
@@ -499,7 +500,6 @@ public class CivilizationGame {
 			for (int j = 0; j < player.get$cities().get(i).get$cityTiles().size(); j++) {
 				HappinessVal += player.get$cities().get(i).get$cityTiles().get(j).getHappinessBase();
 			}
-			player.get$cities().get(i).setHappinessTotal(player.get$cities().get(i).getHappinessTotal() + HappinessVal);
 			happinessTotal += player.get$cities().get(i).getHappinessTotal();
 		}
 		lblHappiness.setText("Happiness: " + happinessTotal);
@@ -697,7 +697,7 @@ public class CivilizationGame {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getUnitOnTile() != null)
 					Tile.get$map()[i][j].getUnitOnTile()
-					.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
+							.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
 				if (Tile.get$map()[i][j].isCity()) {
 					researchTimeSpent++;
 					// System.out.println(researchTimeSpent);
@@ -873,7 +873,7 @@ public class CivilizationGame {
 								public void actionPerformed(ActionEvent e) {
 									try {
 										((Settler) getPlayer().getOwnedUnitfromID(18))
-										.foundCity(player.get$cities().size());
+												.foundCity(player.get$cities().size());
 										removeUnit(x, y);
 										repaintTiles();
 										/*
@@ -1256,7 +1256,43 @@ public class CivilizationGame {
 	}
 
 	public void finishBuildingProd(Building e) {
-		player.get$cities().get(0).get$buildings().add(e);
+		if (e instanceof Aqueduct)
+			player.get$cities().get(0).get$buildings().add(new Aqueduct(player.get$cities().get(0)));
+		else if (e instanceof Bank)
+			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
+		else if (e instanceof Barracks)
+			player.get$cities().get(0).get$buildings().add(new Barracks(player.get$cities().get(0)));
+		else if (e instanceof Cathedral)
+			player.get$cities().get(0).get$buildings().add(new Cathedral(player.get$cities().get(0)));
+		else if (e instanceof Colosseum)
+			player.get$cities().get(0).get$buildings().add(new Colosseum(player.get$cities().get(0)));
+		else if (e instanceof Factory)
+			player.get$cities().get(0).get$buildings().add(new Factory(player.get$cities().get(0)));
+		else if (e instanceof Granary)
+			player.get$cities().get(0).get$buildings().add(new Granary(player.get$cities().get(0)));
+		else if (e instanceof HydroPlant)
+			player.get$cities().get(0).get$buildings().add(new HydroPlant(player.get$cities().get(0)));
+		else if (e instanceof Bank)
+			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
+		else if (e instanceof Bank)
+			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
+		else if (e instanceof Bank)
+			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
+		else if (e instanceof Bank)
+			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
+		else if (e instanceof Bank)
+			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
+		else if (e instanceof Bank)
+			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
+		else if (e instanceof Bank)
+			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
+		else if (e instanceof Bank)
+			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
+		else if (e instanceof Bank)
+			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
+		else if (e instanceof Bank)
+			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
+
 		JOptionPane.showMessageDialog(frame, "You finished " + e.getName(), "Completed Building",
 				JOptionPane.INFORMATION_MESSAGE);
 	}
@@ -1292,7 +1328,7 @@ public class CivilizationGame {
 	public boolean canMove(Unit unit, int x, int y, int horizontalMod, int verticalMod) {
 		try {
 			if (unit.getMovesLeft() - Tile.get$map()[x + horizontalMod][y + verticalMod].getMovesRequired() >= 0) {
-				if(Tile.get$map()[x + horizontalMod][y + verticalMod].isCrossable()
+				if (Tile.get$map()[x + horizontalMod][y + verticalMod].isCrossable()
 						&& Tile.get$map()[x + horizontalMod][y + verticalMod].getUnitOnTile() == null) {
 					return true;
 				} else {
@@ -1355,5 +1391,4 @@ public class CivilizationGame {
 		} catch (Exception e) {
 		}
 	}
-
 }
