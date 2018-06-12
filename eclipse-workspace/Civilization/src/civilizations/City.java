@@ -295,7 +295,7 @@ public class City {
 	}
 
 	// ADDS A BUILDING THAT WAS BUILT THROUGH PRODUCTION
-	protected void buildBuilding(Building e) {
+	public void buildBuilding(Building e) {
 		$buildings.add(e);
 		e.setBuilt(true);
 		e.uniqueAbility();
@@ -303,7 +303,7 @@ public class City {
 	}
 
 	// ADDS A BUILDING THAT WAS BUILT THROUGH BUYING WITH GOLD
-	protected void buyBuilding(Building e) {
+	public void buyBuilding(Building e) {
 		getOwner().setGoldReserve(getOwner().getGoldReserve() - e.getGoldPurchaseCost());
 		$buildings.add(e);
 		e.setBuilt(true);
@@ -320,7 +320,7 @@ public class City {
 	}
 
 	// REMOVES A BUILDING FROM CITY
-	protected void removeBuilding(Building e) {
+	public void removeBuilding(Building e) {
 		setGoldUsed(getGoldUsed() - e.getGoldMaintenance());
 		e.removeAbility();
 		e.setBuilt(false);
@@ -328,7 +328,7 @@ public class City {
 	}
 
 	// SELLS A BUILDING FROM THE CITY
-	protected void sellBuilding(Building e) {
+	public void sellBuilding(Building e) {
 		this.setGoldUsed(this.getGoldUsed() - e.getGoldMaintenance());
 		e.removeAbility();
 		e.setBuilt(false);
