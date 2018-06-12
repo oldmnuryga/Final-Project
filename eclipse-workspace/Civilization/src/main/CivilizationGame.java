@@ -25,7 +25,9 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.KeyStroke;
 
+import civilizations.Building;
 import civilizations.Player;
+import civilizations.Wonder;
 import leaders.America;
 import leaders.Italy;
 import leaders.Korea;
@@ -61,6 +63,9 @@ public class CivilizationGame {
 	private int settlerTempY;
 
 	// JGRAPHICS CONSTRUCTORS
+	private JScrollPane pickUnit = new JScrollPane();
+	private JScrollPane pickWonder = new JScrollPane();
+	private JScrollPane pickBuilding = new JScrollPane();
 	private JFrame frame = new JFrame("Society Simulator VII");
 	private JLabel lblGold = new JLabel("Gold: ");
 	private JLabel lblResearch = new JLabel("Research: ");
@@ -933,21 +938,65 @@ public class CivilizationGame {
 							$mapButtons[i][j].addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {
 
+									frPickProduction.setPreferredSize(new Dimension(1500, 1000));
 									frPickProduction.setVisible(true);
 									frPickProduction.setLayout(null);
-									frPickProduction.setPreferredSize(new Dimension(1500, 1000));
+									frPickProduction.setResizable(false);
 
-									JScrollPane pickUnit = new JScrollPane();
-									JScrollPane pickWonder = new JScrollPane();
-									JScrollPane pickBuilding = new JScrollPane();
+									pickUnit = new JScrollPane();
+									pickUnit.createVerticalScrollBar();
+									pickWonder = new JScrollPane();
+									pickWonder.createVerticalScrollBar();
+									pickBuilding = new JScrollPane();
+									pickBuilding.createVerticalScrollBar();
+									
 									frPickProduction.add(pickUnit);
 									frPickProduction.add(pickWonder);
 									frPickProduction.add(pickBuilding);
 									pickUnit.setBounds(0, 0, 500, 1000);
 									pickWonder.setBounds(500, 0, 500, 1000);
 									pickBuilding.setBounds(1000, 0, 500, 1000);
+									
+									JLabel lblUnit = new JLabel("Units: ");
+									lblUnit.setBounds(0, 20, 300, 30);
+									pickUnit.add(lblUnit);
+									JLabel lblWonder = new JLabel("Wonders: ");
+									lblWonder.setBounds(0, 20, 300, 30);
+									pickWonder.add(lblWonder);
+									JLabel lblBuilding = new JLabel("Buildings: ");
+									lblBuilding.setBounds(0, 20, 300, 30);
+									pickBuilding.add(lblBuilding);
+									
+									ArrayList<JButton> unit = new ArrayList<JButton>();
+									int z = 30;
+									for (int i = 0; i < Unit.get$allUnits().size(); i++) {
+										unit.add(new JButton(Unit.get$allUnits().get(i).getUnitName()));
+										pickUnit.add(unit.get(i));
+										unit.get(i).setBounds(20, z, 460, 75);
+										z += 90;
+									}
+									
+									ArrayList<JButton> wonder = new ArrayList<JButton>();
+									int q = 30;
+									for (int i = 0; i < Wonder.get$allWonders().size(); i++) {
+										wonder.add(new JButton(Wonder.get$allWonders().get(i).getName()));
+										pickWonder.add(wonder.get(i));
+										wonder.get(i).setBounds(20, q, 460, 75);
+										q += 90;
+									}
+									
+									
+									ArrayList<JButton> building = new ArrayList<JButton>();
+									int t = 30;
+									for (int i = 0; i < Building.get$allBuildings().size(); i++) {
+										building.add(new JButton(Building.get$allBuildings().get(i).getName()));
+										pickBuilding.add(building.get(i));
+										building.get(i).setBounds(20, t, 460, 75);
+										t += 90;
+									}
+									
 
-									for (int i = 0; i < player.get$cities().get(0).get$potentialWonders().size(); i++) {
+/*									for (int i = 0; i < player.get$cities().get(0).get$potentialWonders().size(); i++) {
 										JButton[] wonder = new JButton[player.get$cities().get(0).get$potentialWonders()
 										                               .size()];
 										wonder[i] = new JButton(
@@ -960,7 +1009,7 @@ public class CivilizationGame {
 									for (int i = 0; i < player.get$cities().get(0).get$potentialBuildings()
 											.size(); i++) {
 
-									}
+									}*/
 
 									frPickProduction.pack();
 								}
