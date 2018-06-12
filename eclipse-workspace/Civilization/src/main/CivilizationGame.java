@@ -177,7 +177,7 @@ public class CivilizationGame {
 				spawnInitialWarrior();
 				updatePlayerStats();
 				try {
-					sounds.gengisSoundPlay();
+					sounds.genghisSoundPlay();
 				} catch (UnsupportedAudioFileException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
