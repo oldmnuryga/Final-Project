@@ -1272,14 +1272,14 @@ public class CivilizationGame {
 			player.get$cities().get(0).get$buildings().add(new Granary(player.get$cities().get(0)));
 		else if (e instanceof HydroPlant)
 			player.get$cities().get(0).get$buildings().add(new HydroPlant(player.get$cities().get(0)));
-		else if (e instanceof Bank)
-			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
-		else if (e instanceof Bank)
-			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
-		else if (e instanceof Bank)
-			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
-		else if (e instanceof Bank)
-			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
+		else if (e instanceof Library)
+			player.get$cities().get(0).get$buildings().add(new Library(player.get$cities().get(0)));
+		else if (e instanceof ManufacturingPlant)
+			player.get$cities().get(0).get$buildings().add(new ManufacturingPlant(player.get$cities().get(0)));
+		else if (e instanceof Market)
+			player.get$cities().get(0).get$buildings().add(new Market(player.get$cities().get(0)));
+		else if (e instanceof NuclearPlant)
+			player.get$cities().get(0).get$buildings().add(new NuclearPlant(player.get$cities().get(0)));
 		else if (e instanceof Bank)
 			player.get$cities().get(0).get$buildings().add(new Bank(player.get$cities().get(0)));
 		else if (e instanceof Bank)
