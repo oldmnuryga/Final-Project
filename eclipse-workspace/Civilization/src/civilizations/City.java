@@ -10,7 +10,7 @@ import units.Unit;
 
 public class City {
 	protected String name; // name of the city, change from each leader
-	protected Player owner; 
+	protected Player owner;
 	protected static Tile location;
 	protected boolean capital; // would matter if mult. cities
 	protected boolean coastal; // adds benefits to the city
@@ -251,7 +251,7 @@ public class City {
 		this.goldProduced = goldProduced;
 	}
 
-	//would help if >1 city
+	// would help if >1 city
 	public boolean isCapital() {
 		if (owner.getNumCities() == 0)
 			return true;
@@ -349,7 +349,8 @@ public class City {
 	public void findPotentialWonders() {
 		this.get$potentialWonders().clear();
 		for (int i = 0; i < Wonder.get$allWonders().size(); i++)
-			if (Wonder.get$allWonders().get(i).canBeBuilt())
+			if (owner.hasTechnology(Wonder.get$allWonders().get(i).getTechRequired())
+					&& !(owner.hasTechnology(Wonder.get$allWonders().get(i).getTechObsoletionID())))
 				$potentialWonders.add(Wonder.get$allWonders().get(i));
 
 	}
