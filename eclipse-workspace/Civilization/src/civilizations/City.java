@@ -9,11 +9,11 @@ import map.Tile;
 import units.Unit;
 
 public class City {
-	protected String name;
-	protected Player owner;
+	protected String name; // name of the city, change from each leader
+	protected Player owner; 
 	protected static Tile location;
-	protected boolean capital;
-	protected boolean coastal;
+	protected boolean capital; // would matter if mult. cities
+	protected boolean coastal; // adds benefits to the city
 	protected boolean researching;
 	protected boolean producing;
 	protected double goldTotal;
@@ -251,6 +251,7 @@ public class City {
 		this.goldProduced = goldProduced;
 	}
 
+	//would help if >1 city
 	public boolean isCapital() {
 		if (owner.getNumCities() == 0)
 			return true;

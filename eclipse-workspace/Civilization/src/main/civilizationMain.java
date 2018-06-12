@@ -14,13 +14,13 @@ import units.Unit;
 
 public class civilizationMain {
 	public static void main(String[] args) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-		Tile.generateMap();
-		sounds.musicPlay();
-		Technology.importTechnologies();
-		Building.instantiateBuildingArrayList();
-		Wonder.instantiateWonderArrayList();
-		Unit.instantiateUnitArrayList();
+		Tile.generateMap(); // makes the map
+		sounds.musicPlay(); // starts to play the background music
+		Technology.importTechnologies(); // makes the total technologies arraylist
+		Building.instantiateBuildingArrayList(); // makes the total buildings arraylist
+		Wonder.instantiateWonderArrayList(); // makes the total wonder arraylist
+		Unit.instantiateUnitArrayList(); // makes the total unit arraylist
 		CivilizationGame c = new CivilizationGame();
-		c.display();
+		c.display(); // displays the game
 	}
 }

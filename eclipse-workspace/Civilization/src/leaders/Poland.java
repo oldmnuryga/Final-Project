@@ -18,7 +18,7 @@ public class Poland extends Leader {
 		super.abbrevLeaderName = "The Polish";
 		super.leaderID = 4;
 		super.color = Color.RED;
-		super.cityNames = new ArrayList<String>(Arrays.asList("Warsaw", "Krakow", "Lodz", "Wroclaw", "Poznan", "Gdansk"));
+		super.cityNames = new ArrayList<String>(Arrays.asList("Warsaw", "Krakow", "Lodz", "Wroclaw", "Poznan", "Gdansk"));// would change city name if >1 city
 		super.grassTile = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("map/resources/grassTilePoland.png"));
 		super.forestTile = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("map/resources/forestTilePoland.png"));
 		super.forest2Tile = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("map/resources/forestTile2Poland.png"));

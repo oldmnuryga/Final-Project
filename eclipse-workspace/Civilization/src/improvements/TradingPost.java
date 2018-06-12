@@ -7,6 +7,9 @@ public class TradingPost {
 	protected int goldPotential;
 	protected int scienceBase;
 	protected int sciencePotential;
+	
+	//all improvements would be built by the worker, if said worker existed in the game
+	//provides more gold per turn
 
 	public TradingPost() {
 		goldMaintenance = 1;

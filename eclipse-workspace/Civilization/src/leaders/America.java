@@ -19,7 +19,7 @@ public class America extends Leader {
 		super.leaderID = 0;
 		super.color = Color.BLUE;
 		super.cityNames = new ArrayList<String>(
-				Arrays.asList("Washington", "New York", "Boston", "Philadelphia", "Atlanta", "Chicago"));
+				Arrays.asList("Washington", "New York", "Boston", "Philadelphia", "Atlanta", "Chicago")); // would change city names if there were >1 city
 		super.grassTile = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("map/resources/grassTileAmerica.png"));
 		super.forestTile = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("map/resources/forestTileAmerica.png"));
 		super.forest2Tile = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("map/resources/forestTile2America.png"));

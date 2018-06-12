@@ -19,7 +19,7 @@ public class Mongolia extends Leader {
 		super.leaderID = 3;
 		super.color = Color.ORANGE;
 		super.cityNames = new ArrayList<String>(
-				Arrays.asList("Karakorum", "Beshbalik", "Turfan", "Hsia", "Old Sarai", "New Sarai"));
+				Arrays.asList("Karakorum", "Beshbalik", "Turfan", "Hsia", "Old Sarai", "New Sarai"));// would change city name if >1 city
 		super.grassTile = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("map/resources/grassTileMongolia.png"));
 		super.forestTile = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("map/resources/forestTileMongolia.png"));
 		super.forest2Tile = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("map/resources/forestTile2Mongolia.png"));

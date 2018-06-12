@@ -141,6 +141,18 @@ public class Technology {
 		} 
 	}*/
 
+	/*			TREE.TXT
+	 * 
+	 * The format for this .txt documents is used to make the technology tree.
+	 * ID,Name of Technology, Science Cost, # of precursors, (if precursors > 0) id of the precursors, # of things the research leads to, (if # > 0) ids of the researches that come from that one
+	 * This does this for EVERY technology in the real civ 1 (67 technologies)
+	 * It does (kinda) aline with the turns in the game, as in it would roughly take 300 turns to get all the research,
+	 * just like what we were hoping for
+	 * 
+	 */
+	
+	
+	//creates the technology arraylist :)
 	public static void importTechnologies() {
 		try {
 			FileReader f = new FileReader("src/technology/tree.txt");

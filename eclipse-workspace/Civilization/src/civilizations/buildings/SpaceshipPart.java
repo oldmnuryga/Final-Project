@@ -4,6 +4,8 @@ import civilizations.Building;
 
 public abstract class SpaceshipPart extends Building {
 	protected int spaceshipID;
+	
+	//used for the science victory
 
 	public int getSpaceshipID() {
 		return spaceshipID;

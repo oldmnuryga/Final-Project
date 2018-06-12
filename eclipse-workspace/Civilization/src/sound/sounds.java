@@ -13,7 +13,7 @@ public class sounds {
 	protected static File musicfile = new File("src/sound/resources/civMusic.wav");
 	protected static File unitdeathfile = new File("src/sound/resources/gruntLongFinal.mp3");
 	protected static File clickfile = new File("src/sound/resources/click.wav");
-	protected static File gengisFile = new File("src/sound/resources/yo.wav");
+	protected static File genghisFile = new File("src/sound/resources/yo.wav");
 
 	// Plays on click of mouse
 	public static void clickPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
@@ -40,9 +40,9 @@ public class sounds {
 		clip.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 	
-	//Plays sound for choosing Gengis
-	public static void gengisSoundPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
-		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(gengisFile);
+	//Plays sound for choosing Genghis
+	public static void genghisSoundPlay() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+		AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(genghisFile);
 		Clip clip = AudioSystem.getClip();
 		clip.open(audioInputStream);
 		clip.start();

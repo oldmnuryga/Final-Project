@@ -5,6 +5,9 @@ public class Road {
 	protected int goldMaintenance;
 	protected int timeToBuild;
 
+	//all improvements would be built by the worker, if said worker existed in the game
+	//increases mobility of the player
+	
 	public Road() {
 		goldMaintenance = 1;
 		timeToBuild = 2;

@@ -19,7 +19,7 @@ public class Italy extends Leader {
 		super.abbrevLeaderName = "The Italians";
 		super.leaderID = 1;
 		super.color = Color.MAGENTA;
-		super.cityNames = new ArrayList<String>(Arrays.asList("Rome", "Milan", "Turin", "Florence", "Naples", "Venice"));
+		super.cityNames = new ArrayList<String>(Arrays.asList("Rome", "Milan", "Turin", "Florence", "Naples", "Venice")); // would change city name if >1 city
 		super.grassTile = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("map/resources/grassTileItaly.png"));
 		super.forestTile = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("map/resources/forestTileItaly.png"));
 		super.forest2Tile = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("map/resources/forestTile2Italy.png"));

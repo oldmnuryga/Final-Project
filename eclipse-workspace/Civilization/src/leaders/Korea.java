@@ -18,7 +18,7 @@ public class Korea extends Leader {
 		super.abbrevLeaderName = "The Koreans";
 		super.leaderID = 2;
 		super.color = Color.YELLOW;
-		super.cityNames = new ArrayList<String>(Arrays.asList("Seoul", "Busan", "Pyongyang", "Jeonju", "Daegu", "Kaesong"));
+		super.cityNames = new ArrayList<String>(Arrays.asList("Seoul", "Busan", "Pyongyang", "Jeonju", "Daegu", "Kaesong"));// would change city name if >1 city
 		super.grassTile = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("map/resources/grassTileKorea.png"));
 		super.forestTile = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("map/resources/forestTileKorea.png"));
 		super.forest2Tile = new ImageIcon(CivilizationGame.class.getClassLoader().getResource("map/resources/forestTile2Korea.png"));

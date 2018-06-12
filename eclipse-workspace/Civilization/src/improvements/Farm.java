@@ -8,6 +8,9 @@ public class Farm {
 	protected int foodBase;
 	protected int foodPotential;
 	protected Tile location;
+	
+	//all improvements would be built by the worker, if said worker existed in the game
+	// farms would provide food for the city
 
 	public Farm() {
 		goldMaintenance = 1;
