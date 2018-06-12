@@ -765,9 +765,7 @@ public class CivilizationGame {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].isCity() == true) {
-					System.out.println("reached2");
 					if (turns % 12 == 0) {
-						System.out.println("reached3");
 						Random g = new Random();
 						int min = -2;
 						int max = 2;
@@ -802,9 +800,6 @@ public class CivilizationGame {
 							tempY = g.nextInt(max + 1 - min) + min;
 						}
 						Tile.get$map()[i + tempX][j + tempY].setOwner(player);
-						System.out.println(
-								tempX + " " + tempY + " " + Tile.get$map()[i + tempX][j + tempY].getOwner().toString());
-
 						repaintTiles();
 						player.get$cities().get(0).get$cityTiles().add(Tile.get$map()[i + tempX][j + tempY]);
 					}
