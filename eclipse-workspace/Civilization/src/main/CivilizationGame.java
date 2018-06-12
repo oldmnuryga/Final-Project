@@ -96,7 +96,7 @@ public class CivilizationGame {
 	private JPanel pnePlayerStats = new JPanel();
 	private boolean check = false;
 
-	private JFrame titleFrame = new JFrame("Civilization");
+	private JFrame titleFrame = new JFrame("Society Simulator VII");
 	private JButton btnCasimir = new JButton(iconCasimir);
 	private JButton btnMussolini = new JButton(iconMussolini);
 	private JButton btnGenghis = new JButton(iconGenghis);
@@ -697,7 +697,7 @@ public class CivilizationGame {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getUnitOnTile() != null)
 					Tile.get$map()[i][j].getUnitOnTile()
-							.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
+					.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
 				if (Tile.get$map()[i][j].isCity()) {
 					researchTimeSpent++;
 					// System.out.println(researchTimeSpent);
@@ -873,7 +873,7 @@ public class CivilizationGame {
 								public void actionPerformed(ActionEvent e) {
 									try {
 										((Settler) getPlayer().getOwnedUnitfromID(18))
-												.foundCity(player.get$cities().size());
+										.foundCity(player.get$cities().size());
 										removeUnit(x, y);
 										repaintTiles();
 										/*
@@ -1291,12 +1291,18 @@ public class CivilizationGame {
 
 	public boolean canMove(Unit unit, int x, int y, int horizontalMod, int verticalMod) {
 		try {
-			if (unit.getMovesLeft() - Tile.get$map()[x + horizontalMod][y + verticalMod].getMovesRequired() >= 0
-					&& Tile.get$map()[x + horizontalMod][y + verticalMod].isCrossable()
-					&& Tile.get$map()[x + horizontalMod][y + verticalMod].getUnitOnTile() == null)
-				return true;
-			else
+			if (unit.getMovesLeft() - Tile.get$map()[x + horizontalMod][y + verticalMod].getMovesRequired() >= 0) {
+				if(Tile.get$map()[x + horizontalMod][y + verticalMod].isCrossable()
+						&& Tile.get$map()[x + horizontalMod][y + verticalMod].getUnitOnTile() == null) {
+					return true;
+				} else {
+					JOptionPane.showMessageDialog(frame, "You cannot cross this terrain");
+					return false;
+				}
+			} else {
+				JOptionPane.showMessageDialog(frame, "No moves left");
 				return false;
+			}
 		} catch (Exception e) {
 
 		}
