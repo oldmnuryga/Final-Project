@@ -160,20 +160,12 @@ public abstract class Unit {
 		return attackRating;
 	}
 
-	public int getProdCost() {
-		return productionCost;
-	}
-
 	public void setHitPoints(int hit) {
 		this.hitpoints = hit;
 	}
 
 	public void setAttackRating(int att) {
 		this.attackRating = att;
-	}
-
-	public void setProdCost(int prod) {
-		this.productionCost = prod;
 	}
 
 	public int getHitpoints() {

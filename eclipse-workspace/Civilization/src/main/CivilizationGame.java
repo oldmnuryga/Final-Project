@@ -55,7 +55,16 @@ public class CivilizationGame {
 
 	// PLAYER INFO
 	private Player player;
-	private int cityLifetime = 1;
+	private int researchTimeSpent = 1;
+	private int unitProdTimeSpent = 1;
+	private int buildingProdTimeSpent = 1;
+	private int wonderProdTimeSpent = 1;
+	
+	private Unit currentUnitProd;
+	private Building currentBuildingProd;
+	private Wonder currentWonderProd;
+	
+	private int movesToProd;
 	private int movesToTech;
 
 	// UNIT GENERATION:
@@ -463,40 +472,9 @@ public class CivilizationGame {
 		lblProduction.setText("Production: " + scienceTotal);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 	//SHOULD BE PRODUCTION ABOVE! SOMEONE FIX!
 	//////// ^^^^^^^^^^^^^^^^^^^^^^^^^^
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 
 	public void updateScienceText() {
@@ -719,32 +697,29 @@ public class CivilizationGame {
 					Tile.get$map()[i][j].getUnitOnTile()
 							.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
 				if (Tile.get$map()[i][j].isCity()) {
-					cityLifetime++;
-					System.out.println(cityLifetime);
+					researchTimeSpent++;
+					//System.out.println(researchTimeSpent);
 				}
 			}
 		}
+/*		if(currentBuildingProd != null) 
+			buildingProdTimeSpent++;
+		if(currentUnitProd != null) 
+			unitProdTimeSpent++;
+		if(currentWonderProd != null) 
+			wonderProdTimeSpent++;		
+		if(buildingProdTimeSpent >= (int) calculateMovesBuildingProd(currentBuildingProd.getBuildingID(), player.get$cities().get(0).getProductionRate()))
+			finishBuildingProd(currentBuildingProd);
+		if(unitProdTimeSpent >= (int) calculateMovesUnitProd(currentUnitProd.getUnitID(), player.get$cities().get(0).getProductionRate()))
+			finishUnitProd(currentUnitProd);
+		if(wonderProdTimeSpent >= (int) calculateMovesWonderProd(currentWonderProd.getWonderID(), player.get$cities().get(0).getProductionRate()))
+			finishWonderProd(currentWonderProd);*/
 		growCity();
-		if (cityLifetime >= movesToTech) {
+		if (researchTimeSpent >= movesToTech) {
 			finishResearch(currentResearchedTech);
 		}
 	}
 
-	public void finishResearch(Technology finished) {
-		cityLifetime = 1;
-		currentResearchedTech = null;
-		frPickResearch.getContentPane().removeAll();
-		try {
-			player.addTechnology(finished.getTechnologyID());
-			player.get$technologies().get(player.get$technologies().size() - 1).setResearched(true);
-			JOptionPane.showMessageDialog(frame, "You finished " + finished.getName(), "Completed Research",
-					JOptionPane.INFORMATION_MESSAGE);
-			check = false;
-			displayResearch();
-			frPickResearch.setVisible(true);
-		} catch (Exception e) {
-		}
-	}
 
 	public void changeYear() {
 		if (turns == 1)
@@ -905,7 +880,7 @@ public class CivilizationGame {
 										displayResearch();
 										frPickResearch.setVisible(true);
 										frPickResearch.pack();
-										cityLifetime = 0;
+										researchTimeSpent = 0;
 									} catch (Exception ef) {
 										JOptionPane.showMessageDialog(frame, "There is no settler to found a city");
 									}
@@ -963,7 +938,6 @@ public class CivilizationGame {
 							});
 							$mapButtons[i][j].addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {
-									
 //									JViewport viewport = new JViewport();
 									frPickProduction.setPreferredSize(new Dimension(1200, 900));
 									frPickProduction.setLayout(null);
@@ -1026,9 +1000,11 @@ public class CivilizationGame {
 											}
 											
 										}
+										int y = i;
 										unit.get(i).addActionListener(new ActionListener() {
 											public void actionPerformed(ActionEvent arg0) {
-												
+												frPickProduction.setVisible(false);
+												currentUnitProd = Unit.get$allUnits().get(y);
 											}
 										});
 									}
@@ -1062,10 +1038,12 @@ public class CivilizationGame {
 										} else {
 											wonder.get(i).setEnabled(false);
 										}*/
-										
+										int y = i;
 										wonder.get(i).addActionListener(new ActionListener() {
 											public void actionPerformed(ActionEvent arg0) {
-												
+												frPickProduction.setVisible(false);
+												currentWonderProd = Wonder.get$allWonders().get(y);
+												unit.get(y).setEnabled(false);
 											}
 										});
 									}
@@ -1093,12 +1071,13 @@ public class CivilizationGame {
 											} else {
 												building.get(i).setEnabled(false);
 											}
-												
-											
 										}
+										int y = i;
 										building.get(i).addActionListener(new ActionListener() {
 											public void actionPerformed(ActionEvent arg0) {
-												
+												frPickProduction.setVisible(false);
+												currentBuildingProd = Building.get$allBuildings().get(y);
+												unit.get(y).setEnabled(false);
 											}
 										});
 									}
@@ -1211,6 +1190,68 @@ public class CivilizationGame {
 			 * }
 			 */
 		}
+	}
+
+	public void finishResearch(Technology finished) {
+		researchTimeSpent = 1;
+		currentResearchedTech = null;
+		frPickResearch.getContentPane().removeAll();
+		try {
+			player.addTechnology(finished.getTechnologyID());
+			player.get$technologies().get(player.get$technologies().size() - 1).setResearched(true);
+			JOptionPane.showMessageDialog(frame, "You finished " + finished.getName(), "Completed Research",
+					JOptionPane.INFORMATION_MESSAGE);
+			check = false;
+			displayResearch();
+			frPickResearch.setVisible(true);
+		} catch (Exception e) {
+		}
+	}
+	
+	public double calculateMovesUnitProd(int unitID, double prodPerTurn) {
+		double moves = 1;
+		for(int i = 0; i < Unit.get$allUnits().size(); i++) {
+			if(Unit.get$allUnits().get(i) == Unit.get$allUnits().get(unitID)) {
+				int cost = Unit.get$allUnits().get(unitID).getProductionCost();
+				moves = (cost / prodPerTurn) + 1;
+			}
+		}
+		return moves;
+	}
+	public void finishUnitProd(Unit finished) {
+		player.addUnit(finished);
+		JOptionPane.showMessageDialog(frame, "You finished " + finished.getUnitName(), "Completed Unit",
+				JOptionPane.INFORMATION_MESSAGE);
+	}
+	public double calculateMovesBuildingProd(int buildID, double prodPerTurn) {
+		double moves = 1;
+		for(int i = 0; i < Building.get$allBuildings().size(); i++) {
+			if(Building.get$allBuildings().get(i) == Building.get$allBuildings().get(buildID)) {
+				int cost = (int) (Building.get$allBuildings().get(buildID).getProductionRequirement() + .5);
+				moves = (cost / prodPerTurn) + 1;
+			}
+		}
+		return moves;
+	}
+	public void finishBuildingProd(Building e) {
+		player.get$cities().get(0).get$buildings().add(e);
+		JOptionPane.showMessageDialog(frame, "You finished " + e.getName(), "Completed Building",
+				JOptionPane.INFORMATION_MESSAGE);
+	}
+	public double calculateMovesWonderProd(int wonderID, double prodPerTurn) {
+		double moves = 1;
+		for(int i = 0; i < Wonder.get$allWonders().size(); i++) {
+			if(Wonder.get$allWonders().get(i) == Wonder.get$allWonders().get(wonderID)) {
+				int cost = (int) (Wonder.get$allWonders().get(wonderID).getProductionRequirement() + .5);
+				moves = (cost / prodPerTurn) + 1;
+			}
+		}
+		return moves;
+	}
+	public void finishWonderProd(Wonder e) {
+		player.get$cities().get(0).get$wonders().add(e);
+		JOptionPane.showMessageDialog(frame, "You finished " + e.getName(), "Completed Wonder",
+				JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	public double calculateMovesTech(int techID, double sciPerTurn) {
