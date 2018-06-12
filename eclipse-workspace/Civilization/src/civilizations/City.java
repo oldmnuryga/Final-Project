@@ -49,7 +49,7 @@ public class City {
 		goldProduced = 0;
 		goldUsed = 0;
 		goldTotal = 0;
-		productionRate = 0;
+		productionRate = 5;
 		productionExcess = 0;
 		productionTotal = 0;
 		foodRate = 0;

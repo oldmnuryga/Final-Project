@@ -705,9 +705,11 @@ public class CivilizationGame {
 				}
 			}
 		}
-
+		System.out.println(buildingProdTimeSpent);
 		if (currentBuildingProd != null) {
 			buildingProdTimeSpent++;
+			System.out.println(calculateMovesBuildingProd(currentBuildingProd.getBuildingID(),
+					player.get$cities().get(0).getProductionRate()));
 			if (buildingProdTimeSpent >= (int) calculateMovesBuildingProd(currentBuildingProd.getBuildingID(),
 					player.get$cities().get(0).getProductionRate()))
 				finishBuildingProd(currentBuildingProd);
@@ -725,7 +727,6 @@ public class CivilizationGame {
 				finishWonderProd(currentWonderProd);
 		}
 
-		System.out.println("reached1");
 		growCity();
 		if (researchTimeSpent >= movesToTech) {
 			finishResearch(currentResearchedTech);
@@ -1214,7 +1215,7 @@ public class CivilizationGame {
 		double moves = 1;
 		for (int i = 0; i < Building.get$allBuildings().size(); i++) {
 			if (Building.get$allBuildings().get(i) == Building.get$allBuildings().get(buildID)) {
-				int cost = (int) (Building.get$allBuildings().get(buildID).getProductionRequirement() + .5);
+				int cost = (int) (Building.get$allBuildings().get(i).getProductionRequirement() + .5);
 				moves = (cost / prodPerTurn) + 1;
 			}
 		}
@@ -1222,6 +1223,8 @@ public class CivilizationGame {
 	}
 
 	public void finishBuildingProd(Building e) {
+		buildingProdTimeSpent = 1;
+		System.out.println("reached finish building");
 		if (e instanceof Aqueduct)
 			player.get$cities().get(0).buildBuilding(new Aqueduct(player.get$cities().get(0)));
 		else if (e instanceof Bank)
@@ -1261,11 +1264,12 @@ public class CivilizationGame {
 			player.get$cities().get(0).buildBuilding(new University(player.get$cities().get(0)));
 		else if (e instanceof Walls)
 			player.get$cities().get(0).buildBuilding(new Walls(player.get$cities().get(0)));
+		player.get$cities().get(0).get$buildings().get(player.get$cities().get(0).get$buildings().size() - 1)
+				.setBuilt(true);
 
 		JOptionPane.showMessageDialog(frame, "You finished " + e.getName(), "Completed Building",
 				JOptionPane.INFORMATION_MESSAGE);
 		currentBuildingProd = null;
-		frPickProduction.setVisible(true);
 	}
 
 	public double calculateMovesWonderProd(int wonderID, double prodPerTurn) {
