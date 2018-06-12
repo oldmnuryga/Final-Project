@@ -2,7 +2,6 @@ package leaders;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Random;
 
 import javax.swing.ImageIcon;
 
@@ -13,7 +12,8 @@ public abstract class Leader {
 	protected String abbrevLeaderName;
 	protected ArrayList<String> cityNames;
 	protected Color color;
-	protected ImageIcon grassTile,forestTile,forest2Tile,mountainTile,sandTile,waterTile,farmImprovement,cityOnGreenImprovement,cityOnSandImprovement;
+	protected ImageIcon grassTile, forestTile, forest2Tile, mountainTile, sandTile, waterTile, farmImprovement,
+			cityOnGreenImprovement, cityOnSandImprovement;
 
 	public String getCivName() {
 		return civName;
@@ -136,18 +136,15 @@ public abstract class Leader {
 	}
 
 	public ImageIcon getTileIconFromID(int ID) {
-		Random rand = new Random();
-		if(ID == 0)
+		if (ID == 0)
 			return waterTile;
-		else if(ID == 1)
+		else if (ID == 1)
 			return grassTile;
-		else if(ID == 2)
+		else if (ID == 2)
 			return sandTile;
-		else if(ID == 3)
+		else if (ID == 3)
 			return mountainTile;
-		else //if(rand.nextInt(100) + 1 > 50)
+		else
 			return forestTile;
-		//else
-		//	return forest2Tile;
 	}
 }

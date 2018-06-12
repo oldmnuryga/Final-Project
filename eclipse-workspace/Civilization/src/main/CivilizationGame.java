@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.Checkbox;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -56,7 +55,6 @@ public class CivilizationGame {
 	private Player player;
 	private int cityLifetime = 1;
 	private int movesToTech;
-	private int kiernanIsBadAtComputerScience;
 
 	// UNIT GENERATION:
 	private int settlerTempX;
@@ -91,9 +89,6 @@ public class CivilizationGame {
 	private JButton btnWashington = new JButton(iconWashington);
 	private JLabel lblGenghis = new JLabel("MONGOLIA"), lblWashington = new JLabel("AMERICA"),
 			lblSejong = new JLabel("KOREA"), lblMussolini = new JLabel("ITALY"), lblCasimir = new JLabel("POLAND");
-
-	private JPanel leftPanel = new JPanel(); // 200 from right
-	private JPanel topPanel = new JPanel(); // 50 from top
 	private JPanel mapPanel = new JPanel();
 	private JScrollPane mapPane;
 	private JButton[][] $mapButtons = new JButton[Tile.getMAP_SIZE()][Tile.getMAP_SIZE()];
@@ -633,32 +628,27 @@ public class CivilizationGame {
 	}
 
 	public boolean spawnInitialWarrior() {
-		/*boolean found = true;
-		int i = 1;
-		int z = 1;
-		while (found) {
-			while (Tile.get$map()[settlerTempX + i][settlerTempY + z].getTerrainID() != 1 && Tile.get$map()[settlerTempX + i][settlerTempY + z].getTerrainID() != 4 && Tile.get$map()[settlerTempX + i][settlerTempY + z].getTerrainID() != 2) {
-				if (i % 2 == 0)
-					i++;
-				else
-					z++;
-			}
-			settlerTempY = settlerTempY + z;
-			settlerTempX = settlerTempX + i;
-			Tile.get$map()[settlerTempX][settlerTempY].setUnitOnTile(new Warrior(player));
-			int[] temp = { settlerTempX, settlerTempY };
-			Tile.get$map()[settlerTempX][settlerTempY].set$location(temp);
-			Tile.get$map()[settlerTempX][settlerTempY].getUnitOnTile()
-			.setLocation(Tile.get$map()[settlerTempX][settlerTempY]);
-			found = false;
-			repaintTiles();
-		}*/
+		/*
+		 * boolean found = true; int i = 1; int z = 1; while (found) { while
+		 * (Tile.get$map()[settlerTempX + i][settlerTempY + z].getTerrainID() != 1 &&
+		 * Tile.get$map()[settlerTempX + i][settlerTempY + z].getTerrainID() != 4 &&
+		 * Tile.get$map()[settlerTempX + i][settlerTempY + z].getTerrainID() != 2) { if
+		 * (i % 2 == 0) i++; else z++; } settlerTempY = settlerTempY + z; settlerTempX =
+		 * settlerTempX + i;
+		 * Tile.get$map()[settlerTempX][settlerTempY].setUnitOnTile(new
+		 * Warrior(player)); int[] temp = { settlerTempX, settlerTempY };
+		 * Tile.get$map()[settlerTempX][settlerTempY].set$location(temp);
+		 * Tile.get$map()[settlerTempX][settlerTempY].getUnitOnTile()
+		 * .setLocation(Tile.get$map()[settlerTempX][settlerTempY]); found = false;
+		 * repaintTiles(); }
+		 */
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
-				if(Tile.get$map()[i][j].getUnitOnTile() != null && Tile.get$map()[i][j].getUnitOnTile().getUnitID() == 18) {
+				if (Tile.get$map()[i][j].getUnitOnTile() != null
+						&& Tile.get$map()[i][j].getUnitOnTile().getUnitID() == 18) {
 					for (int x = -2; x <= 2; x++) {
 						for (int y = -2; y <= 2; y++) {
-							if((x != 0 || y != 0) && Tile.get$map()[i + x][j + y].getTerrainID() == 1) {
+							if ((x != 0 || y != 0) && Tile.get$map()[i + x][j + y].getTerrainID() == 1) {
 								Tile.get$map()[i + x][j + y].setUnitOnTile(new Warrior(player));
 								int[] temp = { i + x, j + y };
 								Tile.get$map()[i + x][j + y].set$location(temp);
@@ -688,7 +678,7 @@ public class CivilizationGame {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getUnitOnTile() != null)
 					Tile.get$map()[i][j].getUnitOnTile()
-					.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
+							.setMovesLeft(Tile.get$map()[i][j].getUnitOnTile().getMaxMovement());
 				if (Tile.get$map()[i][j].isCity()) {
 					cityLifetime++;
 					System.out.println(cityLifetime);
@@ -713,7 +703,8 @@ public class CivilizationGame {
 			check = false;
 			displayResearch();
 			frPickResearch.setVisible(true);
-		} catch (Exception e) {}
+		} catch (Exception e) {
+		}
 	}
 
 	public void changeYear() {
@@ -865,7 +856,7 @@ public class CivilizationGame {
 								public void actionPerformed(ActionEvent e) {
 									try {
 										((Settler) getPlayer().getOwnedUnitfromID(18))
-										.foundCity(player.get$cities().size());
+												.foundCity(player.get$cities().size());
 										removeUnit(x, y);
 										repaintTiles();
 										/*
@@ -884,8 +875,6 @@ public class CivilizationGame {
 						}
 						// Found City mk2
 						if (Tile.get$map()[i][j].isCity()) {
-							int x = i;
-							int y = j;
 							$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("O"), "expandCity");
 							$mapButtons[i][j].getActionMap().put("expandCity", new AbstractAction() {
 								public void actionPerformed(ActionEvent e) {
@@ -908,8 +897,6 @@ public class CivilizationGame {
 							});
 						}
 						if (Tile.get$map()[i][j].isCity()) {
-							int x = i;
-							int y = j;
 							$mapButtons[i][j].getInputMap().put(KeyStroke.getKeyStroke("I"), "expandCity2");
 							$mapButtons[i][j].getActionMap().put("expandCity2", new AbstractAction() {
 								public void actionPerformed(ActionEvent e) {
@@ -949,14 +936,14 @@ public class CivilizationGame {
 									pickWonder.createVerticalScrollBar();
 									pickBuilding = new JScrollPane();
 									pickBuilding.createVerticalScrollBar();
-									
+
 									frPickProduction.add(pickUnit);
 									frPickProduction.add(pickWonder);
 									frPickProduction.add(pickBuilding);
 									pickUnit.setBounds(0, 0, 500, 1000);
 									pickWonder.setBounds(500, 0, 500, 1000);
 									pickBuilding.setBounds(1000, 0, 500, 1000);
-									
+
 									JLabel lblUnit = new JLabel("Units: ");
 									lblUnit.setBounds(20, 0, 300, 30);
 									pickUnit.add(lblUnit);
@@ -966,7 +953,7 @@ public class CivilizationGame {
 									JLabel lblBuilding = new JLabel("Buildings: ");
 									lblBuilding.setBounds(0, 20, 300, 30);
 									pickBuilding.add(lblBuilding);
-									
+
 									ArrayList<JButton> unit = new ArrayList<JButton>();
 									int z = 30;
 									for (int i = 0; i < Unit.get$allUnits().size(); i++) {
@@ -975,7 +962,7 @@ public class CivilizationGame {
 										unit.get(i).setBounds(20, z, 460, 75);
 										z += 90;
 									}
-									
+
 									ArrayList<JButton> wonder = new ArrayList<JButton>();
 									int q = 30;
 									for (int i = 0; i < Wonder.get$allWonders().size(); i++) {
@@ -984,8 +971,7 @@ public class CivilizationGame {
 										wonder.get(i).setBounds(20, q, 460, 75);
 										q += 90;
 									}
-									
-									
+
 									ArrayList<JButton> building = new ArrayList<JButton>();
 									int t = 30;
 									for (int i = 0; i < Building.get$allBuildings().size(); i++) {
@@ -994,22 +980,19 @@ public class CivilizationGame {
 										building.get(i).setBounds(20, t, 460, 75);
 										t += 90;
 									}
-									
 
-/*									for (int i = 0; i < player.get$cities().get(0).get$potentialWonders().size(); i++) {
-										JButton[] wonder = new JButton[player.get$cities().get(0).get$potentialWonders()
-										                               .size()];
-										wonder[i] = new JButton(
-												player.get$cities().get(0).get$potentialBuildings().get(i).getName());
-										pickWonder.add(wonder[i]);
-										int w = 0, t = 0;
-										wonder[i].setBounds(w, t, 455, 75);
-										t += 90;
-									}
-									for (int i = 0; i < player.get$cities().get(0).get$potentialBuildings()
-											.size(); i++) {
-
-									}*/
+									/*
+									 * for (int i = 0; i < player.get$cities().get(0).get$potentialWonders().size();
+									 * i++) { JButton[] wonder = new
+									 * JButton[player.get$cities().get(0).get$potentialWonders() .size()]; wonder[i]
+									 * = new JButton(
+									 * player.get$cities().get(0).get$potentialBuildings().get(i).getName());
+									 * pickWonder.add(wonder[i]); int w = 0, t = 0; wonder[i].setBounds(w, t, 455,
+									 * 75); t += 90; } for (int i = 0; i <
+									 * player.get$cities().get(0).get$potentialBuildings() .size(); i++) {
+									 * 
+									 * }
+									 */
 
 									frPickProduction.pack();
 								}
@@ -1136,7 +1119,7 @@ public class CivilizationGame {
 
 	public void removeUnit(int x, int y) {
 		// Tile.get$map()[x][y].getUnitOnTile().removeUnit();
-		ArrayList $tempArr = Tile.get$map()[x][y].getUnitOnTile().getOwner().get$units();
+		ArrayList<Unit> $tempArr = Tile.get$map()[x][y].getUnitOnTile().getOwner().get$units();
 		$tempArr.remove(Tile.get$map()[x][y].getUnitOnTile());
 		Tile.get$map()[x][y].getUnitOnTile().getOwner().set$units($tempArr);
 		Tile.get$map()[x][y].setUnitOnTile(null);
@@ -1145,7 +1128,7 @@ public class CivilizationGame {
 	public void displayResearch() {
 		try {
 			player.findPotentialTechs();
-			if(check == false) {
+			if (check == false) {
 				btnEndTurn.setEnabled(false);
 				ArrayList<Technology> $potentialTechs = player.get$potentialTechs();
 				ArrayList<JButton> $research = new ArrayList<JButton>();
@@ -1171,7 +1154,8 @@ public class CivilizationGame {
 					});
 				}
 			}
-		} catch(Exception e) {}
+		} catch (Exception e) {
+		}
 	}
 
 }

@@ -12,7 +12,6 @@ import javax.swing.ImageIcon;
 import civilizations.Player;
 import map.Tile;
 import sound.sounds;
-import technology.Technology;
 
 //CONSTRUCTOR FOR UNITS
 public abstract class Unit {

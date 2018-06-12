@@ -2,7 +2,6 @@ package civilizations.wonders;
 
 import civilizations.City;
 import civilizations.Wonder;
-import civilizations.buildings.Temple;
 
 public class Oracle extends Wonder {
 	public Oracle(City city) {
