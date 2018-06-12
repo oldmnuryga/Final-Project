@@ -1083,7 +1083,19 @@ public class CivilizationGame {
 										} else {
 											building.get(i).setEnabled(false);
 										}*/
-										
+										for(int y = 0; y < Technology.get$technologies().size(); y++) {
+											if(player.getGoldReserve() > Building.get$allBuildings().get(i).getGoldPurchaseCost()) {
+												building.get(i).setEnabled(true);
+											} else if(Building.get$allBuildings().get(i).getTechRequired() == -1) {
+												building.get(i).setEnabled(true);
+											} else if(Technology.get$technologies().get(Building.get$allBuildings().get(i).getTechRequired()).isResearched()) {
+												building.get(i).setEnabled(true);
+											} else {
+												building.get(i).setEnabled(false);
+											}
+												
+											
+										}
 										building.get(i).addActionListener(new ActionListener() {
 											public void actionPerformed(ActionEvent arg0) {
 												
