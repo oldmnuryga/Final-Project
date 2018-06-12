@@ -965,7 +965,7 @@ public class CivilizationGame {
 								public void actionPerformed(ActionEvent arg0) {
 									
 //									JViewport viewport = new JViewport();
-									frPickProduction.setPreferredSize(new Dimension(1500, 1000));
+									frPickProduction.setPreferredSize(new Dimension(1200, 900));
 									frPickProduction.setLayout(null);
 									frPickProduction.setResizable(false);
 //									frPickProduction.add(paPickProduction);
@@ -992,9 +992,9 @@ public class CivilizationGame {
 								//	pickBuilding.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
 									
 
-									pickUnit.setBounds(0, 0, 500, 1000);
-									pickWonder.setBounds(500, 0, 500, 1000);
-									pickBuilding.setBounds(1000, 0, 500, 1000);
+									pickUnit.setBounds(0, 0, 400, 1000);
+									pickWonder.setBounds(400, 0, 400, 1000);
+									pickBuilding.setBounds(800, 0, 400, 1000);
 
 									JLabel lblUnit = new JLabel("Units: ");
 									lblUnit.setBounds(20, 0, 300, 30);
@@ -1014,8 +1014,8 @@ public class CivilizationGame {
 									for (int i = 0; i < Unit.get$allUnits().size(); i++) {
 										unit.add(new JButton(Unit.get$allUnits().get(i).getUnitName()));
 										pickUnit.add(unit.get(i));
-										unit.get(i).setBounds(20, z, 460, 75);
-										z += 90;
+										unit.get(i).setBounds(20, z, 360, 35);
+										z += 50;
 									}
 
 									ArrayList<JButton> wonder = new ArrayList<JButton>();
@@ -1023,8 +1023,8 @@ public class CivilizationGame {
 									for (int i = 0; i < Wonder.get$allWonders().size(); i++) {
 										wonder.add(new JButton(Wonder.get$allWonders().get(i).getName()));
 										pickWonder.add(wonder.get(i));
-										wonder.get(i).setBounds(20, q, 460, 75);
-										q += 90;
+										wonder.get(i).setBounds(20, q, 360, 65);
+										q += 80;
 									}
 
 									ArrayList<JButton> building = new ArrayList<JButton>();
@@ -1032,8 +1032,8 @@ public class CivilizationGame {
 									for (int i = 0; i < Building.get$allBuildings().size(); i++) {
 										building.add(new JButton(Building.get$allBuildings().get(i).getName()));
 										pickBuilding.add(building.get(i));
-										building.get(i).setBounds(20, t, 460, 75);
-										t += 90;
+										building.get(i).setBounds(20, t, 360, 34);
+										t += 44;
 									}
 
 									/*
