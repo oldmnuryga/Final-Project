@@ -958,10 +958,10 @@ public class CivilizationGame {
 									pickBuilding.setBounds(1000, 0, 500, 1000);
 									
 									JLabel lblUnit = new JLabel("Units: ");
-									lblUnit.setBounds(0, 20, 300, 30);
+									lblUnit.setBounds(20, 0, 300, 30);
 									pickUnit.add(lblUnit);
 									JLabel lblWonder = new JLabel("Wonders: ");
-									lblWonder.setBounds(0, 20, 300, 30);
+									lblWonder.setBounds(20, 0, 300, 30);
 									pickWonder.add(lblWonder);
 									JLabel lblBuilding = new JLabel("Buildings: ");
 									lblBuilding.setBounds(0, 20, 300, 30);
