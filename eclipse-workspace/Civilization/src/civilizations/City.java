@@ -81,6 +81,9 @@ public class City {
 		$cityTiles = new ArrayList<Tile>();
 		$buildings = new ArrayList<Building>();
 		$wonders = new ArrayList<Wonder>();
+		$potentialBuildings = new ArrayList<Building>();
+		$potentialWonders = new ArrayList<Wonder>();
+		$potentialUnits = new ArrayList<Unit>();
 	}
 
 	public String getName() {
@@ -356,9 +359,13 @@ public class City {
 	// CHECKS TO SEE WHICH BUILDINGS CAN BE BUILT
 	public void findPotentialBuildings() {
 		this.get$potentialBuildings().clear();
-		for (int i = 0; i < Building.get$allBuildings().size(); i++)
-			if (Building.get$allBuildings().get(i).canBeBuilt())
+		for (int i = 0; i < Building.get$allBuildings().size(); i++) {
+			if (hasBuilding(Building.get$allBuildings().get(i).getBuildingID()))
+				continue;
+			if (owner.hasTechnology(Building.get$allBuildings().get(i).getTechRequired())
+					|| Building.get$allBuildings().get(i).getTechRequired() < 0)
 				$potentialBuildings.add(Building.get$allBuildings().get(i));
+		}
 
 	}
 
@@ -376,7 +383,8 @@ public class City {
 	public void findPotentialUnits() {
 		this.get$potentialUnits().clear();
 		for (int i = 0; i < Unit.get$allUnits().size(); i++)
-			if (owner.hasTechnology(Unit.get$allUnits().get(i).getTechRequired()))
+			if (owner.hasTechnology(Unit.get$allUnits().get(i).getTechRequired())
+					|| Unit.get$allUnits().get(i).getTechRequired() < 0)
 				$potentialUnits.add(Unit.get$allUnits().get(i));
 	}
 
