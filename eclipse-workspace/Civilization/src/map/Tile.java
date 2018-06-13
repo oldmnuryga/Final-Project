@@ -9,6 +9,7 @@ import civilizations.Player;
 import units.Unit;
 
 public abstract class Tile {
+	//MAP GENERATION CONSTANTS
 	protected final static int MAP_SIZE = 20;
 	protected final static int TEXTURE_SIZE = 50;
 	protected final static int GENERATION_ITERATIONS = 7;
@@ -52,11 +53,15 @@ public abstract class Tile {
 		 * MountainTile(); if(temp == 4) $map[i][j] = new ForestTile(); int[]
 		 * $tempLocation = {i, j}; $map[i][j].set$location($tempLocation); } }
 		 */
-		int[][] $genArray = new int[MAP_SIZE][MAP_SIZE];
+		
+		
+		int[][] $genArray = new int[MAP_SIZE][MAP_SIZE]; //Makes a temp int array to store information for map gen
 		for (int iterations = 0; iterations < GENERATION_ITERATIONS; iterations++) {
+			//Base generation for grass and mountain
 			int tempX = rand.nextInt(Tile.getMAP_SIZE() - 8) + 5;
 			int tempY = rand.nextInt(Tile.getMAP_SIZE() - 8) + 5;
 			int genType = rand.nextInt(6);
+			//There are six different foundations for mountains
 			if (genType == 0) {
 				$genArray[tempX][tempY] = GENERATION_SIZE_MULTIPLIER;
 				$genArray[tempX - 1][tempY - 1] = GENERATION_SIZE_MULTIPLIER;
@@ -91,6 +96,7 @@ public abstract class Tile {
 			}
 		}
 
+		//Creates grass tiles around mountain tiles with radius GENERATION_SIZE_MULTIPLIER
 		for (int iterations = GENERATION_SIZE_MULTIPLIER; iterations > 0; iterations--) {
 			for (int i = 1; i < $map.length - 1; i++)
 				for (int j = 1; j < $map.length - 1; j++) {
@@ -115,6 +121,7 @@ public abstract class Tile {
 				}
 		}
 
+		//Reads the temp int array and makes the $map array with new tiles
 		for (int i = 0; i < $map.length; i++)
 			for (int j = 0; j < $map.length; j++) {
 				if ($genArray[i][j] == 0)
@@ -131,6 +138,8 @@ public abstract class Tile {
 				$map[i][j].set$location($tempLocation);
 			}
 
+		
+		//Generates sand with the same template as the mountains
 		if (GENERATION_SIZE_MULTIPLIER - SAND_GENERATION_SIZE_MULTIPLIER > 0) {
 			for (int i = 0; i < $map.length; i++)
 				for (int j = 0; j < $map.length; j++)
@@ -206,6 +215,8 @@ public abstract class Tile {
 					$map[i][j].set$location($tempLocation);
 				}
 		}
+		
+		//Turns 10% of grass tiles into forest tiles
 		for (int i = 0; i < $map.length; i++) {
 			for (int j = 0; j < $map.length; j++)
 				if ($map[i][j].getTerrainID() > 0)
@@ -213,6 +224,7 @@ public abstract class Tile {
 						$map[i][j] = new ForestTile();
 		}
 
+		//Generates forest tiles the same way as mountain and sand
 		if (GENERATION_SIZE_MULTIPLIER - FOREST_GENERATION_SIZE_MULTIPLIER > 0) {
 			for (int i = 0; i < $map.length; i++)
 				for (int j = 0; j < $map.length; j++)
