@@ -30,6 +30,16 @@ import civilizations.Building;
 import civilizations.Player;
 import civilizations.Wonder;
 import civilizations.buildings.*;
+import civilizations.wonders.ApolloProgram;
+import civilizations.wonders.BachsCathedral;
+import civilizations.wonders.CancerCure;
+import civilizations.wonders.CopernicusObservatory;
+import civilizations.wonders.DarwinsVoyage;
+import civilizations.wonders.GreatLibrary;
+import civilizations.wonders.HangingGardens;
+import civilizations.wonders.MichelangelosChapel;
+import civilizations.wonders.NewtonsCollege;
+import civilizations.wonders.Oracle;
 import leaders.America;
 import leaders.Italy;
 import leaders.Korea;
@@ -1091,8 +1101,8 @@ public class CivilizationGame {
 			player.get$cities().get(0).buildBuilding(new Walls(player.get$cities().get(0)));
 		player.get$cities().get(0).get$buildings().get(player.get$cities().get(0).get$buildings().size() - 1)
 				.setBuilt(true);
-		JOptionPane.showMessageDialog(frame, "You finished " + e.getName(), "Completed Building",
-				JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(frame, "You finished " + e.getName() + ": " + e.getDescription(),
+				"Completed Building", JOptionPane.INFORMATION_MESSAGE);
 		currentProd = null;
 	}
 
@@ -1108,9 +1118,30 @@ public class CivilizationGame {
 	}
 
 	public void finishWonderProd(Wonder e) {
-		player.get$cities().get(0).get$wonders().add(e);
-		JOptionPane.showMessageDialog(frame, "You finished " + e.getName(), "Completed Wonder",
-				JOptionPane.INFORMATION_MESSAGE);
+		wonderProdTimeSpent = 1;
+		if (e instanceof ApolloProgram)
+			player.get$cities().get(0).buildWonder((ApolloProgram) (e));
+		else if (e instanceof BachsCathedral)
+			player.get$cities().get(0).buildWonder((BachsCathedral) (e));
+		else if (e instanceof CancerCure)
+			player.get$cities().get(0).buildWonder((CancerCure) (e));
+		else if (e instanceof CopernicusObservatory)
+			player.get$cities().get(0).buildWonder((CopernicusObservatory) (e));
+		else if (e instanceof DarwinsVoyage)
+			player.get$cities().get(0).buildWonder((DarwinsVoyage) (e));
+		else if (e instanceof GreatLibrary)
+			player.get$cities().get(0).buildWonder((GreatLibrary) (e));
+		else if (e instanceof HangingGardens)
+			player.get$cities().get(0).buildWonder((HangingGardens) (e));
+		else if (e instanceof MichelangelosChapel)
+			player.get$cities().get(0).buildWonder((MichelangelosChapel) (e));
+		else if (e instanceof NewtonsCollege)
+			player.get$cities().get(0).buildWonder((NewtonsCollege) (e));
+		else if (e instanceof Oracle)
+			player.get$cities().get(0).buildWonder((Oracle) (e));
+
+		JOptionPane.showMessageDialog(frame, "You finished " + e.getName() + ": " + e.getDescription(),
+				"Completed Wonder", JOptionPane.INFORMATION_MESSAGE);
 	}
 
 	public double calculateMovesTech(int techID, double sciPerTurn) {

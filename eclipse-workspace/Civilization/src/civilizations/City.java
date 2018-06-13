@@ -421,9 +421,10 @@ public class City {
 	}
 
 	// ADDS WONDER TO CITY
-	protected void buildWonder(Wonder e) {
+	public void buildWonder(Wonder e) {
 		$wonders.add(e);
 		e.setBuilt(true);
+		e.uniqueAbility();
 
 	}
 
@@ -443,33 +444,6 @@ public class City {
 		return Tile.get$map()[location.get$location()[0] + x][location.get$location()[1] + y];
 	}
 
-	// GROWS THE CITY BORDER
-	public void expandCity(int city) {
-		ArrayList<Tile> $tempArr = new ArrayList<Tile>();
-
-		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setIsCity(true);
-
-		for (int i = -2; i <= 2; i++) {
-			for (int j = -2; j <= 2; j++) {
-				$tempArr.add(instantiateTileValues(i, j));
-			}
-		}
-		owner.get$cities().get(city).set$cityTiles($tempArr);
-	}
-
-	// GROWS THE CITY BORDER AGAIN
-	public void expandCity2(int city) {
-		ArrayList<Tile> $tempArr = new ArrayList<Tile>();
-
-		Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setIsCity(true);
-
-		for (int i = -3; i <= 3; i++) {
-			for (int j = -3; j <= 3; j++) {
-				$tempArr.add(instantiateTileValues(i, j));
-			}
-		}
-		owner.get$cities().get(city).set$cityTiles($tempArr);
-	}
 
 	public void spawnUnit(Unit finished) {
 		outerloop: for (int i = -1; i < 2; i++)
@@ -536,5 +510,9 @@ public class City {
 					break outerloop;
 				}
 			}
+	}
+	public double gatherProduction() {
+		double production = 0.0;
+		return production;
 	}
 }
