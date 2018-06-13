@@ -61,7 +61,7 @@ public class CivilizationGame {
 
 	// CONSTANTS
 	private final int SCROLL_SPEED = 10;
-	private final boolean FOG_OF_WAR = false;
+	private final boolean FOG_OF_WAR = true;
 
 	// PLAYER INFO
 	private Player player;
@@ -196,18 +196,13 @@ public class CivilizationGame {
 				spawnInitialSettler();
 				spawnInitialWarrior();
 				updatePlayerStats();
-/*				try {
-					sounds.genghisSoundPlay();
-				} catch (UnsupportedAudioFileException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (LineUnavailableException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}*/
+				/*
+				 * try { sounds.genghisSoundPlay(); } catch (UnsupportedAudioFileException e) {
+				 * // TODO Auto-generated catch block e.printStackTrace(); } catch (IOException
+				 * e) { // TODO Auto-generated catch block e.printStackTrace(); } catch
+				 * (LineUnavailableException e) { // TODO Auto-generated catch block
+				 * e.printStackTrace(); }
+				 */
 				frame.pack();
 			}
 		});
@@ -358,6 +353,15 @@ public class CivilizationGame {
 				+ "are two types of tiles that should not be the majority of your " + "\n"
 				+ "land space in a city. Too many are detrimental to the evolution " + "\n" + "of your society.");
 		tbpneInstructions.addTab("City", panel5);
+		JTextArea panel6 = new JTextArea("Production is dependent upon the amount of production that your city" + "\n"
+				+ "can make per turn. Having more production per turn allows " + "\n"
+				+ "buildings to be made much quicker and progression through the " + "\n"
+				+ "game is much easier. If the production is too high in comparison " + "\n"
+				+ "to other things like the research that you make, then there will " + "\n"
+				+ "be no more buildings to be made because the research and the " + "\n"
+				+ "production go hand-in-hand. Research allows the building of wonders, " + "\n"
+				+ "units, and some buildings");
+		tbpneInstructions.addTab("Production", panel6);
 		panel1.setEditable(false);
 		panel2.setEditable(false);
 		panel3.setEditable(false);
@@ -419,7 +423,7 @@ public class CivilizationGame {
 				/*
 				 * $mapButtons[i][j].setBorder(null); $mapButtons[i][j].setBorderPainted(false);
 				 */
-				if(FOG_OF_WAR)
+				if (FOG_OF_WAR)
 					$mapButtons[i][j].setEnabled(false);
 				$mapButtons[i][j].setDisabledIcon(fog);
 				mapPanel.add($mapButtons[i][j]);
@@ -701,8 +705,11 @@ public class CivilizationGame {
 			}
 
 		growCity();
-		if (researchTimeSpent >= movesToTech) {
-			finishResearch(currentResearchedTech);
+		try {
+			if (researchTimeSpent >= movesToTech) {
+				finishResearch(currentResearchedTech);
+			}
+		} catch (Exception e) {
 		}
 	}
 
@@ -1109,14 +1116,14 @@ public class CivilizationGame {
 			player.get$cities().get(0).buildBuilding(new Walls(player.get$cities().get(0)));
 		player.get$cities().get(0).get$buildings().get(player.get$cities().get(0).get$buildings().size() - 1)
 				.setBuilt(true);
-		
+
 		player.get$cities().get(0).setProductionTotal(0);
 		updateProductionText();
 		JOptionPane.showMessageDialog(frame, "You finished " + e.getName() + ": " + e.getDescription(),
 				"Completed Building", JOptionPane.INFORMATION_MESSAGE);
 		currentProd = null;
 	}
- 
+
 	public double calculateMovesWonderProd(int wonderID, double prodPerTurn) {
 		double moves = 1;
 		for (int i = 0; i < Wonder.get$allWonders().size(); i++) {
@@ -1150,7 +1157,7 @@ public class CivilizationGame {
 			player.get$cities().get(0).buildWonder((NewtonsCollege) (e));
 		else if (e instanceof Oracle)
 			player.get$cities().get(0).buildWonder((Oracle) (e));
-		
+
 		player.get$cities().get(0).setProductionTotal(0);
 		updateProductionText();
 		JOptionPane.showMessageDialog(frame, "You finished " + e.getName() + ": " + e.getDescription(),
