@@ -1,5 +1,5 @@
 package map;
-
+//Class for tile to be called to be added to the map which has certain yields
 import javax.swing.ImageIcon;
 
 public class ForestTile extends Tile {
