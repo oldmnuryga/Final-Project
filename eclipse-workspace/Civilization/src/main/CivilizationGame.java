@@ -61,6 +61,7 @@ public class CivilizationGame {
 
 	// CONSTANTS
 	private final int SCROLL_SPEED = 10;
+	private final boolean FOG_OF_WAR = false;
 
 	// PLAYER INFO
 	private Player player;
@@ -418,7 +419,8 @@ public class CivilizationGame {
 				/*
 				 * $mapButtons[i][j].setBorder(null); $mapButtons[i][j].setBorderPainted(false);
 				 */
-				$mapButtons[i][j].setEnabled(false);
+				if(FOG_OF_WAR)
+					$mapButtons[i][j].setEnabled(false);
 				$mapButtons[i][j].setDisabledIcon(fog);
 				mapPanel.add($mapButtons[i][j]);
 			}
@@ -584,8 +586,8 @@ public class CivilizationGame {
 	private void repaintFog() {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
-				if (Tile.get$map()[i][j].getUnitOnTile() != null || Tile.get$map()[i][j].isCity()
-						|| Tile.get$map()[i][j].getOwner() != null) {
+				if ((Tile.get$map()[i][j].getUnitOnTile() != null || Tile.get$map()[i][j].isCity()
+						|| Tile.get$map()[i][j].getOwner() != null) && FOG_OF_WAR) {
 					for (int x = -2; x <= 2; x++) {
 						for (int y = -2; y <= 2; y++) {
 							try {
