@@ -195,7 +195,7 @@ public class CivilizationGame {
 				spawnInitialSettler();
 				spawnInitialWarrior();
 				updatePlayerStats();
-				try {
+/*				try {
 					sounds.genghisSoundPlay();
 				} catch (UnsupportedAudioFileException e) {
 					// TODO Auto-generated catch block
@@ -206,7 +206,7 @@ public class CivilizationGame {
 				} catch (LineUnavailableException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
+				}*/
 				frame.pack();
 			}
 		});
@@ -737,7 +737,7 @@ public class CivilizationGame {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].isCity() == true) {
-					if (turns % 12 == 0) {
+					if (turns % 10 == 0) {
 						Random g = new Random();
 						int min = -2;
 						int max = 2;
@@ -772,6 +772,8 @@ public class CivilizationGame {
 							Tile.get$map()[i + tempX][j + tempY].setOwner(player);
 							repaintTiles();
 							player.get$cities().get(0).get$cityTiles().add(Tile.get$map()[i + tempX][j + tempY]);
+							player.get$cities().get(0).setFoodTotal(0);
+							updateFoodText();
 						} catch (Exception e) {
 							// System.out.println("growCity() failed.");
 						}
@@ -979,6 +981,8 @@ public class CivilizationGame {
 	}
 
 	public void finishResearch(Technology finished) {
+		player.get$cities().get(0).setScienceTotal(0);
+		updateScienceText();
 		researchTimeSpent = 1;
 		currentResearchedTech = null;
 		frPickResearch.getContentPane().removeAll();
@@ -1041,6 +1045,8 @@ public class CivilizationGame {
 			player.get$cities().get(0).spawnUnit((Warrior) (new Warrior(player)));
 
 		repaintTiles();
+		player.get$cities().get(0).setProductionTotal(0);
+		updateProductionText();
 		JOptionPane.showMessageDialog(frame, "You finished " + finished.getUnitName(), "Completed Unit",
 				JOptionPane.INFORMATION_MESSAGE);
 
@@ -1101,6 +1107,9 @@ public class CivilizationGame {
 			player.get$cities().get(0).buildBuilding(new Walls(player.get$cities().get(0)));
 		player.get$cities().get(0).get$buildings().get(player.get$cities().get(0).get$buildings().size() - 1)
 				.setBuilt(true);
+		
+		player.get$cities().get(0).setProductionTotal(0);
+		updateProductionText();
 		JOptionPane.showMessageDialog(frame, "You finished " + e.getName() + ": " + e.getDescription(),
 				"Completed Building", JOptionPane.INFORMATION_MESSAGE);
 		currentProd = null;
@@ -1139,7 +1148,9 @@ public class CivilizationGame {
 			player.get$cities().get(0).buildWonder((NewtonsCollege) (e));
 		else if (e instanceof Oracle)
 			player.get$cities().get(0).buildWonder((Oracle) (e));
-
+		
+		player.get$cities().get(0).setProductionTotal(0);
+		updateProductionText();
 		JOptionPane.showMessageDialog(frame, "You finished " + e.getName() + ": " + e.getDescription(),
 				"Completed Wonder", JOptionPane.INFORMATION_MESSAGE);
 	}
