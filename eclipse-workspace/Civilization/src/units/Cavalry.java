@@ -5,7 +5,7 @@ import civilizations.Player;
 public class Cavalry extends Unit {
 
 	public Cavalry() {
-		super.unitID = 7;
+		super.unitID = 4;
 		super.hitpoints = 45;
 		super.attackRating = 25;
 		super.productionCost = 225;
@@ -24,7 +24,7 @@ public class Cavalry extends Unit {
 	}
 
 	public Cavalry(Player player) {
-		super.unitID = 7;
+		super.unitID = 4;
 		super.hitpoints = 45;
 		super.attackRating = 25;
 		super.productionCost = 225;

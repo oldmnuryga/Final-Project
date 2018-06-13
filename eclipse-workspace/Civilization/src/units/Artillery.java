@@ -5,7 +5,7 @@ import civilizations.Player;
 public class Artillery extends Unit {
 
 	public Artillery() {
-		super.unitID = 2;
+		super.unitID = 1;
 		super.hitpoints = 95;
 		super.attackRating = 30;
 		super.productionCost = 250;
@@ -24,7 +24,7 @@ public class Artillery extends Unit {
 	}
 
 	public Artillery(Player player) {
-		super.unitID = 2;
+		super.unitID = 1;
 		super.hitpoints = 95;
 		super.attackRating = 30;
 		super.productionCost = 250;

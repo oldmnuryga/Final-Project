@@ -5,7 +5,7 @@ import civilizations.Player;
 public class Legion extends Unit {
 
 	public Legion() {
-		super.unitID = 12;
+		super.unitID = 6;
 		super.hitpoints = 40;
 		super.attackRating = 17;
 		super.productionCost = 75;
@@ -24,7 +24,7 @@ public class Legion extends Unit {
 	}
 
 	public Legion(Player player) {
-		super.unitID = 12;
+		super.unitID = 6;
 		super.hitpoints = 40;
 		super.attackRating = 17;
 		super.productionCost = 75;

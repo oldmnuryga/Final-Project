@@ -7,7 +7,7 @@ import civilizations.Player;
 public class Scout extends Unit {
 
 	public Scout() {
-		super.unitID = 17;
+		super.unitID = 11;
 		super.hitpoints = 20;
 		super.attackRating = 5;
 		super.productionCost = 25;
@@ -28,7 +28,7 @@ public class Scout extends Unit {
 	}
 
 	public Scout(Player player) {
-		super.unitID = 17;
+		super.unitID = 11;
 		super.hitpoints = 20;
 		super.attackRating = 5;
 		super.productionCost = 25;

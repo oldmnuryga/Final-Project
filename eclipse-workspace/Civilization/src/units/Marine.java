@@ -5,7 +5,7 @@ import civilizations.Player;
 public class Marine extends Unit {
 
 	public Marine() {
-		super.unitID = 13;
+		super.unitID = 7;
 		super.hitpoints = 150;
 		super.attackRating = 43;
 		super.productionCost = 400;
@@ -24,7 +24,7 @@ public class Marine extends Unit {
 	}
 
 	public Marine(Player player) {
-		super.unitID = 13;
+		super.unitID = 7;
 		super.hitpoints = 150;
 		super.attackRating = 43;
 		super.productionCost = 400;

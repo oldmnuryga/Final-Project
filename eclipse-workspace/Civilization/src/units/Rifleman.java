@@ -5,7 +5,7 @@ import civilizations.Player;
 public class Rifleman extends Unit {
 
 	public Rifleman() {
-		super.unitID = 16;
+		super.unitID = 10;
 		super.hitpoints = 90;
 		super.attackRating = 30;
 		super.productionCost = 225;
@@ -24,7 +24,7 @@ public class Rifleman extends Unit {
 	}
 
 	public Rifleman(Player player) {
-		super.unitID = 16;
+		super.unitID = 10;
 		super.hitpoints = 90;
 		super.attackRating = 30;
 		super.productionCost = 225;

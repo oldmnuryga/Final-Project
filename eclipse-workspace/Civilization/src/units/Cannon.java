@@ -5,7 +5,7 @@ import civilizations.Player;
 public class Cannon extends Unit {
 
 	public Cannon() {
-		super.unitID = 5;
+		super.unitID = 2;
 		super.hitpoints = 70;
 		super.attackRating = 14;
 		super.productionCost = 185;
@@ -24,7 +24,7 @@ public class Cannon extends Unit {
 	}
 
 	public Cannon(Player player) {
-		super.unitID = 5;
+		super.unitID = 2;
 		super.hitpoints = 70;
 		super.attackRating = 14;
 		super.productionCost = 185;

@@ -3,10 +3,27 @@ package civilizations;
 //CLASS FOR CITY OBJECT - THIS CONTROLS GOLD, PRODUCTION, AND CITIZEN GROWTH, INCLUDES GETTERS AND SETTERS AND DIFFERENT METHODS
 import java.util.ArrayList;
 
+import javax.naming.LinkLoopException;
 import javax.swing.ImageIcon;
 
 import map.Tile;
+import units.Archer;
+import units.Artillery;
+import units.Cannon;
+import units.Catapult;
+import units.Cavalry;
+import units.Knight;
+import units.Legion;
+import units.Marine;
+import units.Musketman;
+import units.Pikeman;
+import units.Rifleman;
+import units.Scout;
+import units.Settler;
+import units.Spearman;
+import units.Tank;
 import units.Unit;
+import units.Warrior;
 
 public class City {
 	protected String name; // name of the city, change from each leader
@@ -444,5 +461,66 @@ public class City {
 			}
 		}
 		owner.get$cities().get(city).set$cityTiles($tempArr);
+	}
+
+	public void spawnUnit(Unit finished) {
+		outerloop: for (int i = -1; i < 2; i++)
+			for (int j = -1; j < 2; j++) {
+				if (i == 0 && j == 0) {
+					continue;
+				}
+				if (Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1] + j]
+						.getUnitOnTile() == null) {
+					if (finished instanceof Archer)
+						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].setUnitOnTile((Archer) (finished));
+					else if (finished instanceof Artillery)
+						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].setUnitOnTile((Artillery) (finished));
+					else if (finished instanceof Cannon)
+						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].setUnitOnTile((Cannon) (finished));
+					else if (finished instanceof Catapult)
+						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].setUnitOnTile((Catapult) (finished));
+					else if (finished instanceof Cavalry)
+						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].setUnitOnTile((Cavalry) (finished));
+					else if (finished instanceof Knight)
+						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].setUnitOnTile((Knight) (finished));
+					else if (finished instanceof Legion)
+						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].setUnitOnTile((Legion) (finished));
+					else if (finished instanceof Marine)
+						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].setUnitOnTile((Marine) (finished));
+					else if (finished instanceof Musketman)
+						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].setUnitOnTile((Musketman) (finished));
+					else if (finished instanceof Pikeman)
+						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].setUnitOnTile((Pikeman) (finished));
+					else if (finished instanceof Rifleman)
+						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].setUnitOnTile((Rifleman) (finished));
+					else if (finished instanceof Scout)
+						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].setUnitOnTile((Scout) (finished));
+					else if (finished instanceof Settler)
+						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].setUnitOnTile((Settler) (finished));
+					else if (finished instanceof Spearman)
+						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].setUnitOnTile((Spearman) (finished));
+					else if (finished instanceof Tank)
+						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].setUnitOnTile((Tank) (finished));
+					else if (finished instanceof Warrior)
+						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].setUnitOnTile((Warrior) (finished));
+					break outerloop;
+				}
+			}
 	}
 }

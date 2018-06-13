@@ -5,7 +5,7 @@ import civilizations.Player;
 public class Musketman extends Unit {
 
 	public Musketman() {
-		super.unitID = 14;
+		super.unitID = 8;
 		super.hitpoints = 110;
 		super.attackRating = 27;
 		super.productionCost = 150;
@@ -24,7 +24,7 @@ public class Musketman extends Unit {
 	}
 
 	public Musketman(Player player) {
-		super.unitID = 14;
+		super.unitID = 8;
 		super.hitpoints = 110;
 		super.attackRating = 27;
 		super.productionCost = 150;

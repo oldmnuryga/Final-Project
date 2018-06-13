@@ -5,7 +5,7 @@ import civilizations.Player;
 public class Tank extends Unit {
 
 	public Tank() {
-		super.unitID = 21;
+		super.unitID = 14;
 		super.hitpoints = 180;
 		super.attackRating = 48;
 		super.productionCost = 425;
@@ -25,7 +25,7 @@ public class Tank extends Unit {
 	}
 
 	public Tank(Player player) {
-		super.unitID = 21;
+		super.unitID = 14;
 		super.hitpoints = 180;
 		super.attackRating = 48;
 		super.productionCost = 425;

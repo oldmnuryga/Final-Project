@@ -5,7 +5,7 @@ import civilizations.Player;
 public class Pikeman extends Unit {
 
 	public Pikeman() {
-		super.unitID = 15;
+		super.unitID = 9;
 		super.hitpoints = 40;
 		super.attackRating = 16;
 		super.productionCost = 90;
@@ -24,7 +24,7 @@ public class Pikeman extends Unit {
 	}
 
 	public Pikeman(Player player) {
-		super.unitID = 15;
+		super.unitID = 9;
 		super.hitpoints = 40;
 		super.attackRating = 16;
 		super.productionCost = 90;

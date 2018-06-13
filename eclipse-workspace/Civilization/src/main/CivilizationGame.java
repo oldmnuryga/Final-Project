@@ -7,11 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
-import java.security.acl.Owner;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.management.InstanceAlreadyExistsException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.AbstractAction;
@@ -43,9 +41,7 @@ import map.Tile;
 import map.WaterTile;
 import sound.sounds;
 import technology.Technology;
-import units.Settler;
-import units.Unit;
-import units.Warrior;
+import units.*;
 
 public class CivilizationGame {
 	public static int turns = 1;
@@ -665,7 +661,7 @@ public class CivilizationGame {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				if (Tile.get$map()[i][j].getUnitOnTile() != null
-						&& Tile.get$map()[i][j].getUnitOnTile().getUnitID() == 18) {
+						&& Tile.get$map()[i][j].getUnitOnTile().getUnitID() == 12) {
 					for (int x = -2; x <= 2; x++) {
 						for (int y = -2; y <= 2; y++) {
 							if ((x != 0 || y != 0) && Tile.get$map()[i + x][j + y].getTerrainID() == 1) {
@@ -787,16 +783,16 @@ public class CivilizationGame {
 								min--;
 								max++;
 							}
-						
-						int tempX = g.nextInt(max + 1 - min) + min;
-						int tempY = g.nextInt(max + 1 - min) + min;
-						while (Tile.get$map()[i + tempX][j + tempY].getOwner() != null) {
-							tempX = g.nextInt(max + 1 - min) + min;
-							tempY = g.nextInt(max + 1 - min) + min;
-						}
-						Tile.get$map()[i + tempX][j + tempY].setOwner(player);
-						repaintTiles();
-						player.get$cities().get(0).get$cityTiles().add(Tile.get$map()[i + tempX][j + tempY]);
+
+							int tempX = g.nextInt(max + 1 - min) + min;
+							int tempY = g.nextInt(max + 1 - min) + min;
+							while (Tile.get$map()[i + tempX][j + tempY].getOwner() != null) {
+								tempX = g.nextInt(max + 1 - min) + min;
+								tempY = g.nextInt(max + 1 - min) + min;
+							}
+							Tile.get$map()[i + tempX][j + tempY].setOwner(player);
+							repaintTiles();
+							player.get$cities().get(0).get$cityTiles().add(Tile.get$map()[i + tempX][j + tempY]);
 						} catch (Exception e) {
 							System.out.println("growCity() failed.");
 						}
@@ -876,7 +872,7 @@ public class CivilizationGame {
 				for (int j = 0; j < $mapButtons[i].length; j++) {
 					if (e.getSource() == $mapButtons[i][j]) {
 						if (Tile.get$map()[i][j].getUnitOnTile() != null
-								&& Tile.get$map()[i][j].getUnitOnTile().getUnitID() == 18) {
+								&& Tile.get$map()[i][j].getUnitOnTile().getUnitID() == 12) {
 							// $mapButtons[i][j].getIcon().equals(player.getOwnedUnitfromID(18).getUnitImageIcon())
 							int x = i;
 							int y = j;
@@ -884,7 +880,7 @@ public class CivilizationGame {
 							$mapButtons[i][j].getActionMap().put("found", new AbstractAction() {
 								public void actionPerformed(ActionEvent e) {
 									try {
-										((Settler) getPlayer().getOwnedUnitfromID(18))
+										((Settler) getPlayer().getOwnedUnitfromID(12))
 												.foundCity(player.get$cities().size());
 										removeUnit(x, y);
 										repaintTiles();
@@ -906,188 +902,190 @@ public class CivilizationGame {
 
 							$mapButtons[i][j].addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {
-									if(Tile.get$map()[x][y].isCity() == true) {
-									btnEndTurn.setEnabled(false);
-									// JViewport viewport = new JViewport();
-									frPickProduction.setPreferredSize(new Dimension(1200, 900));
-									frPickProduction.setLayout(null);
-									frPickProduction.setResizable(false);
-									// frPickProduction.add(paPickProduction);
-									// paPickProduction.setPreferredSize(new Dimension(1500, 1000));
-									// viewport.setView(paPickProduction);
-									pickUnit = new JScrollPane();
-									pickUnit.createVerticalScrollBar();
-									pickUnit.setLayout(null);
-									// pickUnit.setViewport(viewport);
-									// pickUnit.setViewportBorder(null);
-									// pickUnit.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
-									pickWonder = new JScrollPane();
-									pickWonder.createVerticalScrollBar();
-									pickWonder.setLayout(null);
-									// pickWonder.setViewport(viewport);
-									// pickWonder.setViewportBorder(null);
-									// pickWonder.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
-									pickBuilding = new JScrollPane();
-									pickBuilding.createVerticalScrollBar();
-									pickBuilding.setLayout(null);
-									// pickBuilding.setViewport(viewport);
-									// pickBuilding.setViewportBorder(null);
-									// pickBuilding.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
+									if (Tile.get$map()[x][y].isCity() == true) {
+										btnEndTurn.setEnabled(false);
+										// JViewport viewport = new JViewport();
+										frPickProduction.setPreferredSize(new Dimension(1200, 900));
+										frPickProduction.setLayout(null);
+										frPickProduction.setResizable(false);
+										frPickProduction.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+										// frPickProduction.add(paPickProduction);
+										// paPickProduction.setPreferredSize(new Dimension(1500, 1000));
+										// viewport.setView(paPickProduction);
+										pickUnit = new JScrollPane();
+										pickUnit.createVerticalScrollBar();
+										pickUnit.setLayout(null);
+										// pickUnit.setViewport(viewport);
+										// pickUnit.setViewportBorder(null);
+										// pickUnit.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
+										pickWonder = new JScrollPane();
+										pickWonder.createVerticalScrollBar();
+										pickWonder.setLayout(null);
+										// pickWonder.setViewport(viewport);
+										// pickWonder.setViewportBorder(null);
+										// pickWonder.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
+										pickBuilding = new JScrollPane();
+										pickBuilding.createVerticalScrollBar();
+										pickBuilding.setLayout(null);
+										// pickBuilding.setViewport(viewport);
+										// pickBuilding.setViewportBorder(null);
+										// pickBuilding.setViewportBorder(new EmptyBorder(0, 0, 0, 0));
 
-									pickUnit.setBounds(0, 0, 400, 1000);
-									pickWonder.setBounds(400, 0, 400, 1000);
-									pickBuilding.setBounds(800, 0, 400, 1000);
+										pickUnit.setBounds(0, 0, 400, 1000);
+										pickWonder.setBounds(400, 0, 400, 1000);
+										pickBuilding.setBounds(800, 0, 400, 1000);
 
-									JLabel lblUnit = new JLabel("Units: ");
-									lblUnit.setBounds(20, 0, 300, 30);
-									pickUnit.add(lblUnit);
-									JLabel lblWonder = new JLabel("Wonders: ");
-									lblWonder.setBounds(20, 0, 300, 30);
-									pickWonder.add(lblWonder);
-									JLabel lblBuilding = new JLabel("Buildings: ");
-									lblBuilding.setBounds(20, 0, 300, 30);
-									pickBuilding.add(lblBuilding);
+										JLabel lblUnit = new JLabel("Units: ");
+										lblUnit.setBounds(20, 0, 300, 30);
+										pickUnit.add(lblUnit);
+										JLabel lblWonder = new JLabel("Wonders: ");
+										lblWonder.setBounds(20, 0, 300, 30);
+										pickWonder.add(lblWonder);
+										JLabel lblBuilding = new JLabel("Buildings: ");
+										lblBuilding.setBounds(20, 0, 300, 30);
+										pickBuilding.add(lblBuilding);
 
-									frPickProduction.setVisible(true);
-									// paPickProduction.setVisible(true);
+										frPickProduction.setVisible(true);
 
-									ArrayList<JButton> unit = new ArrayList<JButton>();
-									int z = 30;
-									for (int i = 0; i < Unit.get$allUnits().size(); i++) {
-										unit.add(new JButton(Unit.get$allUnits().get(i).getUnitName()));
-										pickUnit.add(unit.get(i));
-										unit.get(i).setBounds(20, z, 360, 35);
-										z += 50;
-										for (int r = 0; r < Technology.get$technologies().size(); r++) {
-											if (Unit.get$allUnits().get(i).getTechRequired() == -1) {
-												unit.get(i).setEnabled(true);
-											} else if (Technology.get$technologies()
-													.get(Unit.get$allUnits().get(i).getTechRequired()).isResearched()) {
-												unit.get(i).setEnabled(true);
-											} else {
-												unit.get(i).setEnabled(false);
+										ArrayList<JButton> unit = new ArrayList<JButton>();
+										int z = 30;
+										for (int i = 0; i < Unit.get$allUnits().size(); i++) {
+											unit.add(new JButton(Unit.get$allUnits().get(i).getUnitName()));
+											pickUnit.add(unit.get(i));
+											unit.get(i).setBounds(20, z, 360, 35);
+											z += 50;
+											for (int r = 0; r < Technology.get$technologies().size(); r++) {
+												if (Unit.get$allUnits().get(i).getTechRequired() == -1) {
+													unit.get(i).setEnabled(true);
+												} else if (Technology.get$technologies()
+														.get(Unit.get$allUnits().get(i).getTechRequired())
+														.isResearched()) {
+													unit.get(i).setEnabled(true);
+												} else {
+													unit.get(i).setEnabled(false);
+												}
+
 											}
-
-										}
-										int y = i;
-										unit.get(i).addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent arg0) {
-												frPickProduction.setVisible(false);
-												currentUnitProd = Unit.get$allUnits().get(y);
-												btnEndTurn.setEnabled(true);
-											}
-										});
-									}
-
-									ArrayList<JButton> wonder = new ArrayList<JButton>();
-									int q = 30;
-									for (int i = 0; i < Wonder.get$allWonders().size(); i++) {
-										wonder.add(new JButton(Wonder.get$allWonders().get(i).getName()));
-										pickWonder.add(wonder.get(i));
-										wonder.get(i).setBounds(20, q, 360, 65);
-										q += 80;
-
-										for (int e = 0; e < Technology.get$technologies().size(); e++) {
-											if (Wonder.get$allWonders().get(i).isObsolete())
-												wonder.get(i).setEnabled(false);
-											else if (Wonder.get$allWonders().get(i).getTechRequired() == -1) {
-												wonder.get(i).setEnabled(true);
-											} else if (Technology.get$technologies()
-													.get(Wonder.get$allWonders().get(i).getTechRequired())
-													.isResearched()) {
-												wonder.get(i).setEnabled(true);
-											} else {
-												wonder.get(i).setEnabled(false);
-											}
-
+											int y = i;
+											unit.get(i).addActionListener(new ActionListener() {
+												public void actionPerformed(ActionEvent arg0) {
+													frPickProduction.setVisible(false);
+													currentUnitProd = Unit.get$allUnits().get(y);
+													btnEndTurn.setEnabled(true);
+												}
+											});
 										}
 
-										/*
-										 * for(int r = 0; r < Technology.get$technologies().size(); r++) {
-										 * if(player.get$technologies().get(Wonder.get$allWonders().get(i).
-										 * getTechRequired()).isResearched() &&
-										 * Wonder.get$allWonders().get(i).checkObsolete() == false) {
-										 * wonder.get(i).setEnabled(true); } else if
-										 * (Wonder.get$allWonders().get(i).getTechRequired() == -1 &&
-										 * Wonder.get$allWonders().get(i).checkObsolete() == false) {
-										 * wonder.get(i).setEnabled(true); } else { wonder.get(i).setEnabled(false); } }
-										 */
+										ArrayList<JButton> wonder = new ArrayList<JButton>();
+										int q = 30;
+										for (int i = 0; i < Wonder.get$allWonders().size(); i++) {
+											wonder.add(new JButton(Wonder.get$allWonders().get(i).getName()));
+											pickWonder.add(wonder.get(i));
+											wonder.get(i).setBounds(20, q, 360, 65);
+											q += 80;
 
-										/*
-										 * if(Wonder.get$allWonders().get(i).canBeBuilt()) {
-										 * wonder.get(i).setEnabled(true); } else { wonder.get(i).setEnabled(false); }
-										 */
-										int y = i;
-										wonder.get(i).addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent arg0) {
-												frPickProduction.setVisible(false);
-												currentWonderProd = Wonder.get$allWonders().get(y);
-												unit.get(y).setEnabled(false);
-												btnEndTurn.setEnabled(true);
+											for (int e = 0; e < Technology.get$technologies().size(); e++) {
+												if (Wonder.get$allWonders().get(i).isObsolete())
+													wonder.get(i).setEnabled(false);
+												else if (Wonder.get$allWonders().get(i).getTechRequired() == -1) {
+													wonder.get(i).setEnabled(true);
+												} else if (Technology.get$technologies()
+														.get(Wonder.get$allWonders().get(i).getTechRequired())
+														.isResearched()) {
+													wonder.get(i).setEnabled(true);
+												} else {
+													wonder.get(i).setEnabled(false);
+												}
+
 											}
-										});
-									}
 
-									ArrayList<JButton> building = new ArrayList<JButton>();
-									int t = 30;
-									for (int i = 0; i < Building.get$allBuildings().size(); i++) {
-										building.add(new JButton(Building.get$allBuildings().get(i).getName()));
-										pickBuilding.add(building.get(i));
-										building.get(i).setBounds(20, t, 360, 34);
-										t += 44;
+											/*
+											 * for(int r = 0; r < Technology.get$technologies().size(); r++) {
+											 * if(player.get$technologies().get(Wonder.get$allWonders().get(i).
+											 * getTechRequired()).isResearched() &&
+											 * Wonder.get$allWonders().get(i).checkObsolete() == false) {
+											 * wonder.get(i).setEnabled(true); } else if
+											 * (Wonder.get$allWonders().get(i).getTechRequired() == -1 &&
+											 * Wonder.get$allWonders().get(i).checkObsolete() == false) {
+											 * wonder.get(i).setEnabled(true); } else { wonder.get(i).setEnabled(false);
+											 * } }
+											 */
+
+											/*
+											 * if(Wonder.get$allWonders().get(i).canBeBuilt()) {
+											 * wonder.get(i).setEnabled(true); } else { wonder.get(i).setEnabled(false);
+											 * }
+											 */
+											int y = i;
+											wonder.get(i).addActionListener(new ActionListener() {
+												public void actionPerformed(ActionEvent arg0) {
+													frPickProduction.setVisible(false);
+													currentWonderProd = Wonder.get$allWonders().get(y);
+													unit.get(y).setEnabled(false);
+													btnEndTurn.setEnabled(true);
+												}
+											});
+										}
+
+										ArrayList<JButton> building = new ArrayList<JButton>();
+										int t = 30;
+										for (int i = 0; i < Building.get$allBuildings().size(); i++) {
+											building.add(new JButton(Building.get$allBuildings().get(i).getName()));
+											pickBuilding.add(building.get(i));
+											building.get(i).setBounds(20, t, 360, 34);
+											t += 44;
+
+											/*
+											 * if(Building.get$allBuildings().get(i).canBeBuilt()) {
+											 * building.get(i).setEnabled(true); } else {
+											 * building.get(i).setEnabled(false); }
+											 */
+											for (int y = 0; y < Technology.get$technologies().size(); y++) {
+												if (player.getGoldReserve() > Building.get$allBuildings().get(i)
+														.getGoldPurchaseCost()) {
+													building.get(i).setEnabled(true);
+												} else if (Building.get$allBuildings().get(i).getTechRequired() == -1) {
+													building.get(i).setEnabled(true);
+												} else if (Technology.get$technologies()
+														.get(Building.get$allBuildings().get(i).getTechRequired())
+														.isResearched()) {
+													building.get(i).setEnabled(true);
+												} else {
+													building.get(i).setEnabled(false);
+												}
+											}
+											int y = i;
+											building.get(i).addActionListener(new ActionListener() {
+												public void actionPerformed(ActionEvent arg0) {
+													frPickProduction.setVisible(false);
+													currentBuildingProd = Building.get$allBuildings().get(y);
+													unit.get(y).setEnabled(false);
+													btnEndTurn.setEnabled(true);
+												}
+											});
+										}
 
 										/*
-										 * if(Building.get$allBuildings().get(i).canBeBuilt()) {
-										 * building.get(i).setEnabled(true); } else { building.get(i).setEnabled(false);
+										 * for (int i = 0; i < player.get$cities().get(0).get$potentialWonders().size();
+										 * i++) { JButton[] wonder = new
+										 * JButton[player.get$cities().get(0).get$potentialWonders() .size()]; wonder[i]
+										 * = new JButton(
+										 * player.get$cities().get(0).get$potentialBuildings().get(i).getName());
+										 * pickWonder.add(wonder[i]); int w = 0, t = 0; wonder[i].setBounds(w, t, 455,
+										 * 75); t += 90; } for (int i = 0; i <
+										 * player.get$cities().get(0).get$potentialBuildings() .size(); i++) {
+										 * 
 										 * }
 										 */
-										for (int y = 0; y < Technology.get$technologies().size(); y++) {
-											if (player.getGoldReserve() > Building.get$allBuildings().get(i)
-													.getGoldPurchaseCost()) {
-												building.get(i).setEnabled(true);
-											} else if (Building.get$allBuildings().get(i).getTechRequired() == -1) {
-												building.get(i).setEnabled(true);
-											} else if (Technology.get$technologies()
-													.get(Building.get$allBuildings().get(i).getTechRequired())
-													.isResearched()) {
-												building.get(i).setEnabled(true);
-											} else {
-												building.get(i).setEnabled(false);
-											}
-										}
-										int y = i;
-										building.get(i).addActionListener(new ActionListener() {
-											public void actionPerformed(ActionEvent arg0) {
-												frPickProduction.setVisible(false);
-												currentBuildingProd = Building.get$allBuildings().get(y);
-												unit.get(y).setEnabled(false);
-												btnEndTurn.setEnabled(true);
-											}
-										});
+										frPickProduction.add(pickUnit);
+										frPickProduction.add(pickWonder);
+										frPickProduction.add(pickBuilding);
+										frPickProduction.repaint();
+										frPickProduction.pack();
 									}
-									
-
-									/*
-									 * for (int i = 0; i < player.get$cities().get(0).get$potentialWonders().size();
-									 * i++) { JButton[] wonder = new
-									 * JButton[player.get$cities().get(0).get$potentialWonders() .size()]; wonder[i]
-									 * = new JButton(
-									 * player.get$cities().get(0).get$potentialBuildings().get(i).getName());
-									 * pickWonder.add(wonder[i]); int w = 0, t = 0; wonder[i].setBounds(w, t, 455,
-									 * 75); t += 90; } for (int i = 0; i <
-									 * player.get$cities().get(0).get$potentialBuildings() .size(); i++) {
-									 * 
-									 * }
-									 */
-									frPickProduction.add(pickUnit);
-									frPickProduction.add(pickWonder);
-									frPickProduction.add(pickBuilding);
-									frPickProduction.repaint();
-									frPickProduction.pack();
-								}
 								}
 							});
-							
+
 						}
 					}
 				}
@@ -1207,9 +1205,46 @@ public class CivilizationGame {
 	}
 
 	public void finishUnitProd(Unit finished) {
-		player.addUnit(finished);
+		unitProdTimeSpent = 1;
+		if (finished instanceof Archer)
+			player.get$cities().get(0).spawnUnit((Archer) (new Archer(player)));
+		else if (finished instanceof Artillery)
+			player.get$cities().get(0).spawnUnit((Artillery) (new Artillery(player)));
+		else if (finished instanceof Cannon)
+			player.get$cities().get(0).spawnUnit((Cannon) (new Cannon(player)));
+		else if (finished instanceof Catapult)
+			player.get$cities().get(0).spawnUnit((Catapult) (new Catapult(player)));
+		else if (finished instanceof Cavalry)
+			player.get$cities().get(0).spawnUnit((Cavalry) (new Cavalry(player)));
+		else if (finished instanceof Knight)
+			player.get$cities().get(0).spawnUnit((Knight) (new Knight(player)));
+		else if (finished instanceof Legion)
+			player.get$cities().get(0).spawnUnit((Legion) (new Legion(player)));
+		else if (finished instanceof Marine)
+			player.get$cities().get(0).spawnUnit((Marine) (new Marine(player)));
+		else if (finished instanceof Musketman)
+			player.get$cities().get(0).spawnUnit((Musketman) (new Musketman(player)));
+		else if (finished instanceof Pikeman)
+			player.get$cities().get(0).spawnUnit((Pikeman) (new Pikeman(player)));
+		else if (finished instanceof Rifleman)
+			player.get$cities().get(0).spawnUnit((Rifleman) (new Rifleman(player)));
+		else if (finished instanceof Scout)
+			player.get$cities().get(0).spawnUnit((Scout) (new Scout(player)));
+		else if (finished instanceof Settler)
+			player.get$cities().get(0).spawnUnit((Settler) (new Settler(player)));
+		else if (finished instanceof Spearman)
+			player.get$cities().get(0).spawnUnit((Spearman) (new Spearman(player)));
+		else if (finished instanceof Tank)
+			player.get$cities().get(0).spawnUnit((Tank) (new Tank(player)));
+		else if (finished instanceof Warrior)
+			player.get$cities().get(0).spawnUnit((Warrior) (new Warrior(player)));
+
+		repaintTiles();
 		JOptionPane.showMessageDialog(frame, "You finished " + finished.getUnitName(), "Completed Unit",
 				JOptionPane.INFORMATION_MESSAGE);
+
+		currentBuildingProd = null;
+		frPickProduction.setVisible(true);
 	}
 
 	public double calculateMovesBuildingProd(int buildID, double prodPerTurn) {
@@ -1266,10 +1301,10 @@ public class CivilizationGame {
 			player.get$cities().get(0).buildBuilding(new Walls(player.get$cities().get(0)));
 		player.get$cities().get(0).get$buildings().get(player.get$cities().get(0).get$buildings().size() - 1)
 				.setBuilt(true);
-
 		JOptionPane.showMessageDialog(frame, "You finished " + e.getName(), "Completed Building",
 				JOptionPane.INFORMATION_MESSAGE);
 		currentBuildingProd = null;
+		frPickProduction.setVisible(true);
 	}
 
 	public double calculateMovesWonderProd(int wonderID, double prodPerTurn) {

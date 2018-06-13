@@ -12,7 +12,7 @@ import map.Tile;
 public class Settler extends Unit {
 
 	public Settler(Player player) {
-		super.unitID = 18;
+		super.unitID = 12;
 		super.owner = player;
 		super.hitpoints = 15;
 		super.attackRating = 0;
@@ -34,7 +34,7 @@ public class Settler extends Unit {
 	}
 
 	public Settler() {
-		super.unitID = 18;
+		super.unitID = 12;
 		super.hitpoints = 15;
 		super.attackRating = 0;
 		super.productionCost = 106;
