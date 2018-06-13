@@ -1,5 +1,7 @@
 package units;
 
+import javax.swing.ImageIcon;
+
 import civilizations.Player;
 //UNIT AND ITS PARAMETERS
 public class Pikeman extends Unit {
@@ -40,6 +42,7 @@ public class Pikeman extends Unit {
 		super.isSelected = false;
 		super.unitName = "Pikeman";
 		super.techRequired = 4;
+		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Pikeman.png"));
 		super.owner = player;
 		owner.addUnit(this);
 	}

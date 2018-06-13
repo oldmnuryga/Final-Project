@@ -1,5 +1,7 @@
 package units;
 
+import javax.swing.ImageIcon;
+
 import civilizations.Player;
 //UNIT AND ITS PARAMETERS
 public class Marine extends Unit {
@@ -41,6 +43,7 @@ public class Marine extends Unit {
 		super.unitName = "Marine";
 		super.techRequired = 53;
 		super.owner = player;
+		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Marine.png"));
 		player.addUnit(this);
 	}
 }

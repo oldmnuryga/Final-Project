@@ -1,5 +1,7 @@
 package units;
 
+import javax.swing.ImageIcon;
+
 import civilizations.Player;
 //UNIT AND ITS PARAMETERS
 public class Rifleman extends Unit {
@@ -40,6 +42,7 @@ public class Rifleman extends Unit {
 		super.isSelected = false;
 		super.unitName = "Rifleman";
 		super.techRequired = 50;
+		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Rifleman.png"));
 		super.owner = player;
 		owner.addUnit(this);
 	}

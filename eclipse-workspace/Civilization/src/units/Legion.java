@@ -1,5 +1,7 @@
 package units;
 
+import javax.swing.ImageIcon;
+
 import civilizations.Player;
 //UNIT AND ITS PARAMETERS
 public class Legion extends Unit {
@@ -41,6 +43,7 @@ public class Legion extends Unit {
 		super.unitName = "Legion";
 		super.techRequired = 13;
 		super.owner = player;
+		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Legion.png"));
 		owner.addUnit(this);
 	}
 }

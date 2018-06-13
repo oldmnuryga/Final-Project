@@ -1,5 +1,7 @@
 package units;
 
+import javax.swing.ImageIcon;
+
 import civilizations.Player;
 //UNIT AND ITS PARAMETERS
 public class Tank extends Unit {
@@ -22,6 +24,7 @@ public class Tank extends Unit {
 		super.isSelected = false;
 		super.unitName = "Tank";
 		super.techRequired = 56;
+		
 	}
 
 	public Tank(Player player) {
@@ -42,6 +45,7 @@ public class Tank extends Unit {
 		super.isSelected = false;
 		super.unitName = "Tank";
 		super.techRequired = 56;
+		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Tank.png"));
 		super.owner = player;
 		player.addUnit(this);
 	}

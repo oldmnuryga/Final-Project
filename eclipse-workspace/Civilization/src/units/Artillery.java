@@ -1,5 +1,7 @@
 package units;
 
+import javax.swing.ImageIcon;
+
 import civilizations.Player;
 //UNIT AND ITS PARAMETERS
 public class Artillery extends Unit {
@@ -41,6 +43,7 @@ public class Artillery extends Unit {
 		super.unitName = "Artillery";
 		super.techRequired = 52;
 		super.owner = player;
+		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/artillery.png"));
 		owner.addUnit(this);
 	}
 }

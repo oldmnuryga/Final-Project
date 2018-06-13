@@ -1,5 +1,7 @@
 package units;
 
+import javax.swing.ImageIcon;
+
 import civilizations.Player;
 
 //UNIT AND ITS PARAMETERS
@@ -41,6 +43,8 @@ public class Spearman extends Unit {
 		super.isSelected = false;
 		super.unitName = "Spearman";
 		super.techRequired = 6;
+		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Spearman.png"));
+		super.owner = player;
 		owner.addUnit(this);
 	}
 }

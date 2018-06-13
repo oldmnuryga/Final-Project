@@ -1,5 +1,7 @@
 package units;
 
+import javax.swing.ImageIcon;
+
 import civilizations.Player;
 //UNIT AND ITS PARAMETERS
 public class Catapult extends Unit {
@@ -41,6 +43,7 @@ public class Catapult extends Unit {
 		super.unitName = "Catapult";
 		super.techRequired = 19;
 		super.owner = player;
+		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/catapult.png"));
 		owner.addUnit(this);
 	}
 }

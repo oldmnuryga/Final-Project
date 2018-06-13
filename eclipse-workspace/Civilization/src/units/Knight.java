@@ -1,5 +1,7 @@
 package units;
 
+import javax.swing.ImageIcon;
+
 import civilizations.Player;
 //UNIT AND ITS PARAMETERS
 public class Knight extends Unit {
@@ -41,6 +43,7 @@ public class Knight extends Unit {
 		super.unitName = "Knight";
 		super.techRequired = 7;
 		super.owner = player;
+		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Knight.png"));
 		owner.addUnit(this);
 	}
 }

@@ -1,5 +1,7 @@
 package units;
 
+import javax.swing.ImageIcon;
+
 import civilizations.Player;
 //UNIT AND ITS PARAMETERS
 public class Musketman extends Unit {
@@ -41,6 +43,7 @@ public class Musketman extends Unit {
 		super.unitName = "Musketman";
 		super.techRequired = 37;
 		super.owner = player;
+		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Musketman.png"));
 		owner.addUnit(this);
 	}
 }

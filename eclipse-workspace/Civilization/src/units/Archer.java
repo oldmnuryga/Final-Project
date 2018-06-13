@@ -1,5 +1,7 @@
 package units;
 
+import javax.swing.ImageIcon;
+
 import civilizations.Player;
 //UNIT AND ITS PARAMETERS
 public class Archer extends Unit {
@@ -39,6 +41,7 @@ public class Archer extends Unit {
 		super.isSelected = false;
 		super.unitName = "Archer";
 		super.owner = player;
+		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Archer.png"));
 		player.addUnit(this);
 	}
 }

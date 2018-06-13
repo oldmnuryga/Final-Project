@@ -1,5 +1,7 @@
 package units;
 
+import javax.swing.ImageIcon;
+
 import civilizations.Player;
 //UNIT AND ITS PARAMETERS
 public class Cavalry extends Unit {
@@ -41,6 +43,7 @@ public class Cavalry extends Unit {
 		super.unitName = "Cavalry";
 		super.techRequired = 1;
 		super.owner = player;
+		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Cavalry.png"));
 		owner.addUnit(this);
 	}
 }
