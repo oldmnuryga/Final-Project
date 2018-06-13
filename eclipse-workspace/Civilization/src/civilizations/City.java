@@ -56,7 +56,7 @@ public class City {
 	protected ArrayList<Wonder> $potentialWonders;
 	protected ArrayList<Unit> $potentialUnits;
 	protected static ImageIcon cityImageIcon;
-
+	//CONSTRUCTOR
 	public City(Player player, Tile cityLocation) {
 		owner = player;
 		name = owner.getLeader().getCityNames().get(owner.getNumCities());
@@ -226,7 +226,7 @@ public class City {
 		this.$buildings = $buildings;
 	}
 
-	// RETURNS A BUILDING THAT THE PLAYER OWNS
+	// RETURNS A BUILDING THAT THE PLAYER OWNS BASED ON ID PROVIDED
 	public Building getCertainBuilding(int buildingID) {
 		for (int i = 0; i < $buildings.size(); i++) {
 			if ($buildings.get(i).getBuildingID() == buildingID)
@@ -444,13 +444,14 @@ public class City {
 		return Tile.get$map()[location.get$location()[0] + x][location.get$location()[1] + y];
 	}
 
-
+	//ADDS A UNIT TO THE MAP AROUND THE CITY, THIS OCCURS WHEN A UNIT IS BUILT THROUGH PRODUCTION
 	public void spawnUnit(Unit finished) {
 		outerloop: for (int i = -1; i < 2; i++)
 			for (int j = -1; j < 2; j++) {
 				if (i == 0 && j == 0) {
 					continue;
 				}
+				//ENSURES IT DOESNT SPAWN ON WATER OR MOUNTAIN
 				if (Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1] + j]
 						.getTerrainID() == 0
 						|| Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
@@ -510,9 +511,5 @@ public class City {
 					break outerloop;
 				}
 			}
-	}
-	public double gatherProduction() {
-		double production = 0.0;
-		return production;
 	}
 }
