@@ -470,6 +470,12 @@ public class City {
 					continue;
 				}
 				if (Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1] + j]
+						.getTerrainID() == 0
+						|| Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]
+								+ j].getTerrainID() == 3) {
+					continue;
+				}
+				if (Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1] + j]
 						.getUnitOnTile() == null) {
 					if (finished instanceof Archer)
 						Tile.get$map()[this.getLocation().get$location()[0] + i][this.getLocation().get$location()[1]

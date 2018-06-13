@@ -794,7 +794,7 @@ public class CivilizationGame {
 							repaintTiles();
 							player.get$cities().get(0).get$cityTiles().add(Tile.get$map()[i + tempX][j + tempY]);
 						} catch (Exception e) {
-//							System.out.println("growCity() failed.");
+							// System.out.println("growCity() failed.");
 						}
 					}
 				}
@@ -955,16 +955,14 @@ public class CivilizationGame {
 											unit.get(i).setBounds(20, z, 360, 35);
 											z += 50;
 											for (int r = 0; r < Technology.get$technologies().size(); r++) {
-												if (Unit.get$allUnits().get(i).getTechRequired() == -1) {
+												if (Unit.get$allUnits().get(i).getTechRequired() == -1)
 													unit.get(i).setEnabled(true);
-												} else if (Technology.get$technologies()
+												else if (Technology.get$technologies()
 														.get(Unit.get$allUnits().get(i).getTechRequired())
 														.isResearched()) {
 													unit.get(i).setEnabled(true);
-												} else {
+												} else
 													unit.get(i).setEnabled(false);
-												}
-
 											}
 											int y = i;
 											unit.get(i).addActionListener(new ActionListener() {
@@ -1244,7 +1242,6 @@ public class CivilizationGame {
 				JOptionPane.INFORMATION_MESSAGE);
 
 		currentBuildingProd = null;
-		frPickProduction.setVisible(true);
 	}
 
 	public double calculateMovesBuildingProd(int buildID, double prodPerTurn) {
@@ -1304,7 +1301,6 @@ public class CivilizationGame {
 		JOptionPane.showMessageDialog(frame, "You finished " + e.getName(), "Completed Building",
 				JOptionPane.INFORMATION_MESSAGE);
 		currentBuildingProd = null;
-		frPickProduction.setVisible(true);
 	}
 
 	public double calculateMovesWonderProd(int wonderID, double prodPerTurn) {

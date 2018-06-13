@@ -26,10 +26,10 @@ public class Player {
 		leader = tLeader;
 		name = leader.getLeaderName(); // TODO
 		goldReserve = 0;
-		goldPerTurn = 0;
+		goldPerTurn = 1;
 		happiness = 1.0;
 		scienceExcess = 0.0;
-		sciencePerTurn = 3.0;
+		sciencePerTurn = 4.0;
 		numCities = 0;
 		$units = new ArrayList<Unit>();
 		$cities = new ArrayList<City>();
