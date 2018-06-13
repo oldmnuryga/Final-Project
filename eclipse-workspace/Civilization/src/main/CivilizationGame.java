@@ -1205,9 +1205,6 @@ public class CivilizationGame {
 			pickUnit.removeAll();
 			pickBuilding.removeAll();
 			pickWonder.removeAll();
-			pickUnit = new JScrollPane();
-			pickWonder = new JScrollPane();
-			pickBuilding = new JScrollPane();
 			pickUnit.setLayout(null);
 			pickWonder.setLayout(null);
 			pickBuilding.setLayout(null);
@@ -1233,6 +1230,7 @@ public class CivilizationGame {
 				$unitBtns.get(i).addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						frPickProduction.setVisible(false);
+						currentUnitProd = null;
 						currentUnitProd = $potentialUnits.get(y);
 						$unitBtns.remove(((JButton) arg0.getSource()));
 						btnEndTurn.setEnabled(true);
