@@ -1,5 +1,5 @@
 package leaders;
-
+//ABSTRACT CLASS FOR LEADER -- SETS UP UNIQUE CHARACTERISTICS OF PLAYER, INCLUDING COLOR AND SPECIAL ABILITIES -- HAS GETTERS AND SETTERS
 import java.awt.Color;
 import java.util.ArrayList;
 
@@ -134,7 +134,7 @@ public abstract class Leader {
 	public void setCityOnSandImprovement(ImageIcon cityOnSandImprovement) {
 		this.cityOnSandImprovement = cityOnSandImprovement;
 	}
-
+	//RETURNS THE COLORED TILE ICON FOR THE SPECIFIC TERRAIN ID
 	public ImageIcon getTileIconFromID(int ID) {
 		if (ID == 0)
 			return waterTile;
