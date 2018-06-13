@@ -1,5 +1,5 @@
 package civilizations.wonders;
-
+//Class for wonder to be called to be added to a city
 import civilizations.City;
 import civilizations.Wonder;
 import civilizations.buildings.Cathedral;
