@@ -1322,4 +1322,432 @@ public class CivilizationGame {
 			e.printStackTrace();
 		}
 	}
+
+	public static int getTurns() {
+		return turns;
+	}
+
+	public static void setTurns(int turns) {
+		CivilizationGame.turns = turns;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public int getResearchTimeSpent() {
+		return researchTimeSpent;
+	}
+
+	public void setResearchTimeSpent(int researchTimeSpent) {
+		this.researchTimeSpent = researchTimeSpent;
+	}
+
+	public int getUnitProdTimeSpent() {
+		return unitProdTimeSpent;
+	}
+
+	public void setUnitProdTimeSpent(int unitProdTimeSpent) {
+		this.unitProdTimeSpent = unitProdTimeSpent;
+	}
+
+	public int getBuildingProdTimeSpent() {
+		return buildingProdTimeSpent;
+	}
+
+	public void setBuildingProdTimeSpent(int buildingProdTimeSpent) {
+		this.buildingProdTimeSpent = buildingProdTimeSpent;
+	}
+
+	public int getWonderProdTimeSpent() {
+		return wonderProdTimeSpent;
+	}
+
+	public void setWonderProdTimeSpent(int wonderProdTimeSpent) {
+		this.wonderProdTimeSpent = wonderProdTimeSpent;
+	}
+
+	public Object getCurrentProd() {
+		return currentProd;
+	}
+
+	public void setCurrentProd(Object currentProd) {
+		this.currentProd = currentProd;
+	}
+
+	public int getMovesToProd() {
+		return movesToProd;
+	}
+
+	public void setMovesToProd(int movesToProd) {
+		this.movesToProd = movesToProd;
+	}
+
+	public int getMovesToTech() {
+		return movesToTech;
+	}
+
+	public void setMovesToTech(int movesToTech) {
+		this.movesToTech = movesToTech;
+	}
+
+	public JScrollPane getPickUnit() {
+		return pickUnit;
+	}
+
+	public void setPickUnit(JScrollPane pickUnit) {
+		this.pickUnit = pickUnit;
+	}
+
+	public JScrollPane getPickWonder() {
+		return pickWonder;
+	}
+
+	public void setPickWonder(JScrollPane pickWonder) {
+		this.pickWonder = pickWonder;
+	}
+
+	public JScrollPane getPickBuilding() {
+		return pickBuilding;
+	}
+
+	public void setPickBuilding(JScrollPane pickBuilding) {
+		this.pickBuilding = pickBuilding;
+	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	public void setFrame(JFrame frame) {
+		this.frame = frame;
+	}
+
+	public JLabel getLblGold() {
+		return lblGold;
+	}
+
+	public void setLblGold(JLabel lblGold) {
+		this.lblGold = lblGold;
+	}
+
+	public JLabel getLblResearch() {
+		return lblResearch;
+	}
+
+	public void setLblResearch(JLabel lblResearch) {
+		this.lblResearch = lblResearch;
+	}
+
+	public JLabel getLblProduction() {
+		return lblProduction;
+	}
+
+	public void setLblProduction(JLabel lblProduction) {
+		this.lblProduction = lblProduction;
+	}
+
+	public JLabel getLblHappiness() {
+		return lblHappiness;
+	}
+
+	public void setLblHappiness(JLabel lblHappiness) {
+		this.lblHappiness = lblHappiness;
+	}
+
+	public JLabel getLblTurns() {
+		return lblTurns;
+	}
+
+	public void setLblTurns(JLabel lblTurns) {
+		this.lblTurns = lblTurns;
+	}
+
+	public JLabel getLblFood() {
+		return lblFood;
+	}
+
+	public void setLblFood(JLabel lblFood) {
+		this.lblFood = lblFood;
+	}
+
+	public JLabel getLblYear() {
+		return lblYear;
+	}
+
+	public void setLblYear(JLabel lblYear) {
+		this.lblYear = lblYear;
+	}
+
+	public JFrame getFrPickResearch() {
+		return frPickResearch;
+	}
+
+	public void setFrPickResearch(JFrame frPickResearch) {
+		this.frPickResearch = frPickResearch;
+	}
+
+	public JPanel getPaPickProduction() {
+		return paPickProduction;
+	}
+
+	public void setPaPickProduction(JPanel paPickProduction) {
+		this.paPickProduction = paPickProduction;
+	}
+
+	public JFrame getFrPickProduction() {
+		return frPickProduction;
+	}
+
+	public void setFrPickProduction(JFrame frPickProduction) {
+		this.frPickProduction = frPickProduction;
+	}
+
+	public ImageIcon getFog() {
+		return fog;
+	}
+
+	public void setFog(ImageIcon fog) {
+		this.fog = fog;
+	}
+
+	public JButton getBtnEndTurn() {
+		return btnEndTurn;
+	}
+
+	public void setBtnEndTurn(JButton btnEndTurn) {
+		this.btnEndTurn = btnEndTurn;
+	}
+
+	public JButton getBtnShowInstructions() {
+		return btnShowInstructions;
+	}
+
+	public void setBtnShowInstructions(JButton btnShowInstructions) {
+		this.btnShowInstructions = btnShowInstructions;
+	}
+
+	public JPanel getPnePlayerStats() {
+		return pnePlayerStats;
+	}
+
+	public void setPnePlayerStats(JPanel pnePlayerStats) {
+		this.pnePlayerStats = pnePlayerStats;
+	}
+
+	public boolean isCheck() {
+		return check;
+	}
+
+	public void setCheck(boolean check) {
+		this.check = check;
+	}
+
+	public JFrame getTitleFrame() {
+		return titleFrame;
+	}
+
+	public void setTitleFrame(JFrame titleFrame) {
+		this.titleFrame = titleFrame;
+	}
+
+	public JButton getBtnCasimir() {
+		return btnCasimir;
+	}
+
+	public void setBtnCasimir(JButton btnCasimir) {
+		this.btnCasimir = btnCasimir;
+	}
+
+	public JButton getBtnMussolini() {
+		return btnMussolini;
+	}
+
+	public void setBtnMussolini(JButton btnMussolini) {
+		this.btnMussolini = btnMussolini;
+	}
+
+	public JButton getBtnGenghis() {
+		return btnGenghis;
+	}
+
+	public void setBtnGenghis(JButton btnGenghis) {
+		this.btnGenghis = btnGenghis;
+	}
+
+	public JButton getBtnSejong() {
+		return btnSejong;
+	}
+
+	public void setBtnSejong(JButton btnSejong) {
+		this.btnSejong = btnSejong;
+	}
+
+	public JButton getBtnWashington() {
+		return btnWashington;
+	}
+
+	public void setBtnWashington(JButton btnWashington) {
+		this.btnWashington = btnWashington;
+	}
+
+	public JLabel getLblGenghis() {
+		return lblGenghis;
+	}
+
+	public void setLblGenghis(JLabel lblGenghis) {
+		this.lblGenghis = lblGenghis;
+	}
+
+	public JLabel getLblWashington() {
+		return lblWashington;
+	}
+
+	public void setLblWashington(JLabel lblWashington) {
+		this.lblWashington = lblWashington;
+	}
+
+	public JLabel getLblSejong() {
+		return lblSejong;
+	}
+
+	public void setLblSejong(JLabel lblSejong) {
+		this.lblSejong = lblSejong;
+	}
+
+	public JLabel getLblMussolini() {
+		return lblMussolini;
+	}
+
+	public void setLblMussolini(JLabel lblMussolini) {
+		this.lblMussolini = lblMussolini;
+	}
+
+	public JLabel getLblCasimir() {
+		return lblCasimir;
+	}
+
+	public void setLblCasimir(JLabel lblCasimir) {
+		this.lblCasimir = lblCasimir;
+	}
+
+	public JPanel getMapPanel() {
+		return mapPanel;
+	}
+
+	public void setMapPanel(JPanel mapPanel) {
+		this.mapPanel = mapPanel;
+	}
+
+	public JScrollPane getMapPane() {
+		return mapPane;
+	}
+
+	public void setMapPane(JScrollPane mapPane) {
+		this.mapPane = mapPane;
+	}
+
+	public JFrame getFrInstructions() {
+		return frInstructions;
+	}
+
+	public void setFrInstructions(JFrame frInstructions) {
+		this.frInstructions = frInstructions;
+	}
+
+	public JFrame getCityScreen() {
+		return cityScreen;
+	}
+
+	public void setCityScreen(JFrame cityScreen) {
+		this.cityScreen = cityScreen;
+	}
+
+	public JLabel getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(JLabel cityName) {
+		this.cityName = cityName;
+	}
+
+	public TileListener getTileListener() {
+		return tileListener;
+	}
+
+	public void setTileListener(TileListener tileListener) {
+		this.tileListener = tileListener;
+	}
+
+	public static ImageIcon getIconGenghis() {
+		return iconGenghis;
+	}
+
+	public static void setIconGenghis(ImageIcon iconGenghis) {
+		CivilizationGame.iconGenghis = iconGenghis;
+	}
+
+	public static ImageIcon getIconCasimir() {
+		return iconCasimir;
+	}
+
+	public static void setIconCasimir(ImageIcon iconCasimir) {
+		CivilizationGame.iconCasimir = iconCasimir;
+	}
+
+	public static ImageIcon getIconMussolini() {
+		return iconMussolini;
+	}
+
+	public static void setIconMussolini(ImageIcon iconMussolini) {
+		CivilizationGame.iconMussolini = iconMussolini;
+	}
+
+	public static ImageIcon getIconSejong() {
+		return iconSejong;
+	}
+
+	public static void setIconSejong(ImageIcon iconSejong) {
+		CivilizationGame.iconSejong = iconSejong;
+	}
+
+	public static ImageIcon getIconWashington() {
+		return iconWashington;
+	}
+
+	public static void setIconWashington(ImageIcon iconWashington) {
+		CivilizationGame.iconWashington = iconWashington;
+	}
+
+	public static ImageIcon getIconTrophy() {
+		return iconTrophy;
+	}
+
+	public static void setIconTrophy(ImageIcon iconTrophy) {
+		CivilizationGame.iconTrophy = iconTrophy;
+	}
+
+	public static ImageIcon getBackground1() {
+		return background1;
+	}
+
+	public static void setBackground1(ImageIcon background1) {
+		CivilizationGame.background1 = background1;
+	}
+
+	public Technology getCurrentResearchedTech() {
+		return currentResearchedTech;
+	}
+
+	public void setCurrentResearchedTech(Technology currentResearchedTech) {
+		this.currentResearchedTech = currentResearchedTech;
+	}
+
+	public int getSCROLL_SPEED() {
+		return SCROLL_SPEED;
+	}
 }
