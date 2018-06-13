@@ -794,7 +794,7 @@ public class CivilizationGame {
 							repaintTiles();
 							player.get$cities().get(0).get$cityTiles().add(Tile.get$map()[i + tempX][j + tempY]);
 						} catch (Exception e) {
-							System.out.println("growCity() failed.");
+//							System.out.println("growCity() failed.");
 						}
 					}
 				}
