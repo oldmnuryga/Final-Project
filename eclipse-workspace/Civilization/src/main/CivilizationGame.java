@@ -957,7 +957,7 @@ public class CivilizationGame {
 		} catch (Exception e) {
 		}
 	}
-
+	//CALCULATES HOW LONG IT TAKES TO PRODUCE AN UNIT TURNWISE
 	public double calculateMovesUnitProd(int unitID, double prodPerTurn) {
 		double moves = 1;
 		for (int i = 0; i < Unit.get$allUnits().size(); i++) {
@@ -968,7 +968,7 @@ public class CivilizationGame {
 		}
 		return moves;
 	}
-
+	//FINISHES THE PRODUCTION OF AN UNIT AND ADDS IT 
 	public void finishUnitProd(Unit finished) {
 		unitProdTimeSpent = 1;
 		if (finished instanceof Archer)
@@ -1012,7 +1012,7 @@ public class CivilizationGame {
 
 		currentProd = null;
 	}
-
+	//CALCULATES HOW LONG ITLLL TAKE TO PRODUCE A BUILDING TURNWISE
 	public double calculateMovesBuildingProd(int buildID, double prodPerTurn) {
 		double moves = 1;
 		for (int i = 0; i < Building.get$allBuildings().size(); i++) {
@@ -1023,7 +1023,7 @@ public class CivilizationGame {
 		}
 		return moves;
 	}
-
+	//FINISHES THE BUILDING PRODUCTION AND ADDS IT
 	public void finishBuildingProd(Building e) {
 		buildingProdTimeSpent = 1;
 		if (e instanceof Aqueduct)
@@ -1074,7 +1074,7 @@ public class CivilizationGame {
 				"Completed Building", JOptionPane.INFORMATION_MESSAGE);
 		currentProd = null;
 	}
-
+	//CALCULATES THE MOVES REQUIRED TO BUILD A WONDER TURNWISE
 	public double calculateMovesWonderProd(int wonderID, double prodPerTurn) {
 		double moves = 1;
 		for (int i = 0; i < Wonder.get$allWonders().size(); i++) {
@@ -1085,7 +1085,7 @@ public class CivilizationGame {
 		}
 		return moves;
 	}
-
+	//FINISHES THE PRODUCTION OF A WONDER AND ADDS IT 
 	public void finishWonderProd(Wonder e) {
 		wonderProdTimeSpent = 1;
 		if (e instanceof ApolloProgram)
@@ -1114,7 +1114,7 @@ public class CivilizationGame {
 		JOptionPane.showMessageDialog(frame, "You finished " + e.getName() + ": " + e.getDescription(),
 				"Completed Wonder", JOptionPane.INFORMATION_MESSAGE);
 	}
-
+	//CALCULATES THE TURNS REQUIRED TO RESEARCH A TECH
 	public double calculateMovesTech(int techID, double sciPerTurn) {
 		double moves = 1;
 		for (int i = 0; i < Technology.get$technologies().size(); i++) {
@@ -1125,7 +1125,7 @@ public class CivilizationGame {
 		}
 		return moves;
 	}
-
+	//CHECKS IF A UNIT CAN MOVE TO A CERTAIN LOCATION OR TERRAIN, BASED ON THEIR NUMBER OF MOVES
 	public boolean canMove(Unit unit, int x, int y, int horizontalMod, int verticalMod) {
 		try {
 			if (unit.getMovesLeft() - Tile.get$map()[x + horizontalMod][y + verticalMod].getMovesRequired() >= 0) {
@@ -1145,11 +1145,11 @@ public class CivilizationGame {
 		}
 		return false;
 	}
-
+	//CALCULATES HOW MANY TURNS A UNIT HAS LEFT FOR THE TURN
 	public void calculateMovesLeft(Unit unit, int x, int y, int horizontalMod, int verticalMod) {
 		unit.setMovesLeft(unit.getMovesLeft() - Tile.get$map()[x + horizontalMod][y + verticalMod].getMovesRequired());
 	}
-
+	//DELETES A UNIT FROM THE MAP
 	public void removeUnit(int x, int y) {
 		// Tile.get$map()[x][y].getUnitOnTile().removeUnit();
 		ArrayList<Unit> $tempArr = Tile.get$map()[x][y].getUnitOnTile().getOwner().get$units();
@@ -1157,7 +1157,7 @@ public class CivilizationGame {
 		Tile.get$map()[x][y].getUnitOnTile().getOwner().set$units($tempArr);
 		Tile.get$map()[x][y].setUnitOnTile(null);
 	}
-
+	//DISPLAYS THE RESEARCH SCREEN AND LISTENS FOR WHICH RESEARCH IS SUPPOSED TO BE RESEARCHED
 	public void displayResearch() {
 		try {
 			btnEndTurn.setEnabled(false);
@@ -1192,7 +1192,7 @@ public class CivilizationGame {
 		} catch (Exception e) {
 		}
 	}
-
+	//DISPLAYS THE PRODUCTION SCREEN AND LISTENS TO SEE WHICH OBJECT SHOULD BE BUILT
 	public void displayProduction() {
 		try {
 			frPickProduction.repaint();
