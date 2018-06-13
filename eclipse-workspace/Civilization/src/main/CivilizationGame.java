@@ -1,5 +1,5 @@
 package main;
-
+//MAIN CLASS - SETS UP MOST THINGS SUCH AS GRAPHICS, PRODUCTION, RESEARCH, AND OTHER LOGIC
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -69,7 +69,7 @@ public class CivilizationGame {
 	private int unitProdTimeSpent = 1;
 	private int buildingProdTimeSpent = 1;
 	private int wonderProdTimeSpent = 1;
-
+	//THING BEING CREATED
 	private Object currentProd;
 
 	private int movesToProd;
@@ -98,12 +98,10 @@ public class CivilizationGame {
 	private JPanel paPickProduction = new JPanel();
 	private JFrame frPickProduction = new JFrame("Production");
 	private ImageIcon fog = new ImageIcon(Tile.class.getClassLoader().getResource("map/resources/fog.png"));
-
 	private JButton btnEndTurn = new JButton("End Turn");
 	private JButton btnShowInstructions = new JButton("How to Play the Game");
 	private JPanel pnePlayerStats = new JPanel();
 	private boolean check = false;
-
 	private JFrame titleFrame = new JFrame("Society Simulator VII");
 	private JButton btnCasimir = new JButton(iconCasimir);
 	private JButton btnMussolini = new JButton(iconMussolini);
@@ -115,28 +113,12 @@ public class CivilizationGame {
 	private JPanel mapPanel = new JPanel();
 	private JScrollPane mapPane;
 	private JButton[][] $mapButtons = new JButton[Tile.getMAP_SIZE()][Tile.getMAP_SIZE()];
-
 	private JFrame frInstructions = new JFrame("Civilization");
-
 	private JFrame cityScreen = new JFrame("City View");
 	private JLabel cityName;
 
 	// BUTTON LISTENERS
 	private TileListener tileListener = new TileListener();
-
-	// Import tile graphics
-	/*
-	 * static ImageIcon forestTileII = new
-	 * ImageIcon(Tile.class.getResource("map/resources/forestTile.png")); static
-	 * ImageIcon grassTileII = new
-	 * ImageIcon(Tile.class.getResource("map/resources/grassTile.png")); static
-	 * ImageIcon mountainTileII = new
-	 * ImageIcon(Tile.class.getResource("src/map/resources/mountainTile.png"));
-	 * static ImageIcon sandTileII = new
-	 * ImageIcon(Tile.class.getResource("src/map/resources/sandTile.png")); static
-	 * ImageIcon waterTileII = new
-	 * ImageIcon(Tile.class.getResource("src/map/resources/waterTile.png"));
-	 */
 
 	static ImageIcon iconGenghis = new ImageIcon(
 			CivilizationGame.class.getClassLoader().getResource("main/resources/genghisIcon.jpg"));
@@ -156,7 +138,6 @@ public class CivilizationGame {
 	private Technology currentResearchedTech;
 
 	public CivilizationGame() {
-		// ADD STUFF
 
 	}
 
@@ -188,6 +169,7 @@ public class CivilizationGame {
 		lblGenghis.setForeground(Color.WHITE);
 		lblGenghis.setBounds(300, 580, 165, 30);
 		btnGenghis.setBounds(300, 605, 165, 251);
+		//BUTTON LISTENER FOR THE DIFFERENT CIVS ON THE TITLE SCREEN
 		btnGenghis.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setPlayer(new Player(new Mongolia()));
@@ -196,13 +178,6 @@ public class CivilizationGame {
 				spawnInitialSettler();
 				spawnInitialWarrior();
 				updatePlayerStats();
-				/*
-				 * try { sounds.genghisSoundPlay(); } catch (UnsupportedAudioFileException e) {
-				 * // TODO Auto-generated catch block e.printStackTrace(); } catch (IOException
-				 * e) { // TODO Auto-generated catch block e.printStackTrace(); } catch
-				 * (LineUnavailableException e) { // TODO Auto-generated catch block
-				 * e.printStackTrace(); }
-				 */
 				frame.pack();
 			}
 		});
@@ -212,6 +187,7 @@ public class CivilizationGame {
 		lblWashington.setForeground(Color.WHITE);
 		lblWashington.setBounds(600, 580, 200, 30);
 		btnWashington.setBounds(600, 605, 165, 251);
+		//BUTTON LISTENER FOR THE DIFFERENT CIVS ON THE TITLE SCREEN
 		btnWashington.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setPlayer(new Player(new America()));
@@ -229,6 +205,7 @@ public class CivilizationGame {
 		lblSejong.setForeground(Color.WHITE);
 		lblSejong.setBounds(900, 580, 165, 30);
 		btnSejong.setBounds(900, 605, 165, 251);
+				//BUTTON LISTENER FOR THE DIFFERENT CIVS ON THE TITLE SCREEN
 		btnSejong.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setPlayer(new Player(new Korea()));
@@ -246,6 +223,7 @@ public class CivilizationGame {
 		lblMussolini.setForeground(Color.WHITE);
 		lblMussolini.setBounds(1200, 580, 165, 30);
 		btnMussolini.setBounds(1200, 605, 165, 251);
+				//BUTTON LISTENER FOR THE DIFFERENT CIVS ON THE TITLE SCREEN
 		btnMussolini.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setPlayer(new Player(new Italy()));
@@ -263,6 +241,7 @@ public class CivilizationGame {
 		lblCasimir.setForeground(Color.WHITE);
 		lblCasimir.setBounds(1500, 580, 165, 30);
 		btnCasimir.setBounds(1500, 605, 165, 251);
+				//BUTTON LISTENER FOR THE DIFFERENT CIVS ON THE TITLE SCREEN
 		btnCasimir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				setPlayer(new Player(new Poland()));
@@ -289,7 +268,7 @@ public class CivilizationGame {
 				// other things
 			}
 		});
-
+		//SETS UP INSTRUCTIONS PANEL
 		JTabbedPane tbpneInstructions = new JTabbedPane(JTabbedPane.LEFT, JTabbedPane.WRAP_TAB_LAYOUT);
 		JTextArea panel1 = new JTextArea("Welcome to Society Simulator VII. " + "\n"
 				+ "The aim of this game is to find a city and grow as much as " + "\n"
@@ -380,6 +359,7 @@ public class CivilizationGame {
 		});
 		btnShowInstructions.setBounds(1700, 0, 200, 50);
 		frame.add(btnShowInstructions);
+		//LABELS AT THE TOP FOR PLAYER STATS
 		pnePlayerStats.setBounds(0, 50, 200, 500);
 		frame.add(pnePlayerStats);
 		lblGold.setBounds(200, 0, 150, 50);
@@ -407,12 +387,8 @@ public class CivilizationGame {
 		mapPane.setAutoscrolls(true);
 		mapPane.getVerticalScrollBar().setUnitIncrement(SCROLL_SPEED);
 		mapPane.getHorizontalScrollBar().setUnitIncrement(SCROLL_SPEED);
-		// mapPane.setPreferredSize(new Dimension(2000, 2000));
-		// mapPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		// mapPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		// mapPane.setBackground(Color.red);
 		frame.add(mapPane);
-
+		//SETS UP MAP TILES ON THE MAIN SCREEN
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
 				$mapButtons[i][j] = new JButton(Tile.get$map()[i][j].getTileImageIcon());
@@ -432,27 +408,18 @@ public class CivilizationGame {
 		frPickProduction.setPreferredSize(new Dimension(1200, 900));
 		frPickProduction.setLayout(null);
 		frPickProduction.setResizable(false);
-
 		frInstructions.pack();
 		titleFrame.pack();
 	}
-
-	public void displayCityInfo() {
-		cityScreen.setPreferredSize(new Dimension(600, 800));
-		cityScreen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		cityScreen.setLayout(null);
-		cityName.setFont(new Font("Monospaced", Font.ITALIC, 32));
-		cityName.setBounds(6, 12, 165, cityScreen.getPreferredSize().width - 12);
-	}
-
+	//UPDATES LABEL FOR TURNS EVERY TURN
 	public void updateTurnText() {
 		lblTurns.setText("Turns: " + turns);
 	}
-
+	//UPDATES LABEL FOR YEAR EVERY TURN
 	public void updateYearText() {
 		lblYear.setText("Year: " + Math.abs(year) + ((year < 0) ? " BC" : " AD"));
 	}
-
+	//UPDATES LABEL FOR FOOD EVERY TURN
 	public void updateFoodText() {
 		int foodTotal = 0;
 		for (int i = 0; i < player.get$cities().size(); i++) {
@@ -465,7 +432,7 @@ public class CivilizationGame {
 		}
 		lblFood.setText("Food: " + foodTotal);
 	}
-
+	//UPDATES LABEL FOR GOLD EVERY TURN
 	public void updateGoldText() {
 		int goldTotal = 0;
 		for (int i = 0; i < player.get$cities().size(); i++) {
@@ -478,7 +445,7 @@ public class CivilizationGame {
 		}
 		lblGold.setText("Gold: " + goldTotal);
 	}
-
+	//UPDATES LABEL FOR PRODUCTION EVERY TURN
 	public void updateProductionText() {
 		int scienceTotal = 0;
 		for (int i = 0; i < player.get$cities().size(); i++) {
@@ -491,11 +458,7 @@ public class CivilizationGame {
 		}
 		lblProduction.setText("Production: " + scienceTotal);
 	}
-
-	// AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-	// SHOULD BE PRODUCTION ABOVE! SOMEONE FIX!
-	//////// ^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+	//UPDATES LABEL FOR SCIENCE EVERY TURN
 	public void updateScienceText() {
 		int scienceTotal = 0;
 		for (int i = 0; i < player.get$cities().size(); i++) {
@@ -508,7 +471,7 @@ public class CivilizationGame {
 		}
 		lblResearch.setText("Science: " + scienceTotal);
 	}
-
+	//UPDATES LABEL FOR HAPPINESS EVERY TURN
 	public void updateHappinessText() {
 		int happinessTotal = 0;
 		for (int i = 0; i < player.get$cities().size(); i++) {
@@ -520,7 +483,7 @@ public class CivilizationGame {
 		}
 		lblHappiness.setText("Happiness: " + happinessTotal);
 	}
-
+	//UPDATES THE LABELS FOR PLAYER STATS ON THE LEFT SIDE OF FRAME
 	public void updatePlayerStats() {
 		pnePlayerStats.removeAll();
 		// PLAYER NAME
@@ -563,7 +526,7 @@ public class CivilizationGame {
 	public void setSettlerTempY(int settlerTempY) {
 		this.settlerTempY = settlerTempY;
 	}
-
+	//REFRESHES THE TILE GRAPHICS, USED WHEN AN ICON IS CHANGED LIKE A UNIT IS ADDED OR MOVED OR CITY IS FOUNDED
 	public void repaintTiles() {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
@@ -586,7 +549,7 @@ public class CivilizationGame {
 		repaintFog();
 		frame.repaint();
 	}
-
+	//REFRESHES THE BLACK FOG OF WAR FOR WHEN A UNIT MOVES TO A PREVIOUSLY UNEXPLORED AREA
 	private void repaintFog() {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
@@ -618,7 +581,7 @@ public class CivilizationGame {
 			Tile.get$map()[i][j] = new ForestTile();
 		repaintTiles();
 	}
-
+	//SETS UP THE INITIAL SETTLER THAT SPAWNS AT START OF GAME
 	public void spawnInitialSettler() {
 		Random rand = new Random();
 		boolean found = true;
@@ -638,7 +601,7 @@ public class CivilizationGame {
 			}
 		}
 	}
-
+	//SPAWNS INITIAL WARRIOR NEAR THE INITIAL SETTLER AT THE BEGINNING OF THE GAME
 	public boolean spawnInitialWarrior() {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
@@ -661,7 +624,7 @@ public class CivilizationGame {
 		}
 		return false;
 	}
-
+	//SIGNIFIES END OF TURN. UPDATES ALL LABELS, PRODUCTION, RESEARCH, CITY GROWTH, ETC.
 	public void endTurn() {
 		turns++;
 		changeYear();
@@ -712,7 +675,7 @@ public class CivilizationGame {
 		} catch (Exception e) {
 		}
 	}
-
+	//SETS UP THE YEAR BASED ON MATHEMATICAL FORMULA -- DIFFERENT TIME PERIODS HAVE DIFFERENT INCREMENTS
 	public void changeYear() {
 		if (turns == 1)
 			year = -3000;
@@ -722,7 +685,7 @@ public class CivilizationGame {
 		if (turns > 303)
 			endGame();
 	}
-
+	//USED TO END THE GAME
 	public void endGame() {
 		// custom title, custom icon
 		JOptionPane.showMessageDialog(frame, "You have won the game.", "Congrats.", JOptionPane.INFORMATION_MESSAGE,
@@ -741,7 +704,7 @@ public class CivilizationGame {
 	public JButton[][] get$mapButtons() {
 		return $mapButtons;
 	}
-
+	//RANDOMLY ADDS AN ADJACENT TILE TO THE CITY EVERY 10 TURNS
 	public void growCity() {
 		for (int i = 0; i < $mapButtons.length; i++) {
 			for (int j = 0; j < $mapButtons[i].length; j++) {
@@ -791,7 +754,7 @@ public class CivilizationGame {
 			}
 		}
 	}
-
+	//IMPLEMENTS THE SPECIAL ABILITY FOR EACH LEADER AS SPECIFIED WITHIN THEIR CONSTRUCTORS
 	public void uniqueLeaderAbility() {
 		if (player.getLeader().getLeaderID() == 0) {
 			// america
@@ -843,7 +806,7 @@ public class CivilizationGame {
 	public void set$mapButtons(JButton[][] $mapButtons) {
 		this.$mapButtons = $mapButtons;
 	}
-
+	//LARGE ACTIONLISTENER THAT LISTENS FOR WHEN A MAPTILE IS CLICKED -- HAS VARIOUS FUNCTIONS
 	public class TileListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			// Click sound
@@ -888,8 +851,7 @@ public class CivilizationGame {
 								}
 							});
 
-							// Found City mk2
-
+							//PRODUCTION SCREEN
 							$mapButtons[i][j].addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {
 									if (Tile.get$map()[x][y].isCity() == true
@@ -975,20 +937,9 @@ public class CivilizationGame {
 						});
 					}
 				}
-
-			// CITY SCREEN
-			/*
-			 * for (int k = 0; k < $mapButtons.length; k++) { for (int k2 = 0; k2 <
-			 * $mapButtons.length; k2++) { if (e.getSource() == $mapButtons[k][k2]) { if
-			 * (condition) {
-			 * 
-			 * } } }
-			 * 
-			 * }
-			 */
 		}
 	}
-
+	//ADDS THE TECHNOLOGY BEING RESEARCHED AND SETS UP FOR CHOOSING ANOTHER
 	public void finishResearch(Technology finished) {
 		player.get$cities().get(0).setScienceTotal(0);
 		updateScienceText();
