@@ -787,9 +787,7 @@ public class CivilizationGame {
 								min--;
 								max++;
 							}
-						} catch (Exception e) {
-							System.out.println("growCity() failed.");
-						}
+						
 						int tempX = g.nextInt(max + 1 - min) + min;
 						int tempY = g.nextInt(max + 1 - min) + min;
 						while (Tile.get$map()[i + tempX][j + tempY].getOwner() != null) {
@@ -799,6 +797,9 @@ public class CivilizationGame {
 						Tile.get$map()[i + tempX][j + tempY].setOwner(player);
 						repaintTiles();
 						player.get$cities().get(0).get$cityTiles().add(Tile.get$map()[i + tempX][j + tempY]);
+						} catch (Exception e) {
+							System.out.println("growCity() failed.");
+						}
 					}
 				}
 			}
@@ -905,6 +906,7 @@ public class CivilizationGame {
 
 							$mapButtons[i][j].addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {
+									if(Tile.get$map()[x][y].isCity() == true) {
 									btnEndTurn.setEnabled(false);
 									// JViewport viewport = new JViewport();
 									frPickProduction.setPreferredSize(new Dimension(1200, 900));
@@ -1063,6 +1065,7 @@ public class CivilizationGame {
 											}
 										});
 									}
+									
 
 									/*
 									 * for (int i = 0; i < player.get$cities().get(0).get$potentialWonders().size();
@@ -1082,7 +1085,9 @@ public class CivilizationGame {
 									frPickProduction.repaint();
 									frPickProduction.pack();
 								}
+								}
 							});
+							
 						}
 					}
 				}
