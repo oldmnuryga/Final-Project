@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.security.acl.Owner;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.PrimitiveIterator.OfDouble;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -58,9 +59,7 @@ public class CivilizationGame {
 	private int buildingProdTimeSpent = 1;
 	private int wonderProdTimeSpent = 1;
 
-	private Unit currentUnitProd;
-	private Building currentBuildingProd;
-	private Wonder currentWonderProd;
+	private Object currentProd;
 
 	private int movesToProd;
 	private int movesToTech;
@@ -417,7 +416,6 @@ public class CivilizationGame {
 		frPickProduction.setPreferredSize(new Dimension(1200, 900));
 		frPickProduction.setLayout(null);
 		frPickProduction.setResizable(false);
-		frPickProduction.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		frInstructions.pack();
 		titleFrame.pack();
@@ -668,24 +666,27 @@ public class CivilizationGame {
 				}
 			}
 		}
-		if (currentBuildingProd != null) {
-			buildingProdTimeSpent++;
-			if (buildingProdTimeSpent >= (int) calculateMovesBuildingProd(currentBuildingProd.getBuildingID(),
-					player.get$cities().get(0).getProductionRate()))
-				finishBuildingProd(currentBuildingProd);
-		}
-		if (currentUnitProd != null) {
-			unitProdTimeSpent++;
-			if (unitProdTimeSpent >= (int) calculateMovesUnitProd(currentUnitProd.getUnitID(),
-					player.get$cities().get(0).getProductionRate()))
-				finishUnitProd(currentUnitProd);
-		}
-		if (currentWonderProd != null) {
-			wonderProdTimeSpent++;
-			if (wonderProdTimeSpent >= (int) calculateMovesWonderProd(currentWonderProd.getWonderID(),
-					player.get$cities().get(0).getProductionRate()))
-				finishWonderProd(currentWonderProd);
-		}
+		if (currentProd instanceof Building)
+			if (currentProd != null) {
+				buildingProdTimeSpent++;
+				if (buildingProdTimeSpent >= (int) calculateMovesBuildingProd(((Building) currentProd).getBuildingID(),
+						player.get$cities().get(0).getProductionRate()))
+					finishBuildingProd((Building) currentProd);
+			}
+		if (currentProd instanceof Unit)
+			if (currentProd != null) {
+				unitProdTimeSpent++;
+				if (unitProdTimeSpent >= (int) calculateMovesUnitProd(((Unit) currentProd).getUnitID(),
+						player.get$cities().get(0).getProductionRate()))
+					finishUnitProd((Unit) currentProd);
+			}
+		if (currentProd instanceof Wonder)
+			if (currentProd != null) {
+				wonderProdTimeSpent++;
+				if (wonderProdTimeSpent >= (int) calculateMovesWonderProd(((Wonder) currentProd).getWonderID(),
+						player.get$cities().get(0).getProductionRate()))
+					finishWonderProd((Wonder) currentProd);
+			}
 
 		growCity();
 		if (researchTimeSpent >= movesToTech) {
@@ -870,7 +871,8 @@ public class CivilizationGame {
 
 							$mapButtons[i][j].addActionListener(new ActionListener() {
 								public void actionPerformed(ActionEvent arg0) {
-									if (Tile.get$map()[x][y].isCity() == true)
+									if (Tile.get$map()[x][y].isCity() == true
+											&& Tile.get$map()[x][y].getUnitOnTile() == null)
 										displayProduction();
 								}
 							});
@@ -1032,7 +1034,7 @@ public class CivilizationGame {
 		JOptionPane.showMessageDialog(frame, "You finished " + finished.getUnitName(), "Completed Unit",
 				JOptionPane.INFORMATION_MESSAGE);
 
-		currentBuildingProd = null;
+		currentProd = null;
 	}
 
 	public double calculateMovesBuildingProd(int buildID, double prodPerTurn) {
@@ -1091,7 +1093,7 @@ public class CivilizationGame {
 				.setBuilt(true);
 		JOptionPane.showMessageDialog(frame, "You finished " + e.getName(), "Completed Building",
 				JOptionPane.INFORMATION_MESSAGE);
-		currentBuildingProd = null;
+		currentProd = null;
 	}
 
 	public double calculateMovesWonderProd(int wonderID, double prodPerTurn) {
@@ -1230,8 +1232,7 @@ public class CivilizationGame {
 				$unitBtns.get(i).addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						frPickProduction.setVisible(false);
-						currentUnitProd = null;
-						currentUnitProd = $potentialUnits.get(y);
+						currentProd = $potentialUnits.get(y);
 						$unitBtns.remove(((JButton) arg0.getSource()));
 						btnEndTurn.setEnabled(true);
 					}
@@ -1247,7 +1248,7 @@ public class CivilizationGame {
 				$wonderBtns.get(i).addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						frPickProduction.setVisible(false);
-						currentWonderProd = $potentialWonders.get(y);
+						currentProd = $potentialWonders.get(y);
 						$wonderBtns.remove(((JButton) arg0.getSource()));
 						btnEndTurn.setEnabled(true);
 					}
@@ -1263,7 +1264,7 @@ public class CivilizationGame {
 				$buildingBtns.get(i).addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						frPickProduction.setVisible(false);
-						currentBuildingProd = $potentialBuildings.get(y);
+						currentProd = $potentialBuildings.get(y);
 						$buildingBtns.remove(((JButton) arg0.getSource()));
 						btnEndTurn.setEnabled(true);
 					}
