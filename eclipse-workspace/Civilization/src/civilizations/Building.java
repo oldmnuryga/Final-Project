@@ -14,7 +14,7 @@ public abstract class Building extends Structure {
 
 	public abstract void uniqueAbility(); // different per building, each one is different from one another
 
-	public abstract void removeAbility(); // removes the building
+	public abstract void removeAbility(); // removes the special ability caused by the building, is used when building is deleted from city
 
 	public int getGoldMaintenance() {
 		return goldMaintenance;
