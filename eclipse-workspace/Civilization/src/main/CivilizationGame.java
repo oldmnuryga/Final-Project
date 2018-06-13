@@ -1105,7 +1105,7 @@ public class CivilizationGame {
 				"Completed Building", JOptionPane.INFORMATION_MESSAGE);
 		currentProd = null;
 	}
-
+ 
 	public double calculateMovesWonderProd(int wonderID, double prodPerTurn) {
 		double moves = 1;
 		for (int i = 0; i < Wonder.get$allWonders().size(); i++) {
