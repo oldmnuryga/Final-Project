@@ -1191,6 +1191,7 @@ public class CivilizationGame {
 
 	public void displayProduction() {
 		try {
+			frPickProduction.repaint();
 			btnEndTurn.setEnabled(false);
 			player.get$cities().get(0).findPotentialUnits();
 			player.get$cities().get(0).findPotentialBuildings();
@@ -1201,14 +1202,14 @@ public class CivilizationGame {
 			ArrayList<JButton> $buildingBtns = new ArrayList<JButton>();
 			ArrayList<JButton> $unitBtns = new ArrayList<JButton>();
 			ArrayList<JButton> $wonderBtns = new ArrayList<JButton>();
+			pickUnit.removeAll();
+			pickBuilding.removeAll();
+			pickWonder.removeAll();
 			pickUnit = new JScrollPane();
-			pickUnit.createVerticalScrollBar();
-			pickUnit.setLayout(null);
 			pickWonder = new JScrollPane();
-			pickWonder.createVerticalScrollBar();
-			pickWonder.setLayout(null);
 			pickBuilding = new JScrollPane();
-			pickBuilding.createVerticalScrollBar();
+			pickUnit.setLayout(null);
+			pickWonder.setLayout(null);
 			pickBuilding.setLayout(null);
 			pickUnit.setBounds(0, 0, 400, 1000);
 			pickWonder.setBounds(400, 0, 400, 1000);
@@ -1222,55 +1223,55 @@ public class CivilizationGame {
 			JLabel lblBuilding = new JLabel("Buildings: ");
 			lblBuilding.setBounds(20, 0, 300, 30);
 			pickBuilding.add(lblBuilding);
-			frPickProduction.setVisible(true);
-			int z = 30;
+			int z = 30, x = 20;
 			for (int i = 0; i < $potentialUnits.size(); i++) {
 				$unitBtns.add(new JButton($potentialUnits.get(i).getUnitName()));
-				pickUnit.add($unitBtns.get(i));
-				$unitBtns.get(i).setBounds(20, z, 360, 35);
+				$unitBtns.get($unitBtns.size() - 1).setBounds(x, z, 360, 35);
+				pickUnit.add($unitBtns.get($unitBtns.size() - 1));
 				z += 50;
 				int y = i;
 				$unitBtns.get(i).addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						frPickProduction.setVisible(false);
 						currentUnitProd = $potentialUnits.get(y);
-						$unitBtns.clear();
+						$unitBtns.remove(((JButton) arg0.getSource()));
 						btnEndTurn.setEnabled(true);
 					}
 				});
 			}
-			int q = 30;
+			int q = 30, h = 20;
 			for (int i = 0; i < $potentialWonders.size(); i++) {
 				$wonderBtns.add(new JButton($potentialWonders.get(i).getName()));
-				pickWonder.add($wonderBtns.get(i));
-				$wonderBtns.get(i).setBounds(20, q, 360, 35);
+				pickWonder.add($wonderBtns.get($wonderBtns.size() - 1));
+				$wonderBtns.get($wonderBtns.size() - 1).setBounds(h, q, 360, 35);
 				q += 50;
 				int y = i;
 				$wonderBtns.get(i).addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						frPickProduction.setVisible(false);
 						currentWonderProd = $potentialWonders.get(y);
-						$wonderBtns.clear();
+						$wonderBtns.remove(((JButton) arg0.getSource()));
 						btnEndTurn.setEnabled(true);
 					}
 				});
 			}
-			int r = 30;
+			int r = 30, w = 30;
 			for (int i = 0; i < $potentialBuildings.size(); i++) {
 				$buildingBtns.add(new JButton($potentialBuildings.get(i).getName()));
-				pickBuilding.add($buildingBtns.get(i));
-				$buildingBtns.get(i).setBounds(20, r, 360, 35);
+				pickBuilding.add($buildingBtns.get($buildingBtns.size() - 1));
+				$buildingBtns.get($buildingBtns.size() - 1).setBounds(w, r, 360, 35);
 				r += 50;
 				int y = i;
 				$buildingBtns.get(i).addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						frPickProduction.setVisible(false);
 						currentBuildingProd = $potentialBuildings.get(y);
-						$buildingBtns.clear();
+						$buildingBtns.remove(((JButton) arg0.getSource()));
 						btnEndTurn.setEnabled(true);
 					}
 				});
 			}
+			frPickProduction.setVisible(true);
 			frPickProduction.add(pickUnit);
 			frPickProduction.add(pickWonder);
 			frPickProduction.add(pickBuilding);
