@@ -1,5 +1,5 @@
 package map;
-
+//ABSTRACT CLASS FOR TILE -- CONTAINS GETTERS AND SETTERS, METHODS, AND MAKES IT EASIER TO CREATE THE SUBCLASS TILES
 import java.util.Random;
 
 import javax.swing.ImageIcon;
@@ -42,18 +42,10 @@ public abstract class Tile {
 	protected boolean isCity = false;
 	protected Unit unitOnTile;
 	protected static Tile[][] $map = new Tile[MAP_SIZE][MAP_SIZE];
-
+	
+	//GENERATES THE MAP AS A SERIES OF INTEGERS REFERRING TO THE TERRAIN IDS
 	public static void generateMap() {
 		Random rand = new Random();
-		/*
-		 * for (int i = 0; i < $map.length; i++) { for (int j = 0; j < $map[i].length;
-		 * j++) { //$map[i][j] = new WaterTile(); int temp = rand.nextInt(5); if(temp ==
-		 * 0) $map[i][j] = new WaterTile(); if(temp == 1) $map[i][j] = new GrassTile();
-		 * if(temp == 2) $map[i][j] = new SandTile(); if(temp == 3) $map[i][j] = new
-		 * MountainTile(); if(temp == 4) $map[i][j] = new ForestTile(); int[]
-		 * $tempLocation = {i, j}; $map[i][j].set$location($tempLocation); } }
-		 */
-
 		int[][] $genArray = new int[MAP_SIZE][MAP_SIZE]; // Makes a temp int array to store information for map gen
 		for (int iterations = 0; iterations < GENERATION_ITERATIONS; iterations++) {
 			// Base generation for grass and mountain
@@ -540,9 +532,4 @@ public abstract class Tile {
 	public void setSciencePotential(double sciencePotential) {
 		this.sciencePotential = sciencePotential;
 	}
-
-	// public TIle getTileFromID(int ID){
-	// if(ID = 0
-	// return GrassTile;
-	// }
 }
