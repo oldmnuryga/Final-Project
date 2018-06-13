@@ -292,6 +292,7 @@ public abstract class Unit {
 		$allUnits.add(new Spearman());
 		$allUnits.add(new Tank());
 		$allUnits.add(new Warrior());
+		$allUnits.add(new Worker());
 	}
 
 	//Movement key listners
