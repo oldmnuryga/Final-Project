@@ -2,7 +2,7 @@ package map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
+//Class for tile to be called to be added to the map which has certain yields
 public class MountainTile extends Tile {
 	public MountainTile() {
 		super.terrainID = 3;
