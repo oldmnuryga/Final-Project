@@ -84,42 +84,7 @@ public class Settler extends Unit {
 				$tempArr.add(instantiateTileValues(i, j));
 			}
 		}
-		// Sets surrounding tiles to the owner
-		// $tempArr.add(Tile.get$map()[location.get$location()[0]][location.get$location()[1]]);
-		// Tile.get$map()[location.get$location()[0]][location.get$location()[1] -
-		// 1].setOwner(owner);
-		// $tempArr.add(Tile.get$map()[location.get$location()[0]][location.get$location()[1]
-		// - 1]);
-		// Tile.get$map()[location.get$location()[0]][location.get$location()[1]].setOwner(owner);
-		// $tempArr.add(Tile.get$map()[location.get$location()[0]][location.get$location()[1]]);
-		// Tile.get$map()[location.get$location()[0]][location.get$location()[1] +
-		// 1].setOwner(owner);
-		// $tempArr.add(Tile.get$map()[location.get$location()[0]][location.get$location()[1]
-		// + 1]);
-		// Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1] -
-		// 1].setOwner(owner);
-		// $tempArr.add(Tile.get$map()[location.get$location()[0] -
-		// 1][location.get$location()[1] - 1]);
-		// Tile.get$map()[location.get$location()[0] -
-		// 1][location.get$location()[1]].setOwner(owner);
-		// $tempArr.add(Tile.get$map()[location.get$location()[0] -
-		// 1][location.get$location()[1]]);
-		// Tile.get$map()[location.get$location()[0] - 1][location.get$location()[1] +
-		// 1].setOwner(owner);
-		// $tempArr.add(Tile.get$map()[location.get$location()[0] -
-		// 1][location.get$location()[1] + 1]);
-		// Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1] -
-		// 1].setOwner(owner);
-		// $tempArr.add(Tile.get$map()[location.get$location()[0] +
-		// 1][location.get$location()[1] - 1]);
-		// Tile.get$map()[location.get$location()[0] +
-		// 1][location.get$location()[1]].setOwner(owner);
-		// $tempArr.add(Tile.get$map()[location.get$location()[0] +
-		// 1][location.get$location()[1]]);
-		// Tile.get$map()[location.get$location()[0] + 1][location.get$location()[1] +
-		// 1].setOwner(owner);
-		// $tempArr.add(Tile.get$map()[location.get$location()[0] +
-		// 1][location.get$location()[1] + 1]);
+		
 		owner.addCity(new City(owner, Tile.get$map()[location.get$location()[0]][location.get$location()[1]]));
 		owner.get$cities().get(city).set$cityTiles($tempArr);
 
@@ -130,16 +95,4 @@ public class Settler extends Unit {
 		Tile.get$map()[location.get$location()[0] + x][location.get$location()[1] + y].setOwner(owner);
 		return Tile.get$map()[location.get$location()[0] + x][location.get$location()[1] + y];
 	}
-
-	/*
-	 * public void expandCity(int city) { ArrayList<Tile> $tempArr = new
-	 * ArrayList<Tile>();
-	 * 
-	 * Tile.get$map()[location.get$location()[0]][location.get$location()[1]].
-	 * setIsCity(true);
-	 * 
-	 * for(int i = -2; i <= 2; i++) { for (int j = -2; j <= 2; j++) {
-	 * $tempArr.add(instantiateTileValues(i, j)); } }
-	 * owner.get$cities().get(city).set$cityTiles($tempArr); }
-	 */
 }
