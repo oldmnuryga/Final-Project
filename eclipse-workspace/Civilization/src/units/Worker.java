@@ -9,7 +9,7 @@ public class Worker extends Unit {
 	public Worker() {
 		super.unitID = 0;
 		super.hitpoints = 30;
-		super.attackRating = 11;
+		super.attackRating = 1;
 		super.productionCost = 40;
 		super.location = null;
 		super.ranged = true;
@@ -21,13 +21,13 @@ public class Worker extends Unit {
 		super.isGround = true;
 		super.isNaval = false;
 		super.isSelected = false;
-		super.unitName = "Archer";
+		super.unitName = "Worker";
 	}
 
 	public Worker(Player player) {
 		super.unitID = 0;
 		super.hitpoints = 30;
-		super.attackRating = 11;
+		super.attackRating = 1;
 		super.productionCost = 40;
 		super.location = null;
 		super.ranged = true;
@@ -39,7 +39,7 @@ public class Worker extends Unit {
 		super.isGround = true;
 		super.isNaval = false;
 		super.isSelected = false;
-		super.unitName = "Archer";
+		super.unitName = "Worker";
 		super.owner = player;
 		super.unitImageIcon = new ImageIcon(Unit.class.getClassLoader().getResource("units/resources/Worker.png"));
 		player.addUnit(this);
