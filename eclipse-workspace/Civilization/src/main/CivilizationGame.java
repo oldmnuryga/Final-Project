@@ -1332,6 +1332,8 @@ public class CivilizationGame {
 		}
 	}
 
+	//GETTERS AND SETTERS
+	
 	public static int getTurns() {
 		return turns;
 	}
