@@ -6,7 +6,7 @@ public class Lumbermill {
 	protected int productionBase;
 	protected int productionPotential;
 
-	//all improvements would be built by the worker, if said worker existed in the game
+	//all improvements would be built by the worker onto a tile, if said worker was implemented in the game
 	//needs to be built on the forest tile
 	//increases production of a city
 	
