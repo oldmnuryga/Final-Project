@@ -42,16 +42,6 @@ public class Technology {
 				+ "\nScience Cost: " + scienceCost + "\nComes From: " + $comesFrom + "\nLeads To: " + $leadsTo;
 	}
 
-	/*
-	 * public String leadsToNames() { String out = ""; if ($leadsTo.size() > 0) for
-	 * (int i : $leadsTo) { out += $technologies.get(i).getName() + ", "; } return
-	 * out; }
-	 * 
-	 * public String comesFromNames() { String out = ""; if ($comesFrom.size() > 0)
-	 * for (int i : $comesFrom) { out += $technologies.get(i).getName() + ", "; }
-	 * return out; }
-	 */
-
 	public int getTechnologyID() {
 		return technologyID;
 	}
@@ -126,21 +116,6 @@ public class Technology {
 		return NUMBER_OF_TECHNOLOGIES;
 	}
 
-	
-/*	public void setAchievable() {
-		if(get$comesFrom().size() == 0) {
-			this.achievable = true;
-		} else {
-			for(int i = 0; i < get$comesFrom().size(); i++) {
-				if(get$technologies()[get$comesFrom().get(i)].isResearched() == true) {
-					this.achievable = true;
-				} else {
-					this.achievable = false;
-				}
-			}
-		} 
-	}*/
-
 	/*			TREE.TXT
 	 * 
 	 * The format for this .txt documents is used to make the technology tree.
@@ -152,7 +127,7 @@ public class Technology {
 	 */
 	
 	
-	//creates the technology arraylist :)
+	//creates the technology arraylist
 	public static void importTechnologies() {
 		try {
 			FileReader f = new FileReader("src/technology/tree.txt");
